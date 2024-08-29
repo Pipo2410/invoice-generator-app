@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export const VatArticles = [
 	{
@@ -45,10 +46,8 @@ export const VatArticleSelector = () => {
 	const [selectedValue, setSelectedValue] = useState('');
 
 	const buttonValue = VatArticles.find(
-		(framework) => framework.label === selectedValue
+		(framework) => framework.value === selectedValue
 	)?.label;
-
-	console.log(!!buttonValue);
 
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
@@ -79,9 +78,12 @@ export const VatArticleSelector = () => {
 						<CommandGroup className="p-0">
 							{VatArticles.map((framework) => (
 								<CommandItem
-									className="data-[selected=true]:bg-[#F8F8F8] py-4 pl-4 gap-3 rounded-none"
+									className={cn(
+										'data-[selected=true]:bg-[#F8F8F8] py-4 pl-4 gap-3 rounded-none',
+										selectedValue === framework.value && 'bg-[#F8F8F8]'
+									)}
 									key={framework.value}
-									value={framework.label}
+									value={framework.value}
 									onSelect={(currentValue) => {
 										setSelectedValue(
 											currentValue === selectedValue ? '' : currentValue
