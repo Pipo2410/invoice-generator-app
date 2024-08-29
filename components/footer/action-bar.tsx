@@ -1,0 +1,36 @@
+import React, { Dispatch, SetStateAction } from 'react';
+import { Button } from '@/components/ui/button';
+import { Eye } from 'lucide-react';
+
+type Props = {
+	setShowPreview: Dispatch<SetStateAction<boolean>>;
+};
+
+export const ActionBar: React.FC<Props> = ({ setShowPreview }) => {
+	return (
+		<div className="w-full py-6 px-10 shadow-actionBar bg-background sticky bottom-0">
+			<div className="flex gap-4 justify-end items-center">
+				<Button
+					variant="ghost"
+					className="text-dark-blue hover:bg-transparent"
+					onClick={() => setShowPreview((prev) => !prev)}
+				>
+					<Eye className="text-black mr-1" />
+					Enable preview
+				</Button>
+				<Button
+					variant="ghost"
+					className="text-[#7E8081] bg-white px-20 py-3.5 border-[1.5px] rounded-full"
+				>
+					Save as draft
+				</Button>
+				<Button
+					variant="ghost"
+					className="text-white bg-foreground px-20 py-3.5 border-[1.5px] rounded-full disabled:text-white disabled:bg-[#7E8081]"
+				>
+					Issue invoice
+				</Button>
+			</div>
+		</div>
+	);
+};
