@@ -35,7 +35,7 @@ const CreateInvoicePage = () => {
 					</div>
 					{showPreview && <PreviewInvoice />}
 				</div>
-				{/* <ActionBar setShowPreview={setShowPreview} /> */}
+				<ActionBar setShowPreview={setShowPreview} />
 			</main>
 		</>
 	);
