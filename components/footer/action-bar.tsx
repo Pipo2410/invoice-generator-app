@@ -8,7 +8,7 @@ type Props = {
 
 export const ActionBar: React.FC<Props> = ({ setShowPreview }) => {
 	return (
-		<div className="w-full py-6 px-10 shadow-actionBar bg-background sticky bottom-0">
+		<div className="py-6 px-10 shadow-actionBar bg-background absolute w-screen bottom-0 -left-[285px]">
 			<div className="flex gap-4 justify-end items-center">
 				<Button
 					variant="ghost"

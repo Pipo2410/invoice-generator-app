@@ -78,13 +78,13 @@ export const CreateInvoiceForm = () => {
 			<div>
 				<Separator />
 				<AddItems />
-				<Separator />
+				{/* <Separator /> */}
 				{!!items.length &&
 					items.map((item) => (
 						<AddedItem key={item.name} item={item} setItems={setItems} />
 					))}
 				<AdditionalOptions />
-				<Separator />
+				{/* <Separator /> */}
 			</div>
 			<div className="summary">
 				<Summary />
