@@ -1,12 +1,11 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Eye } from 'lucide-react';
+import { useCreateInvoiceFormContext } from '@/context/create-invoice-context';
 
-type Props = {
-	setShowPreview: Dispatch<SetStateAction<boolean>>;
-};
+export const ActionBar = () => {
+	const { setShowPreview } = useCreateInvoiceFormContext();
 
-export const ActionBar: React.FC<Props> = ({ setShowPreview }) => {
 	return (
 		<div className="py-6 px-10 shadow-actionBar bg-background absolute w-screen bottom-0 -left-[285px]">
 			<div className="flex gap-4 justify-end items-center">
@@ -20,12 +19,14 @@ export const ActionBar: React.FC<Props> = ({ setShowPreview }) => {
 				</Button>
 				<Button
 					variant="ghost"
+					type="button"
 					className="text-[#7E8081] bg-white px-20 py-3.5 border-[1.5px] rounded-full"
 				>
 					Save as draft
 				</Button>
 				<Button
 					variant="ghost"
+					type="submit"
 					className="text-white bg-foreground px-20 py-3.5 border-[1.5px] rounded-full disabled:text-white disabled:bg-[#7E8081]"
 				>
 					Issue invoice

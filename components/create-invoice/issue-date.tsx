@@ -12,15 +12,31 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover';
+import { useCreateInvoiceFormContext } from '@/context/create-invoice-context';
+
+import {
+	FormControl,
+	FormField,
+	FormItem,
+	FormMessage,
+} from '@/components/ui/form';
+import { UseFormReturn } from 'react-hook-form';
+import { z } from 'zod';
+import { formSchema } from './create-invoice-form';
 
 type Props = {
+	form: UseFormReturn<z.infer<typeof formSchema>>;
 	placeholder?: string;
 };
 
-export const IssueDate: React.FC<Props> = () => {
+export const IssueDate: React.FC<Props> = ({ form }) => {
+	const {
+		invoice: {
+			date: { issueDate: dateNow },
+		},
+	} = useCreateInvoiceFormContext();
 	const [date, setDate] = useState<Date>();
 	const [isOpen, setIsOpen] = useState(false);
-	const dateNow = new Date();
 
 	return (
 		<Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -47,14 +63,30 @@ export const IssueDate: React.FC<Props> = () => {
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-auto p-0">
-				<Calendar
-					mode="single"
-					selected={dateNow}
-					onSelect={(value) => {
-						setDate(value);
-						setIsOpen(false);
+				<FormField
+					control={form.control}
+					name="invoice.date.issueDate"
+					render={({ field }) => {
+						console.log(field);
+						return (
+							<FormItem>
+								<FormControl>
+									<Calendar
+										mode="single"
+										// selected={dateNow}
+										selected={field.value}
+										onSelect={(value) => {
+											setDate(value);
+											setIsOpen(false);
+											field.onChange(value);
+										}}
+										initialFocus
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						);
 					}}
-					initialFocus
 				/>
 			</PopoverContent>
 		</Popover>

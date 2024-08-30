@@ -23,11 +23,11 @@ export const AddedItem: React.FC<Props> = ({ item, setItems }) => {
 			<div className="flex flex-col gap-3 my-6">
 				<div className="flex gap-2 items-center">
 					<Input
-						value={item.name}
+						placeholder={item.name}
 						className="text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent"
 					/>
 					<Input
-						value={item.description}
+						placeholder={item.description}
 						className="text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent"
 					/>
 					<Trash2
@@ -64,7 +64,7 @@ export const AddedItem: React.FC<Props> = ({ item, setItems }) => {
 						</SelectContent>
 					</Select>
 					<Input
-						value={`${item.price} ${item.currency}`}
+						placeholder={`${item.price} ${item.currency}`}
 						className="w-1/5 text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent"
 					/>
 					<Select>
@@ -80,7 +80,7 @@ export const AddedItem: React.FC<Props> = ({ item, setItems }) => {
 						</SelectContent>
 					</Select>
 					<Input
-						value={`${item.discount} %`}
+						placeholder={`${item.discount} %`}
 						className="w-1/5 text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent"
 					/>
 				</div>

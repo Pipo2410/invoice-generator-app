@@ -10,25 +10,42 @@ import {
 	DropdownMenuSubTrigger,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+
+import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Calendar } from '../ui/calendar';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { ChevronDown } from 'lucide-react';
 
+import { z } from 'zod';
+import { formSchema } from './create-invoice-form';
+import { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
+import { cn } from '@/lib/utils';
+
 const options = [15, 30, 45, 60, 90];
 
-export const DueDate = () => {
+type Props = {
+	form: UseFormReturn<z.infer<typeof formSchema>>;
+};
+
+export const DueDate: React.FC<Props> = ({ form }) => {
 	const [date, setDate] = useState<Date>();
 	const [days, setDays] = useState<number | null>(null);
 	const [isOpen, setIsOpen] = useState(false);
 
-	const calculateDueDate = (days: number) => {
+	const { errors } = form.formState;
+
+	const calculateDueDate = (
+		days: number,
+		field: ControllerRenderProps<z.infer<typeof formSchema>>
+	) => {
 		const today = new Date();
 		const newDueDate = new Date(today);
 
 		newDueDate.setDate(today.getDate() + days);
 		setDays(days);
 		setDate(newDueDate);
+		field.onChange(newDueDate);
 	};
 
 	return (
@@ -37,7 +54,10 @@ export const DueDate = () => {
 				<Button
 					variant="ghost"
 					size="sm"
-					className="w-full h-fit p-4 py-3 justify-between bg-[#F4F4F4] border border-[#F4F4F4] group focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-light-blue rounded-xl transition-colors data-[state=open]:border data-[state=open]:border-[#E2E2E2] font-normal text-base min-h-16"
+					className={cn(
+						'w-full h-fit p-4 py-3 justify-between bg-[#F4F4F4] border border-[#F4F4F4] group focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-light-blue rounded-xl transition-colors data-[state=open]:border data-[state=open]:border-[#E2E2E2] font-normal text-base min-h-16',
+						errors.invoice?.date?.dueDate && 'border-red-700'
+					)}
 				>
 					<div className="flex flex-col text-start font-normal">
 						{date ? (
@@ -58,13 +78,24 @@ export const DueDate = () => {
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="w-[--radix-dropdown-menu-trigger-width] p-4">
 				{options.map((option) => (
-					<DropdownMenuItem
+					<FormField
 						key={option}
-						onSelect={() => calculateDueDate(option)}
-						className="border-b text-[15px] py-4 px-2"
-					>
-						<span>{option} days</span>
-					</DropdownMenuItem>
+						control={form.control}
+						name="invoice.date.dueDate"
+						render={({ field }) => (
+							<FormItem>
+								<FormControl>
+									<DropdownMenuItem
+										onSelect={() => calculateDueDate(option, field)}
+										className="border-b text-[15px] py-4 px-2"
+									>
+										<span>{option} days</span>
+									</DropdownMenuItem>
+								</FormControl>
+								{/* <FormMessage /> */}
+							</FormItem>
+						)}
+					/>
 				))}
 				<DropdownMenuSub>
 					<DropdownMenuSubTrigger className="py-4 px-2">
@@ -72,15 +103,31 @@ export const DueDate = () => {
 					</DropdownMenuSubTrigger>
 					<DropdownMenuPortal>
 						<DropdownMenuSubContent className="ml-6">
-							<Calendar
-								mode="single"
-								selected={date}
-								onSelect={(value) => {
-									setDate(value);
-									setIsOpen(false);
-									setDays(null);
+							<FormField
+								control={form.control}
+								name="invoice.date.dueDate"
+								render={({ field }) => {
+									console.log(field);
+									return (
+										<FormItem>
+											<FormControl>
+												<Calendar
+													mode="single"
+													// selected={date}
+													selected={field.value}
+													onSelect={(value) => {
+														setDate(value);
+														setIsOpen(false);
+														setDays(null);
+														field.onChange(value);
+													}}
+													initialFocus
+												/>
+											</FormControl>
+											{/* <FormMessage /> */}
+										</FormItem>
+									);
 								}}
-								initialFocus
 							/>
 						</DropdownMenuSubContent>
 					</DropdownMenuPortal>
