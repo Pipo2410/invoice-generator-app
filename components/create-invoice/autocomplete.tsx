@@ -31,6 +31,7 @@ type Props<T extends string> = {
 	inputClassNames?: T;
 	searchWrapperClasses?: T;
 	iconClassName?: T;
+	error: boolean;
 };
 
 export const AutoComplete = <T extends string>({
@@ -45,6 +46,7 @@ export const AutoComplete = <T extends string>({
 	inputClassNames,
 	searchWrapperClasses,
 	iconClassName,
+	error,
 }: Props<T>) => {
 	const [open, setOpen] = useState(false);
 
@@ -88,7 +90,13 @@ export const AutoComplete = <T extends string>({
 	return (
 		<div className="flex items-center">
 			<Popover open={open} onOpenChange={setOpen}>
-				<Command shouldFilter={false} className="rounded-2xl border-none">
+				<Command
+					shouldFilter={false}
+					className={cn(
+						'rounded-2xl',
+						error ? 'border border-dark-orange' : 'border-none'
+					)}
+				>
 					<PopoverAnchor asChild>
 						<div
 							className={cn('flex items-center px-3', searchWrapperClasses)}

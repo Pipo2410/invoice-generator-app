@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { Preview } from '@/components/create-invoice/preview';
 import { Email } from '@/components/create-invoice/email';
 
-export const PreviewInvoice = () => {
+type Props = {
+	setShowPreview: Dispatch<SetStateAction<boolean>>;
+};
+
+export const PreviewInvoice: React.FC<Props> = ({ setShowPreview }) => {
 	return (
 		<div className="col-span-full xl:col-span-5 mb-40">
 			<Tabs defaultValue="preview" className="mx-6 sticky top-2">

@@ -8,6 +8,9 @@ import {
 	AccordionTrigger,
 } from '@/components/ui/accordion';
 import { AutoComplete } from './autocomplete';
+import { UseFormReturn } from 'react-hook-form';
+import { z } from 'zod';
+import { formSchema } from './create-invoice-form';
 
 const items = [
 	{ value: 'item name', label: 'Item name', price: 'Unit price' },
@@ -19,7 +22,11 @@ const items = [
 	},
 ];
 
-export const AddItems = () => {
+type Props = {
+	form: UseFormReturn<z.infer<typeof formSchema>>;
+};
+
+export const AddItems: React.FC<Props> = ({ form }) => {
 	const [searchValue, setSearchValue] = useState<string>('');
 	const [selectedValue, setSelectedValue] = useState<string>('');
 
@@ -27,8 +34,14 @@ export const AddItems = () => {
 		item.value.toLowerCase().includes(searchValue.toLowerCase())
 	);
 
+	const { errors } = form.formState;
+
 	return (
-		<Accordion type="single" collapsible>
+		<Accordion
+			type="single"
+			collapsible
+			onValueChange={(value) => console.log(value)}
+		>
 			<AccordionItem value="item-1" className="w-full">
 				<AccordionTrigger
 					icon="plus"
@@ -48,6 +61,7 @@ export const AddItems = () => {
 						placeholder="Search or create an item"
 						inputClassNames="w-full h-fit py-5 justify-between text-base text-foreground font-normal placeholder:text-dark-gray placeholder:text-base border-none rounded-2xl"
 						iconClassName="mr-3 h-6 w-6"
+						error={!!errors.invoice?.items}
 					/>
 				</AccordionContent>
 			</AccordionItem>

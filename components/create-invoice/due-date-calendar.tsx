@@ -56,7 +56,7 @@ export const DueDate: React.FC<Props> = ({ form }) => {
 					size="sm"
 					className={cn(
 						'w-full h-fit p-4 py-3 justify-between bg-[#F4F4F4] border border-[#F4F4F4] group focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-light-blue rounded-xl transition-colors data-[state=open]:border data-[state=open]:border-[#E2E2E2] font-normal text-base min-h-16',
-						errors.invoice?.date?.dueDate && 'border-red-700'
+						errors.invoice?.date?.dueDate && 'border-dark-orange'
 					)}
 				>
 					<div className="flex flex-col text-start font-normal">
@@ -107,7 +107,7 @@ export const DueDate: React.FC<Props> = ({ form }) => {
 								control={form.control}
 								name="invoice.date.dueDate"
 								render={({ field }) => {
-									console.log(field);
+									// console.log(field);
 									return (
 										<FormItem>
 											<FormControl>

@@ -17,6 +17,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { z } from 'zod';
+import { UseFormReturn } from 'react-hook-form';
+import { formSchema } from '../create-invoice/create-invoice-form';
 
 export const VatArticles = [
 	{
@@ -41,13 +44,21 @@ export const VatArticles = [
 	},
 ];
 
-export const VatArticleSelector = () => {
+type Props = {
+	form: UseFormReturn<z.infer<typeof formSchema>>;
+};
+
+export const VatArticleSelector: React.FC<Props> = ({ form }) => {
 	const [open, setOpen] = useState(false);
 	const [selectedValue, setSelectedValue] = useState('');
 
 	const buttonValue = VatArticles.find(
 		(framework) => framework.value === selectedValue
 	)?.label;
+
+	const { errors } = form.formState;
+	// console.log(errors);
+	// console.log(errors.invoice?.vatExemption);
 
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
@@ -57,7 +68,10 @@ export const VatArticleSelector = () => {
 					size="sm"
 					role="combobox"
 					aria-expanded={open}
-					className="w-full h-fit p-5 pl-4 justify-between bg-[#F4F4F4] group focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-light-blue rounded-xl transition-colors data-[state=open]:border data-[state=open]:border-[#E2E2E2]"
+					className={cn(
+						'w-full h-fit p-5 pl-4 justify-between bg-[#F4F4F4] group focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-light-blue rounded-xl transition-colors data-[state=open]:border data-[state=open]:border-[#E2E2E2]',
+						errors.invoice?.vatExemption && 'border border-dark-orange'
+					)}
 				>
 					<span className="font-normal text-base">
 						{selectedValue ? buttonValue : 'VAT exemption reason'}

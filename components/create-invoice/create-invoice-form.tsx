@@ -13,7 +13,6 @@ import { DueDate } from '@/components/create-invoice/due-date-calendar';
 import { ClientSelector } from '@/components/create-invoice/client-selector';
 import { FormEvent, useState } from 'react';
 import { AddedItem } from './added-item';
-import { useCreateInvoiceFormContext } from '@/context/create-invoice-context';
 import { cn } from '@/lib/utils';
 import { PreviewInvoice } from '../preview-invoice/preview-invoice';
 
@@ -85,13 +84,29 @@ export const formSchema = z.object({
 			issueDate: z.coerce.date(),
 			dueDate: z.date(),
 		}),
+		vatExemption: z.object({
+			value: z.string(),
+			label: z.string(),
+		}),
+		items: z.array(
+			z.object({
+				name: z.string(),
+				description: z.string(),
+				category: z.string(),
+				unit: z.number(),
+				price: z.number(),
+				vat: z.number(),
+				discount: z.number(),
+			})
+		),
+		// .nonempty(),
 	}),
 	// name: z.string().max(20),
 });
 
 export const CreateInvoiceForm = () => {
 	const [items, setItems] = useState<Item[]>(randomItems);
-	const { showPreview, invoice } = useCreateInvoiceFormContext();
+	const [showPreview, setShowPreview] = useState(true);
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -103,9 +118,6 @@ export const CreateInvoiceForm = () => {
 			},
 		},
 	});
-
-	const { errors } = form.formState;
-	// console.log(errors);
 
 	const onSubmitHandler = (values: z.infer<typeof formSchema>) => {
 		console.log(values);
@@ -132,15 +144,20 @@ export const CreateInvoiceForm = () => {
 								<IssueDate form={form} />
 								<DueDate form={form} />
 							</div>
-							<VatArticleSelector />
+							<VatArticleSelector form={form} />
 						</div>
 						<div>
 							<Separator />
-							<AddItems />
+							<AddItems form={form} />
 							{/* <Separator /> */}
 							{!!items.length &&
 								items.map((item) => (
-									<AddedItem key={item.name} item={item} setItems={setItems} />
+									<AddedItem
+										key={item.name}
+										item={item}
+										setItems={setItems}
+										form={form}
+									/>
 								))}
 							<AdditionalOptions />
 							{/* <Separator /> */}
@@ -148,11 +165,11 @@ export const CreateInvoiceForm = () => {
 						<div className="summary">
 							<Summary />
 						</div>
-						<ActionBar />
+						<ActionBar setShowPreview={setShowPreview} />
 					</form>
 				</Form>
 			</div>
-			{showPreview && <PreviewInvoice />}
+			{showPreview && <PreviewInvoice setShowPreview={setShowPreview} />}
 		</div>
 	);
 };

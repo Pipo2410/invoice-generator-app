@@ -12,7 +12,6 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover';
-import { useCreateInvoiceFormContext } from '@/context/create-invoice-context';
 
 import {
 	FormControl,
@@ -30,13 +29,10 @@ type Props = {
 };
 
 export const IssueDate: React.FC<Props> = ({ form }) => {
-	const {
-		invoice: {
-			date: { issueDate: dateNow },
-		},
-	} = useCreateInvoiceFormContext();
 	const [date, setDate] = useState<Date>();
 	const [isOpen, setIsOpen] = useState(false);
+
+	const dateNow = new Date();
 
 	return (
 		<Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -67,7 +63,7 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
 					control={form.control}
 					name="invoice.date.issueDate"
 					render={({ field }) => {
-						console.log(field);
+						// console.log(field);
 						return (
 							<FormItem>
 								<FormControl>

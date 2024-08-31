@@ -4,13 +4,13 @@ import { CreateInvoiceFormContextProvider } from '@/context/create-invoice-conte
 import { InitialCreateInvoiceState } from '@/context/model';
 
 type Props = {
-	initialState: InitialCreateInvoiceState;
+	initialState?: InitialCreateInvoiceState;
 };
 
 export const Content: React.FC<Props> = ({ initialState }) => {
 	return (
-		<CreateInvoiceFormContextProvider initialState={initialState}>
-			<CreateInvoiceForm />
-		</CreateInvoiceFormContextProvider>
+		// <CreateInvoiceFormContextProvider initialState={initialState}>
+		<CreateInvoiceForm />
+		// </CreateInvoiceFormContextProvider>
 	);
 };

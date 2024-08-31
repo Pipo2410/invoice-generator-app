@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Button } from '@/components/ui/button';
 import { Eye } from 'lucide-react';
-import { useCreateInvoiceFormContext } from '@/context/create-invoice-context';
 
-export const ActionBar = () => {
-	const { setShowPreview } = useCreateInvoiceFormContext();
+type Props = {
+	setShowPreview: Dispatch<SetStateAction<boolean>>;
+};
+
+export const ActionBar: React.FC<Props> = ({ setShowPreview }) => {
+	// const { setShowPreview } = useCreateInvoiceFormContext();
 
 	return (
 		<div className="py-6 px-10 shadow-actionBar bg-background absolute w-screen bottom-0 -left-[285px]">
