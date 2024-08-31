@@ -29,9 +29,9 @@ type Props = {
 };
 
 export const DueDate: React.FC<Props> = ({ form }) => {
-	const [date, setDate] = useState<Date>();
 	const [days, setDays] = useState<number | null>(null);
 	const [isOpen, setIsOpen] = useState(false);
+	const { dueDate, issueDate } = form.getValues('invoice.date');
 
 	const { errors } = form.formState;
 
@@ -39,12 +39,15 @@ export const DueDate: React.FC<Props> = ({ form }) => {
 		days: number,
 		field: ControllerRenderProps<z.infer<typeof formSchema>>
 	) => {
-		const today = new Date();
-		const newDueDate = new Date(today);
+		const newDueDate = new Date();
 
-		newDueDate.setDate(today.getDate() + days);
+		if (issueDate) {
+			newDueDate.setDate(issueDate.getDate() + days);
+		} else {
+			form.trigger('invoice.date.issueDate');
+			return;
+		}
 		setDays(days);
-		setDate(newDueDate);
 		field.onChange(newDueDate);
 	};
 
@@ -60,13 +63,13 @@ export const DueDate: React.FC<Props> = ({ form }) => {
 					)}
 				>
 					<div className="flex flex-col text-start font-normal">
-						{date ? (
+						{dueDate ? (
 							<>
 								<span className="text-dark-gray text-xs">Due date</span>
 								<span className="font-normal text-base leading-[22px]">
 									{days
-										? `${days} days (${format(date, 'PPP')})`
-										: format(date, 'PPP')}
+										? `${days} days (${format(dueDate, 'PPP')})`
+										: format(dueDate, 'PPP')}
 								</span>
 							</>
 						) : (
@@ -92,7 +95,6 @@ export const DueDate: React.FC<Props> = ({ form }) => {
 										<span>{option} days</span>
 									</DropdownMenuItem>
 								</FormControl>
-								{/* <FormMessage /> */}
 							</FormItem>
 						)}
 					/>
@@ -113,10 +115,8 @@ export const DueDate: React.FC<Props> = ({ form }) => {
 											<FormControl>
 												<Calendar
 													mode="single"
-													// selected={date}
 													selected={field.value}
 													onSelect={(value) => {
-														setDate(value);
 														setIsOpen(false);
 														setDays(null);
 														field.onChange(value);
@@ -124,7 +124,6 @@ export const DueDate: React.FC<Props> = ({ form }) => {
 													initialFocus
 												/>
 											</FormControl>
-											{/* <FormMessage /> */}
 										</FormItem>
 									);
 								}}

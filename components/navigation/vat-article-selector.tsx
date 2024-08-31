@@ -9,6 +9,7 @@ import {
 	CommandItem,
 	CommandList,
 } from '@/components/ui/command';
+import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import {
 	Popover,
 	PopoverContent,
@@ -21,7 +22,7 @@ import { z } from 'zod';
 import { UseFormReturn } from 'react-hook-form';
 import { formSchema } from '../create-invoice/create-invoice-form';
 
-export const VatArticles = [
+export const VAT_ARTICLES = [
 	{
 		value: 'M01',
 		label: '1 Article 16(6) of CIVA',
@@ -52,13 +53,11 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
 	const [open, setOpen] = useState(false);
 	const [selectedValue, setSelectedValue] = useState('');
 
-	const buttonValue = VatArticles.find(
+	const buttonValue = VAT_ARTICLES.find(
 		(framework) => framework.value === selectedValue
 	)?.label;
 
 	const { errors } = form.formState;
-	// console.log(errors);
-	// console.log(errors.invoice?.vatExemption);
 
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
@@ -90,26 +89,38 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
 					<CommandList className="max-h-fit">
 						<CommandEmpty>No article found.</CommandEmpty>
 						<CommandGroup className="p-0">
-							{VatArticles.map((framework) => (
-								<CommandItem
-									className={cn(
-										'data-[selected=true]:bg-[#F8F8F8] py-4 pl-4 gap-3 rounded-none',
-										selectedValue === framework.value && 'bg-[#F8F8F8]'
+							{VAT_ARTICLES.map((article) => (
+								<FormField
+									key={article.value}
+									control={form.control}
+									name="invoice.vatExemption.value"
+									render={({ field }) => (
+										<FormItem>
+											<FormControl>
+												<CommandItem
+													className={cn(
+														'data-[selected=true]:bg-[#F8F8F8] py-4 pl-4 gap-3 rounded-none',
+														selectedValue === article.value && 'bg-[#F8F8F8]'
+													)}
+													value={article.value}
+													onSelect={(currentValue) => {
+														setSelectedValue(
+															currentValue === selectedValue ? '' : currentValue
+														);
+														setOpen(false);
+														field.onChange(currentValue);
+													}}
+												>
+													<div className="flex flex-col">
+														<span className="text-base">{article.label}</span>
+														<span className="text-xs">{article.value}</span>
+													</div>
+												</CommandItem>
+											</FormControl>
+											{/* <FormMessage /> */}
+										</FormItem>
 									)}
-									key={framework.value}
-									value={framework.value}
-									onSelect={(currentValue) => {
-										setSelectedValue(
-											currentValue === selectedValue ? '' : currentValue
-										);
-										setOpen(false);
-									}}
-								>
-									<div className="flex flex-col">
-										<span className="text-base">{framework.label}</span>
-										<span className="text-xs">{framework.value}</span>
-									</div>
-								</CommandItem>
+								/>
 							))}
 						</CommandGroup>
 					</CommandList>

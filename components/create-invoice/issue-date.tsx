@@ -29,10 +29,14 @@ type Props = {
 };
 
 export const IssueDate: React.FC<Props> = ({ form }) => {
-	const [date, setDate] = useState<Date>();
 	const [isOpen, setIsOpen] = useState(false);
+	const { issueDate } = form.getValues('invoice.date');
+	const { errors } = form.formState;
 
-	const dateNow = new Date();
+	console.log('issueDate');
+	console.log(form.getValues('invoice.date'));
+	console.log(form.formState.errors);
+	console.log('errors');
 
 	return (
 		<Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -41,18 +45,20 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
 					size="sm"
 					variant="ghost"
 					className={cn(
-						'w-full h-fit p-4 py-3 justify-between bg-[#F4F4F4] border border-[#F4F4F4] group focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-light-blue rounded-2xl transition-colors data-[state=open]:border data-[state=open]:border-[#E2E2E2] font-normal text-base'
-						// !date && 'text-muted-foreground'
+						'w-full h-fit p-4 py-3 justify-between bg-[#F4F4F4] border border-[#F4F4F4] group focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-light-blue rounded-2xl transition-colors data-[state=open]:border data-[state=open]:border-[#E2E2E2] font-normal text-base min-h-16',
+						errors.invoice?.date?.issueDate && 'border-dark-orange'
 					)}
 				>
 					<div className="flex flex-col text-start">
-						{(date || dateNow) && (
+						{issueDate ? (
 							<>
 								<span className="text-dark-gray text-xs">Issue date</span>
 								<span className="leading-[22px]">
-									{format(date || dateNow, 'PPP')}
+									{format(issueDate, 'PPP')}
 								</span>
 							</>
+						) : (
+							<span>Select due date</span>
 						)}
 					</div>
 					<ChevronDown className="relative top-[1px] h-6 w-6 transition duration-200 group-data-[state=open]:rotate-180" />
@@ -63,7 +69,7 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
 					control={form.control}
 					name="invoice.date.issueDate"
 					render={({ field }) => {
-						// console.log(field);
+						console.log(field);
 						return (
 							<FormItem>
 								<FormControl>
@@ -72,14 +78,15 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
 										// selected={dateNow}
 										selected={field.value}
 										onSelect={(value) => {
-											setDate(value);
+											// setDate(value);
+											form.clearErrors('invoice.date.issueDate');
 											setIsOpen(false);
 											field.onChange(value);
 										}}
 										initialFocus
 									/>
 								</FormControl>
-								<FormMessage />
+								{/* <FormMessage /> */}
 							</FormItem>
 						);
 					}}

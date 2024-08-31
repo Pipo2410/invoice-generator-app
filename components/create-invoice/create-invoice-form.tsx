@@ -11,7 +11,7 @@ import { AdditionalOptions } from '@/components/create-invoice/additional-option
 import { Summary } from '@/components/create-invoice/summary';
 import { DueDate } from '@/components/create-invoice/due-date-calendar';
 import { ClientSelector } from '@/components/create-invoice/client-selector';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { AddedItem } from './added-item';
 import { cn } from '@/lib/utils';
 import { PreviewInvoice } from '../preview-invoice/preview-invoice';
@@ -19,16 +19,7 @@ import { PreviewInvoice } from '../preview-invoice/preview-invoice';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import {
-	Form,
-	FormControl,
-	FormDescription,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from '@/components/ui/form';
-import { Input } from '../ui/input';
+import { Form } from '@/components/ui/form';
 
 export const randomItems: Item[] = [
 	{
@@ -80,13 +71,28 @@ export type Item = {
 
 export const formSchema = z.object({
 	invoice: z.object({
+		client: z.object({
+			businessName: z.string(),
+			email: z.string(),
+			nif: z.number(),
+			country: z.string(),
+			currency: z.string(),
+			address: z
+				.object({
+					street: z.string(),
+					city: z.string(),
+					postalCode: z.string(),
+					additional: z.string(),
+				})
+				.optional(),
+		}),
 		date: z.object({
-			issueDate: z.coerce.date(),
+			issueDate: z.date(),
 			dueDate: z.date(),
 		}),
 		vatExemption: z.object({
 			value: z.string(),
-			label: z.string(),
+			label: z.string().optional(),
 		}),
 		items: z.array(
 			z.object({
@@ -99,10 +105,10 @@ export const formSchema = z.object({
 				discount: z.number(),
 			})
 		),
-		// .nonempty(),
 	}),
-	// name: z.string().max(20),
 });
+
+type FormType = z.infer<typeof formSchema>;
 
 export const CreateInvoiceForm = () => {
 	const [items, setItems] = useState<Item[]>(randomItems);
@@ -112,12 +118,30 @@ export const CreateInvoiceForm = () => {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			invoice: {
+				client: {
+					businessName: 'Pedro',
+					email: 'Pipo2410@gmail.com',
+					nif: 309643090,
+					country: 'Slovakia',
+					currency: 'EUR',
+					address: {
+						street: 'Rua de sao Bento',
+						city: 'Lisboa',
+						postalCode: '1254-223',
+						additional: '1dt-1e',
+					},
+				},
 				date: {
 					issueDate: new Date(),
 				},
 			},
 		},
 	});
+
+	// console.log(`form.getValues()`);
+	// console.log(form.getValues());
+	// console.log('form.formState.errors');
+	// console.log(form.formState.errors);
 
 	const onSubmitHandler = (values: z.infer<typeof formSchema>) => {
 		console.log(values);
@@ -138,7 +162,7 @@ export const CreateInvoiceForm = () => {
 						onSubmit={form.handleSubmit(onSubmitHandler)}
 					>
 						<CurrencySelector data={currencies} />
-						<ClientSelector />
+						<ClientSelector form={form} />
 						<div className="flex flex-col gap-4">
 							<div className="flex gap-4">
 								<IssueDate form={form} />

@@ -181,10 +181,10 @@ export const AutoComplete = <T extends string>({
 												)}
 											/> */}
 											<span className="font-semibold text-md group-hover:text-[#101010]">
-												{option.label}
+												{option.value}
 											</span>
 											<span className="text-xs group-hover:text-[#5A5858]">
-												{option.price}
+												{option.label}
 											</span>
 										</CommandItem>
 									))}

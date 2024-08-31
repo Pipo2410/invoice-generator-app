@@ -32,9 +32,9 @@ type Props = {
 
 export const AddedItem: React.FC<Props> = ({ item, setItems, form }) => {
 	const format = useForm();
-	console.log('form');
-	console.log(format.getValues());
-	console.log(form.formState.touchedFields);
+	// console.log('form');
+	// console.log(format.getValues());
+	// console.log(form.formState.touchedFields);
 	// const errors = form.formState..invoice?.items?.find(
 	// (el) => el?.name === item.name
 	// );
@@ -52,7 +52,7 @@ export const AddedItem: React.FC<Props> = ({ item, setItems, form }) => {
 								<FormControl>
 									<Input
 										placeholder={item.name}
-										value={field.value}
+										// value={field.value}
 										// ref={field.ref}
 										className={cn(
 											'text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent'
