@@ -18,9 +18,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { z } from 'zod';
 import { UseFormReturn } from 'react-hook-form';
-import { formSchema } from '../create-invoice/create-invoice-form';
+import { FormType } from '../create-invoice/create-invoice-form';
 
 export const VAT_ARTICLES = [
 	{
@@ -46,7 +45,7 @@ export const VAT_ARTICLES = [
 ];
 
 type Props = {
-	form: UseFormReturn<z.infer<typeof formSchema>>;
+	form: UseFormReturn<FormType>;
 };
 
 export const VatArticleSelector: React.FC<Props> = ({ form }) => {

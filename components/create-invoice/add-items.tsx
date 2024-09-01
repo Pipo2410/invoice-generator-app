@@ -9,8 +9,7 @@ import {
 } from '@/components/ui/accordion';
 import { AutoComplete } from './autocomplete';
 import { UseFormReturn } from 'react-hook-form';
-import { z } from 'zod';
-import { formSchema } from './create-invoice-form';
+import { FormType } from './create-invoice-form';
 
 const items = [
 	{ value: 'item name', label: 'Item name', price: 'Unit price' },
@@ -23,7 +22,7 @@ const items = [
 ];
 
 type Props = {
-	form: UseFormReturn<z.infer<typeof formSchema>>;
+	form: UseFormReturn<FormType>;
 };
 
 export const AddItems: React.FC<Props> = ({ form }) => {

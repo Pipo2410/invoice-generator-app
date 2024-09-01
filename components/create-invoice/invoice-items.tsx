@@ -1,11 +1,10 @@
 import { UseFormReturn, useWatch } from 'react-hook-form';
 import { AddItems } from './add-items';
 import { AddedItem } from './added-item';
-import { z } from 'zod';
-import { formSchema, FormType } from './create-invoice-form';
+import { FormType } from './create-invoice-form';
 
 type Props = {
-	form: UseFormReturn<z.infer<typeof formSchema>>;
+	form: UseFormReturn<FormType>;
 };
 
 export const InvoiceItems: React.FC<Props> = ({ form }) => {

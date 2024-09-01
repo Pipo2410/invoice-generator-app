@@ -17,15 +17,14 @@ import { useState } from 'react';
 import { format } from 'date-fns';
 import { ChevronDown } from 'lucide-react';
 
-import { z } from 'zod';
-import { formSchema } from './create-invoice-form';
 import { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
 import { cn } from '@/lib/utils';
+import { FormType } from './create-invoice-form';
 
 const options = [15, 30, 45, 60, 90];
 
 type Props = {
-	form: UseFormReturn<z.infer<typeof formSchema>>;
+	form: UseFormReturn<FormType>;
 };
 
 export const DueDate: React.FC<Props> = ({ form }) => {
@@ -37,7 +36,7 @@ export const DueDate: React.FC<Props> = ({ form }) => {
 
 	const calculateDueDate = (
 		days: number,
-		field: ControllerRenderProps<z.infer<typeof formSchema>>
+		field: ControllerRenderProps<FormType>
 	) => {
 		const newDueDate = new Date();
 

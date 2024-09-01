@@ -33,7 +33,7 @@ export const CreateInvoiceForm = () => {
 
 	console.log('Im re-rendered - create-invoice');
 
-	const onSubmitHandler = (values: z.infer<typeof formSchema>) => {};
+	const onSubmitHandler = (values: FormType) => {};
 
 	return (
 		<div className="grid grid-cols-12 gap-[75px]">

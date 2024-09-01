@@ -18,9 +18,8 @@ import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { IconComponent } from './icon-component';
 import { currencies } from '@/assets/currencies';
-import { useFormContext, UseFormReturn } from 'react-hook-form';
-import { z } from 'zod';
-import { formSchema } from '../create-invoice/create-invoice-form';
+import { UseFormReturn } from 'react-hook-form';
+import { FormType } from '../create-invoice/create-invoice-form';
 
 // type Props = {
 // 	data: {
@@ -32,7 +31,7 @@ import { formSchema } from '../create-invoice/create-invoice-form';
 // };
 
 type Props = {
-	form: UseFormReturn<z.infer<typeof formSchema>>;
+	form: UseFormReturn<FormType>;
 };
 
 export const CurrencySelector: React.FC<Props> = ({ form }) => {

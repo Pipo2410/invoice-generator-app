@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { AutoComplete } from './autocomplete';
 import { ClientCard } from './client-card';
 import { UseFormReturn } from 'react-hook-form';
-import { z } from 'zod';
-import { formSchema } from './create-invoice-form';
+import { FormType } from './create-invoice-form';
 
 const items = [
 	{
@@ -23,7 +22,7 @@ const items = [
 ];
 
 type Props = {
-	form: UseFormReturn<z.infer<typeof formSchema>>;
+	form: UseFormReturn<FormType>;
 };
 
 export const ClientSelector: React.FC<Props> = ({ form }) => {

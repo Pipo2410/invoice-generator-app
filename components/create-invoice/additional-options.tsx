@@ -8,11 +8,10 @@ import {
 import { CustomInput } from './custom-input';
 import { CustomCheckbox } from './custom-checkbox';
 import { UseFormReturn } from 'react-hook-form';
-import { z } from 'zod';
-import { formSchema } from './create-invoice-form';
+import { FormType } from './create-invoice-form';
 
 type Props = {
-	form: UseFormReturn<z.infer<typeof formSchema>>;
+	form: UseFormReturn<FormType>;
 };
 
 export const AdditionalOptions: React.FC<Props> = ({ form }) => {

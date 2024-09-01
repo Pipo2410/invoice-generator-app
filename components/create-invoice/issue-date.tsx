@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { format } from 'date-fns';
-import { Calendar as CalendarIcon, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -13,18 +13,12 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover';
 
-import {
-	FormControl,
-	FormField,
-	FormItem,
-	FormMessage,
-} from '@/components/ui/form';
+import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { UseFormReturn } from 'react-hook-form';
-import { z } from 'zod';
-import { formSchema } from './create-invoice-form';
+import { FormType } from './create-invoice-form';
 
 type Props = {
-	form: UseFormReturn<z.infer<typeof formSchema>>;
+	form: UseFormReturn<FormType>;
 	placeholder?: string;
 };
 
@@ -32,11 +26,6 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const { issueDate } = form.getValues('invoice.date');
 	const { errors } = form.formState;
-
-	// console.log('issueDate');
-	// console.log(form.getValues('invoice.date'));
-	// console.log(form.formState.errors);
-	// console.log('errors');
 
 	return (
 		<Popover open={isOpen} onOpenChange={setIsOpen}>

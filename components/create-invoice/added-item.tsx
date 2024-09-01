@@ -1,6 +1,5 @@
 'use client';
 import { Separator } from '../ui/separator';
-import { formSchema, FormType } from './create-invoice-form';
 import { Input } from '../ui/input';
 import { Trash2 } from 'lucide-react';
 import {
@@ -15,10 +14,11 @@ import { UseFormReturn } from 'react-hook-form';
 import { z } from 'zod';
 import { cn } from '@/lib/utils';
 import { currencies } from '@/assets/currencies';
+import { FormType } from './create-invoice-form';
 
 type Props = {
 	item: FormType['invoice']['items'][number];
-	form: UseFormReturn<z.infer<typeof formSchema>>;
+	form: UseFormReturn<FormType>;
 };
 
 export const AddedItem: React.FC<Props> = ({ item, form }) => {
