@@ -7,8 +7,6 @@ type Props = {
 };
 
 export const ActionBar: React.FC<Props> = ({ setShowPreview }) => {
-	// const { setShowPreview } = useCreateInvoiceFormContext();
-
 	return (
 		<div className="py-6 px-10 shadow-actionBar bg-background absolute w-screen bottom-0 -left-[285px]">
 			<div className="flex gap-4 justify-end items-center">
