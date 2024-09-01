@@ -33,10 +33,10 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
 	const { issueDate } = form.getValues('invoice.date');
 	const { errors } = form.formState;
 
-	console.log('issueDate');
-	console.log(form.getValues('invoice.date'));
-	console.log(form.formState.errors);
-	console.log('errors');
+	// console.log('issueDate');
+	// console.log(form.getValues('invoice.date'));
+	// console.log(form.formState.errors);
+	// console.log('errors');
 
 	return (
 		<Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -69,7 +69,7 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
 					control={form.control}
 					name="invoice.date.issueDate"
 					render={({ field }) => {
-						console.log(field);
+						// console.log(field);
 						return (
 							<FormItem>
 								<FormControl>

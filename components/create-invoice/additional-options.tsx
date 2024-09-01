@@ -9,6 +9,7 @@ import { CustomInput } from './custom-input';
 import { CustomCheckbox } from './custom-checkbox';
 
 export const AdditionalOptions = () => {
+	console.log('Im re-rendered - AdditionalOptions');
 	return (
 		<Accordion type="single" collapsible>
 			<AccordionItem value="item-1" className="w-full">

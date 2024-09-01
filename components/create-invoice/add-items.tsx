@@ -40,7 +40,7 @@ export const AddItems: React.FC<Props> = ({ form }) => {
 		<Accordion
 			type="single"
 			collapsible
-			onValueChange={(value) => console.log(value)}
+			// onValueChange={(value) => console.log(value)}
 		>
 			<AccordionItem value="item-1" className="w-full">
 				<AccordionTrigger

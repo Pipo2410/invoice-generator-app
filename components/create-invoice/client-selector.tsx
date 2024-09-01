@@ -31,7 +31,7 @@ export const ClientSelector: React.FC<Props> = ({ form }) => {
 	const [selectedValue, setSelectedValue] = useState<string>('');
 	const selected = items.filter((el) => el.businessName === selectedValue);
 
-	console.log(selected);
+	// console.log(selected);
 	// form.setValue('invoice.client', selected);
 
 	const { errors } = form.formState;
