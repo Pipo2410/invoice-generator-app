@@ -56,7 +56,7 @@ export const LanguageSelector: React.FC<Props> = ({ data }) => {
 			<PopoverContent className="w-fit p-0 rounded-3xl">
 				<Command className="rounded-3xl">
 					<CommandInput
-						searchWrapperClasses="bg-[#F4F4F4]"
+						searchWrapperClasses="bg-secondary"
 						iconClassName="mr-3 h-4 w-4"
 						placeholder="Search country..."
 					/>

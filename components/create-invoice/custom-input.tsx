@@ -19,7 +19,7 @@ export const CustomInput: React.FC<Props> = ({
 				ref={inputRef}
 				type="text"
 				placeholder="Purchase order"
-				className="h-fit bg-[#F4F4F4] text-base leading-4 border-none py-4 px-3 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent"
+				className="h-fit bg-secondary text-base leading-4 border-none py-4 px-3 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent"
 				onChange={(event) => onInputHandler(event.target.value)}
 			/>
 			<Label

@@ -1,25 +1,10 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AutoComplete } from './autocomplete';
 import { ClientCard } from './client-card';
 import { UseFormReturn } from 'react-hook-form';
 import { FormType } from './create-invoice-form';
-
-const items = [
-	{
-		businessName: 'Pedro',
-		email: 'Pipo2410@gmail.com',
-		nif: 309643090,
-		country: 'Slovakia',
-		currency: 'EUR',
-		address: {
-			street: 'Rua de sao Bento',
-			city: 'Lisboa',
-			postalCode: '1254-223',
-			additional: '1dt-1e',
-		},
-	},
-];
+import { clientsArray } from '@/context/helpers';
 
 type Props = {
 	form: UseFormReturn<FormType>;
@@ -28,44 +13,61 @@ type Props = {
 export const ClientSelector: React.FC<Props> = ({ form }) => {
 	const [searchValue, setSearchValue] = useState<string>('');
 	const [selectedValue, setSelectedValue] = useState<string>('');
-	const selected = items.filter((el) => el.businessName === selectedValue);
 
-	// console.log(selected);
-	// form.setValue('invoice.client', selected);
+	useEffect(() => {
+		// investigate this
+		const selectedClient = clientsArray.find(
+			(client) =>
+				client.businessName === selectedValue ||
+				String(client.nif) === selectedValue
+		);
+		if (selectedClient) {
+			console.log('will call setValue');
+			form.setValue('invoice.client', selectedClient);
+		}
+	}, [selectedValue]);
 
 	const { errors } = form.formState;
 
-	const newItems = items.map((item) => {
+	const newItems = clientsArray.map((item) => {
 		return {
-			value: item.businessName,
-			label: `${item.nif}`,
-			price: `${item.nif}`,
+			label: item.businessName,
+			value: String(item.nif),
 		};
 	});
 
-	const filteredItems = newItems.filter((item) =>
-		item.value.toLowerCase().includes(searchValue.toLowerCase())
+	const filteredItems = newItems.filter(
+		(client) =>
+			client.value.toLowerCase().includes(searchValue.toLowerCase()) ||
+			client.label.toLowerCase().includes(searchValue.toLowerCase())
 	);
 
 	return (
-		<>
+		<div>
 			{!selectedValue && (
-				<AutoComplete
-					selectedValue={selectedValue}
-					onSelectedValueChange={setSelectedValue}
-					searchValue={searchValue}
-					onSearchValueChange={setSearchValue}
-					items={filteredItems ?? []}
-					// Optional props
-					emptyMessage="No items found."
-					placeholder="Search or add a client..."
-					inputClassNames="w-full h-fit py-5 justify-between text-base text-foreground font-normal placeholder:text-dark-gray placeholder:text-base border-none rounded-2xl"
-					iconClassName="mr-3 h-6 w-6"
-					error={!!errors.invoice?.client}
-				/>
+				<div className="flex flex-col gap-1">
+					<AutoComplete
+						selectedValue={selectedValue}
+						onSelectedValueChange={setSelectedValue}
+						searchValue={searchValue}
+						onSearchValueChange={setSearchValue}
+						items={filteredItems ?? []}
+						// Optional props
+						emptyMessage="No items found."
+						placeholder="Search or add a client..."
+						searchWrapperClasses="bg-secondary"
+						// inputClassNames="w-full h-fit py-5 justify-between text-base text-foreground font-normal placeholder:text-dark-gray placeholder:text-base border-none rounded-2xl"
+						inputClassNames="h-fit text-base leading-4 border-none py-4 px-0 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent"
+						iconClassName="mr-3 h-6 w-6"
+						error={!!errors.invoice?.client}
+					/>
+					<p className="text-dark-gray text-sm ml-4">
+						Client legal name or company NIF number
+					</p>
+				</div>
 			)}
 
 			{selectedValue && <ClientCard setSelectedValue={setSelectedValue} />}
-		</>
+		</div>
 	);
 };

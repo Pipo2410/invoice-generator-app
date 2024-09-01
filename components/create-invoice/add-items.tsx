@@ -58,7 +58,8 @@ export const AddItems: React.FC<Props> = ({ form }) => {
 						// Optional props
 						emptyMessage="No items found."
 						placeholder="Search or create an item"
-						inputClassNames="w-full h-fit py-5 justify-between text-base text-foreground font-normal placeholder:text-dark-gray placeholder:text-base border-none rounded-2xl"
+						// inputClassNames="w-full h-fit py-5 justify-between text-base text-foreground font-normal placeholder:text-dark-gray placeholder:text-base border-none rounded-2xl"
+						inputClassNames="h-fit text-base leading-4 border-none py-4 px-0 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent"
 						iconClassName="mr-3 h-6 w-6"
 						error={!!errors.invoice?.items}
 					/>

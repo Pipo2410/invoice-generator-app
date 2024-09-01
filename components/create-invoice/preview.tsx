@@ -1,18 +1,17 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Separator } from '../ui/separator';
-import { FormType } from './create-invoice-form';
 import { Summary } from './summary';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { currencies } from '@/assets/currencies';
+import { Client, Items } from '@/context/model';
 
 export const Preview = () => {
 	const { getValues } = useFormContext();
-	const items: FormType['invoice']['items'] = useWatch({
+	const client: Client = useWatch({ name: 'invoice.client' });
+	const items: Items = useWatch({
 		name: 'invoice.items',
 	});
-	const currency = getValues('invoice.date.issueDate');
-	const currencySign = currencies.find((el) => el.label === currency)?.sign;
 
 	const purchaseOrder = useWatch({
 		name: 'invoice.additionalOptions.purchaseOrder',
@@ -20,8 +19,12 @@ export const Preview = () => {
 	const referenceNote = useWatch({
 		name: 'invoice.additionalOptions.referenceNote',
 	});
-	const issueDate = getValues('invoice.date.issueDate');
-	const issueDateValue = new Date(issueDate).toLocaleDateString('en-US', {
+
+	const currency = getValues('invoice.currency');
+	const dueDate = getValues('invoice.date.dueDate');
+
+	const currencySign = currencies.find((el) => el.label === currency)?.sign;
+	const dueDateValue = new Date(dueDate).toLocaleDateString('en-US', {
 		year: 'numeric',
 		month: 'short',
 		day: 'numeric',
@@ -38,25 +41,29 @@ export const Preview = () => {
 					<h5 className="font-semibold">Billed to</h5>
 					<p className="flex justify-between text-dark-gray">
 						<span>Business name</span>
-						<span className="font-semibold">Jon Doe</span>
+						<span className="font-semibold">{client.businessName}</span>
 					</p>
 					<p className="flex justify-between text-dark-gray">
 						<span>Business address</span>
-						<span>Business address</span>
+						{client.address && <span>{client.address?.street}</span>}
 					</p>
 					<p className="flex justify-between text-dark-gray">
 						<span>City, Country - 0000-000</span>
-						<span>City, Country - 0000-000</span>
+						{client.address && (
+							<span>
+								{`${client.address?.city}, ${client.country} - ${client.address?.postalCode}`}
+							</span>
+						)}
 					</p>
 					<p className="flex justify-between text-dark-gray">
 						<span>NIF</span>
-						<span>123451234</span>
+						<span>{client.nif}</span>
 					</p>
 				</div>
 				<div className="flex py-4 -mx-1 justify-center border-b border-t border-dotted">
 					<div className="flex flex-col items-center">
 						<p>Due date</p>
-						{issueDate && <p className="font-semibold">{issueDateValue}</p>}
+						{dueDate && <p className="font-semibold">{dueDateValue}</p>}
 					</div>
 					<Separator orientation="vertical" className="mx-5 h-auto" />
 					<div className="flex flex-col items-center">

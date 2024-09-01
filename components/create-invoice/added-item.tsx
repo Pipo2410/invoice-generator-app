@@ -11,13 +11,13 @@ import {
 } from '@/components/ui/select';
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { UseFormReturn } from 'react-hook-form';
-import { z } from 'zod';
 import { cn } from '@/lib/utils';
 import { currencies } from '@/assets/currencies';
 import { FormType } from './create-invoice-form';
+import { Items } from '@/context/model';
 
 type Props = {
-	item: FormType['invoice']['items'][number];
+	item: Items[number];
 	form: UseFormReturn<FormType>;
 };
 

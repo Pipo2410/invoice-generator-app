@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const AdditionalOptions: React.FC<Props> = ({ form }) => {
-	console.log('Im re-rendered - AdditionalOptions');
+	// console.log('Im re-rendered - AdditionalOptions');
 
 	return (
 		<Accordion type="single" collapsible>

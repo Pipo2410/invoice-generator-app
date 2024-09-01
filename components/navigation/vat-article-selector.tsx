@@ -67,7 +67,7 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
 					role="combobox"
 					aria-expanded={open}
 					className={cn(
-						'w-full h-fit p-5 pl-4 justify-between bg-[#F4F4F4] group focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-light-blue rounded-xl transition-colors data-[state=open]:border data-[state=open]:border-[#E2E2E2]',
+						'w-full h-fit p-5 pl-4 justify-between bg-secondary group focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-light-blue rounded-xl transition-colors data-[state=open]:border data-[state=open]:border-[#E2E2E2]',
 						errors.invoice?.vatExemption && 'border border-dark-orange'
 					)}
 				>
@@ -80,7 +80,7 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
 			<PopoverContent className="w-[--radix-popover-trigger-width] p-0 rounded-3xl">
 				<Command className="rounded-3xl">
 					<CommandInput
-						searchWrapperClasses="bg-[#F4F4F4]"
+						searchWrapperClasses="bg-secondary"
 						iconClassName="mr-3 h-6 w-6"
 						placeholder="Search VAT article..."
 						className="text-base font-normal py-4 h-fit"

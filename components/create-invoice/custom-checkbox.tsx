@@ -25,10 +25,10 @@ export const CustomCheckbox: React.FC<Props> = ({ text, id, inputType }) => {
 
 	const valueElement =
 		inputType === 'input' ? (
-			<Input className="w-fit text-[#101010] bg-[#F4F4F4] py-1 px-2 rounded-lg border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent" />
+			<Input className="w-fit text-[#101010] bg-secondary py-1 px-2 rounded-lg border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent" />
 		) : (
 			<Select>
-				<SelectTrigger className="w-48 text-[#101010] bg-[#F4F4F4] py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:right-0 focus:ring-transparent focus:ring-offset-0">
+				<SelectTrigger className="w-48 text-[#101010] bg-secondary py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:right-0 focus:ring-transparent focus:ring-offset-0">
 					<SelectValue placeholder="15%" />
 				</SelectTrigger>
 				<SelectContent>

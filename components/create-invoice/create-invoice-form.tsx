@@ -31,7 +31,7 @@ export const CreateInvoiceForm = () => {
 		defaultValues: formDefaultValues,
 	});
 
-	console.log('Im re-rendered - create-invoice');
+	// console.log('Im re-rendered - create-invoice');
 
 	const onSubmitHandler = (values: FormType) => {};
 
@@ -45,7 +45,6 @@ export const CreateInvoiceForm = () => {
 				>
 					<Form {...form}>
 						<form
-							action=""
 							className="flex flex-col gap-6 mb-40"
 							onSubmit={form.handleSubmit(onSubmitHandler)}
 						>

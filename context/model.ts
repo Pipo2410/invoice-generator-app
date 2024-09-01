@@ -1,3 +1,4 @@
+import { FormType } from '@/components/create-invoice/create-invoice-form';
 import { z } from 'zod';
 
 export const formSchema = z.object({
@@ -8,7 +9,7 @@ export const formSchema = z.object({
 			nif: z.number(),
 			country: z.string(),
 			currency: z.string(),
-			defaultCurrency: z.boolean(),
+			defaultCurrency: z.string(),
 			address: z
 				.object({
 					street: z.string(),
@@ -45,3 +46,8 @@ export const formSchema = z.object({
 		currency: z.string(),
 	}),
 });
+
+export type Client = FormType['invoice']['client'];
+export type Date = FormType['invoice']['date'];
+export type VatExemption = FormType['invoice']['vatExemption'];
+export type Items = FormType['invoice']['items'];

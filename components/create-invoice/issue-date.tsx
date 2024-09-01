@@ -34,7 +34,7 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
 					size="sm"
 					variant="ghost"
 					className={cn(
-						'w-full h-fit p-4 py-3 justify-between bg-[#F4F4F4] border border-[#F4F4F4] group focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-light-blue rounded-2xl transition-colors data-[state=open]:border data-[state=open]:border-[#E2E2E2] font-normal text-base min-h-16',
+						'w-full h-fit p-4 py-3 justify-between bg-secondary border border-secondary group focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-light-blue rounded-2xl transition-colors data-[state=open]:border data-[state=open]:border-[#E2E2E2] font-normal text-base min-h-16',
 						errors.invoice?.date?.issueDate && 'border-dark-orange'
 					)}
 				>

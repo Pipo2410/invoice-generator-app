@@ -21,15 +21,6 @@ import { currencies } from '@/assets/currencies';
 import { UseFormReturn } from 'react-hook-form';
 import { FormType } from '../create-invoice/create-invoice-form';
 
-// type Props = {
-// 	data: {
-// 		value: string;
-// 		label: string;
-// 		description: string;
-// 		icon: string;
-// 	}[];
-// };
-
 type Props = {
 	form: UseFormReturn<FormType>;
 };
@@ -64,7 +55,7 @@ export const CurrencySelector: React.FC<Props> = ({ form }) => {
 			<PopoverContent className="w-fit p-0 rounded-3xl">
 				<Command className="rounded-3xl">
 					<CommandInput
-						searchWrapperClasses="bg-[#F4F4F4]"
+						searchWrapperClasses="bg-secondary"
 						iconClassName="mr-3 h-4 w-4"
 						placeholder="Search"
 						className="text-base font-normal"
