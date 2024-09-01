@@ -32,7 +32,7 @@ export const CustomCheckbox: React.FC<Props> = ({ text, id, inputType }) => {
 					<SelectValue placeholder="15%" />
 				</SelectTrigger>
 				<SelectContent>
-					{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((option) => (
+					{[5, 10, 15].map((option) => (
 						<SelectItem key={option} value={`${option}`}>
 							{option}
 						</SelectItem>

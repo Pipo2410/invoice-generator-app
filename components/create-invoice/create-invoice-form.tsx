@@ -70,6 +70,10 @@ export const formSchema = z.object({
 				discount: z.number(),
 			})
 		),
+		additionalOptions: z.object({
+			purchaseOrder: z.string(),
+			referenceNote: z.string(),
+		}),
 		currency: z.string(),
 	}),
 });
@@ -169,7 +173,7 @@ export const CreateInvoiceForm = () => {
 							<div>
 								<Separator />
 								<InvoiceItems form={form} />
-								<AdditionalOptions />
+								<AdditionalOptions form={form} />
 								{/* <Separator /> */}
 							</div>
 							<div className="summary">

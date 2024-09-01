@@ -7,9 +7,17 @@ import {
 } from '@/components/ui/accordion';
 import { CustomInput } from './custom-input';
 import { CustomCheckbox } from './custom-checkbox';
+import { UseFormReturn } from 'react-hook-form';
+import { z } from 'zod';
+import { formSchema } from './create-invoice-form';
 
-export const AdditionalOptions = () => {
+type Props = {
+	form: UseFormReturn<z.infer<typeof formSchema>>;
+};
+
+export const AdditionalOptions: React.FC<Props> = ({ form }) => {
 	console.log('Im re-rendered - AdditionalOptions');
+
 	return (
 		<Accordion type="single" collapsible>
 			<AccordionItem value="item-1" className="w-full">
@@ -29,8 +37,18 @@ export const AdditionalOptions = () => {
 							inputType="select"
 						/>
 					</div>
-					<CustomInput placeholder="Reference note" />
-					<CustomInput placeholder="Purchase order" />
+					<CustomInput
+						placeholder="Reference note"
+						onInputHandler={(value) =>
+							form.setValue('invoice.additionalOptions.purchaseOrder', value)
+						}
+					/>
+					<CustomInput
+						placeholder="Purchase order"
+						onInputHandler={(value) =>
+							form.setValue('invoice.additionalOptions.referenceNote', value)
+						}
+					/>
 				</AccordionContent>
 			</AccordionItem>
 		</Accordion>

@@ -13,6 +13,13 @@ export const Preview = () => {
 	});
 	const currency = getValues('invoice.date.issueDate');
 	const currencySign = currencies.find((el) => el.label === currency)?.sign;
+
+	const purchaseOrder = useWatch({
+		name: 'invoice.additionalOptions.purchaseOrder',
+	});
+	const referenceNote = useWatch({
+		name: 'invoice.additionalOptions.referenceNote',
+	});
 	const issueDate = getValues('invoice.date.issueDate');
 	const issueDateValue = new Date(issueDate).toLocaleDateString('en-US', {
 		year: 'numeric',
@@ -54,7 +61,7 @@ export const Preview = () => {
 					<Separator orientation="vertical" className="mx-5 h-auto" />
 					<div className="flex flex-col items-center">
 						<p>Note or PO</p>
-						<p className="font-semibold">1234456 ref ABC</p>
+						<p className="font-semibold">{referenceNote}</p>
 					</div>
 				</div>
 			</div>
@@ -116,6 +123,12 @@ export const Preview = () => {
 				</div>
 			</div>
 			<Summary />
+			{purchaseOrder && (
+				<p>
+					<span className="font-semibold">Reference note: </span>
+					<span>{purchaseOrder}</span>
+				</p>
+			)}
 		</Card>
 	);
 };
