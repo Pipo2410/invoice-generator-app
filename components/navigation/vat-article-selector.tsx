@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import {
 	Command,
@@ -18,31 +18,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { UseFormReturn } from 'react-hook-form';
+import { useFormContext, UseFormReturn } from 'react-hook-form';
 import { FormType } from '../create-invoice/create-invoice-form';
-
-export const VAT_ARTICLES = [
-	{
-		value: 'M01',
-		label: '1 Article 16(6) of CIVA',
-	},
-	{
-		value: 'M02',
-		label: 'Article 6 of Decree-Law 198/90 of June 19th',
-	},
-	{
-		value: 'M04',
-		label: 'Exempt Article 13 of CIVA',
-	},
-	{
-		value: 'M05',
-		label: 'Exempt Article 14 of CIVA',
-	},
-	{
-		value: 'M06',
-		label: 'Exempt Article 15 of CIVA',
-	},
-];
+import { VAT_ARTICLES } from '@/context/helpers';
 
 type Props = {
 	form: UseFormReturn<FormType>;
@@ -107,7 +85,7 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
 															currentValue === selectedValue ? '' : currentValue
 														);
 														setOpen(false);
-														field.onChange(currentValue);
+														form.setValue('invoice.vatExemption', article);
 													}}
 												>
 													<div className="flex flex-col">

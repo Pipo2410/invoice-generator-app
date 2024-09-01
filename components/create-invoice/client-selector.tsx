@@ -4,7 +4,7 @@ import { AutoComplete } from './autocomplete';
 import { ClientCard } from './client-card';
 import { UseFormReturn } from 'react-hook-form';
 import { FormType } from './create-invoice-form';
-import { clientsArray } from '@/context/helpers';
+import { CLIENTS_ARRAY } from '@/context/helpers';
 
 type Props = {
 	form: UseFormReturn<FormType>;
@@ -16,7 +16,7 @@ export const ClientSelector: React.FC<Props> = ({ form }) => {
 
 	useEffect(() => {
 		// investigate this
-		const selectedClient = clientsArray.find(
+		const selectedClient = CLIENTS_ARRAY.find(
 			(client) =>
 				client.businessName === selectedValue ||
 				String(client.nif) === selectedValue
@@ -29,7 +29,7 @@ export const ClientSelector: React.FC<Props> = ({ form }) => {
 
 	const { errors } = form.formState;
 
-	const newItems = clientsArray.map((item) => {
+	const newItems = CLIENTS_ARRAY.map((item) => {
 		return {
 			label: item.businessName,
 			value: String(item.nif),

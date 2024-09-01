@@ -3,6 +3,7 @@ import { Separator } from '../ui/separator';
 import { currencies } from '@/assets/currencies';
 
 export const Summary = () => {
+	const vatExemption = useWatch({ name: 'invoice.vatExemption.label' });
 	const currency = useWatch({ name: 'invoice.currency' });
 	const currencySign = currencies.find((el) => el.label === currency)?.sign;
 
@@ -37,9 +38,7 @@ export const Summary = () => {
 			</div>
 			<div className="flex justify-between">
 				<p>VAT Exemption</p>
-				<p className="text-foreground">
-					Article 6 of Decree-Law 198/90 of June 19th - M02
-				</p>
+				<p className="text-foreground">{vatExemption}</p>
 			</div>
 		</div>
 	);

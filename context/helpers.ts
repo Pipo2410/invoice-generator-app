@@ -1,5 +1,5 @@
 import { currencies } from '@/assets/currencies';
-import { Client } from './model';
+import { Client, VatExemption } from './model';
 
 export const formDefaultValues = {
 	invoice: {
@@ -49,7 +49,7 @@ export const formDefaultValues = {
 	},
 };
 
-export const clientsArray: Client[] = [
+export const CLIENTS_ARRAY: Client[] = [
 	{
 		businessName: 'Client 12',
 		email: 'client12@gmail.com',
@@ -91,5 +91,28 @@ export const clientsArray: Client[] = [
 			postalCode: '1254-213',
 			additional: '4dt-1dto',
 		},
+	},
+];
+
+export const VAT_ARTICLES: VatExemption[] = [
+	{
+		value: 'M01',
+		label: '1 Article 16(6) of CIVA',
+	},
+	{
+		value: 'M02',
+		label: 'Article 6 of Decree-Law 198/90 of June 19th',
+	},
+	{
+		value: 'M04',
+		label: 'Exempt Article 13 of CIVA',
+	},
+	{
+		value: 'M05',
+		label: 'Exempt Article 14 of CIVA',
+	},
+	{
+		value: 'M06',
+		label: 'Exempt Article 15 of CIVA',
 	},
 ];
