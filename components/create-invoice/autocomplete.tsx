@@ -230,10 +230,10 @@ export const AutoComplete = <T extends string>({
 												)}
 											/> */}
 											<span className="font-semibold text-md group-hover:text-[#101010]">
-												{option.value}
+												{option.label}
 											</span>
 											<span className="text-xs group-hover:text-[#5A5858]">
-												{option.label}
+												{option.value}
 											</span>
 										</CommandItem>
 									))}

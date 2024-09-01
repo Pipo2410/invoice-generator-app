@@ -1,20 +1,17 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { IconComponent } from '../navigation/icon-component';
+import { useWatch } from 'react-hook-form';
+import { Client } from '@/context/model';
 
 type Props = {
 	setSelectedValue: Dispatch<SetStateAction<string>>;
 };
 
 export const ClientCard: React.FC<Props> = ({ setSelectedValue }) => {
+	const client: Client = useWatch({ name: 'invoice.client' });
+
 	const onClose = () => {
 		setSelectedValue('');
 	};
@@ -28,7 +25,7 @@ export const ClientCard: React.FC<Props> = ({ setSelectedValue }) => {
 							TW
 						</AvatarFallback>
 					</Avatar>
-					<h3 className="font-semibold">Company ABC</h3>
+					<h3 className="font-semibold">{client.businessName}</h3>
 				</div>
 				<div className="flex items-center gap-4">
 					<IconComponent icon="edit" className="fill-dark-blue" />
@@ -40,10 +37,10 @@ export const ClientCard: React.FC<Props> = ({ setSelectedValue }) => {
 				</div>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-2">
-				<p>NIF {'12312312'}</p>
-				<p>Portugal</p>
+				<p>NIF {client.nif}</p>
+				<p>{client.country}</p>
 				<p>Rua Dom Francisco No. 15 3010-010 - Lisbon</p>
-				<p className="font-semibold">comms.zero@email.com</p>
+				<p className="font-semibold">{client.email}</p>
 			</CardContent>
 		</Card>
 	);
