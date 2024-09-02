@@ -1,5 +1,6 @@
 import { currencies } from '@/assets/currencies';
 import { Client, Items, VatExemption } from './model';
+import { FormType } from '@/components/create-invoice/create-invoice-form';
 
 export const formDefaultValues = {
 	invoice: {
@@ -118,3 +119,11 @@ export const INVOICE_ITEMS_ARRAY: Items = [
 		discount: 10,
 	},
 ];
+
+export const DEFAULT_CLIENT = {
+	businessName: '',
+	email: '',
+	nif: undefined,
+	country: '',
+	currency: '',
+};

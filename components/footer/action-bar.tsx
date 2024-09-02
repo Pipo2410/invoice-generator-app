@@ -12,6 +12,7 @@ export const ActionBar: React.FC<Props> = ({ setShowPreview }) => {
 			<div className="flex gap-4 justify-end items-center">
 				<Button
 					variant="ghost"
+					type="button"
 					className="text-dark-blue hover:bg-transparent"
 					onClick={() => setShowPreview((prev) => !prev)}
 				>

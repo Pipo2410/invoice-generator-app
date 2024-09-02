@@ -2,18 +2,21 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { IconComponent } from '../navigation/icon-component';
-import { useWatch } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { Client } from '@/context/model';
+import { DEFAULT_CLIENT } from '@/context/helpers';
 
 type Props = {
 	setSelectedValue: Dispatch<SetStateAction<string>>;
 };
 
 export const ClientCard: React.FC<Props> = ({ setSelectedValue }) => {
+	const { setValue } = useFormContext();
 	const client: Client = useWatch({ name: 'invoice.client' });
 
 	const onClose = () => {
 		setSelectedValue('');
+		setValue('invoice.client', DEFAULT_CLIENT);
 	};
 	return (
 		<Card className="border-x-0 border-t-0">
