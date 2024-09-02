@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	Accordion,
 	AccordionContent,
@@ -10,28 +10,45 @@ import {
 import { AutoComplete } from './autocomplete';
 import { UseFormReturn } from 'react-hook-form';
 import { FormType } from './create-invoice-form';
-
-const items = [
-	{ value: 'item name', label: 'Item name', price: 'Unit price' },
-	{ value: 'Branding website', label: 'Branding website', price: '2.345,00€' },
-	{
-		value: 'branding guidelines',
-		label: 'Branding guidelines',
-		price: '1.550,00€',
-	},
-];
+import { INVOICE_ITEMS_ARRAY } from '@/context/helpers';
 
 type Props = {
 	form: UseFormReturn<FormType>;
 };
 
+const TRANSFORMED_ITEMS = INVOICE_ITEMS_ARRAY.map((item) => {
+	// const formattedPrice = new Intl.NumberFormat('de-DE', {
+	// 	minimumFractionDigits: 2,
+	// 	maximumFractionDigits: 2,
+	// }).format(Number(item.description));
+
+	return {
+		label: item.name,
+		value: item.description,
+	};
+});
+
 export const AddItems: React.FC<Props> = ({ form }) => {
 	const [searchValue, setSearchValue] = useState<string>('');
 	const [selectedValue, setSelectedValue] = useState<string>('');
 
-	const filteredItems = items.filter((item) =>
-		item.value.toLowerCase().includes(searchValue.toLowerCase())
+	const filteredItems = TRANSFORMED_ITEMS.filter((item) =>
+		item.label.toLowerCase().includes(searchValue.toLowerCase())
 	);
+	useEffect(() => {
+		const selectedItem = INVOICE_ITEMS_ARRAY.find(
+			(item) => item.description === selectedValue
+		);
+
+		const invoiceItems = form.getValues('invoice.items');
+
+		if (selectedItem) {
+			invoiceItems.push(selectedItem);
+			form.setValue('invoice.items', invoiceItems);
+			setSearchValue('');
+			form.trigger('invoice.items');
+		}
+	}, [selectedValue]);
 
 	const { errors } = form.formState;
 

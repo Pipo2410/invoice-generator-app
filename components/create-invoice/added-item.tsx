@@ -29,7 +29,9 @@ export const AddedItem: React.FC<Props> = ({ item, form }) => {
 	} = getValues();
 
 	const currencySign = currencies.find((el) => el.label === currency)?.sign;
-	const filteredItems = items.filter((el) => el.id !== item.id);
+	const filteredItems = items.filter((el) => el.name !== item.name);
+
+	console.log(filteredItems);
 
 	return (
 		<>
@@ -64,7 +66,7 @@ export const AddedItem: React.FC<Props> = ({ item, form }) => {
 						className="hover:cursor-pointer"
 						onClick={() => {
 							// setItems((prev) => prev.filter((el) => el.id !== item.id));
-							form.setValue('invoice.items', filteredItems);
+							form.setValue('invoice.items', filteredItems); // gets ts error when items.array.nonEmpty() from zod
 						}}
 					/>
 				</div>

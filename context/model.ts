@@ -27,18 +27,20 @@ export const formSchema = z.object({
 			value: z.string(),
 			label: z.string().optional(),
 		}),
-		items: z.array(
-			z.object({
-				id: z.number(),
-				name: z.string(),
-				description: z.string(),
-				category: z.string(),
-				unit: z.number(),
-				price: z.number(),
-				vat: z.number(),
-				discount: z.number(),
-			})
-		),
+		items: z
+			.array(
+				z.object({
+					id: z.number(),
+					name: z.string(),
+					description: z.string(),
+					category: z.string(),
+					unit: z.number(),
+					price: z.number(),
+					vat: z.number(),
+					discount: z.number(),
+				})
+			)
+			.min(1),
 		additionalOptions: z.object({
 			purchaseOrder: z.string(),
 			referenceNote: z.string(),

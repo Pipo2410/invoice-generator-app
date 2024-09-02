@@ -15,7 +15,7 @@ export const InvoiceItems: React.FC<Props> = ({ form }) => {
 	return (
 		<>
 			<AddItems form={form} />
-			{!!items.length &&
+			{!!items &&
 				items.map((item) => (
 					<AddedItem key={item.name} item={item} form={form} />
 				))}

@@ -1,5 +1,5 @@
 import { currencies } from '@/assets/currencies';
-import { Client, VatExemption } from './model';
+import { Client, Items, VatExemption } from './model';
 
 export const formDefaultValues = {
 	invoice: {
@@ -13,38 +13,7 @@ export const formDefaultValues = {
 		date: {
 			issueDate: new Date(),
 		},
-		items: [
-			{
-				id: 1,
-				name: 'Branding development',
-				description: 'Halo halo',
-				category: 'Service',
-				unit: 4,
-				price: 1250,
-				vat: 23,
-				discount: 10,
-			},
-			{
-				id: 2,
-				name: 'Software development',
-				description: 'Halo halo',
-				category: 'Service',
-				unit: 4,
-				price: 1250,
-				vat: 23,
-				discount: 10,
-			},
-			{
-				id: 3,
-				name: 'Company development',
-				description: 'Halo halo',
-				category: 'Service',
-				unit: 4,
-				price: 1250,
-				vat: 23,
-				discount: 10,
-			},
-		],
+		items: [],
 		currency: currencies[0].label,
 	},
 };
@@ -114,5 +83,38 @@ export const VAT_ARTICLES: VatExemption[] = [
 	{
 		value: 'M06',
 		label: 'Exempt Article 15 of CIVA',
+	},
+];
+
+export const INVOICE_ITEMS_ARRAY: Items = [
+	{
+		id: 1,
+		name: 'Branding development',
+		description: '1234',
+		category: 'Service',
+		unit: 1,
+		price: 0,
+		vat: 23,
+		discount: 10,
+	},
+	{
+		id: 2,
+		name: 'Software development',
+		description: '1562',
+		category: 'Service',
+		unit: 1,
+		price: 0,
+		vat: 23,
+		discount: 10,
+	},
+	{
+		id: 3,
+		name: 'Company development',
+		description: '1827',
+		category: 'Service',
+		unit: 1,
+		price: 0,
+		vat: 23,
+		discount: 10,
 	},
 ];

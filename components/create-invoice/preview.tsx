@@ -81,7 +81,7 @@ export const Preview = () => {
 						<span className="col-start-5 col-end-6">VAT</span>
 						<span className="col-start-6 col-end-7">Total</span>
 					</div>
-					{items.length ? (
+					{!!items && items.length ? (
 						items.map((item) => {
 							const formattedPrice = new Intl.NumberFormat('de-DE', {
 								minimumFractionDigits: 2,
