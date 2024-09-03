@@ -51,7 +51,7 @@ export const Content = () => {
 							<CurrencySelector form={form} />
 							<ClientSelector form={form} />
 							<div className="flex flex-col gap-4">
-								<div className="flex gap-4">
+								<div className="flex flex-col md:flex-row gap-4">
 									<IssueDate form={form} />
 									<DueDate form={form} />
 								</div>

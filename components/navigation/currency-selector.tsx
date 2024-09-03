@@ -19,7 +19,7 @@ import { ChevronDown } from 'lucide-react';
 import { IconComponent } from './icon-component';
 import { currencies } from '@/assets/currencies';
 import { UseFormReturn } from 'react-hook-form';
-import { FormType } from '../create-invoice/create-invoice-form';
+import { FormType } from '@/components/layout/content';
 
 type Props = {
 	form: UseFormReturn<FormType>;

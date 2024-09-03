@@ -18,8 +18,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useFormContext, UseFormReturn } from 'react-hook-form';
-import { FormType } from '../create-invoice/create-invoice-form';
+import { UseFormReturn } from 'react-hook-form';
+import { FormType } from '@/components/layout/content';
 import { VAT_ARTICLES } from '@/context/helpers';
 
 type Props = {

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Sidebar } from '@/components/navigation/sidebar';
@@ -10,6 +10,13 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
 	title: 'Rauva invoicing app',
 	description: 'Test app',
+};
+
+export const viewPort: Viewport = {
+	initialScale: 1,
+	width: 'device-width',
+	viewportFit: 'cover',
+	maximumScale: 1,
 };
 
 export default function RootLayout({
