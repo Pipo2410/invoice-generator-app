@@ -22,7 +22,6 @@ export const ClientSelector: React.FC<Props> = ({ form }) => {
 				String(client.nif) === selectedValue
 		);
 		if (selectedClient) {
-			console.log('will call setValue');
 			form.setValue('invoice.client', selectedClient);
 		}
 	}, [selectedValue]);

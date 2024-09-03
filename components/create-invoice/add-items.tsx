@@ -46,18 +46,15 @@ export const AddItems: React.FC<Props> = ({ form }) => {
 			invoiceItems.push(selectedItem);
 			form.setValue('invoice.items', invoiceItems);
 			setSearchValue('');
+			setSelectedValue('');
 			form.trigger('invoice.items');
 		}
-	}, [selectedValue]);
+	}, [selectedValue, form]);
 
 	const { errors } = form.formState;
 
 	return (
-		<Accordion
-			type="single"
-			collapsible
-			// onValueChange={(value) => console.log(value)}
-		>
+		<Accordion type="single" collapsible>
 			<AccordionItem value="item-1" className="w-full">
 				<AccordionTrigger
 					icon="plus"

@@ -9,7 +9,12 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { FormControl, FormField, FormItem } from '@/components/ui/form';
+import {
+	FormControl,
+	FormField,
+	FormItem,
+	FormMessage,
+} from '@/components/ui/form';
 import { UseFormReturn } from 'react-hook-form';
 import { cn } from '@/lib/utils';
 import { currencies } from '@/assets/currencies';
@@ -19,9 +24,10 @@ import { Items } from '@/context/model';
 type Props = {
 	item: Items[number];
 	form: UseFormReturn<FormType>;
+	itemIndex: number;
 };
 
-export const AddedItem: React.FC<Props> = ({ item, form }) => {
+export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
 	const { getValues } = form;
 
 	const {
@@ -31,35 +37,42 @@ export const AddedItem: React.FC<Props> = ({ item, form }) => {
 	const currencySign = currencies.find((el) => el.label === currency)?.sign;
 	const filteredItems = items.filter((el) => el.name !== item.name);
 
-	console.log(filteredItems);
-
 	return (
 		<>
 			<div className="flex flex-col gap-3 my-6">
 				<div className="flex gap-2 items-center">
 					<FormField
 						control={form.control}
+						name={`invoice.items.${itemIndex}`}
+						render={({ field }) => {
+							return (
+								<FormItem className="space-y-0 flex w-full">
+									<FormControl>
+										<Input
+											className={cn(
+												'text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent'
+											)}
+											{...field}
+											value={item.name}
+										/>
+									</FormControl>
+								</FormItem>
+							);
+						}}
+					/>
+					<FormField
+						control={form.control}
 						name="invoice.items"
 						render={({ field }) => (
-							<FormItem>
-								{/* <FormLabel>Username</FormLabel> */}
+							<FormItem className="space-y-0 flex w-full">
 								<FormControl>
 									<Input
-										placeholder={item.name}
-										// value={field.value}
-										// ref={field.ref}
-										className={cn(
-											'text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent'
-										)}
+										placeholder={item.description}
+										className="text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent"
 									/>
 								</FormControl>
-								{/* <FormMessage /> */}
 							</FormItem>
 						)}
-					/>
-					<Input
-						placeholder={item.description}
-						className="text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent"
 					/>
 					<Trash2
 						size={48}
@@ -71,49 +84,94 @@ export const AddedItem: React.FC<Props> = ({ item, form }) => {
 					/>
 				</div>
 				<div className="flex gap-2">
-					<Select>
-						<SelectTrigger className="w-1/5 text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:right-0 focus:ring-transparent focus:ring-offset-0">
-							<SelectValue placeholder="Type" />
-						</SelectTrigger>
-						<SelectContent>
-							{['Service', 'SomethingElse'].map((option) => (
-								<SelectItem key={option} value={option}>
-									{option}
-								</SelectItem>
-							))}
-						</SelectContent>
-					</Select>
-					<Select>
-						<SelectTrigger className="w-1/5 text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:right-0 focus:ring-transparent focus:ring-offset-0">
-							<SelectValue placeholder="Type" />
-						</SelectTrigger>
-						<SelectContent>
-							{['Service', 'SomethingElse'].map((option) => (
-								<SelectItem key={option} value={option}>
-									{option}
-								</SelectItem>
-							))}
-						</SelectContent>
-					</Select>
-					<Input
-						placeholder={`${item.price} ${currencySign}`}
-						className="w-1/5 text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent"
+					<FormField
+						control={form.control}
+						name="invoice.items"
+						render={({ field }) => (
+							<FormItem className="w-1/5">
+								<Select>
+									<SelectTrigger className="text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:right-0 focus:ring-transparent focus:ring-offset-0">
+										<SelectValue placeholder="Type" />
+									</SelectTrigger>
+									<SelectContent>
+										{['Service', 'SomethingElse'].map((option) => (
+											<SelectItem key={option} value={option}>
+												{option}
+											</SelectItem>
+										))}
+									</SelectContent>
+								</Select>
+								<FormMessage />
+							</FormItem>
+						)}
 					/>
-					<Select>
-						<SelectTrigger className="w-1/5 text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:right-0 focus:ring-transparent focus:ring-offset-0">
-							<SelectValue placeholder="Type" />
-						</SelectTrigger>
-						<SelectContent>
-							{['Service', 'SomethingElse'].map((option) => (
-								<SelectItem key={option} value={option}>
-									{option}
-								</SelectItem>
-							))}
-						</SelectContent>
-					</Select>
-					<Input
-						placeholder={`${item.discount} %`}
-						className="w-1/5 text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent"
+					<FormField
+						control={form.control}
+						name="invoice.items"
+						render={({ field }) => (
+							<FormItem className="w-1/5">
+								<Select>
+									<SelectTrigger className="text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:right-0 focus:ring-transparent focus:ring-offset-0">
+										<SelectValue placeholder="Type" />
+									</SelectTrigger>
+									<SelectContent>
+										{['Service', 'SomethingElse'].map((option) => (
+											<SelectItem key={option} value={option}>
+												{option}
+											</SelectItem>
+										))}
+									</SelectContent>
+								</Select>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="invoice.items"
+						render={({ field }) => (
+							<FormItem className="w-1/5">
+								<Input
+									placeholder={`${item.price} ${currencySign}`}
+									className="text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent"
+								/>
+
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="invoice.items"
+						render={({ field }) => (
+							<FormItem className="w-1/5">
+								<Select>
+									<SelectTrigger className="text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:right-0 focus:ring-transparent focus:ring-offset-0">
+										<SelectValue placeholder="Type" />
+									</SelectTrigger>
+									<SelectContent>
+										{['Service', 'SomethingElse'].map((option) => (
+											<SelectItem key={option} value={option}>
+												{option}
+											</SelectItem>
+										))}
+									</SelectContent>
+								</Select>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="invoice.items"
+						render={({ field }) => (
+							<FormItem className="w-1/5">
+								<Input
+									placeholder={`${item.discount} %`}
+									className="text-[#101010] bg-white py-1 px-2 rounded-sm border-none focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-transparent"
+								/>
+							</FormItem>
+						)}
 					/>
 				</div>
 			</div>

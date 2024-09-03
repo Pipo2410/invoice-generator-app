@@ -16,8 +16,13 @@ export const InvoiceItems: React.FC<Props> = ({ form }) => {
 		<>
 			<AddItems form={form} />
 			{!!items &&
-				items.map((item) => (
-					<AddedItem key={item.name} item={item} form={form} />
+				items.map((item, index) => (
+					<AddedItem
+						key={`item-${item.name}-${Math.floor(Math.random() * 1000) + 1}`} // check again
+						itemIndex={index}
+						item={item}
+						form={form}
+					/>
 				))}
 		</>
 	);

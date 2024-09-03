@@ -132,7 +132,6 @@ export const AutoComplete = <T extends string>({
 								onKeyDown={(e) => setOpen(e.key !== 'Escape')}
 								onMouseDown={() => setOpen((open) => !!searchValue || !open)}
 								onFocus={() => {
-									console.log(inputWrapper.current?.classList);
 									inputWrapper.current?.classList.add(
 										'!bg-light-blue',
 										'!border-[#CCD7FF]'
