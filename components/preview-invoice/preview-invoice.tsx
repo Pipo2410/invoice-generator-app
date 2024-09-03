@@ -11,8 +11,8 @@ type Props = {
 export const PreviewInvoice: React.FC<Props> = ({ setShowPreview }) => {
 	return (
 		<div className="col-span-full xl:col-span-5 mb-40">
-			<Tabs defaultValue="preview" className="mx-6 sticky top-2">
-				<TabsList className="bg-transparent h-fit w-full p-0">
+			<Tabs defaultValue="preview" className="sticky top-2">
+				<TabsList className="bg-transparent h-fit w-full p-0 mx-6">
 					<TabsTrigger
 						className="w-full rounded-none px-6 py-2 border-b border-transparent data-[state=active]:text-dark-blue data-[state=active]:font-semibold data-[state=active]:shadow-none data-[state=active]:border-b data-[state=active]:border-dark-blue hover:text-dark-blue hover:border-dark-blue"
 						value="preview"

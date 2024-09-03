@@ -4,7 +4,7 @@ import { Content } from '@/components/layout/content';
 const CreateInvoicePage = () => {
 	return (
 		<>
-			<main className="w-full h-fit flex flex-col gap-10 ml-24 relative">
+			<main className="w-full h-fit flex flex-col gap-10 relative">
 				<Header />
 				<Content />
 			</main>

@@ -34,11 +34,13 @@ export const Content = () => {
 	const onSubmitHandler = (values: FormType) => {};
 
 	return (
-		<div className="grid grid-cols-12 gap-[75px]">
+		<div className="grid grid-cols-12">
 			<FormProvider {...form}>
 				<div
 					className={cn(
-						showPreview ? 'col-span-full xl:col-span-7' : 'col-span-10'
+						showPreview
+							? 'col-span-full xl:col-span-7 xl:mr-[75px]'
+							: 'col-span-full xl:col-span-10'
 					)}
 				>
 					<Form {...form}>

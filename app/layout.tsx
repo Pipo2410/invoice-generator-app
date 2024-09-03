@@ -24,7 +24,7 @@ export default function RootLayout({
 					<LogoComponent />
 					<UserNavigation />
 				</div>
-				<div className="flex">
+				<div className="flex md:gap-24">
 					<Sidebar />
 					{children}
 				</div>
