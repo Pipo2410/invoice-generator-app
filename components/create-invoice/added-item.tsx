@@ -18,7 +18,7 @@ import {
 import { UseFormReturn } from 'react-hook-form';
 import { cn } from '@/lib/utils';
 import { currencies } from '@/assets/currencies';
-import { FormType } from './create-invoice-form';
+import { FormType } from '@/components/layout/content';
 import { Items } from '@/context/model';
 
 type Props = {

@@ -19,7 +19,7 @@ import { ChevronDown } from 'lucide-react';
 
 import { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
 import { cn } from '@/lib/utils';
-import { FormType } from './create-invoice-form';
+import { FormType } from '@/components/layout/content';
 
 const options = [15, 30, 45, 60, 90];
 

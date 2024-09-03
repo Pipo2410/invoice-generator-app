@@ -1,4 +1,4 @@
-import { FormType } from '@/components/create-invoice/create-invoice-form';
+import { FormType } from '@/components/layout/content';
 import { z } from 'zod';
 
 export const formSchema = z.object({

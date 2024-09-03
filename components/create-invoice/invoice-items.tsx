@@ -1,7 +1,7 @@
 import { UseFormReturn, useWatch } from 'react-hook-form';
 import { AddItems } from './add-items';
 import { AddedItem } from './added-item';
-import { FormType } from './create-invoice-form';
+import { FormType } from '@/components/layout/content';
 import { Items } from '@/context/model';
 
 type Props = {

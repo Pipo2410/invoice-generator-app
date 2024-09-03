@@ -15,7 +15,7 @@ import {
 
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { UseFormReturn } from 'react-hook-form';
-import { FormType } from './create-invoice-form';
+import { FormType } from '@/components/layout/content';
 
 type Props = {
 	form: UseFormReturn<FormType>;

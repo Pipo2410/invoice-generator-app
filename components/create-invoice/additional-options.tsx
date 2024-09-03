@@ -8,7 +8,7 @@ import {
 import { CustomInput } from './custom-input';
 import { CustomCheckbox } from './custom-checkbox';
 import { UseFormReturn } from 'react-hook-form';
-import { FormType } from './create-invoice-form';
+import { FormType } from '@/components/layout/content';
 
 type Props = {
 	form: UseFormReturn<FormType>;

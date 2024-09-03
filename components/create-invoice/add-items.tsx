@@ -9,8 +9,8 @@ import {
 } from '@/components/ui/accordion';
 import { AutoComplete } from './autocomplete';
 import { UseFormReturn } from 'react-hook-form';
-import { FormType } from './create-invoice-form';
 import { INVOICE_ITEMS_ARRAY } from '@/context/helpers';
+import { FormType } from '@/components/layout/content';
 
 type Props = {
 	form: UseFormReturn<FormType>;

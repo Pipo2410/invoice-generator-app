@@ -1,6 +1,6 @@
 import { currencies } from '@/assets/currencies';
 import { Client, Items, VatExemption } from './model';
-import { FormType } from '@/components/create-invoice/create-invoice-form';
+import { FormType } from '@/components/layout/content';
 
 export const formDefaultValues = {
 	invoice: {
