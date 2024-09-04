@@ -7,10 +7,10 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from '@/components/ui/accordion';
-import { AutoComplete } from './autocomplete';
 import { UseFormReturn } from 'react-hook-form';
 import { INVOICE_ITEMS_ARRAY } from '@/context/helpers';
 import { FormType } from '@/components/layout/content';
+import { AutoComplete } from '@/components/form/autocomplete';
 
 type Props = {
 	form: UseFormReturn<FormType>;

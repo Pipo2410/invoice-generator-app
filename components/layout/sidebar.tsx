@@ -1,6 +1,6 @@
 import React from 'react';
-import { Navigation } from './navigation';
-import { Options } from './options';
+import { Options } from '@/components/navigation/options';
+import { Navigation } from '@/components/navigation/navigation';
 
 export const Sidebar = () => {
 	return (

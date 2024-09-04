@@ -1,14 +1,14 @@
 import { UseFormReturn, useWatch } from 'react-hook-form';
-import { AddItems } from './add-items';
-import { AddedItem } from './added-item';
 import { FormType } from '@/components/layout/content';
 import { Items } from '@/context/model';
+import { AddItems } from './add-items/add-items';
+import { AddedItem } from './add-items/added-item';
 
 type Props = {
 	form: UseFormReturn<FormType>;
 };
 
-export const InvoiceItems: React.FC<Props> = ({ form }) => {
+export const AddInvoiceItems: React.FC<Props> = ({ form }) => {
 	const items: Items = useWatch({
 		name: 'invoice.items',
 	});

@@ -18,7 +18,6 @@ import {
 	PopoverContent,
 } from '@/components/ui/popover';
 import { Button } from '../ui/button';
-import { CustomInput } from './custom-input';
 import { Label } from '../ui/label';
 
 type Props<T extends string> = {

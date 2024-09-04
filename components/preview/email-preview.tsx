@@ -1,17 +1,10 @@
 import React from 'react';
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '../ui/button';
 import { PlusIcon } from 'lucide-react';
 import { Textarea } from '../ui/textarea';
 
-export const Email = () => {
+export const EmailPreview = () => {
 	return (
 		<Card className="flex flex-col gap-4 w-full px-4 pt-6 pb-24">
 			<CardHeader className="p-2 space-y-0 gap-2">

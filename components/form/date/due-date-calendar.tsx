@@ -12,7 +12,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
-import { Calendar } from '../ui/calendar';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { ChevronDown } from 'lucide-react';
@@ -20,6 +19,7 @@ import { ChevronDown } from 'lucide-react';
 import { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
 import { cn } from '@/lib/utils';
 import { FormType } from '@/components/layout/content';
+import { Calendar } from '@/components/ui/calendar';
 
 const options = [15, 30, 45, 60, 90];
 

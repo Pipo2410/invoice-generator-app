@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { AutoComplete } from './autocomplete';
-import { ClientCard } from './client-card';
+import { ClientCard } from '../client-card';
 import { UseFormReturn } from 'react-hook-form';
 import { FormType } from '@/components/layout/content';
 import { CLIENTS_ARRAY } from '@/context/helpers';

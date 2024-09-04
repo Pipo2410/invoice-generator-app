@@ -1,25 +1,24 @@
 'use client';
 import { ActionBar } from '@/components/footer/action-bar';
-import { IssueDate } from '@/components/create-invoice/issue-date';
-import { CurrencySelector } from '@/components/navigation/currency-selector';
-import { VatArticleSelector } from '@/components/navigation/vat-article-selector';
+import { VatArticleSelector } from '@/components/form/vat-article-selector';
 import { Separator } from '@/components/ui/separator';
 
-import { AdditionalOptions } from '@/components/create-invoice/additional-options';
-import { Summary } from '@/components/create-invoice/summary';
-import { DueDate } from '@/components/create-invoice/due-date-calendar';
-import { ClientSelector } from '@/components/create-invoice/client-selector';
+import { AdditionalOptions } from '@/components/form/additional-options';
+import { InvoiceSummary } from '@/components/form/invoice-summary';
+import { DueDate } from '@/components/form/date/due-date-calendar';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { PreviewInvoice } from '../preview-invoice/preview-invoice';
-
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Form } from '@/components/ui/form';
 import { formSchema } from '@/context/model';
 import { formDefaultValues } from '@/context/helpers';
-import { InvoiceItems } from '../create-invoice/invoice-items';
+import { AddInvoiceItems } from '@/components/form/add-invoice-items';
+import { CurrencySelector } from '@/components/form/currency-selector';
+import { IssueDate } from '@/components/form/date/issue-date';
+import { ClientSelector } from '@/components/form/client-selector';
+import { PreviewArea } from '@/components/preview/preview-area';
 
 export type FormType = z.infer<typeof formSchema>;
 
@@ -59,17 +58,17 @@ export const Content = () => {
 							</div>
 							<div>
 								<Separator />
-								<InvoiceItems form={form} />
+								<AddInvoiceItems form={form} />
 								<AdditionalOptions form={form} />
 							</div>
 							<div className="summary">
-								<Summary />
+								<InvoiceSummary />
 							</div>
 							<ActionBar setShowPreview={setShowPreview} />
 						</form>
 					</Form>
 				</div>
-				{showPreview && <PreviewInvoice setShowPreview={setShowPreview} />}
+				{showPreview && <PreviewArea setShowPreview={setShowPreview} />}
 			</FormProvider>
 		</div>
 	);

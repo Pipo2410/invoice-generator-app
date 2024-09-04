@@ -1,6 +1,4 @@
 'use client';
-import { Separator } from '../ui/separator';
-import { Input } from '../ui/input';
 import { Trash2 } from 'lucide-react';
 import {
 	Select,
@@ -20,6 +18,8 @@ import { cn } from '@/lib/utils';
 import { currencies } from '@/assets/currencies';
 import { FormType } from '@/components/layout/content';
 import { Items } from '@/context/model';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
 
 type Props = {
 	item: Items[number];

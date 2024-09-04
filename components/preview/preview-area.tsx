@@ -1,14 +1,14 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import { Preview } from '@/components/create-invoice/preview';
-import { Email } from '@/components/create-invoice/email';
+import { EmailPreview } from '@/components/preview/email-preview';
+import { PreviewInvoice } from './preview-invoice';
 
 type Props = {
 	setShowPreview: Dispatch<SetStateAction<boolean>>;
 };
 
-export const PreviewInvoice: React.FC<Props> = ({ setShowPreview }) => {
+export const PreviewArea: React.FC<Props> = ({ setShowPreview }) => {
 	return (
 		<div className="col-span-full xl:col-span-5 mb-40">
 			<Tabs defaultValue="preview" className="sticky top-2">
@@ -27,10 +27,10 @@ export const PreviewInvoice: React.FC<Props> = ({ setShowPreview }) => {
 					</TabsTrigger>
 				</TabsList>
 				<TabsContent value="preview" className="mt-4">
-					<Preview />
+					<PreviewInvoice />
 				</TabsContent>
 				<TabsContent value="email" className="mt-4">
-					<Email />
+					<EmailPreview />
 				</TabsContent>
 			</Tabs>
 		</div>

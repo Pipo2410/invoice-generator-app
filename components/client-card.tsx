@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { IconComponent } from '../navigation/icon-component';
+import { IconComponent } from './navigation/icon-component';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { Client } from '@/context/model';
 import { DEFAULT_CLIENT } from '@/context/helpers';

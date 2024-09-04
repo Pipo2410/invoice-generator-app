@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
-import { IconComponent } from './icon-component';
+import { IconComponent } from '../navigation/icon-component';
 import { currencies } from '@/assets/currencies';
 import { UseFormReturn } from 'react-hook-form';
 import { FormType } from '@/components/layout/content';

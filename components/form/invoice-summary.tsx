@@ -2,7 +2,7 @@ import { useWatch } from 'react-hook-form';
 import { Separator } from '../ui/separator';
 import { currencies } from '@/assets/currencies';
 
-export const Summary = () => {
+export const InvoiceSummary = () => {
 	const vatExemption = useWatch({ name: 'invoice.vatExemption.label' });
 	const currency = useWatch({ name: 'invoice.currency' });
 	const currencySign = currencies.find((el) => el.label === currency)?.sign;

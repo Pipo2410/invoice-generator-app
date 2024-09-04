@@ -1,12 +1,12 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Separator } from '../ui/separator';
-import { Summary } from './summary';
+import { InvoiceSummary } from '../form/invoice-summary';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { currencies } from '@/assets/currencies';
 import { Client, Items } from '@/context/model';
 
-export const Preview = () => {
+export const PreviewInvoice = () => {
 	const { getValues } = useFormContext();
 	const client: Client = useWatch({ name: 'invoice.client' });
 	const items: Items = useWatch({
@@ -129,7 +129,7 @@ export const Preview = () => {
 					)}
 				</div>
 			</div>
-			<Summary />
+			<InvoiceSummary />
 			{purchaseOrder && (
 				<p>
 					<span className="font-semibold">Reference note: </span>
