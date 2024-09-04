@@ -1,38 +1,39 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { EmailPreview } from '@/components/preview/email-preview';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 import { PreviewInvoice } from './preview-invoice';
 
 type Props = {
-	setShowPreview: Dispatch<SetStateAction<boolean>>;
+  setShowPreview: Dispatch<SetStateAction<boolean>>;
 };
 
 export const PreviewArea: React.FC<Props> = ({ setShowPreview }) => {
-	return (
-		<div className="col-span-full xl:col-span-5 mb-40">
-			<Tabs defaultValue="preview" className="sticky top-2">
-				<TabsList className="bg-transparent h-fit w-full p-0 mx-6">
-					<TabsTrigger
-						className="w-full rounded-none px-6 py-2 border-b border-transparent data-[state=active]:text-dark-blue data-[state=active]:font-semibold data-[state=active]:shadow-none data-[state=active]:border-b data-[state=active]:border-dark-blue hover:text-dark-blue hover:border-dark-blue"
-						value="preview"
-					>
-						Preview
-					</TabsTrigger>
-					<TabsTrigger
-						className="w-full rounded-none px-6 py-2 border-b border-transparent data-[state=active]:text-dark-blue data-[state=active]:font-semibold data-[state=active]:shadow-none data-[state=active]:border-b data-[state=active]:border-dark-blue hover:text-dark-blue hover:border-dark-blue"
-						value="email"
-					>
-						Email
-					</TabsTrigger>
-				</TabsList>
-				<TabsContent value="preview" className="mt-4">
-					<PreviewInvoice />
-				</TabsContent>
-				<TabsContent value="email" className="mt-4">
-					<EmailPreview />
-				</TabsContent>
-			</Tabs>
-		</div>
-	);
+  return (
+    <div className="col-span-full mb-40 xl:col-span-5">
+      <Tabs defaultValue="preview" className="sticky top-2">
+        <TabsList className="mx-6 h-fit w-full bg-transparent p-0">
+          <TabsTrigger
+            className="w-full rounded-none border-b border-transparent px-6 py-2 hover:border-dark-blue hover:text-dark-blue data-[state=active]:border-b data-[state=active]:border-dark-blue data-[state=active]:font-semibold data-[state=active]:text-dark-blue data-[state=active]:shadow-none"
+            value="preview"
+          >
+            Preview
+          </TabsTrigger>
+          <TabsTrigger
+            className="w-full rounded-none border-b border-transparent px-6 py-2 hover:border-dark-blue hover:text-dark-blue data-[state=active]:border-b data-[state=active]:border-dark-blue data-[state=active]:font-semibold data-[state=active]:text-dark-blue data-[state=active]:shadow-none"
+            value="email"
+          >
+            Email
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="preview" className="mt-4">
+          <PreviewInvoice />
+        </TabsContent>
+        <TabsContent value="email" className="mt-4">
+          <EmailPreview />
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
 };

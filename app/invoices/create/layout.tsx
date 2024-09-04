@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Create invoice | Rauva',
-	description: 'Test app',
+  title: 'Create invoice | Rauva',
+  description: 'Test app',
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return <>{children}</>;
+  return <>{children}</>;
 }
