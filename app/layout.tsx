@@ -1,9 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
-import { Sidebar } from '@/components/layout/sidebar';
-import { UserNavigation } from '@/components/layout/user-navigation';
-import { LogoComponent } from '@/components/navigation/logo';
+import { AppHeader } from '@/components/layout/app-header';
 
 import './globals.css';
 
@@ -28,16 +26,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} m-6 mb-0`}>
-        <div className="mb-6 flex items-center justify-between">
-          <LogoComponent />
-          <UserNavigation />
-        </div>
-        <div className="flex md:gap-24">
-          <Sidebar />
-          {children}
-        </div>
+      <body className={`${inter.className} flex min-h-screen flex-col`}>
+        <AppHeader />
+        {children}
       </body>
     </html>
   );
+}
+
+{
+  /* <div className="flex min-h-[calc(100vh-88px)] flex-col"> */
+}
+{
+  /* <div className="flex min-h-[calc(100vh-88px)] p-6 pb-0 md:gap-24">{children}</div> */
 }

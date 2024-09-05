@@ -5,13 +5,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { PreviewInvoice } from './preview-invoice';
 
-type Props = {
-  setShowPreview: Dispatch<SetStateAction<boolean>>;
-};
-
-export const PreviewArea: React.FC<Props> = ({ setShowPreview }) => {
+export const PreviewArea = () => {
   return (
-    <div className="col-span-full mb-40 xl:col-span-5">
+    <div className="col-span-full xl:col-span-5">
       <Tabs defaultValue="preview" className="sticky top-2">
         <TabsList className="mx-6 h-fit w-full bg-transparent p-0">
           <TabsTrigger

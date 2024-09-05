@@ -23,9 +23,11 @@ import { AddDateSection } from '../form/date/add-date-section';
 
 export type FormType = z.infer<typeof formSchema>;
 
-export const Content = () => {
-  const [showPreview, setShowPreview] = useState(true);
+type Props = {
+  showPreview: boolean;
+};
 
+export const Content: React.FC<Props> = ({ showPreview }) => {
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
     defaultValues: formDefaultValues,
@@ -34,31 +36,35 @@ export const Content = () => {
   const onSubmitHandler = (values: FormType) => {};
 
   return (
-    <div className="grid grid-cols-12">
-      <FormProvider {...form}>
-        <div className={cn(showPreview ? 'col-span-full xl:col-span-7 xl:mr-[75px]' : 'col-span-full xl:col-span-10')}>
-          <Form {...form}>
-            <form className="mb-40 flex flex-col gap-6" onSubmit={form.handleSubmit(onSubmitHandler)}>
-              <CurrencySelector form={form} />
-              <ClientSelector form={form} />
-              <div className="flex flex-col gap-4">
-                <AddDateSection form={form} />
-                <VatArticleSelector form={form} />
-              </div>
-              <div>
-                <Separator />
-                <AddInvoiceSection form={form} />
-                <AdditionalOptions form={form} />
-              </div>
-              <div className="summary">
-                <InvoiceSummary />
-              </div>
-              <ActionBar setShowPreview={setShowPreview} />
-            </form>
-          </Form>
-        </div>
-        {showPreview && <PreviewArea setShowPreview={setShowPreview} />}
-      </FormProvider>
-    </div>
+    <>
+      <div className="grid grid-cols-12">
+        {/* <div className="grid min-h-[calc(100vh-88px)] grid-cols-12"> */}
+        <FormProvider {...form}>
+          <div
+            className={cn(showPreview ? 'col-span-full xl:col-span-7 xl:mr-[75px]' : 'col-span-full xl:col-span-10')}
+          >
+            <Form {...form}>
+              <form className="flex flex-col gap-6" onSubmit={form.handleSubmit(onSubmitHandler)}>
+                <CurrencySelector form={form} />
+                <ClientSelector form={form} />
+                <div className="flex flex-col gap-4">
+                  <AddDateSection form={form} />
+                  <VatArticleSelector form={form} />
+                </div>
+                <div>
+                  <Separator />
+                  <AddInvoiceSection form={form} />
+                  <AdditionalOptions form={form} />
+                </div>
+                <div className="summary">
+                  <InvoiceSummary />
+                </div>
+              </form>
+            </Form>
+          </div>
+          {showPreview && <PreviewArea />}
+        </FormProvider>
+      </div>
+    </>
   );
 };

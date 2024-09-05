@@ -1,23 +1,25 @@
-import { Eye } from 'lucide-react';
-import React, { Dispatch, SetStateAction } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Dispatch, SetStateAction } from 'react';
 
 import { Button } from '@/components/ui/button';
 
 type Props = {
+  showPreview: boolean;
   setShowPreview: Dispatch<SetStateAction<boolean>>;
 };
 
-export const ActionBar: React.FC<Props> = ({ setShowPreview }) => {
+export const ActionBar: React.FC<Props> = ({ showPreview, setShowPreview }) => {
   return (
-    <div className="absolute -left-[285px] bottom-0 w-screen bg-background px-10 py-6 shadow-actionBar">
-      <div className="flex items-center justify-end gap-4">
+    // <div className="mt-auto w-screen bg-background px-10 py-6 shadow-actionBar">
+    <div className="mt-auto bg-background px-10 py-6 shadow-actionBar">
+      <div className="flex flex-col items-center justify-end gap-4 lg:flex-row">
         <Button
           variant="ghost"
           type="button"
           className="text-dark-blue hover:bg-transparent"
           onClick={() => setShowPreview((prev) => !prev)}
         >
-          <Eye className="mr-1 text-black" />
+          {showPreview ? <Eye className="mr-1 text-black" /> : <EyeOff className="mr-1 text-black" />}
           Enable preview
         </Button>
         <Button

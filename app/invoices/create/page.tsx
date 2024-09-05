@@ -1,15 +1,7 @@
-import { Content } from '@/components/layout/content';
-import { Header } from '@/components/layout/header';
+import { MainContent } from '@/components/layout/main-content';
 
-const CreateInvoicePage = () => {
-  return (
-    <>
-      <main className="relative flex h-fit w-full flex-col gap-10">
-        <Header />
-        <Content />
-      </main>
-    </>
-  );
-};
-
-export default CreateInvoicePage;
+export default async function CreateInvoicePage() {
+  // const res = await fetch('http://localhost:3000/api/invoice');
+  // const data = await res.json();
+  return <MainContent />;
+}
