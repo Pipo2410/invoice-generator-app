@@ -13,10 +13,15 @@ export const metadata: Metadata = {
 };
 
 export const viewPort: Viewport = {
-  initialScale: 1,
+  // initialScale: 1,
+  // width: 'device-width',
+  // viewportFit: 'cover',
+  // maximumScale: 1,
   width: 'device-width',
   viewportFit: 'cover',
+  initialScale: 1,
   maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
