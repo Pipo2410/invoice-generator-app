@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { VAT_ARTICLES } from '@/context/helpers';
+import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { cn } from '@/lib/utils';
 
 type Props = {
@@ -20,7 +20,9 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
 
-  const buttonValue = VAT_ARTICLES.find((framework) => framework.value === selectedValue)?.label;
+  const { vatArticles } = useCreateInvoiceFormContext();
+
+  const buttonValue = vatArticles.find((framework) => framework.value === selectedValue)?.label;
 
   const { errors } = form.formState;
 
@@ -52,7 +54,7 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
           <CommandList className="max-h-fit">
             <CommandEmpty>No article found.</CommandEmpty>
             <CommandGroup className="p-0">
-              {VAT_ARTICLES.map((article) => (
+              {vatArticles.map((article) => (
                 <FormField
                   key={article.value}
                   control={form.control}

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
 import { FormType } from '@/components/layout/content';
+import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { CLIENTS_ARRAY } from '@/context/helpers';
 
 import { AutoComplete } from '../autocomplete';
@@ -16,10 +17,11 @@ type Props = {
 export const ClientSelector: React.FC<Props> = ({ form }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<string>('');
+  const { clients } = useCreateInvoiceFormContext();
 
   useEffect(() => {
     // investigate this
-    const selectedClient = CLIENTS_ARRAY.find(
+    const selectedClient = clients.find(
       (client) => client.businessName === selectedValue || String(client.nif) === selectedValue,
     );
     if (selectedClient) {
@@ -29,7 +31,7 @@ export const ClientSelector: React.FC<Props> = ({ form }) => {
 
   const { errors } = form.formState;
 
-  const newItems = CLIENTS_ARRAY.map((item) => {
+  const newItems = clients.map((item) => {
     return {
       label: item.businessName,
       value: String(item.nif),
