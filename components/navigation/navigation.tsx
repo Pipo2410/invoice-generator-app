@@ -8,7 +8,7 @@ export const Navigation = () => {
     <nav>
       <ul>
         <NavigationItemGroup>
-          <NavigationItem href="/" icon="home">
+          <NavigationItem href="/dashboard" icon="home">
             Dashboard
           </NavigationItem>
         </NavigationItemGroup>

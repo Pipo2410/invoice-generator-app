@@ -1,16 +1,13 @@
+'use client';
+
 import { Eye, EyeOff } from 'lucide-react';
-import { Dispatch, SetStateAction } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { useDefaultContext } from '@/context/default-context';
 
-type Props = {
-  showPreview: boolean;
-  setShowPreview: Dispatch<SetStateAction<boolean>>;
-};
-
-export const ActionBar: React.FC<Props> = ({ showPreview, setShowPreview }) => {
+export const ActionBar = () => {
+  const { showPreview, setShowPreview } = useDefaultContext();
   return (
-    // <div className="mt-auto w-screen bg-background px-10 py-6 shadow-actionBar">
     <div className="mt-auto bg-background px-10 py-6 shadow-actionBar">
       <div className="flex flex-col items-center justify-end gap-4 lg:flex-row">
         <Button

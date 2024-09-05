@@ -1,10 +1,8 @@
-import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
+import { createContext, useContext } from 'react';
 
 import { AppConfig, Client, InitialCreateInvoiceState, Items } from './model';
 
 type CreateInvoiceFormContextValues = {
-  showPreview: boolean;
-  setShowPreview: Dispatch<SetStateAction<boolean>>;
   clients: Client[];
   appConfig: AppConfig;
   items: Items;
@@ -22,13 +20,9 @@ export const CreateInvoiceFormContextProvider: React.FC<CreateInvoiceFormContext
   children,
   initialState,
 }) => {
-  const [showPreview, setShowPreview] = useState(initialState.showPreview);
-
   return (
     <CreateInvoiceFormContext.Provider
       value={{
-        showPreview,
-        setShowPreview,
         clients: initialState.clients,
         appConfig: initialState.appConfig,
         items: initialState.items,
