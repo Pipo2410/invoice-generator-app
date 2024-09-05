@@ -107,9 +107,26 @@ export type Invoice = {
   referenceNote?: string;
 };
 
+export type AppConfig = {
+  vatArticles: VatExemption[];
+  itemCategories: { value: string; label: string };
+  languages: {
+    value: string;
+    label: string;
+    icon: string;
+  }[];
+  currencies: {
+    value: string;
+    label: string;
+    description: string;
+    icon: string;
+    sign: string;
+  }[];
+};
+
 export type InitialCreateInvoiceState = {
   showPreview: boolean;
-  clients?: Client[];
-  vatArticles: VatExemption[];
-  // invoice: Invoice;
+  appConfig: AppConfig;
+  clients: Client[];
+  items: Items;
 };

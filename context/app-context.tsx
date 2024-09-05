@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 
-import { Client, InitialCreateInvoiceState, VatExemption } from './model';
+import { AppConfig, Client, InitialCreateInvoiceState, Items } from './model';
 
 type CreateInvoiceFormContextValues = {
   showPreview: boolean;
   setShowPreview: Dispatch<SetStateAction<boolean>>;
-  // clients: Client[];
-  vatArticles: VatExemption[];
-  // invoice: Invoice;
+  clients: Client[];
+  appConfig: AppConfig;
+  items: Items;
 };
 
 type CreateInvoiceFormContextProviderProps = {
@@ -22,23 +22,17 @@ export const CreateInvoiceFormContextProvider: React.FC<CreateInvoiceFormContext
   children,
   initialState,
 }) => {
-  // const [state, setState] = useState(initialState);
   const [showPreview, setShowPreview] = useState(initialState.showPreview);
 
-  // const [invoice, setInvoice] = useState(initialState.invoice);
-  // const [date, setDate] = useState(initialState.invoice.date);
-
-  // const [invoice, setInvoice] = useState(initialState.invoice);
-
-  // const value: CreateInvoiceFormContextValues = useMemo(() => {
-  // 	return { showPreview, setShowPreview };
-  // }, [showPreview, setShowPreview]);
-
   return (
-    // <CreateInvoiceFormContext.Provider value={value}>
     <CreateInvoiceFormContext.Provider
-      // value={{ showPreview, setShowPreview, clients: initialState.clients, vatArticles: initialState.vatArticles }}
-      value={{ showPreview, setShowPreview, vatArticles: initialState.vatArticles }}
+      value={{
+        showPreview,
+        setShowPreview,
+        clients: initialState.clients,
+        appConfig: initialState.appConfig,
+        items: initialState.items,
+      }}
     >
       {children}
     </CreateInvoiceFormContext.Provider>

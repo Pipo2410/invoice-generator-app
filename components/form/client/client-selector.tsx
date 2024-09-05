@@ -5,7 +5,6 @@ import { UseFormReturn } from 'react-hook-form';
 
 import { FormType } from '@/components/layout/content';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
-import { CLIENTS_ARRAY } from '@/context/helpers';
 
 import { AutoComplete } from '../autocomplete';
 import { ClientCard } from './client-card';

@@ -20,7 +20,7 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
 
-  const { vatArticles } = useCreateInvoiceFormContext();
+  const { appConfig: { vatArticles } } = useCreateInvoiceFormContext();
 
   const buttonValue = vatArticles.find((framework) => framework.value === selectedValue)?.label;
 

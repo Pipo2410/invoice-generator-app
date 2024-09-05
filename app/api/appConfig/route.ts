@@ -5,7 +5,7 @@ import path from 'path';
 // import { VatExemption } from '@/context/model';
 
 export async function GET() {
-  const filePath = path.join(process.cwd(), 'assets', 'clients.json');
+  const filePath = path.join(process.cwd(), 'assets', 'app-config.json');
   const jsonData = fs.readFileSync(filePath);
   const data = JSON.parse(jsonData.toString());
 

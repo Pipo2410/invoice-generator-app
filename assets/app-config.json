@@ -1,0 +1,122 @@
+{
+  "vatArticles": [
+    {
+      "value": "M01",
+      "label": "1 Article 16(6) of CIVA"
+    },
+    {
+      "value": "M02",
+      "label": "Article 6 of Decree-Law 198/90 of June 19th"
+    },
+    {
+      "value": "M04",
+      "label": "Exempt Article 13 of CIVA"
+    },
+    {
+      "value": "M05",
+      "label": "Exempt Article 14 of CIVA"
+    },
+    {
+      "value": "M06",
+      "label": "Exempt Article 15 of CIVA"
+    }
+  ],
+  "itemCategories": [
+    {
+      "value": "M01",
+      "label": "Service"
+    },
+    {
+      "value": "M02",
+      "label": "Some else"
+    }
+  ],
+  "globalDiscountOptions": [
+    {
+      "value": "M01",
+      "label": "1 Article 16(6) of CIVA"
+    },
+    {
+      "value": "M02",
+      "label": "Article 6 of Decree-Law 198/90 of June 19th"
+    },
+    {
+      "value": "M04",
+      "label": "Exempt Article 13 of CIVA"
+    },
+    {
+      "value": "M05",
+      "label": "Exempt Article 14 of CIVA"
+    },
+    {
+      "value": "M06",
+      "label": "Exempt Article 15 of CIVA"
+    }
+  ],
+  "currencies": [
+    {
+      "value": "EUR",
+      "label": "Euro",
+      "description": "European Union Euro",
+      "icon": "eu",
+      "sign": "€"
+    },
+    {
+      "value": "USD",
+      "label": "Dollar (USA)",
+      "description": "United States Dollar",
+      "icon": "usa",
+      "sign": "$"
+    },
+    {
+      "value": "GBP",
+      "label": "Pounds",
+      "description": "United Kingdom Pounds",
+      "icon": "uk",
+      "sign": "£"
+    },
+    {
+      "value": "AED",
+      "label": "Diram",
+      "description": "Kuwaiti Dinar",
+      "icon": "kw",
+      "sign": "د.ك"
+    },
+    {
+      "value": "CPL",
+      "label": "Peso",
+      "description": "Chilean Peso",
+      "icon": "cl",
+      "sign": "$"
+    }
+  ],
+  "languages": [
+    {
+      "value": "en",
+      "label": "ENG",
+      "icon": "uk"
+    },
+    {
+      "value": "de",
+      "label": "DE",
+      "icon": "eu"
+    },
+    {
+      "value": "pt",
+      "label": "PT",
+      "icon": "usa"
+    },
+    {
+      "value": "es",
+      "label": "ES",
+      "icon": "cl"
+    },
+    {
+      "value": "it",
+      "label": "IT",
+      "icon": "kw"
+    }
+  ]
+}
+
+

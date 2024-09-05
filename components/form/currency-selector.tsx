@@ -4,11 +4,11 @@ import { ChevronDown } from 'lucide-react';
 import React, { useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
-import { currencies } from '@/assets/currencies';
 import { FormType } from '@/components/layout/content';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { useCreateInvoiceFormContext } from '@/context/app-context';
 
 import { IconComponent } from '../navigation/icon-component';
 
@@ -18,6 +18,9 @@ type Props = {
 
 export const CurrencySelector: React.FC<Props> = ({ form }) => {
   const [open, setOpen] = useState(false);
+  const {
+    appConfig: { currencies },
+  } = useCreateInvoiceFormContext();
 
   const values = form.getValues('invoice.currency');
 
