@@ -110,6 +110,6 @@ export type Invoice = {
 export type InitialCreateInvoiceState = {
   showPreview: boolean;
   clients?: Client[];
-  vatArticles?: VatExemption[];
+  vatArticles: VatExemption[];
   // invoice: Invoice;
 };

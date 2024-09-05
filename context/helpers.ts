@@ -130,12 +130,12 @@ export const DEFAULT_CLIENT = {
 };
 
 // InitialCreateInvoiceState
-export const createInitialState = (articles?: VatExemption[]): InitialCreateInvoiceState => {
+export const createInitialState = (articles: VatExemption[]): InitialCreateInvoiceState => {
   const initialState = {
     showPreview: true,
     clients: CLIENTS_ARRAY,
     // vatArticles: VAT_ARTICLES,
-    vatArticles: articles ?? [],
+    vatArticles: articles,
     // invoices: {
     //   date: {
     //     issueDate: new Date(),

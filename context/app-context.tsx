@@ -5,7 +5,7 @@ import { Client, InitialCreateInvoiceState, VatExemption } from './model';
 type CreateInvoiceFormContextValues = {
   showPreview: boolean;
   setShowPreview: Dispatch<SetStateAction<boolean>>;
-  clients: Client[];
+  // clients: Client[];
   vatArticles: VatExemption[];
   // invoice: Invoice;
 };
@@ -37,7 +37,8 @@ export const CreateInvoiceFormContextProvider: React.FC<CreateInvoiceFormContext
   return (
     // <CreateInvoiceFormContext.Provider value={value}>
     <CreateInvoiceFormContext.Provider
-      value={{ showPreview, setShowPreview, clients: initialState.clients, vatArticles: initialState.vatArticles }}
+      // value={{ showPreview, setShowPreview, clients: initialState.clients, vatArticles: initialState.vatArticles }}
+      value={{ showPreview, setShowPreview, vatArticles: initialState.vatArticles }}
     >
       {children}
     </CreateInvoiceFormContext.Provider>

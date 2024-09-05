@@ -13,8 +13,10 @@ export default async function CreateInvoicePage() {
     data: { vatArticles },
   } = articlesJson;
 
+  // const vetArticles: VatExemption[] = articlesJson.data.vatArticles
 
-  const initialState = createInitialState(vatArticles);
+
+  const initialState = createInitialState(vatArticles as VatExemption[]);
 
   return <MainContent initialState={initialState} />;
 }
