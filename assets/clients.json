@@ -21,12 +21,7 @@
       "country": "Portugal",
       "currency": "EUR",
       "defaultCurrency": "EUR",
-      "address": {
-        "street": "Calcada do monte 13",
-        "city": "Lisboa",
-        "postalCode": "1254-223",
-        "additional": "1dt-1e"
-      }
+      "address": { "street": "Calcada do monte 13", "city": "Lisboa", "postalCode": "1254-223", "additional": "1dt-1e" }
     },
     {
       "businessName": "Company Abc",

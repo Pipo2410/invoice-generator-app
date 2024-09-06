@@ -44,15 +44,15 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
           >
             <Form {...form}>
               <form className="flex flex-col gap-6" onSubmit={form.handleSubmit(onSubmitHandler)}>
-                <CurrencySelector form={form} />
-                <ClientSelector form={form} />
+                <CurrencySelector />
+                <ClientSelector />
                 <div className="flex flex-col gap-4">
                   <AddDateSection form={form} />
                   <VatArticleSelector form={form} />
                 </div>
                 <div>
                   <Separator />
-                  <AddInvoiceSection form={form} />
+                  <AddInvoiceSection />
                   <AdditionalOptions form={form} />
                 </div>
                 <div className="summary">

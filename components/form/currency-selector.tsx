@@ -2,9 +2,9 @@
 
 import { ChevronDown } from 'lucide-react';
 import React, { useState } from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
-import { FormType } from '@/components/layout/content';
+// import { FormType } from '@/components/layout/content';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -12,17 +12,14 @@ import { useCreateInvoiceFormContext } from '@/context/app-context';
 
 import { IconComponent } from '../navigation/icon-component';
 
-type Props = {
-  form: UseFormReturn<FormType>;
-};
-
-export const CurrencySelector: React.FC<Props> = ({ form }) => {
+export const CurrencySelector = () => {
   const [open, setOpen] = useState(false);
   const {
     appConfig: { currencies },
   } = useCreateInvoiceFormContext();
+  const { getValues, setValue } = useFormContext();
 
-  const values = form.getValues('invoice.currency');
+  const values = getValues('invoice.currency');
 
   const icon = currencies.find((cur) => cur.label === values)?.icon;
 
@@ -58,7 +55,7 @@ export const CurrencySelector: React.FC<Props> = ({ form }) => {
                   key={cur.value}
                   value={cur.label}
                   onSelect={(currentValue) => {
-                    form.setValue('invoice.currency', currentValue === values ? '' : currentValue);
+                    setValue('invoice.currency', currentValue === values ? '' : currentValue);
                     setOpen(false);
                   }}
                 >

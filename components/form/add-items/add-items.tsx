@@ -1,16 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import { FieldErrors, useFormContext } from 'react-hook-form';
 
 import { AutoComplete } from '@/components/form/autocomplete';
 import { FormType } from '@/components/layout/content';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { INVOICE_ITEMS_ARRAY } from '@/context/helpers';
-
-type Props = {
-  form: UseFormReturn<FormType>;
-};
 
 const TRANSFORMED_ITEMS = INVOICE_ITEMS_ARRAY.map((item) =>
   // const formattedPrice = new Intl.NumberFormat('de-DE', {
@@ -24,9 +20,10 @@ const TRANSFORMED_ITEMS = INVOICE_ITEMS_ARRAY.map((item) =>
   }),
 );
 
-export const AddItems: React.FC<Props> = ({ form }) => {
+export const AddItems = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<string>('');
+  const { getValues, setValue, formState, trigger } = useFormContext();
 
   const filteredItems = TRANSFORMED_ITEMS.filter((item) =>
     item.label.toLowerCase().includes(searchValue.toLowerCase()),
@@ -34,18 +31,18 @@ export const AddItems: React.FC<Props> = ({ form }) => {
   useEffect(() => {
     const selectedItem = INVOICE_ITEMS_ARRAY.find((item) => item.description === selectedValue);
 
-    const invoiceItems = form.getValues('invoice.items');
+    const invoiceItems = getValues('invoice.items');
 
     if (selectedItem) {
       invoiceItems.push(selectedItem);
-      form.setValue('invoice.items', invoiceItems);
+      setValue('invoice.items', invoiceItems);
       setSearchValue('');
       setSelectedValue('');
-      form.trigger('invoice.items');
+      trigger('invoice.items');
     }
-  }, [selectedValue, form]);
+  }, [selectedValue, getValues, trigger, setValue]);
 
-  const { errors } = form.formState;
+  const errors: FieldErrors<FormType> = formState.errors;
 
   return (
     <Accordion type="single" collapsible>
@@ -70,6 +67,7 @@ export const AddItems: React.FC<Props> = ({ form }) => {
             inputClassNames="h-fit text-base leading-4 border-none py-4 px-0 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent"
             iconClassName="mr-3 h-6 w-6"
             error={!!errors.invoice?.items}
+            addOption={true}
           />
         </AccordionContent>
       </AccordionItem>

@@ -2,10 +2,9 @@
 
 import { Trash2 } from 'lucide-react';
 import React from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 import { currencies } from '@/assets/currencies';
-import { FormType } from '@/components/layout/content';
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -15,26 +14,25 @@ import { cn } from '@/lib/utils';
 
 type Props = {
   item: Items[number];
-  form: UseFormReturn<FormType>;
   itemIndex: number;
 };
 
-export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
-  const { getValues } = form;
+export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
+  const { getValues, control, setValue } = useFormContext();
 
   const {
     invoice: { currency, items },
   } = getValues();
 
   const currencySign = currencies.find((el) => el.label === currency)?.sign;
-  const filteredItems = items.filter((el) => el.name !== item.name);
+  const filteredItems = items.filter((el: Items[number]) => el.name !== item.name);
 
   return (
     <>
       <div className="my-6 flex flex-col gap-3">
         <div className="flex items-center gap-2">
           <FormField
-            control={form.control}
+            control={control}
             name={`invoice.items.${itemIndex}`}
             render={({ field }) => (
               <FormItem className="flex w-full space-y-0">
@@ -51,7 +49,7 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
             )}
           />
           <FormField
-            control={form.control}
+            control={control}
             name="invoice.items"
             render={() => (
               <FormItem className="flex w-full space-y-0">
@@ -69,13 +67,13 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
             className="hover:cursor-pointer"
             onClick={() => {
               // setItems((prev) => prev.filter((el) => el.id !== item.id));
-              form.setValue('invoice.items', filteredItems); // gets ts error when items.array.nonEmpty() from zod
+              setValue('invoice.items', filteredItems); // gets ts error when items.array.nonEmpty() from zod
             }}
           />
         </div>
         <div className="flex gap-2">
           <FormField
-            control={form.control}
+            control={control}
             name="invoice.items"
             render={() => (
               <FormItem className="w-1/5">
@@ -96,7 +94,7 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
             )}
           />
           <FormField
-            control={form.control}
+            control={control}
             name="invoice.items"
             render={() => (
               <FormItem className="w-1/5">
@@ -117,7 +115,7 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
             )}
           />
           <FormField
-            control={form.control}
+            control={control}
             name="invoice.items"
             render={() => (
               <FormItem className="w-1/5">
@@ -131,7 +129,7 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
             )}
           />
           <FormField
-            control={form.control}
+            control={control}
             name="invoice.items"
             render={() => (
               <FormItem className="w-1/5">
@@ -152,7 +150,7 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
             )}
           />
           <FormField
-            control={form.control}
+            control={control}
             name="invoice.items"
             render={() => (
               <FormItem className="w-1/5">

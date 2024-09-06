@@ -12,5 +12,7 @@ export async function POST(req: NextRequest) {
   parsedData.clients.push(data);
   fs.writeFileSync(filePath, JSON.stringify(parsedData));
 
+  console.log('POST: /api/clients/create => New user created', data);
+
   return NextResponse.json(parsedData);
 }

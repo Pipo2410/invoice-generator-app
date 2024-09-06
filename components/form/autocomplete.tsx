@@ -3,7 +3,7 @@ import { PlusIcon, ZoomIn } from 'lucide-react';
 import React from 'react';
 import { useMemo, useRef, useState } from 'react';
 
-import { Command, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
+import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverAnchor, PopoverContent } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
@@ -24,6 +24,7 @@ type Props<T extends string> = {
   searchWrapperClasses?: T;
   iconClassName?: T;
   error: boolean;
+  addOption?: boolean;
 };
 
 export const AutoComplete = <T extends string>({
@@ -32,16 +33,16 @@ export const AutoComplete = <T extends string>({
   searchValue,
   onSearchValueChange,
   items,
-  isLoading,
+  // isLoading,
   // emptyMessage = 'No items.',
   placeholder = 'Search...',
   inputClassNames,
   searchWrapperClasses,
   iconClassName,
   error,
+  addOption,
 }: Props<T>) => {
   const [open, setOpen] = useState(false);
-  // const [wrapperStyling, setWrappwrapperStyling] = useState(['']);
   const inputWrapper = useRef<React.ElementRef<typeof CommandPrimitive>>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -64,11 +65,6 @@ export const AutoComplete = <T extends string>({
 
   const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     inputWrapper.current?.classList.remove('!bg-light-blue', '!border-[#CCD7FF]');
-    // questionable implementation
-    // setWrappwrapperStyling((prev) => {
-    // 	const newArr = [...prev];
-    // 	return newArr.filter((arr) => arr !== 'bg-light-blue');
-    // });
     if (!e.relatedTarget?.hasAttribute('cmdk-list') && labels[selectedValue] !== searchValue) {
       reset();
     }
@@ -84,22 +80,13 @@ export const AutoComplete = <T extends string>({
     setOpen(false);
   };
 
-  const onCreateNewItem = () => {
-    setOpen(false);
-  };
-
   return (
     <div className="flex items-center">
       <Popover open={open} onOpenChange={setOpen}>
         <Command
           shouldFilter={false}
           ref={inputWrapper}
-          className={cn(
-            'rounded-2xl border border-secondary',
-            searchWrapperClasses,
-            error && 'border-dark-orange',
-            // ...wrapperStyling
-          )}
+          className={cn('rounded-2xl border border-secondary', searchWrapperClasses, error && 'border-dark-orange')}
         >
           <PopoverAnchor asChild>
             {/* eslint-disable-next-line react/no-unknown-property */}
@@ -113,32 +100,16 @@ export const AutoComplete = <T extends string>({
                 onMouseDown={() => setOpen((open) => !!searchValue || !open)}
                 onFocus={() => {
                   inputWrapper.current?.classList.add('!bg-light-blue', '!border-[#CCD7FF]');
-                  // questionable implementation
-                  // setWrappwrapperStyling((prev) => {
-                  // 	const newArr = [...prev];
-                  // 	newArr.push('bg-light-blue');
-                  // 	return newArr;
-                  // });
                   setOpen(true);
                 }}
                 onBlur={onInputBlur}
                 className="focus-visible:ring-0 focus-visible:ring-offset-0"
               >
-                {/* <Input
-									placeholder={placeholder}
-									className={cn('h-fit bg-inherit text-base leading-4 border-none py-4 px-3 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent', inputClassNames)}
-								/> */}
                 <Input
                   ref={inputRef}
                   type="text"
-                  // placeholder="Purchase order"
                   placeholder={placeholder}
                   className={cn('bg-inherit', inputClassNames)}
-                  // onChange={
-                  // 	onInputHandler
-                  // 		? (event) => onInputHandler(event.target.value)
-                  // 		: undefined
-                  // }
                 />
               </CommandPrimitive.Input>
               <Label
@@ -162,27 +133,29 @@ export const AutoComplete = <T extends string>({
             className="w-[--radix-popover-trigger-width] p-0"
           >
             <CommandList className="rounded-2xl">
-              {/* {isLoading && (
-								<CommandPrimitive.Loading>
-									<div className="p-1">skeleton</div>
-								</CommandPrimitive.Loading>
-							)} */}
-              {searchValue && (
-                <div className="mb-2 flex items-center gap-2 py-6 pl-4">
-                  <p className="rounded-none text-sm font-semibold text-dark-gray">{searchValue}</p>
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant="ghost"
-                    className="p-0 text-dark-blue hover:bg-transparent hover:text-dark-blue"
-                    onClick={onCreateNewItem}
-                  >
-                    <PlusIcon className="w-4" />
-                    <span>Create item</span>
-                  </Button>
-                </div>
+              {searchValue && addOption && (
+                <CommandItem
+                  value={'create-new'}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onSelect={onSelectItem}
+                  className="group flex-col items-start gap-3 rounded-none py-3 pl-4 data-[selected=true]:bg-[#F8F8F8]"
+                >
+                  <div className="flex items-center gap-2 p-0">
+                    <p className="rounded-none text-sm font-semibold text-dark-gray">{searchValue}</p>
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="ghost"
+                      className="p-0 text-dark-blue hover:bg-transparent hover:text-dark-blue"
+                    >
+                      <PlusIcon className="w-4" />
+                      <span>Create item</span>
+                    </Button>
+                  </div>
+                </CommandItem>
               )}
-              {items.length > 0 && !isLoading ? (
+              {/* {items.length > 0 && !isLoading ? ( */}
+              {items.length > 0 ? (
                 <CommandGroup className="p-0">
                   {items.map((option) => (
                     <CommandItem
@@ -192,20 +165,14 @@ export const AutoComplete = <T extends string>({
                       onSelect={onSelectItem}
                       className="group flex-col items-start gap-3 rounded-none py-2 pl-4 data-[selected=true]:bg-[#F8F8F8]"
                     >
-                      {/* <Check
-												className={cn(
-													'mr-2 h-4 w-4',
-													selectedValue === option.value
-														? 'opacity-100'
-														: 'opacity-0'
-												)}
-											/> */}
                       <span className="text-md font-semibold group-hover:text-[#101010]">{option.label}</span>
                       <span className="text-xs group-hover:text-[#5A5858]">{option.value}</span>
                     </CommandItem>
                   ))}
                 </CommandGroup>
-              ) : null}
+              ) : (
+                <CommandEmpty>No results found.</CommandEmpty>
+              )}
               {/* {!isLoading ? (
 								<CommandEmpty>{emptyMessage ?? 'No items.'}</CommandEmpty>
 							) : null} */}
