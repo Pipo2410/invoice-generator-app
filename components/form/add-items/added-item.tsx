@@ -1,6 +1,7 @@
 'use client';
 
 import { Trash2 } from 'lucide-react';
+import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
 import { currencies } from '@/assets/currencies';
@@ -35,26 +36,24 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
           <FormField
             control={form.control}
             name={`invoice.items.${itemIndex}`}
-            render={({ field }) => {
-              return (
-                <FormItem className="flex w-full space-y-0">
-                  <FormControl>
-                    <Input
-                      className={cn(
-                        'rounded-sm border-none bg-white px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0',
-                      )}
-                      {...field}
-                      value={item.name}
-                    />
-                  </FormControl>
-                </FormItem>
-              );
-            }}
+            render={({ field }) => (
+              <FormItem className="flex w-full space-y-0">
+                <FormControl>
+                  <Input
+                    className={cn(
+                      'rounded-sm border-none bg-white px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0',
+                    )}
+                    {...field}
+                    value={item.name}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
           />
           <FormField
             control={form.control}
             name="invoice.items"
-            render={({ field }) => (
+            render={() => (
               <FormItem className="flex w-full space-y-0">
                 <FormControl>
                   <Input
@@ -78,7 +77,7 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
           <FormField
             control={form.control}
             name="invoice.items"
-            render={({ field }) => (
+            render={() => (
               <FormItem className="w-1/5">
                 <Select>
                   <SelectTrigger className="rounded-sm border-none bg-white px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0">
@@ -99,7 +98,7 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
           <FormField
             control={form.control}
             name="invoice.items"
-            render={({ field }) => (
+            render={() => (
               <FormItem className="w-1/5">
                 <Select>
                   <SelectTrigger className="rounded-sm border-none bg-white px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0">
@@ -120,7 +119,7 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
           <FormField
             control={form.control}
             name="invoice.items"
-            render={({ field }) => (
+            render={() => (
               <FormItem className="w-1/5">
                 <Input
                   placeholder={`${item.price} ${currencySign}`}
@@ -134,7 +133,7 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
           <FormField
             control={form.control}
             name="invoice.items"
-            render={({ field }) => (
+            render={() => (
               <FormItem className="w-1/5">
                 <Select>
                   <SelectTrigger className="rounded-sm border-none bg-white px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0">
@@ -155,7 +154,7 @@ export const AddedItem: React.FC<Props> = ({ item, form, itemIndex }) => {
           <FormField
             control={form.control}
             name="invoice.items"
-            render={({ field }) => (
+            render={() => (
               <FormItem className="w-1/5">
                 <Input
                   placeholder={`${item.discount} %`}

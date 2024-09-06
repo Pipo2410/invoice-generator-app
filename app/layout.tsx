@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import React from 'react';
 
 import { ActionBar } from '@/components/layout/action-bar';
 import { AppHeader } from '@/components/layout/app-header';

@@ -2,6 +2,7 @@
 
 import { format } from 'date-fns';
 import { ChevronDown } from 'lucide-react';
+import React from 'react';
 import { useState } from 'react';
 import { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
 
@@ -102,25 +103,23 @@ export const DueDate: React.FC<Props> = ({ form }) => {
               <FormField
                 control={form.control}
                 name="invoice.date.dueDate"
-                render={({ field }) => {
+                render={({ field }) => (
                   // console.log(field);
-                  return (
-                    <FormItem>
-                      <FormControl>
-                        <Calendar
-                          mode="single"
-                          selected={field.value}
-                          onSelect={(value) => {
-                            setIsOpen(false);
-                            setDays(null);
-                            field.onChange(value);
-                          }}
-                          initialFocus
-                        />
-                      </FormControl>
-                    </FormItem>
-                  );
-                }}
+                  <FormItem>
+                    <FormControl>
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={(value) => {
+                          setIsOpen(false);
+                          setDays(null);
+                          field.onChange(value);
+                        }}
+                        initialFocus
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
               />
             </DropdownMenuSubContent>
           </DropdownMenuPortal>

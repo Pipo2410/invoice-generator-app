@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "eslint -c .eslintrc.json . --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\" && npm run lint:fix --force"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

@@ -50,28 +50,26 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
         <FormField
           control={form.control}
           name="invoice.date.issueDate"
-          render={({ field }) => {
+          render={({ field }) => (
             // console.log(field);
-            return (
-              <FormItem>
-                <FormControl>
-                  <Calendar
-                    mode="single"
-                    // selected={dateNow}
-                    selected={field.value}
-                    onSelect={(value) => {
-                      // setDate(value);
-                      form.clearErrors('invoice.date.issueDate');
-                      setIsOpen(false);
-                      field.onChange(value);
-                    }}
-                    initialFocus
-                  />
-                </FormControl>
-                {/* <FormMessage /> */}
-              </FormItem>
-            );
-          }}
+            <FormItem>
+              <FormControl>
+                <Calendar
+                  mode="single"
+                  // selected={dateNow}
+                  selected={field.value}
+                  onSelect={(value) => {
+                    // setDate(value);
+                    form.clearErrors('invoice.date.issueDate');
+                    setIsOpen(false);
+                    field.onChange(value);
+                  }}
+                  initialFocus
+                />
+              </FormControl>
+              {/* <FormMessage /> */}
+            </FormItem>
+          )}
         />
       </PopoverContent>
     </Popover>

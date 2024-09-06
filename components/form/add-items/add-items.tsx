@@ -12,17 +12,17 @@ type Props = {
   form: UseFormReturn<FormType>;
 };
 
-const TRANSFORMED_ITEMS = INVOICE_ITEMS_ARRAY.map((item) => {
+const TRANSFORMED_ITEMS = INVOICE_ITEMS_ARRAY.map((item) =>
   // const formattedPrice = new Intl.NumberFormat('de-DE', {
   // 	minimumFractionDigits: 2,
   // 	maximumFractionDigits: 2,
   // }).format(Number(item.description));
 
-  return {
+  ({
     label: item.name,
     value: item.description,
-  };
-});
+  }),
+);
 
 export const AddItems: React.FC<Props> = ({ form }) => {
   const [searchValue, setSearchValue] = useState<string>('');

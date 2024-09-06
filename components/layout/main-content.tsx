@@ -1,5 +1,7 @@
 'use client';
 
+import React from 'react';
+
 import { Content } from '@/components/layout/content';
 import { Header } from '@/components/layout/create-invoice-header';
 import { CreateInvoiceFormContextProvider } from '@/context/app-context';

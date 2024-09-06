@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
@@ -26,16 +27,14 @@ export const ClientSelector: React.FC<Props> = ({ form }) => {
     if (selectedClient) {
       form.setValue('invoice.client', selectedClient);
     }
-  }, [selectedValue]);
+  }, [selectedValue, clients, form]);
 
   const { errors } = form.formState;
 
-  const newItems = clients.map((item) => {
-    return {
-      label: item.businessName,
-      value: String(item.nif),
-    };
-  });
+  const newItems = clients.map((item) => ({
+    label: item.businessName,
+    value: String(item.nif),
+  }));
 
   const filteredItems = newItems.filter(
     (client) =>

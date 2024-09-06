@@ -1,3 +1,4 @@
+import React from 'react';
 import { useWatch } from 'react-hook-form';
 
 import { currencies } from '@/assets/currencies';

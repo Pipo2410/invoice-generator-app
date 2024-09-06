@@ -1,6 +1,7 @@
 'use client';
 
 import { Eye, EyeOff } from 'lucide-react';
+import React from 'react';
 
 import { Button } from '@/components/ui/button';
 import { useDefaultContext } from '@/context/default-context';

@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -11,7 +11,6 @@ import { ClientSelector } from '@/components/form/client/client-selector';
 import { CurrencySelector } from '@/components/form/currency-selector';
 import { InvoiceSummary } from '@/components/form/invoice-summary';
 import { VatArticleSelector } from '@/components/form/vat-article-selector';
-import { ActionBar } from '@/components/layout/action-bar';
 import { PreviewArea } from '@/components/preview/preview-area';
 import { Form } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
@@ -33,7 +32,7 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
     defaultValues: formDefaultValues,
   });
 
-  const onSubmitHandler = (values: FormType) => {};
+  const onSubmitHandler = () => {};
 
   return (
     <>

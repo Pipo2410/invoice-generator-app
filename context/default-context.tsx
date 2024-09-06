@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 
 type DefaultContextValues = {

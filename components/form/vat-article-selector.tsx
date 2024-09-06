@@ -1,6 +1,7 @@
 'use client';
 
 import { ChevronDown } from 'lucide-react';
+import React from 'react';
 import { useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
@@ -20,7 +21,9 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
 
-  const { appConfig: { vatArticles } } = useCreateInvoiceFormContext();
+  const {
+    appConfig: { vatArticles },
+  } = useCreateInvoiceFormContext();
 
   const buttonValue = vatArticles.find((framework) => framework.value === selectedValue)?.label;
 
@@ -59,7 +62,7 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
                   key={article.value}
                   control={form.control}
                   name="invoice.vatExemption.value"
-                  render={({ field }) => (
+                  render={() => (
                     <FormItem>
                       <FormControl>
                         <CommandItem

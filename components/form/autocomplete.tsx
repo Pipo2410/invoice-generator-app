@@ -1,8 +1,9 @@
 import { Command as CommandPrimitive } from 'cmdk';
-import { Check, PlusIcon, ZoomIn } from 'lucide-react';
+import { PlusIcon, ZoomIn } from 'lucide-react';
+import React from 'react';
 import { useMemo, useRef, useState } from 'react';
 
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import { Command, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverAnchor, PopoverContent } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
@@ -32,7 +33,7 @@ export const AutoComplete = <T extends string>({
   onSearchValueChange,
   items,
   isLoading,
-  emptyMessage = 'No items.',
+  // emptyMessage = 'No items.',
   placeholder = 'Search...',
   inputClassNames,
   searchWrapperClasses,
@@ -101,6 +102,7 @@ export const AutoComplete = <T extends string>({
           )}
         >
           <PopoverAnchor asChild>
+            {/* eslint-disable-next-line react/no-unknown-property */}
             <div className={cn('relative flex items-center px-3')} cmdk-input-wrapper="">
               <ZoomIn className={cn('mr-2 h-4 w-4 shrink-0 opacity-50', iconClassName)} />
               <CommandPrimitive.Input

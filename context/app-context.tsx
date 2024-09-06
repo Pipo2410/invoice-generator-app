@@ -1,3 +1,4 @@
+import React from 'react';
 import { createContext, useContext } from 'react';
 
 import { AppConfig, Client, InitialCreateInvoiceState, Items } from './model';
@@ -19,19 +20,17 @@ CreateInvoiceFormContext.displayName = 'CreateInvoiceFormContext';
 export const CreateInvoiceFormContextProvider: React.FC<CreateInvoiceFormContextProviderProps> = ({
   children,
   initialState,
-}) => {
-  return (
-    <CreateInvoiceFormContext.Provider
-      value={{
-        clients: initialState.clients,
-        appConfig: initialState.appConfig,
-        items: initialState.items,
-      }}
-    >
-      {children}
-    </CreateInvoiceFormContext.Provider>
-  );
-};
+}) => (
+  <CreateInvoiceFormContext.Provider
+    value={{
+      clients: initialState.clients,
+      appConfig: initialState.appConfig,
+      items: initialState.items,
+    }}
+  >
+    {children}
+  </CreateInvoiceFormContext.Provider>
+);
 
 export const useCreateInvoiceFormContext = (): CreateInvoiceFormContextValues => {
   const context = useContext(CreateInvoiceFormContext);

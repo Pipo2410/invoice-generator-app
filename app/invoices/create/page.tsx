@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { MainContent } from '@/components/layout/main-content';
 import { createInitialState } from '@/context/helpers';
 
