@@ -1,19 +1,22 @@
 import React from 'react';
 import { useRef } from 'react';
 
+import { cn } from '@/lib/utils';
+
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 
 type Props = {
   placeholder: string;
   onInputHandler: (value: string) => void;
+  wrapperClasses?: string;
 };
 
-export const CustomInput: React.FC<Props> = ({ placeholder, onInputHandler }) => {
+export const CustomInput: React.FC<Props> = ({ placeholder, onInputHandler, wrapperClasses }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="relative">
+    <div className={(cn('relative'), wrapperClasses)}>
       <Input
         ref={inputRef}
         type="text"

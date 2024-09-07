@@ -46,10 +46,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-{
-  /* <div className="flex min-h-[calc(100vh-88px)] flex-col"> */
-}
-{
-  /* <div className="flex min-h-[calc(100vh-88px)] p-6 pb-0 md:gap-24">{children}</div> */
-}

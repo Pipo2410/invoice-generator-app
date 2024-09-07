@@ -2,7 +2,11 @@ import fs from 'fs';
 import { NextResponse } from 'next/server';
 import path from 'path';
 
-// import { VatExemption } from '@/context/model';
+import { Items } from '@/context/model';
+
+export type ItemsApiResponse = {
+  items: Items;
+};
 
 export async function GET() {
   const filePath = path.join(process.cwd(), 'assets', 'items.json');

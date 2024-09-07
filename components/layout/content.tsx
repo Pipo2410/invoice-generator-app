@@ -8,7 +8,6 @@ import { z } from 'zod';
 import { AddInvoiceSection } from '@/components/form/add-items/add-invoice-section';
 import { AdditionalOptions } from '@/components/form/additional-options';
 import { ClientSelector } from '@/components/form/client/client-selector';
-import { CurrencySelector } from '@/components/form/currency-selector';
 import { InvoiceSummary } from '@/components/form/invoice-summary';
 import { VatArticleSelector } from '@/components/form/vat-article-selector';
 import { PreviewArea } from '@/components/preview/preview-area';
@@ -44,7 +43,6 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
           >
             <Form {...form}>
               <form className="flex flex-col gap-6" onSubmit={form.handleSubmit(onSubmitHandler)}>
-                <CurrencySelector />
                 <ClientSelector />
                 <div className="flex flex-col gap-4">
                   <AddDateSection form={form} />

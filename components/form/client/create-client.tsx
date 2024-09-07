@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
+// import { Checkbox } from '@/components/ui/checkbox';
 import {
   Select,
   SelectContent,
@@ -13,6 +14,9 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+import { CurrencySelector } from '../currency-selector';
+import { CustomCheckbox } from '../custom-checkbox';
+import { CustomInput } from '../custom-input';
 import { SearchNifSelector } from './search-nif-selector';
 
 type Props = {
@@ -21,34 +25,13 @@ type Props = {
 };
 
 export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => (
-  <Card className="gap-10 border-x-0 border-t-0 p-6 pt-4">
+  <Card className="gap-10 rounded-3xl border-x-0 border-t-0 p-6 pt-4">
     <CardHeader className="flex-col justify-between gap-6 space-y-0 p-0">
       <h3 className="font-semibold">Create new client</h3>
       <div className="flex items-center justify-between gap-2">
-        {/* <CurrencySelector /> */}
-        <Select>
-          <SelectTrigger className="w-1/2">
-            <SelectValue placeholder="Select a fruit" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Fruits</SelectLabel>
-              <SelectItem value="apple">Apple</SelectItem>
-              <SelectItem value="banana">Banana</SelectItem>
-              <SelectItem value="blueberry">Blueberry</SelectItem>
-              <SelectItem value="grapes">Grapes</SelectItem>
-              <SelectItem value="pineapple">Pineapple</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        <CurrencySelector type="button" />
         <div className="flex w-1/2 items-center space-x-2 px-4">
-          <Checkbox id="terms" />
-          <label
-            htmlFor="terms"
-            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            Default currency for this client
-          </label>
+          <CustomCheckbox text="Default currency for this client" id="currency" />
         </div>
       </div>
       <Select>
@@ -67,8 +50,46 @@ export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => (
         </SelectContent>
       </Select>
     </CardHeader>
-    <CardContent className="px-0 py-4">
+    <CardContent className="flex flex-col gap-4 px-0 py-4">
       <SearchNifSelector />
+      <div className="flex flex-col gap-1">
+        <CustomInput
+          placeholder="Search client by NIF"
+          // onInputHandler={(value) => form.setValue('invoice.additionalOptions.purchaseOrder', value)}
+          onInputHandler={(value) => console.log(value)}
+        />
+        <p className="ml-4 text-sm text-dark-gray">*Client legal name required</p>
+      </div>
+      <div className="flex flex-col gap-1">
+        <CustomInput placeholder="Client email" onInputHandler={(value) => console.log(value)} />
+        <p className="ml-4 text-sm text-dark-gray">Use coma (,) to add more than one email.</p>
+      </div>
+      <Accordion type="single" collapsible>
+        <AccordionItem value="item-1" className="w-full border-none">
+          <AccordionTrigger
+            icon="plus"
+            className="my-4 flex-none gap-1 rounded-full px-3 py-2 text-dark-blue transition-colors hover:text-dark-blue hover:no-underline"
+          >
+            Add additional details
+          </AccordionTrigger>
+          <AccordionContent className="my-4 flex flex-col gap-4 py-0">
+            <CustomInput placeholder="Street address" onInputHandler={(value) => console.log(value)} />
+            <CustomInput placeholder="City" onInputHandler={(value) => console.log(value)} />
+            <div className="flex gap-4">
+              <CustomInput
+                placeholder="Postal code"
+                onInputHandler={(value) => console.log(value)}
+                wrapperClasses="w-1/2"
+              />
+              <CustomInput
+                placeholder="Floor, door number"
+                onInputHandler={(value) => console.log(value)}
+                wrapperClasses="w-1/2"
+              />
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </CardContent>
     <CardFooter className="justify-around px-0">
       {/* <div className="flex flex-col items-center justify-end gap-4 lg:flex-row"> */}
@@ -82,6 +103,7 @@ export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => (
       </Button>
       <Button
         variant="ghost"
+        type="button"
         className="rounded-full border-[1.5px] bg-foreground px-20 py-3.5 text-white disabled:bg-[#7E8081] disabled:text-white"
         onClick={onSubmit}
       >

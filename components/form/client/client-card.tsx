@@ -20,7 +20,7 @@ export const ClientCard: React.FC<Props> = ({ setSelectedValue }) => {
     setValue('invoice.client', DEFAULT_CLIENT);
   };
   return (
-    <Card className="border-x-0 border-t-0">
+    <Card className="rounded-3xl border-x-0 border-t-0">
       <CardHeader className="flex-row justify-between">
         <div className="flex items-center gap-2">
           <Avatar className="h-11 w-11">

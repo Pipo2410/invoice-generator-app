@@ -1,3 +1,4 @@
+import { CheckCircle } from 'lucide-react';
 import React, { useState } from 'react';
 import { FieldErrors, useFormContext } from 'react-hook-form';
 
@@ -44,7 +45,14 @@ export const SearchNifSelector = () => {
         iconClassName="mr-3 h-6 w-6"
         error={!!errors.invoice?.items}
       />
-      <p className="ml-4 text-sm text-dark-gray">Client legal name or company NIF number</p>
+      {selectedValue ? (
+        <p className="ml-4 flex gap-1 text-sm text-[#27A251]">
+          <CheckCircle width={20} height={20} />
+          <span>Valid NIF</span>
+        </p>
+      ) : (
+        <p className="ml-4 text-sm text-dark-gray">Use the NIF to fill the client details</p>
+      )}
     </div>
   );
 };
