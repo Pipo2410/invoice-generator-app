@@ -3,7 +3,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 import { AddInvoiceSection } from '@/components/form/add-items/add-invoice-section';
 import { AdditionalOptions } from '@/components/form/additional-options';
@@ -14,12 +13,10 @@ import { PreviewArea } from '@/components/preview/preview-area';
 import { Form } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
 import { formDefaultValues } from '@/context/helpers';
-import { formSchema } from '@/context/model';
+import { FormType, formSchema } from '@/context/model';
 import { cn } from '@/lib/utils';
 
 import { AddDateSection } from '../form/date/add-date-section';
-
-export type FormType = z.infer<typeof formSchema>;
 
 type Props = {
   showPreview: boolean;

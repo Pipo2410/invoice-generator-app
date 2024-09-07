@@ -5,11 +5,11 @@ import { ChevronDown } from 'lucide-react';
 import React, { useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
-import { FormType } from '@/components/layout/content';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { FormType } from '@/context/model';
 import { cn } from '@/lib/utils';
 
 type Props = {

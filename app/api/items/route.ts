@@ -2,10 +2,10 @@ import fs from 'fs';
 import { NextResponse } from 'next/server';
 import path from 'path';
 
-import { Items } from '@/context/model';
+import { Item } from '@/context/model';
 
 export type ItemsApiResponse = {
-  items: Items;
+  items: Item[];
 };
 
 export async function GET() {

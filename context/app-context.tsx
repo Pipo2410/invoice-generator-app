@@ -1,13 +1,13 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { createContext, useContext } from 'react';
 
-import { AppConfig, Client, InitialCreateInvoiceState, Items } from './model';
+import { AppConfig, Client, InitialCreateInvoiceState, Item } from './model';
 
 type CreateInvoiceFormContextValues = {
   clients: Client[];
   setClients: Dispatch<SetStateAction<Client[]>>;
   appConfig: AppConfig;
-  items: Items;
+  items: Item[];
 };
 
 type CreateInvoiceFormContextProviderProps = {

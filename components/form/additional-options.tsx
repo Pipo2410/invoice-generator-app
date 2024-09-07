@@ -1,9 +1,9 @@
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
-import { FormType } from '@/components/layout/content';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { FormType } from '@/context/model';
 
 import { Input } from '../ui/input';
 import { CustomCheckbox } from './custom-checkbox';

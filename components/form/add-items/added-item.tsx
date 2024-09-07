@@ -9,11 +9,11 @@ import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/f
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
-import { Items } from '@/context/model';
+import { Item } from '@/context/model';
 import { cn } from '@/lib/utils';
 
 type Props = {
-  item: Items[number];
+  item: Item;
   itemIndex: number;
 };
 
@@ -25,7 +25,7 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
   } = getValues();
 
   const currencySign = currencies.find((el) => el.label === currency)?.sign;
-  const filteredItems = items.filter((el: Items[number]) => el.name !== item.name);
+  const filteredItems = items.filter((el: Item) => el.name !== item.name);
 
   return (
     <>

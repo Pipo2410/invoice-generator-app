@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { FieldErrors, useFormContext } from 'react-hook-form';
 
 import { AutoComplete } from '@/components/form/autocomplete';
-import { FormType } from '@/components/layout/content';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { INVOICE_ITEMS_ARRAY } from '@/context/helpers';
+import { FormType } from '@/context/model';
 
 const TRANSFORMED_ITEMS = INVOICE_ITEMS_ARRAY.map((item) =>
   // const formattedPrice = new Intl.NumberFormat('de-DE', {

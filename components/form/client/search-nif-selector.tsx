@@ -2,8 +2,8 @@ import { CheckCircle } from 'lucide-react';
 import React, { useState } from 'react';
 import { FieldErrors, useFormContext } from 'react-hook-form';
 
-import { FormType } from '@/components/layout/content';
 import { INVOICE_ITEMS_ARRAY } from '@/context/helpers';
+import { FormType } from '@/context/model';
 
 import { AutoComplete } from '../autocomplete';
 

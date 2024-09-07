@@ -14,9 +14,9 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import { CurrencySelector } from '../currency-selector';
 import { CustomCheckbox } from '../custom-checkbox';
 import { CustomInput } from '../custom-input';
+import { CurrencySelector } from './new/currency-selector';
 import { SearchNifSelector } from './search-nif-selector';
 
 type Props = {
@@ -29,7 +29,7 @@ export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => (
     <CardHeader className="flex-col justify-between gap-6 space-y-0 p-0">
       <h3 className="font-semibold">Create new client</h3>
       <div className="flex items-center justify-between gap-2">
-        <CurrencySelector type="button" />
+        <CurrencySelector />
         <div className="flex w-1/2 items-center space-x-2 px-4">
           <CustomCheckbox text="Default currency for this client" id="currency" />
         </div>

@@ -1,21 +1,27 @@
 import { currencies } from '@/assets/currencies';
 
-import { AppConfig, Client, InitialCreateInvoiceState, Items, VatExemption } from './model';
+import { AppConfig, Client, InitialCreateInvoiceState, Item, VatExemption } from './model';
 
 export const formDefaultValues = {
   invoice: {
     client: {
       businessName: '',
       email: '',
-      nif: undefined,
+      // nif: null,
       country: '',
-      currency: '',
+      currency: {
+        value: 'EUR',
+        isDefault: true,
+      },
     },
     date: {
       issueDate: new Date(),
     },
     items: [],
-    currency: currencies[0].label,
+    currency: {
+      value: currencies[0].value,
+      isDefault: false,
+    },
   },
 };
 
@@ -25,8 +31,7 @@ export const CLIENTS_ARRAY: Client[] = [
     email: 'client12@gmail.com',
     nif: 309643090,
     country: 'Portugal',
-    currency: 'EUR',
-    defaultCurrency: 'EUR',
+    currency: { value: 'EUR', isDefault: true },
     address: {
       street: 'Rua de sao Bento 644',
       city: 'Lisboa',
@@ -39,8 +44,7 @@ export const CLIENTS_ARRAY: Client[] = [
     email: 'Google@gmail.com',
     nif: 858356421,
     country: 'Portugal',
-    currency: 'EUR',
-    defaultCurrency: 'EUR',
+    currency: { value: 'EUR', isDefault: true },
     address: {
       street: 'Calcada do monte 13',
       city: 'Lisboa',
@@ -53,8 +57,7 @@ export const CLIENTS_ARRAY: Client[] = [
     email: 'company.abc@gmail.com',
     nif: 329643090,
     country: 'Portugal',
-    currency: 'EUR',
-    defaultCurrency: 'EUR',
+    currency: { value: 'EUR', isDefault: true },
     address: {
       street: 'Rua de Joao jorge 234',
       city: 'Lisboa',
@@ -87,7 +90,7 @@ export const VAT_ARTICLES: VatExemption[] = [
   },
 ];
 
-export const INVOICE_ITEMS_ARRAY: Items = [
+export const INVOICE_ITEMS_ARRAY: Item[] = [
   {
     id: 1,
     name: 'Branding development',
@@ -131,7 +134,7 @@ export const DEFAULT_CLIENT = {
 export const createInitialState = (
   appConfig: AppConfig,
   clients: Client[],
-  items: Items,
+  items: Item[],
 ): InitialCreateInvoiceState => {
   const initialState = {
     showPreview: true,

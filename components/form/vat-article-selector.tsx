@@ -5,12 +5,12 @@ import React from 'react';
 import { useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
-import { FormType } from '@/components/layout/content';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
+import { FormType } from '@/context/model';
 import { cn } from '@/lib/utils';
 
 type Props = {

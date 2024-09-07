@@ -6,7 +6,6 @@ import React from 'react';
 import { useState } from 'react';
 import { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
 
-import { FormType } from '@/components/layout/content';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
@@ -20,6 +19,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
+import { FormType } from '@/context/model';
 import { cn } from '@/lib/utils';
 
 const options = [15, 30, 45, 60, 90];

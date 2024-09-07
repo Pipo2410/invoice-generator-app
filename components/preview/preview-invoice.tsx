@@ -3,7 +3,7 @@ import { useFormContext, useWatch } from 'react-hook-form';
 
 import { currencies } from '@/assets/currencies';
 import { Card } from '@/components/ui/card';
-import { Client, Items } from '@/context/model';
+import { Client, Item } from '@/context/model';
 
 import { InvoiceSummary } from '../form/invoice-summary';
 import { Separator } from '../ui/separator';
@@ -11,7 +11,7 @@ import { Separator } from '../ui/separator';
 export const PreviewInvoice = () => {
   const { getValues } = useFormContext();
   const client: Client = useWatch({ name: 'invoice.client' });
-  const items: Items = useWatch({
+  const items: Item[] = useWatch({
     name: 'invoice.items',
   });
 

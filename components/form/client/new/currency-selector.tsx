@@ -2,26 +2,20 @@
 
 import { ChevronDown } from 'lucide-react';
 import React, { useState } from 'react';
-import { useFormContext } from 'react-hook-form';
 
+import { IconComponent } from '@/components/navigation/icon-component';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
-import { cn } from '@/lib/utils';
-
-import { IconComponent } from '../navigation/icon-component';
 
 export const CurrencySelector = () => {
-  const [open, setOpen] = useState(false);
   const {
     appConfig: { currencies },
   } = useCreateInvoiceFormContext();
-  const { getValues, setValue } = useFormContext();
 
-  const currencyValue = getValues('invoice.currency.value');
-
-  const icon = currencies.find((cur) => cur.value === currencyValue)?.icon;
+  const [open, setOpen] = useState(false);
+  const [currencyValue, setCurrencyValue] = useState(currencies[0].value);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -32,18 +26,22 @@ export const CurrencySelector = () => {
           role="combobox"
           type="button"
           aria-expanded={open}
-          className={cn(
-            'group w-fit justify-start gap-1 rounded-full px-3 py-2 text-dark-blue transition-colors hover:bg-transparent hover:text-dark-blue focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-dark-blue data-[state=open]:text-white',
-          )}
+          className="group h-fit min-h-16 w-1/2 justify-between gap-1 rounded-2xl border border-secondary bg-secondary p-4 py-3 text-base font-normal transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border data-[state=open]:border-[#E2E2E2] data-[state=open]:bg-light-blue"
         >
-          <>
-            <IconComponent icon={icon ?? currencies[0].icon} className="h-5 w-5 fill-dark-gray" />
-            {currencyValue ? currencies.find((cur) => cur.value === currencyValue)?.value : currencies[0].value}
-            <ChevronDown className="relative top-[1px] ml-1 h-5 w-5 transition duration-200 group-data-[state=open]:rotate-180" />
-          </>
+          <div className="flex flex-col text-start">
+            {currencyValue ? (
+              <>
+                <span className="text-xs text-dark-gray">Issue date</span>
+                <span className="leading-[22px]">{currencyValue}</span>
+              </>
+            ) : (
+              <span>Select</span>
+            )}
+          </div>
+          <ChevronDown className="relative top-[1px] ml-1 h-5 w-5 transition duration-200 group-data-[state=open]:rotate-180" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-fit rounded-3xl p-0">
+      <PopoverContent className="w-[--radix-popover-trigger-width] rounded-3xl p-0">
         <Command className="rounded-3xl">
           <CommandInput
             searchWrapperClasses="bg-secondary"
@@ -59,8 +57,8 @@ export const CurrencySelector = () => {
                   className="gap-3 py-4 pl-4 data-[selected=true]:bg-light-blue"
                   key={cur.value}
                   value={cur.value}
-                  onSelect={(currentValue) => {
-                    setValue('invoice.currency.value', currentValue === currencyValue ? '' : currentValue);
+                  onSelect={(clickedValue) => {
+                    setCurrencyValue(clickedValue);
                     setOpen(false);
                   }}
                 >

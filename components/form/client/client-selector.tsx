@@ -4,13 +4,13 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useFormContext } from 'react-hook-form';
 
-import { FormType } from '@/components/layout/content';
+import { CurrencySelector } from '@/components/form/currency-selector';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
+import { FormType } from '@/context/model';
 import { Client } from '@/context/model';
 import { sendCreateClientRequest } from '@/lib/server-utils';
 
 import { AutoComplete } from '../autocomplete';
-import { CurrencySelector } from '../currency-selector';
 import { ClientCard } from './client-card';
 import { CreateClient } from './create-client';
 
@@ -61,7 +61,7 @@ export const ClientSelector = () => {
       nif: 389643090,
       country: 'Portugal',
       currency: 'EUR',
-      defaultCurrency: 'EUR',
+      // defaultCurrency: 'EUR',
       address: {
         street: 'Avenida de liberdade 726',
         city: 'Lisboa',
@@ -78,7 +78,7 @@ export const ClientSelector = () => {
     <>
       {!selectedValue && (
         <>
-          <CurrencySelector type="ghost" />
+          <CurrencySelector />
           <div className="flex flex-col gap-1">
             <AutoComplete
               selectedValue={selectedValue}

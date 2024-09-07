@@ -1,13 +1,13 @@
 import React from 'react';
 import { useWatch } from 'react-hook-form';
 
-import { Items } from '@/context/model';
+import { Item } from '@/context/model';
 
 import { AddItems } from './add-items';
 import { AddedItem } from './added-item';
 
 export const AddInvoiceSection = () => {
-  const items: Items = useWatch({
+  const items: Item[] = useWatch({
     name: 'invoice.items',
   });
   return (
