@@ -18,3 +18,4 @@ export { KuwaitSVG } from './kuwait';
 export { EuropeanSVG } from './european';
 export { EditPenSVG } from './edit-pen';
 export { CloseSVG } from './close';
+export { FileTextCheck } from './file-text-check';

@@ -31,6 +31,7 @@ export const ActionBar = () => {
           Save as draft
         </Button>
         <Button
+          form="create-invoice"
           variant="ghost"
           type="submit"
           className="rounded-full border-[1.5px] bg-foreground px-20 py-3.5 text-white disabled:bg-[#7E8081] disabled:text-white"

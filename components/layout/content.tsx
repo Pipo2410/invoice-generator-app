@@ -1,7 +1,8 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
+import { Check } from 'lucide-react';
+import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { AddInvoiceSection } from '@/components/form/add-items/add-invoice-section';
@@ -10,25 +11,58 @@ import { ClientSelector } from '@/components/form/client/client-selector';
 import { InvoiceSummary } from '@/components/form/invoice-summary';
 import { VatArticleSelector } from '@/components/form/vat-article-selector';
 import { PreviewArea } from '@/components/preview/preview-area';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { Form } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
 import { formDefaultValues } from '@/context/helpers';
 import { FormType, formSchema } from '@/context/model';
+import { sendCreateInvoiceRequest } from '@/lib/server-utils';
 import { cn } from '@/lib/utils';
 
+import { CustomCheckbox } from '../form/custom-checkbox';
 import { AddDateSection } from '../form/date/add-date-section';
+import { IconComponent } from '../navigation/icon-component';
 
 type Props = {
   showPreview: boolean;
 };
 
 export const Content: React.FC<Props> = ({ showPreview }) => {
+  const [isSubmitReady, setIsSubmitReady] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
     defaultValues: formDefaultValues,
   });
 
-  const onSubmitHandler = () => {};
+  // TODO: Find even type
+  const onSubmitHandler = (data: FormType, event: unknown) => {
+    console.log(data);
+    console.log(event);
+    console.log('submitted');
+    setIsSubmitReady(true);
+  };
+
+  const onError = (error: unknown) => {
+    console.log(error);
+    // trigger toast error message
+  };
+
+  console.log('form.formState.errors');
+  console.log(form.formState.errors);
+  console.log('form.formState.errors');
+
+  // const generateInvoiceHandler = () => {};
 
   return (
     <>
@@ -39,7 +73,11 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
             className={cn(showPreview ? 'col-span-full xl:col-span-7 xl:mr-[75px]' : 'col-span-full xl:col-span-10')}
           >
             <Form {...form}>
-              <form className="flex flex-col gap-6" onSubmit={form.handleSubmit(onSubmitHandler)}>
+              <form
+                id="create-invoice"
+                className="flex flex-col gap-6"
+                onSubmit={form.handleSubmit(onSubmitHandler, onError)}
+              >
                 <ClientSelector />
                 <div className="flex flex-col gap-4">
                   <AddDateSection form={form} />
@@ -57,6 +95,60 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
             </Form>
           </div>
           {showPreview && <PreviewArea />}
+          <AlertDialog open={isSubmitReady}>
+            <AlertDialogContent>
+              {submitted ? (
+                <>
+                  <AlertDialogHeader className="m-6 flex flex-col items-center">
+                    <div className="flex items-center justify-center rounded-full bg-[#27A251] p-4 text-white">
+                      <Check />
+                    </div>
+                    <AlertDialogTitle>Invoice #123 issued</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Send the invoice to your client and we will track it to ensure you are paid on time.
+                      <CustomCheckbox text="Default currency for this client" id="currency" />
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter className="sm:justify-center sm:space-x-6">
+                    <AlertDialogCancel className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0">
+                      Continue editing
+                    </AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={() => setIsSubmitReady(false)}
+                      className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0"
+                    >
+                      Issue invoice
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </>
+              ) : (
+                <>
+                  <AlertDialogHeader className="m-6 flex flex-col items-center">
+                    <div className="flex items-center justify-center rounded-full bg-light-blue p-4">
+                      <IconComponent icon="FileTextCheck" className="h-10 w-10 fill-dark-blue" />
+                    </div>
+                    <AlertDialogTitle>Almost there!</AlertDialogTitle>
+                    <AlertDialogDescription>Please ensure your invoice is reviewed and correct.</AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter className="sm:justify-center sm:space-x-6">
+                    <AlertDialogCancel className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0">
+                      Continue editing
+                    </AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={async () => {
+                        const response = await sendCreateInvoiceRequest(form.getValues());
+                        console.log(response);
+                        setSubmitted(true);
+                      }}
+                      className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0"
+                    >
+                      Issue invoice
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </>
+              )}
+            </AlertDialogContent>
+          </AlertDialog>
         </FormProvider>
       </div>
     </>
