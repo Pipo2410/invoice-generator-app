@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const CurrencySchema = z.object({
-  value: z.string(),
+  value: z.string().min(1),
   isDefault: z.boolean().default(false),
 });
 
@@ -26,10 +26,10 @@ const ItemSchema = z.object({
   discount: z.number(),
 });
 
-const ClientSchema = z.object({
-  businessName: z.string(),
+export const ClientSchema = z.object({
+  businessName: z.string().min(2),
   email: z.string(),
-  nif: z.number(),
+  nif: z.string(),
   country: z.string(),
   currency: CurrencySchema,
   address: z

@@ -6,7 +6,8 @@ import { FieldErrors, useFormContext } from 'react-hook-form';
 
 import { CurrencySelector } from '@/components/form/currency-selector';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
-import { FormType } from '@/context/model';
+import { CreateClientContextProvider } from '@/context/create-client-context';
+import { ClientSchema, FormType } from '@/context/model';
 import { Client } from '@/context/model';
 import { sendCreateClientRequest } from '@/lib/server-utils';
 
@@ -53,22 +54,15 @@ export const ClientSelector = () => {
     setShowCreateUserForm(false);
   };
 
-  const submitClientCreationHandler = async () => {
-    const { clients }: { clients: Client[] } = await sendCreateClientRequest();
-    setValue('invoice.client', {
-      businessName: 'Netflix',
-      email: 'netflix@gmail.com',
-      nif: 389643090,
-      country: 'Portugal',
-      currency: 'EUR',
-      // defaultCurrency: 'EUR',
-      address: {
-        street: 'Avenida de liberdade 726',
-        city: 'Lisboa',
-        postalCode: '1254-223',
-        additional: '1dt-1e',
-      },
-    });
+  const submitClientCreationHandler = async (client: Client) => {
+    try {
+      ClientSchema.parse(client);
+    } catch (error) {
+      return;
+    }
+    const { clients }: { clients: Client[] } = await sendCreateClientRequest(client);
+    setValue('invoice.client', client);
+    setValue('invoice.currency.value', client.currency.value);
     setShowCreateUserForm(false);
     setSelectedValue('389643090');
     setClients(clients);
@@ -102,7 +96,9 @@ export const ClientSelector = () => {
       )}
 
       {showCreateUserForm && (
-        <CreateClient onCancel={cancelClientCreationHandler} onSubmit={submitClientCreationHandler} />
+        <CreateClientContextProvider>
+          <CreateClient onCancel={cancelClientCreationHandler} onSubmit={submitClientCreationHandler} />
+        </CreateClientContextProvider>
       )}
 
       {selectedValue && !showCreateUserForm && <ClientCard setSelectedValue={setSelectedValue} />}

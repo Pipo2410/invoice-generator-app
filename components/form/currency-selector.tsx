@@ -20,8 +20,14 @@ export const CurrencySelector = () => {
   const { getValues, setValue } = useFormContext();
 
   const currencyValue = getValues('invoice.currency.value');
+  const selectedCurrency = currencies.find((cur) => cur.value === currencyValue);
+  const icon = selectedCurrency?.icon || currencies[0]?.icon;
+  const displayValue = selectedCurrency?.value || currencies[0]?.value;
 
-  const icon = currencies.find((cur) => cur.value === currencyValue)?.icon;
+  const handleSelect = (currentValue: string) => {
+    setValue('invoice.currency.value', currentValue === currencyValue ? '' : currentValue);
+    setOpen(false);
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -30,15 +36,14 @@ export const CurrencySelector = () => {
           variant="ghost"
           size="sm"
           role="combobox"
-          type="button"
           aria-expanded={open}
           className={cn(
             'group w-fit justify-start gap-1 rounded-full px-3 py-2 text-dark-blue transition-colors hover:bg-transparent hover:text-dark-blue focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:bg-dark-blue data-[state=open]:text-white',
           )}
         >
           <>
-            <IconComponent icon={icon ?? currencies[0].icon} className="h-5 w-5 fill-dark-gray" />
-            {currencyValue ? currencies.find((cur) => cur.value === currencyValue)?.value : currencies[0].value}
+            <IconComponent icon={icon} className="h-5 w-5 fill-dark-gray" />
+            {displayValue}
             <ChevronDown className="relative top-[1px] ml-1 h-5 w-5 transition duration-200 group-data-[state=open]:rotate-180" />
           </>
         </Button>
@@ -59,10 +64,7 @@ export const CurrencySelector = () => {
                   className="gap-3 py-4 pl-4 data-[selected=true]:bg-light-blue"
                   key={cur.value}
                   value={cur.value}
-                  onSelect={(currentValue) => {
-                    setValue('invoice.currency.value', currentValue === currencyValue ? '' : currentValue);
-                    setOpen(false);
-                  }}
+                  onSelect={handleSelect}
                 >
                   <IconComponent icon={cur.icon} className="h-8 w-8 fill-dark-gray" />
                   <div className="flex flex-col">

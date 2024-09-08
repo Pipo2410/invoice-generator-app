@@ -4,18 +4,21 @@ import React, { useState } from 'react';
 
 import { Checkbox } from '../ui/checkbox';
 
-type Props = {
+type CustomCheckboxProps = {
   text: string;
   id: string;
+  onClick?: (value: boolean) => void;
   children?: React.ReactNode;
 };
 
-export const CustomCheckbox: React.FC<Props> = ({ text, id, children }) => {
+export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ text, id, onClick, children }) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const onCheck = () => {
+  const handleCheck = () => {
+    if (onClick) onClick(!isChecked);
     setIsChecked((prev) => !prev);
   };
+
   return (
     <>
       <div className="flex items-center space-x-2">
@@ -23,7 +26,7 @@ export const CustomCheckbox: React.FC<Props> = ({ text, id, children }) => {
           id={id}
           className="data-[state=checked]:border-dark-blue data-[state=checked]:bg-dark-blue"
           checked={isChecked}
-          onCheckedChange={onCheck}
+          onCheckedChange={handleCheck}
         />
         <label
           htmlFor={id}

@@ -7,8 +7,8 @@ import { Separator } from '../ui/separator';
 
 export const InvoiceSummary = () => {
   const vatExemption = useWatch({ name: 'invoice.vatExemption.label' });
-  const currency = useWatch({ name: 'invoice.currency' });
-  const currencySign = currencies.find((el) => el.label === currency)?.sign;
+  const currency = useWatch({ name: 'invoice.currency.value' });
+  const currencySign = currencies.find((el) => el.value === currency)?.sign;
 
   return (
     <div className="flex flex-col gap-8 text-dark-gray">

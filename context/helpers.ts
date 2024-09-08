@@ -29,7 +29,7 @@ export const CLIENTS_ARRAY: Client[] = [
   {
     businessName: 'Client 12',
     email: 'client12@gmail.com',
-    nif: 309643090,
+    nif: '309643090',
     country: 'Portugal',
     currency: { value: 'EUR', isDefault: true },
     address: {
@@ -42,7 +42,7 @@ export const CLIENTS_ARRAY: Client[] = [
   {
     businessName: 'Google',
     email: 'Google@gmail.com',
-    nif: 858356421,
+    nif: '858356421',
     country: 'Portugal',
     currency: { value: 'EUR', isDefault: true },
     address: {
@@ -55,7 +55,7 @@ export const CLIENTS_ARRAY: Client[] = [
   {
     businessName: 'Company Abc',
     email: 'company.abc@gmail.com',
-    nif: 329643090,
+    nif: '329643090',
     country: 'Portugal',
     currency: { value: 'EUR', isDefault: true },
     address: {

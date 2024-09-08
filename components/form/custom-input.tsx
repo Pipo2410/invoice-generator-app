@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FocusEvent } from 'react';
 import { useRef } from 'react';
 
 import { cn } from '@/lib/utils';
@@ -9,10 +9,11 @@ import { Label } from '../ui/label';
 type Props = {
   placeholder: string;
   onInputHandler: (value: string) => void;
+  onBlur?: (value: FocusEvent<HTMLInputElement>) => void;
   wrapperClasses?: string;
 };
 
-export const CustomInput: React.FC<Props> = ({ placeholder, onInputHandler, wrapperClasses }) => {
+export const CustomInput: React.FC<Props> = ({ placeholder, onInputHandler, onBlur, wrapperClasses }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -23,6 +24,7 @@ export const CustomInput: React.FC<Props> = ({ placeholder, onInputHandler, wrap
         placeholder="Purchase order"
         className="peer h-fit rounded-2xl border-none bg-secondary px-3 py-4 pt-[30px] text-base leading-4 placeholder:text-base placeholder:text-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
         onChange={(event) => onInputHandler(event.target.value)}
+        onBlur={onBlur}
       />
       <Label
         onClick={() => inputRef.current?.focus()}

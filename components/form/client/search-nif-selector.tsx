@@ -2,6 +2,7 @@ import { CheckCircle } from 'lucide-react';
 import React, { useState } from 'react';
 import { FieldErrors, useFormContext } from 'react-hook-form';
 
+import { useCreateClientContext } from '@/context/create-client-context';
 import { INVOICE_ITEMS_ARRAY } from '@/context/helpers';
 import { FormType } from '@/context/model';
 
@@ -23,6 +24,7 @@ export const SearchNifSelector = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<string>('');
   const { formState } = useFormContext();
+  const { setNif } = useCreateClientContext();
 
   const filteredItems = TRANSFORMED_ITEMS.filter((item) =>
     item.label.toLowerCase().includes(searchValue.toLowerCase()),
@@ -33,7 +35,10 @@ export const SearchNifSelector = () => {
     <div className="flex flex-col gap-1">
       <AutoComplete
         selectedValue={selectedValue}
-        onSelectedValueChange={setSelectedValue}
+        onSelectedValueChange={(value) => {
+          setSelectedValue(value);
+          setNif(value);
+        }}
         searchValue={searchValue}
         onSearchValueChange={setSearchValue}
         items={filteredItems ?? []}
