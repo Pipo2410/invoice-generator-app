@@ -17,7 +17,7 @@ export const CustomInput: React.FC<Props> = ({ placeholder, onInputHandler, onBl
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className={(cn('relative'), wrapperClasses)}>
+    <div className={cn('relative', wrapperClasses)}>
       <Input
         ref={inputRef}
         type="text"

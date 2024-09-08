@@ -71,6 +71,7 @@ export const AutoComplete = <T extends string>({
   };
 
   const onSelectItem = (inputValue: string) => {
+    inputRef.current?.blur();
     if (inputValue === selectedValue) {
       reset();
     } else {
