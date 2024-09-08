@@ -25,12 +25,14 @@ import { Form } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
 import { formDefaultValues } from '@/context/helpers';
 import { FormType, formSchema } from '@/context/model';
+import { useToast } from '@/hooks/use-toast';
 import { sendCreateInvoiceRequest } from '@/lib/server-utils';
 import { cn } from '@/lib/utils';
 
 import { CustomCheckbox } from '../form/custom-checkbox';
 import { AddDateSection } from '../form/date/add-date-section';
 import { IconComponent } from '../navigation/icon-component';
+import { Toaster } from '../ui/toaster';
 
 type Props = {
   showPreview: boolean;
@@ -39,6 +41,7 @@ type Props = {
 export const Content: React.FC<Props> = ({ showPreview }) => {
   const [isSubmitReady, setIsSubmitReady] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
@@ -56,6 +59,11 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
   const onError = (error: unknown) => {
     console.log(error);
     // trigger toast error message
+    toast({
+      description: 'This is an informative toast or section added to a page lorem ipsum dolor sit amet.',
+      variant: 'destructive',
+      title: 'Title',
+    });
   };
 
   console.log('form.formState.errors');
@@ -149,6 +157,7 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
               )}
             </AlertDialogContent>
           </AlertDialog>
+          <Toaster />
         </FormProvider>
       </div>
     </>
