@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Check, Send } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -45,6 +46,7 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
   const { invoiceId } = useCreateInvoiceFormContext();
+  const router = useRouter();
 
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
@@ -70,9 +72,7 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
     });
   };
 
-  console.log('form.formState.errors');
-  console.log(form.formState.errors);
-  console.log('form.formState.errors');
+  console.log(`form.formState.errors${JSON.stringify(form.formState.errors)}`);
 
   // const generateInvoiceHandler = () => {};
 
@@ -129,12 +129,12 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
                   <AlertDialogFooter className="sm:justify-center sm:space-x-6">
                     <AlertDialogCancel
                       className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0"
-                      onClick={() => setOpenDialog(false)}
+                      onClick={() => router.push(`/invoices/${form.getValues('id')}`)}
                     >
                       Not now
                     </AlertDialogCancel>
                     <AlertDialogAction
-                      onClick={() => setOpenDialog(false)}
+                      onClick={() => router.push(`/invoices/${form.getValues('id')}`)}
                       className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0"
                     >
                       Send invoice

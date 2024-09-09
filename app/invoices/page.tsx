@@ -14,7 +14,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { fetchData } from '@/lib/utils';
 
-const tabs = ['Overview', 'Invoices', 'Inoivce templates', 'Clients', 'Items', 'Settings'];
+const tabs = ['Overview', 'Invoices', 'Invoice templates', 'Clients', 'Items', 'Settings'];
 
 export default async function Home() {
   let invoices;
@@ -71,7 +71,13 @@ export default async function Home() {
           </TabsList>
           <TabsContent value={tabs[1]}>
             <pre className="mt-2 w-[840px] rounded-md bg-white p-4">
-              <code className="text-black">{JSON.stringify(invoices, null, 2)}</code>
+              <code className="text-black">
+                {JSON.stringify(
+                  { invoice1: invoices.invoices[invoices.invoices.length - 1], length: invoices.length },
+                  null,
+                  2,
+                )}
+              </code>
             </pre>
           </TabsContent>
         </Tabs>

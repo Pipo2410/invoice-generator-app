@@ -1,5 +1,7 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
+
 import { Client, FormType } from '@/context/model';
 
 export const sendCreateClientRequest = (client: Client) => {
@@ -24,6 +26,7 @@ export const sendCreateInvoiceRequest = async (invoice: FormType) => {
     body: JSON.stringify(invoice),
   };
   const data = fetch(`http://localhost:3000/api/invoices`, requestOptions).then((response) => response.json());
+  revalidatePath('/', 'layout');
 
   console.log('response inside server action: ', data);
 
