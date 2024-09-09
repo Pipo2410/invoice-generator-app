@@ -60,7 +60,7 @@ export const ClientSelector = () => {
     } catch (error) {
       return;
     }
-    const { clients }: { clients: Client[] } = await sendCreateClientRequest(client);
+    const clients: Client[] = await sendCreateClientRequest(client);
     setValue('client', client);
     setValue('currency.value', client.currency.value);
     setShowCreateUserForm(false);

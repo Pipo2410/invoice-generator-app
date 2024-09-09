@@ -1,38 +1,36 @@
-{
-  "clients": [
-    {
-      "businessName": "Client 12",
-      "email": "client12@gmail.com",
-      "nif": "309643090",
-      "country": "Portugal",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": {
-        "street": "Rua de sao Bento 644",
-        "city": "Lisboa",
-        "postalCode": "1254-223",
-        "additional": "1dt-1e"
-      }
-    },
-    {
-      "businessName": "Google",
-      "email": "Google@gmail.com",
-      "nif": "858356421",
-      "country": "Portugal",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "Calcada do monte 13", "city": "Lisboa", "postalCode": "1254-223", "additional": "1dt-1e" }
-    },
-    {
-      "businessName": "Company Abc",
-      "email": "company.abc@gmail.com",
-      "nif": "329643090",
-      "country": "Portugal",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": {
-        "street": "Rua de Joao jorge 234",
-        "city": "Lisboa",
-        "postalCode": "1254-213",
-        "additional": "4dt-1dto"
-      }
+[
+  {
+    "businessName": "Client 12",
+    "email": "client12@gmail.com",
+    "nif": "309643090",
+    "country": "Portugal",
+    "currency": { "value": "EUR", "isDefault": true },
+    "address": {
+      "street": "Rua de sao Bento 644",
+      "city": "Lisboa",
+      "postalCode": "1254-223",
+      "additional": "1dt-1e"
     }
-  ]
-}
+  },
+  {
+    "businessName": "Google",
+    "email": "Google@gmail.com",
+    "nif": "858356421",
+    "country": "Portugal",
+    "currency": { "value": "EUR", "isDefault": true },
+    "address": { "street": "Calcada do monte 13", "city": "Lisboa", "postalCode": "1254-223", "additional": "1dt-1e" }
+  },
+  {
+    "businessName": "Company Abc",
+    "email": "company.abc@gmail.com",
+    "nif": "329643090",
+    "country": "Portugal",
+    "currency": { "value": "EUR", "isDefault": true },
+    "address": {
+      "street": "Rua de Joao jorge 234",
+      "city": "Lisboa",
+      "postalCode": "1254-213",
+      "additional": "4dt-1dto"
+    }
+  }
+]

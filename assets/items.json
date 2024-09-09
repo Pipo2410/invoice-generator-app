@@ -1,34 +1,32 @@
-{
-  "items": [
-    {
-      "id": 1,
-      "name": "Branding development",
-      "description": "1234",
-      "category": "Service",
-      "unit": 1,
-      "price": 0,
-      "vat": 23,
-      "discount": 10
-    },
-    {
-      "id": 2,
-      "name": "Software development",
-      "description": "1562",
-      "category": "Service",
-      "unit": 1,
-      "price": 0,
-      "vat": 23,
-      "discount": 10
-    },
-    {
-      "id": 3,
-      "name": "Company development",
-      "description": "1827",
-      "category": "Service",
-      "unit": 1,
-      "price": 0,
-      "vat": 23,
-      "discount": 10
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "name": "Branding development",
+    "description": "1234",
+    "category": "Service",
+    "unit": 1,
+    "price": 0,
+    "vat": 23,
+    "discount": 10
+  },
+  {
+    "id": 2,
+    "name": "Software development",
+    "description": "1562",
+    "category": "Service",
+    "unit": 1,
+    "price": 0,
+    "vat": 23,
+    "discount": 10
+  },
+  {
+    "id": 3,
+    "name": "Company development",
+    "description": "1827",
+    "category": "Service",
+    "unit": 1,
+    "price": 0,
+    "vat": 23,
+    "discount": 10
+  }
+]

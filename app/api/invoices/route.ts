@@ -11,7 +11,7 @@ export async function GET() {
     return NextResponse.error();
   }
 
-  return NextResponse.json({ invoices: data, length: data.length });
+  return NextResponse.json(data);
 }
 
 export async function POST(req: NextRequest) {

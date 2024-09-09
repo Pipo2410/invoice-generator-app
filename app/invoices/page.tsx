@@ -12,12 +12,13 @@ import {
   MenubarTrigger,
 } from '@/components/ui/menubar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { FormType } from '@/context/model';
 import { fetchData } from '@/lib/utils';
 
 const tabs = ['Overview', 'Invoices', 'Invoice templates', 'Clients', 'Items', 'Settings'];
 
 export default async function Home() {
-  let invoices;
+  let invoices: FormType[];
   try {
     invoices = await fetchData('/invoices');
   } catch (error) {
@@ -72,11 +73,7 @@ export default async function Home() {
           <TabsContent value={tabs[1]}>
             <pre className="mt-2 w-[840px] rounded-md bg-white p-4">
               <code className="text-black">
-                {JSON.stringify(
-                  { invoice1: invoices.invoices[invoices.invoices.length - 1], length: invoices.length },
-                  null,
-                  2,
-                )}
+                {JSON.stringify({ invoice1: invoices[invoices.length - 1], length: invoices.length }, null, 2)}
               </code>
             </pre>
           </TabsContent>
