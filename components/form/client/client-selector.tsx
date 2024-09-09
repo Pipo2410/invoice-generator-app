@@ -4,16 +4,16 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useFormContext } from 'react-hook-form';
 
+import { AutoComplete } from '@/components/form/autocomplete';
+import { ClientCard } from '@/components/form/client/client-card';
+import { CreateClient } from '@/components/form/client/create-client';
 import { CurrencySelector } from '@/components/form/currency-selector';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { CreateClientContextProvider } from '@/context/create-client-context';
 import { ClientSchema, FormType } from '@/context/model';
 import { Client } from '@/context/model';
+import { useToast } from '@/hooks/use-toast';
 import { sendCreateClientRequest } from '@/lib/server-utils';
-
-import { AutoComplete } from '../autocomplete';
-import { ClientCard } from './client-card';
-import { CreateClient } from './create-client';
 
 export const ClientSelector = () => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -21,6 +21,7 @@ export const ClientSelector = () => {
   const [showCreateUserForm, setShowCreateUserForm] = useState(false);
   const { clients, setClients } = useCreateInvoiceFormContext();
   const { setValue, formState } = useFormContext();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (selectedValue === 'create-new') {
@@ -55,9 +56,16 @@ export const ClientSelector = () => {
   };
 
   const submitClientCreationHandler = async (client: Client) => {
-    try {
-      ClientSchema.parse(client);
-    } catch (error) {
+    const isFormValid = ClientSchema.safeParse(client);
+    if (!isFormValid.success) {
+      console.log(isFormValid.error.issues);
+      const errorFields = isFormValid.error.issues.map((el) => el.path[0]);
+      toast({
+        title: 'Error',
+        description: `Please fill all required fields: ${errorFields}`,
+        variant: 'destructive',
+        duration: 3000,
+      });
       return;
     }
     const clients: Client[] = await sendCreateClientRequest(client);

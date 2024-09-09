@@ -76,6 +76,11 @@ export type AppConfig = {
     icon: string;
     sign: string;
   }[];
+  countries: {
+    value: string;
+    label: string;
+    icon: string;
+  }[];
 };
 
 export type InitialCreateInvoiceState = {

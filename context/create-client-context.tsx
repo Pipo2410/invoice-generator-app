@@ -36,7 +36,7 @@ CreateClientContext.displayName = 'CreateClientContext';
 export const CreateClientContextProvider: React.FC<CreateContextProviderProps> = ({ children }) => {
   const [businessName, setBusinessName] = useState('');
   const [country, setCountry] = useState('');
-  const [currencyValue, setCurrencyValue] = useState('');
+  const [currencyValue, setCurrencyValue] = useState('EUR');
   const [currencyDefault, setCurrencyDefault] = useState(false);
   const [nif, setNif] = useState('');
   const [email, setEmail] = useState('');

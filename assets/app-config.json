@@ -116,7 +116,12 @@
       "label": "IT",
       "icon": "kw"
     }
+  ],
+  "countries": [
+    { "value": "pt", "label": "Portugal", "icon": "usa" },
+    { "value": "en", "label": "United Kingdom", "icon": "uk" },
+    { "value": "de", "label": "Germany", "icon": "eu" },
+    { "value": "cl", "label": "Chille", "icon": "cl" },
+    { "value": "it", "label": "Italy", "icon": "kw" }
   ]
 }
-
-

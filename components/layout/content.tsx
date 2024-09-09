@@ -53,7 +53,7 @@ export const Content = () => {
     [showPreview],
   );
 
-  const ConfirmSubmitDialogComponent = useMemo(() => {
+  const confirmSubmitDialogComponent = useMemo(() => {
     console.log('halo from memo');
     return (
       <CustomDialog open={openConfirmationDialog}>
@@ -66,8 +66,8 @@ export const Content = () => {
     );
   }, [submitted, openConfirmationDialog]);
 
-  console.log('form');
-  console.log(submitted);
+  // console.log('form');
+  // console.log(submitted);
   // console.log(form.formState);
   // console.log(form.getValues());
   // console.log('form');
@@ -88,7 +88,7 @@ export const Content = () => {
           </Form>
         </div>
         {showPreview && <PreviewFormArea />}
-        {ConfirmSubmitDialogComponent}
+        {confirmSubmitDialogComponent}
         <Toaster />
       </FormProvider>
     </div>

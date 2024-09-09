@@ -4,12 +4,11 @@ import { UseFormReturn } from 'react-hook-form';
 import { AddInvoiceSection } from '@/components/form/add-items/add-invoice-section';
 import { AdditionalOptions } from '@/components/form/additional-options';
 import { ClientSelector } from '@/components/form/client/client-selector';
+import { AddDateSection } from '@/components/form/date/add-date-section';
 import { InvoiceSummary } from '@/components/form/invoice-summary';
 import { VatArticleSelector } from '@/components/form/vat-article-selector';
 import { Separator } from '@/components/ui/separator';
 import { FormType } from '@/context/model';
-
-import { AddDateSection } from '../form/date/add-date-section';
 
 type Props = {
   form: UseFormReturn<FormType>;

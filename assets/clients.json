@@ -5,12 +5,7 @@
     "nif": "309643090",
     "country": "Portugal",
     "currency": { "value": "EUR", "isDefault": true },
-    "address": {
-      "street": "Rua de sao Bento 644",
-      "city": "Lisboa",
-      "postalCode": "1254-223",
-      "additional": "1dt-1e"
-    }
+    "address": { "street": "Rua de sao Bento 644", "city": "Lisboa", "postalCode": "1254-223", "additional": "1dt-1e" }
   },
   {
     "businessName": "Google",

@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { FieldErrors, useFormContext } from 'react-hook-form';
 
 import { useCreateClientContext } from '@/context/create-client-context';
-import { INVOICE_ITEMS_ARRAY } from '@/context/helpers';
+import { COMPANIES } from '@/context/helpers';
 import { FormType } from '@/context/model';
 
 import { AutoComplete } from '../autocomplete';
 
-const TRANSFORMED_ITEMS = INVOICE_ITEMS_ARRAY.map((item) =>
+const TRANSFORMED_ITEMS = COMPANIES.map((item) =>
   // const formattedPrice = new Intl.NumberFormat('de-DE', {
   // 	minimumFractionDigits: 2,
   // 	maximumFractionDigits: 2,
@@ -16,7 +16,7 @@ const TRANSFORMED_ITEMS = INVOICE_ITEMS_ARRAY.map((item) =>
 
   ({
     label: item.name,
-    value: item.description,
+    value: item.nif,
   }),
 );
 
@@ -24,21 +24,30 @@ export const SearchNifSelector = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<string>('');
   const { formState } = useFormContext();
-  const { setNif } = useCreateClientContext();
+  const { setNif, setBusinessName } = useCreateClientContext();
 
-  const filteredItems = TRANSFORMED_ITEMS.filter((item) =>
-    item.label.toLowerCase().includes(searchValue.toLowerCase()),
+  const filteredItems = TRANSFORMED_ITEMS.filter(
+    (item) =>
+      item.label.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.value.toLowerCase().includes(searchValue.toLowerCase()),
   );
+
+  const onSelect = (value: string) => {
+    const company = COMPANIES.find((el) => el.nif === value);
+
+    setSelectedValue(value);
+    setNif(value);
+    if (company?.name) {
+      setBusinessName(company?.name);
+    }
+  };
 
   const errors: FieldErrors<FormType> = formState.errors;
   return (
     <div className="flex flex-col gap-1">
       <AutoComplete
         selectedValue={selectedValue}
-        onSelectedValueChange={(value) => {
-          setSelectedValue(value);
-          setNif(value);
-        }}
+        onSelectedValueChange={(value) => onSelect(value)}
         searchValue={searchValue}
         onSearchValueChange={setSearchValue}
         items={filteredItems ?? []}

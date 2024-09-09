@@ -121,6 +121,21 @@ export const INVOICE_ITEMS_ARRAY: Item[] = [
   },
 ];
 
+export const COMPANIES = [
+  {
+    name: 'Comms Zero Lda',
+    nif: '123123123',
+  },
+  {
+    name: 'Petz Lda',
+    nif: '123123164',
+  },
+  {
+    name: 'FX Consulting',
+    nif: '123123421',
+  },
+];
+
 export const DEFAULT_CLIENT = {
   businessName: '',
   email: '',

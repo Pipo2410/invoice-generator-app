@@ -11,9 +11,10 @@ type Props = {
   onInputHandler: (value: string) => void;
   onBlur?: (value: FocusEvent<HTMLInputElement>) => void;
   wrapperClasses?: string;
+  value?: string;
 };
 
-export const CustomInput: React.FC<Props> = ({ placeholder, onInputHandler, onBlur, wrapperClasses }) => {
+export const CustomInput: React.FC<Props> = ({ placeholder, onInputHandler, onBlur, wrapperClasses, value }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -21,6 +22,7 @@ export const CustomInput: React.FC<Props> = ({ placeholder, onInputHandler, onBl
       <Input
         ref={inputRef}
         type="text"
+        value={value}
         placeholder="Purchase order"
         className="peer h-fit rounded-2xl border-none bg-secondary px-3 py-4 pt-[30px] text-base leading-4 placeholder:text-base placeholder:text-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
         onChange={(event) => onInputHandler(event.target.value)}

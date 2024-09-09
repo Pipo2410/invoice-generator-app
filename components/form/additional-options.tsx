@@ -56,10 +56,12 @@ export const AdditionalOptions: React.FC<Props> = ({ form }) => (
         <CustomInput
           placeholder="Reference note"
           onInputHandler={(value) => form.setValue('additionalOptions.purchaseOrder', value)}
+          // onBlur={(event) => form.setValue('additionalOptions.purchaseOrder', event.target.value)}
         />
         <CustomInput
           placeholder="Purchase order"
           onInputHandler={(value) => form.setValue('additionalOptions.referenceNote', value)}
+          // onBlur={(event) => form.setValue('additionalOptions.referenceNote', event.target.value)}
         />
       </AccordionContent>
     </AccordionItem>
