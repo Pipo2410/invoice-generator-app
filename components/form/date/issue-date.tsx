@@ -19,7 +19,7 @@ type Props = {
 
 export const IssueDate: React.FC<Props> = ({ form }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { issueDate } = form.getValues('invoice.date');
+  const { issueDate } = form.getValues('date');
   const { errors } = form.formState;
 
   return (
@@ -30,7 +30,7 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
           variant="ghost"
           className={cn(
             'group h-fit min-h-16 w-full justify-between rounded-2xl border border-secondary bg-secondary p-4 py-3 text-base font-normal transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border data-[state=open]:border-[#E2E2E2] data-[state=open]:bg-light-blue',
-            errors.invoice?.date?.issueDate && 'border-dark-orange',
+            errors.date?.issueDate && 'border-dark-orange',
           )}
         >
           <div className="flex flex-col text-start">
@@ -49,7 +49,7 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
       <PopoverContent className="w-auto p-0">
         <FormField
           control={form.control}
-          name="invoice.date.issueDate"
+          name="date.issueDate"
           render={({ field }) => (
             // console.log(field);
             <FormItem>
@@ -60,7 +60,7 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
                   selected={field.value}
                   onSelect={(value) => {
                     // setDate(value);
-                    form.clearErrors('invoice.date.issueDate');
+                    form.clearErrors('date.issueDate');
                     setIsOpen(false);
                     field.onChange(value);
                   }}

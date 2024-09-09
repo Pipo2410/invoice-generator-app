@@ -31,7 +31,7 @@ type Props = {
 export const DueDate: React.FC<Props> = ({ form }) => {
   const [days, setDays] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const { dueDate, issueDate } = form.getValues('invoice.date');
+  const { dueDate, issueDate } = form.getValues('date');
 
   const { errors } = form.formState;
 
@@ -41,7 +41,7 @@ export const DueDate: React.FC<Props> = ({ form }) => {
     if (issueDate) {
       newDueDate.setDate(issueDate.getDate() + days);
     } else {
-      form.trigger('invoice.date.issueDate');
+      form.trigger('date.issueDate');
       return;
     }
     setDays(days);
@@ -56,7 +56,7 @@ export const DueDate: React.FC<Props> = ({ form }) => {
           size="sm"
           className={cn(
             'group h-fit min-h-16 w-full justify-between rounded-xl border border-secondary bg-secondary p-4 py-3 text-base font-normal transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border data-[state=open]:border-[#E2E2E2] data-[state=open]:bg-light-blue',
-            errors.invoice?.date?.dueDate && 'border-dark-orange',
+            errors.date?.dueDate && 'border-dark-orange',
           )}
         >
           <div className="flex flex-col text-start font-normal">
@@ -79,7 +79,7 @@ export const DueDate: React.FC<Props> = ({ form }) => {
           <FormField
             key={option}
             control={form.control}
-            name="invoice.date.dueDate"
+            name="date.dueDate"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
@@ -102,7 +102,7 @@ export const DueDate: React.FC<Props> = ({ form }) => {
             <DropdownMenuSubContent className="ml-6">
               <FormField
                 control={form.control}
-                name="invoice.date.dueDate"
+                name="date.dueDate"
                 render={({ field }) => (
                   // console.log(field);
                   <FormItem>

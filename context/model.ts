@@ -43,18 +43,16 @@ export const ClientSchema = z.object({
 });
 
 export const formSchema = z.object({
-  invoice: z.object({
-    id: z.string(),
-    client: ClientSchema,
-    date: DateSchema,
-    vatExemption: VatExemptionSchema,
-    items: z.array(ItemSchema).min(1),
-    additionalOptions: z.object({
-      purchaseOrder: z.string(),
-      referenceNote: z.string(),
-    }),
-    currency: CurrencySchema,
+  id: z.string(),
+  client: ClientSchema,
+  date: DateSchema,
+  vatExemption: VatExemptionSchema,
+  items: z.array(ItemSchema).min(1),
+  additionalOptions: z.object({
+    purchaseOrder: z.string(),
+    referenceNote: z.string(),
   }),
+  currency: CurrencySchema,
 });
 
 export type FormType = z.infer<typeof formSchema>;

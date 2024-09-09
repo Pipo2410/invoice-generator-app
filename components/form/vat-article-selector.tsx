@@ -39,7 +39,7 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
           aria-expanded={open}
           className={cn(
             'group h-fit w-full justify-between rounded-xl bg-secondary p-5 pl-4 transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border data-[state=open]:border-[#E2E2E2] data-[state=open]:bg-light-blue',
-            errors.invoice?.vatExemption && 'border border-dark-orange',
+            errors.vatExemption && 'border border-dark-orange',
           )}
         >
           <span className="text-base font-normal">{selectedValue ? buttonValue : 'VAT exemption reason'}</span>
@@ -61,7 +61,7 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
                 <FormField
                   key={article.value}
                   control={form.control}
-                  name="invoice.vatExemption.value"
+                  name="vatExemption.value"
                   render={() => (
                     <FormItem>
                       <FormControl>
@@ -74,7 +74,7 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
                           onSelect={(currentValue) => {
                             setSelectedValue(currentValue === selectedValue ? '' : currentValue);
                             setOpen(false);
-                            form.setValue('invoice.vatExemption', article);
+                            form.setValue('vatExemption', article);
                           }}
                         >
                           <div className="flex flex-col">

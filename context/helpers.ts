@@ -3,25 +3,23 @@ import { currencies } from '@/assets/currencies';
 import { AppConfig, Client, InitialCreateInvoiceState, Item, VatExemption } from './model';
 
 export const formDefaultValues = {
-  invoice: {
-    client: {
-      businessName: '',
-      email: '',
-      // nif: null,
-      country: '',
-      currency: {
-        value: 'EUR',
-        isDefault: true,
-      },
-    },
-    date: {
-      issueDate: new Date(),
-    },
-    items: [],
+  client: {
+    businessName: '',
+    email: '',
+    // nif: null,
+    country: '',
     currency: {
-      value: currencies[0].value,
-      isDefault: false,
+      value: 'EUR',
+      isDefault: true,
     },
+  },
+  date: {
+    issueDate: new Date(),
+  },
+  items: [],
+  currency: {
+    value: currencies[0].value,
+    isDefault: false,
   },
 };
 

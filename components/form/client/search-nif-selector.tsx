@@ -48,7 +48,7 @@ export const SearchNifSelector = () => {
         searchWrapperClasses="bg-secondary"
         inputClassNames="h-fit text-base leading-4 border-none py-4 px-0 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent"
         iconClassName="mr-3 h-6 w-6"
-        error={!!errors.invoice?.items}
+        error={!!errors.items}
       />
       {selectedValue ? (
         <p className="ml-4 flex gap-1 text-sm text-[#27A251]">
