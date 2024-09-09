@@ -12,10 +12,18 @@ import {
   MenubarTrigger,
 } from '@/components/ui/menubar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { fetchData } from '@/lib/utils';
 
 const tabs = ['Overview', 'Invoices', 'Inoivce templates', 'Clients', 'Items', 'Settings'];
 
-export default function Home() {
+export default async function Home() {
+  let invoices;
+  try {
+    invoices = await fetchData('/invoices');
+  } catch (error) {
+    // handle if no invoices available
+    invoices = [];
+  }
   return (
     <main className="flex h-fit w-full flex-col gap-10">
       <div className="flex w-fit flex-col gap-10">
@@ -61,7 +69,11 @@ export default function Home() {
               </TabsTrigger>
             ))}
           </TabsList>
-          <TabsContent value={tabs[1]}>Here will be the table</TabsContent>
+          <TabsContent value={tabs[1]}>
+            <pre className="mt-2 w-[840px] rounded-md bg-white p-4">
+              <code className="text-black">{JSON.stringify(invoices, null, 2)}</code>
+            </pre>
+          </TabsContent>
         </Tabs>
       </div>
     </main>

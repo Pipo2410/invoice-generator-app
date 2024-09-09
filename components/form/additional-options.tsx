@@ -1,8 +1,10 @@
+import { Info } from 'lucide-react';
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { FormType } from '@/context/model';
 
 import { Input } from '../ui/input';
@@ -22,7 +24,19 @@ export const AdditionalOptions: React.FC<Props> = ({ form }) => (
       <AccordionContent className="m-6 flex flex-col gap-6 py-0">
         <div className="flex flex-col gap-6">
           <CustomCheckbox text="Include retention %" id="retention">
-            <Input className="w-fit rounded-lg border-none bg-secondary px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0" />
+            <div className="flex items-center gap-2">
+              <Input className="w-fit rounded-lg border-none bg-secondary px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0" />
+              <TooltipProvider delayDuration={200}>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Info />
+                  </TooltipTrigger>
+                  <TooltipContent side="right" className="w-72 p-4">
+                    This is an informative toast or section added to a page lorem ipsum dolor sit amet.
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
           </CustomCheckbox>
           <CustomCheckbox text="Apply global discount" id="discount">
             <Select>

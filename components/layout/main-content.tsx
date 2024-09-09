@@ -10,14 +10,15 @@ import { InitialCreateInvoiceState } from '@/context/model';
 
 type Props = {
   initialState: InitialCreateInvoiceState;
+  invoiceId: number;
 };
 
-export const MainContent: React.FC<Props> = ({ initialState }) => {
+export const MainContent: React.FC<Props> = ({ initialState, invoiceId }) => {
   const { showPreview } = useDefaultContext();
   return (
     <CreateInvoiceFormContextProvider initialState={initialState}>
       <main className="relative mb-10 flex w-full flex-col gap-10">
-        <Header invoiceNumber={123} />
+        <Header invoiceNumber={invoiceId} />
         <Content showPreview={showPreview} />
       </main>
     </CreateInvoiceFormContextProvider>

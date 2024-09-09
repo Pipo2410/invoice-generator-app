@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Check } from 'lucide-react';
+import { Check, Send } from 'lucide-react';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -32,6 +32,7 @@ import { cn } from '@/lib/utils';
 import { CustomCheckbox } from '../form/custom-checkbox';
 import { AddDateSection } from '../form/date/add-date-section';
 import { IconComponent } from '../navigation/icon-component';
+import { EmailPreview } from '../preview/email-preview';
 import { Toaster } from '../ui/toaster';
 
 type Props = {
@@ -39,7 +40,7 @@ type Props = {
 };
 
 export const Content: React.FC<Props> = ({ showPreview }) => {
-  const [isSubmitReady, setIsSubmitReady] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
 
@@ -53,7 +54,7 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
     console.log(data);
     console.log(event);
     console.log('submitted');
-    setIsSubmitReady(true);
+    setOpenDialog(true);
   };
 
   const onError = (error: unknown) => {
@@ -63,6 +64,7 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
       description: 'This is an informative toast or section added to a page lorem ipsum dolor sit amet.',
       variant: 'destructive',
       title: 'Title',
+      duration: 3000,
     });
   };
 
@@ -103,29 +105,38 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
             </Form>
           </div>
           {showPreview && <PreviewArea />}
-          <AlertDialog open={isSubmitReady}>
-            <AlertDialogContent>
+          <AlertDialog open={openDialog}>
+            <AlertDialogContent className="max-h-[80vh]">
               {submitted ? (
                 <>
-                  <AlertDialogHeader className="m-6 flex flex-col items-center">
+                  <AlertDialogHeader className="flex flex-col items-center">
                     <div className="flex items-center justify-center rounded-full bg-[#27A251] p-4 text-white">
                       <Check />
                     </div>
-                    <AlertDialogTitle>Invoice #123 issued</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      Send the invoice to your client and we will track it to ensure you are paid on time.
+                    <div className="flex flex-col items-center">
+                      <AlertDialogTitle>Invoice #123 issued</AlertDialogTitle>
+                      <AlertDialogDescription className="center text-center">
+                        Send the invoice to your client and we will track it to ensure you are paid on time.
+                      </AlertDialogDescription>
                       <CustomCheckbox text="Default currency for this client" id="currency" />
-                    </AlertDialogDescription>
+                    </div>
+                    <div className="max-h-96 overflow-scroll">
+                      <EmailPreview />
+                    </div>
                   </AlertDialogHeader>
                   <AlertDialogFooter className="sm:justify-center sm:space-x-6">
-                    <AlertDialogCancel className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0">
-                      Continue editing
+                    <AlertDialogCancel
+                      className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      onClick={() => setOpenDialog(false)}
+                    >
+                      Not now
                     </AlertDialogCancel>
                     <AlertDialogAction
-                      onClick={() => setIsSubmitReady(false)}
+                      onClick={() => setOpenDialog(false)}
                       className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0"
                     >
-                      Issue invoice
+                      Send invoice
+                      <Send className="ml-2" />
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </>
