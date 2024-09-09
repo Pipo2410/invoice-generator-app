@@ -20,9 +20,7 @@ type Props = {
 export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
   const { getValues, control, setValue } = useFormContext();
 
-  const {
-    invoice: { currency, items },
-  } = getValues();
+  const { currency, items } = getValues();
 
   const currencySign = currencies.find((el) => el.label === currency)?.sign;
   const filteredItems = items.filter((el: Item) => el.name !== item.name);
@@ -33,7 +31,7 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
         <div className="flex items-center gap-2">
           <FormField
             control={control}
-            name={`invoice.items.${itemIndex}`}
+            name={`items.${itemIndex}`}
             render={({ field }) => (
               <FormItem className="flex w-full space-y-0">
                 <FormControl>
@@ -50,7 +48,7 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
           />
           <FormField
             control={control}
-            name="invoice.items"
+            name="items"
             render={() => (
               <FormItem className="flex w-full space-y-0">
                 <FormControl>
@@ -67,14 +65,14 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
             className="hover:cursor-pointer"
             onClick={() => {
               // setItems((prev) => prev.filter((el) => el.id !== item.id));
-              setValue('invoice.items', filteredItems); // gets ts error when items.array.nonEmpty() from zod
+              setValue('items', filteredItems); // gets ts error when items.array.nonEmpty() from zod
             }}
           />
         </div>
         <div className="flex gap-2">
           <FormField
             control={control}
-            name="invoice.items"
+            name="items"
             render={() => (
               <FormItem className="w-1/5">
                 <Select>
@@ -95,7 +93,7 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
           />
           <FormField
             control={control}
-            name="invoice.items"
+            name="items"
             render={() => (
               <FormItem className="w-1/5">
                 <Select>
@@ -116,7 +114,7 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
           />
           <FormField
             control={control}
-            name="invoice.items"
+            name="items"
             render={() => (
               <FormItem className="w-1/5">
                 <Input
@@ -130,7 +128,7 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
           />
           <FormField
             control={control}
-            name="invoice.items"
+            name="items"
             render={() => (
               <FormItem className="w-1/5">
                 <Select>
@@ -151,7 +149,7 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
           />
           <FormField
             control={control}
-            name="invoice.items"
+            name="items"
             render={() => (
               <FormItem className="w-1/5">
                 <Input

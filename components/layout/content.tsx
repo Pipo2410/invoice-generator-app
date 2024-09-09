@@ -23,6 +23,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Form } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
+import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { formDefaultValues } from '@/context/helpers';
 import { FormType, formSchema } from '@/context/model';
 import { useToast } from '@/hooks/use-toast';
@@ -43,10 +44,11 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
+  const { invoiceId } = useCreateInvoiceFormContext();
 
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
-    defaultValues: formDefaultValues,
+    defaultValues: { id: invoiceId, ...formDefaultValues },
   });
 
   // TODO: Find even type
@@ -150,7 +152,10 @@ export const Content: React.FC<Props> = ({ showPreview }) => {
                     <AlertDialogDescription>Please ensure your invoice is reviewed and correct.</AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter className="sm:justify-center sm:space-x-6">
-                    <AlertDialogCancel className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0">
+                    <AlertDialogCancel
+                      onClick={() => setOpenDialog(false)}
+                      className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0"
+                    >
                       Continue editing
                     </AlertDialogCancel>
                     <AlertDialogAction

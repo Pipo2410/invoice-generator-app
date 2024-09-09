@@ -13,11 +13,11 @@ type Props = {
 
 export const ClientCard: React.FC<Props> = ({ setSelectedValue }) => {
   const { setValue } = useFormContext();
-  const client: Client = useWatch({ name: 'invoice.client' });
+  const client: Client = useWatch({ name: 'client' });
 
   const onClose = () => {
     setSelectedValue('');
-    setValue('invoice.client', DEFAULT_CLIENT);
+    setValue('client', DEFAULT_CLIENT);
   };
   return (
     <Card className="rounded-3xl border-x-0 border-t-0">

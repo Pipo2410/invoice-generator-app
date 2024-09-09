@@ -11,12 +11,18 @@ type Props = {
 };
 
 export default async function InvoicePage({ params }: Props) {
-  const data = await fetchData(`/invoices/${params.id}`);
-
-  if (!data.ok) {
+  let response;
+  try {
+    response = await fetchData(`/invoices/${params.id}`);
+  } catch (error) {
     notFound();
   }
-  const { invoice } = data;
+
+  const { invoice } = response;
+
+  if (!response.ok) {
+    notFound();
+  }
 
   return (
     <>

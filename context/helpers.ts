@@ -133,12 +133,14 @@ export const createInitialState = (
   appConfig: AppConfig,
   clients: Client[],
   items: Item[],
+  invoiceId: number,
 ): InitialCreateInvoiceState => {
   const initialState = {
     showPreview: true,
     clients: clients,
     appConfig,
     items,
+    invoiceId,
   };
   return structuredClone(initialState);
 };

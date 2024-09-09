@@ -32,7 +32,7 @@ export const ClientSelector = () => {
       (client) => client.businessName === selectedValue || String(client.nif) === selectedValue,
     );
     if (selectedClient) {
-      setValue('invoice.client', selectedClient);
+      setValue('client', selectedClient);
     }
   }, [selectedValue, clients, setValue]);
 
@@ -61,8 +61,8 @@ export const ClientSelector = () => {
       return;
     }
     const { clients }: { clients: Client[] } = await sendCreateClientRequest(client);
-    setValue('invoice.client', client);
-    setValue('invoice.currency.value', client.currency.value);
+    setValue('client', client);
+    setValue('currency.value', client.currency.value);
     setShowCreateUserForm(false);
     setSelectedValue('389643090');
     setClients(clients);

@@ -84,7 +84,7 @@ export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => {
         <div className="flex flex-col gap-1">
           <CustomInput
             placeholder="Client business name*"
-            // onInputHandler={(value) => form.setValue('invoice.additionalOptions.purchaseOrder', value)}
+            // onInputHandler={(value) => form.setValue('additionalOptions.purchaseOrder', value)}
             onInputHandler={(value) => console.log(value)}
             onBlur={(event) => setBusinessName(event.target.value)}
           />

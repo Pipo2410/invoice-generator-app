@@ -12,10 +12,13 @@ export default async function CreateInvoicePage() {
     AppConfig,
     { clients: Client[] },
     ItemsApiResponse,
-    { invoice: FormType; length: number },
+    { invoices: FormType; length: number },
   ] = await Promise.all([fetchData('appConfig'), fetchData('clients'), fetchData('items'), fetchData('invoices')]);
 
-  const initialState = createInitialState(appConfig, clientData.clients, itemsData.items);
+  // console.log(invoicesData);
+  const invoiceId = invoicesData.length + 1;
 
-  return <MainContent initialState={initialState} invoiceId={invoicesData.length + 1} />;
+  const initialState = createInitialState(appConfig, clientData.clients, itemsData.items, invoiceId);
+
+  return <MainContent initialState={initialState} invoiceId={invoiceId} />;
 }

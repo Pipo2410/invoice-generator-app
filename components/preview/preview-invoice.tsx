@@ -10,20 +10,20 @@ import { Separator } from '../ui/separator';
 
 export const PreviewInvoice = () => {
   const { getValues } = useFormContext();
-  const client: Client = useWatch({ name: 'invoice.client' });
+  const client: Client = useWatch({ name: 'client' });
   const items: Item[] = useWatch({
-    name: 'invoice.items',
+    name: 'items',
   });
 
   const purchaseOrder = useWatch({
-    name: 'invoice.additionalOptions.purchaseOrder',
+    name: 'additionalOptions.purchaseOrder',
   });
   const referenceNote = useWatch({
-    name: 'invoice.additionalOptions.referenceNote',
+    name: 'additionalOptions.referenceNote',
   });
 
-  const currency = getValues('invoice.currency');
-  const dueDate = getValues('invoice.date.dueDate');
+  const currency = getValues('currency');
+  const dueDate = getValues('date.dueDate');
 
   const currencySign = currencies.find((el) => el.label === currency)?.sign;
   const dueDateValue = new Date(dueDate).toLocaleDateString('en-US', {

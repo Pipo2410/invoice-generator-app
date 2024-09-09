@@ -1,182 +1,166 @@
 [
   {
-    "invoice": {
-      "id": "1",
-      "client": {
-        "businessName": "Tech Innovators Inc.",
-        "email": "contact@techinnovators.com",
-        "nif": "123456789",
-        "country": "US",
-        "currency": { "value": "USD", "isDefault": true },
-        "address": {
-          "street": "123 Innovation Way",
-          "city": "San Francisco",
-          "postalCode": "94107",
-          "additional": "Suite 400"
-        }
-      },
-      "date": { "issueDate": "2023-09-01T00:00:00.000Z", "dueDate": "2023-09-15T00:00:00.000Z" },
-      "vatExemption": { "value": "M01", "label": "1 Article 16(6) of CIVA" },
-      "items": [
-        {
-          "id": 1,
-          "name": "Software License",
-          "description": "Annual subscription for cloud software",
-          "category": "Software",
-          "unit": 1,
-          "price": 1000,
-          "vat": 20,
-          "discount": 5
-        }
-      ],
-      "additionalOptions": { "purchaseOrder": "PO12345", "referenceNote": "Monthly payment" },
-      "currency": { "value": "USD", "isDefault": true }
-    }
+    "id": 1,
+    "client": {
+      "businessName": "Tech Innovators Inc.",
+      "email": "contact@techinnovators.com",
+      "nif": "123456789",
+      "country": "US",
+      "currency": { "value": "USD", "isDefault": true },
+      "address": {
+        "street": "123 Innovation Way",
+        "city": "San Francisco",
+        "postalCode": "94107",
+        "additional": "Suite 400"
+      }
+    },
+    "date": { "issueDate": "2023-09-01T00:00:00.000Z", "dueDate": "2023-09-15T00:00:00.000Z" },
+    "vatExemption": { "value": "M01", "label": "1 Article 16(6) of CIVA" },
+    "items": [
+      {
+        "id": 1,
+        "name": "Software License",
+        "description": "Annual subscription for cloud software",
+        "category": "Software",
+        "unit": 1,
+        "price": 1000,
+        "vat": 20,
+        "discount": 5
+      }
+    ],
+    "additionalOptions": { "purchaseOrder": "PO12345", "referenceNote": "Monthly payment" },
+    "currency": { "value": "USD", "isDefault": true }
   },
   {
-    "invoice": {
-      "id": "2",
-      "client": {
-        "businessName": "Eco Builders Ltd.",
-        "email": "info@ecobuilders.co.uk",
-        "nif": "GB987654321",
-        "country": "UK",
-        "currency": { "value": "GBP", "isDefault": true },
-        "address": {
-          "street": "45 Green Lane",
-          "city": "London",
-          "postalCode": "SW1A 1AA",
-          "additional": "Near the park"
-        }
-      },
-      "date": { "issueDate": "2023-08-15T00:00:00.000Z", "dueDate": "2023-08-30T00:00:00.000Z" },
-      "vatExemption": { "value": "M02", "label": "Article 6 of Decree-Law 198/90 of June 19th" },
-      "items": [
-        {
-          "id": 2,
-          "name": "Solar Panels",
-          "description": "Eco-friendly solar panel installation",
-          "category": "Energy",
-          "unit": 50,
-          "price": 200,
-          "vat": 5,
-          "discount": 10
-        }
-      ],
-      "additionalOptions": { "purchaseOrder": "PO98765", "referenceNote": "Installation phase 1" },
-      "currency": { "value": "GBP", "isDefault": true }
-    }
+    "id": 2,
+    "client": {
+      "businessName": "Eco Builders Ltd.",
+      "email": "info@ecobuilders.co.uk",
+      "nif": "GB987654321",
+      "country": "UK",
+      "address": {
+        "street": "45 Green Lane",
+        "city": "London",
+        "postalCode": "SW1A 1AA",
+        "additional": "Near the park"
+      }
+    },
+    "date": { "issueDate": "2023-08-15T00:00:00.000Z", "dueDate": "2023-08-30T00:00:00.000Z" },
+    "vatExemption": { "value": "M02", "label": "Article 6 of Decree-Law 198/90 of June 19th" },
+    "items": [
+      {
+        "id": 2,
+        "name": "Solar Panels",
+        "description": "Eco-friendly solar panel installation",
+        "category": "Energy",
+        "unit": 50,
+        "price": 200,
+        "vat": 5,
+        "discount": 10
+      }
+    ],
+    "additionalOptions": { "purchaseOrder": "PO98765", "referenceNote": "Installation phase 1" },
+    "currency": { "value": "GBP", "isDefault": true }
   },
   {
-    "invoice": {
-      "id": "3",
-      "client": {
-        "businessName": "Gourmet Foods LLC",
-        "email": "orders@gourmetfoods.com",
-        "nif": "FR1122334455",
-        "country": "FR",
-        "currency": { "value": "EUR", "isDefault": true },
-        "address": { "street": "22 Rue de la Paix", "city": "Paris", "postalCode": "75002", "additional": "" }
+    "id": 3,
+    "client": {
+      "businessName": "Gourmet Foods LLC",
+      "email": "orders@gourmetfoods.com",
+      "nif": "FR1122334455",
+      "country": "FR",
+      "currency": { "value": "EUR", "isDefault": true },
+      "address": { "street": "22 Rue de la Paix", "city": "Paris", "postalCode": "75002", "additional": "" }
+    },
+    "date": { "issueDate": "2023-07-01T00:00:00.000Z", "dueDate": "2023-07-15T00:00:00.000Z" },
+    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
+    "items": [
+      {
+        "id": 3,
+        "name": "Gourmet Cheese",
+        "description": "Selection of French cheeses",
+        "category": "Food",
+        "unit": 100,
+        "price": 15,
+        "vat": 10,
+        "discount": 0
       },
-      "date": { "issueDate": "2023-07-01T00:00:00.000Z", "dueDate": "2023-07-15T00:00:00.000Z" },
-      "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
-      "items": [
-        {
-          "id": 3,
-          "name": "Gourmet Cheese",
-          "description": "Selection of French cheeses",
-          "category": "Food",
-          "unit": 100,
-          "price": 15,
-          "vat": 10,
-          "discount": 0
-        },
-        {
-          "id": 4,
-          "name": "Olive Oil",
-          "description": "Extra virgin olive oil",
-          "category": "Food",
-          "unit": 200,
-          "price": 12,
-          "vat": 10,
-          "discount": 5
-        }
-      ],
-      "additionalOptions": { "purchaseOrder": "PO24680", "referenceNote": "Quarterly supply" },
-      "currency": { "value": "EUR", "isDefault": true }
-    }
+      {
+        "id": 4,
+        "name": "Olive Oil",
+        "description": "Extra virgin olive oil",
+        "category": "Food",
+        "unit": 200,
+        "price": 12,
+        "vat": 10,
+        "discount": 5
+      }
+    ],
+    "additionalOptions": { "purchaseOrder": "PO24680", "referenceNote": "Quarterly supply" },
+    "currency": { "value": "EUR", "isDefault": true }
   },
   {
-    "invoice": {
-      "id": "4",
-      "client": {
-        "businessName": "Tech Gear Pro",
-        "email": "support@techgearpro.com",
-        "nif": "DE5566778899",
-        "country": "DE",
-        "currency": { "value": "EUR", "isDefault": true },
-        "address": { "street": "46 Tech Avenue", "city": "Berlin", "postalCode": "10115", "additional": "Building A" }
+    "id": 4,
+    "client": {
+      "businessName": "Tech Gear Pro",
+      "email": "support@techgearpro.com",
+      "nif": "DE5566778899",
+      "country": "DE",
+      "currency": { "value": "EUR", "isDefault": true },
+      "address": { "street": "46 Tech Avenue", "city": "Berlin", "postalCode": "10115", "additional": "Building A" }
+    },
+    "date": { "issueDate": "2023-10-05T00:00:00.000Z", "dueDate": "2023-10-20T00:00:00.000Z" },
+    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
+    "items": [
+      {
+        "id": 5,
+        "name": "High-performance Laptop",
+        "description": "Laptop with 16GB RAM and 1TB SSD",
+        "category": "Electronics",
+        "unit": 10,
+        "price": 1500,
+        "vat": 19,
+        "discount": 3
       },
-      "date": { "issueDate": "2023-10-05T00:00:00.000Z", "dueDate": "2023-10-20T00:00:00.000Z" },
-      "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
-      "items": [
-        {
-          "id": 5,
-          "name": "High-performance Laptop",
-          "description": "Laptop with 16GB RAM and 1TB SSD",
-          "category": "Electronics",
-          "unit": 10,
-          "price": 1500,
-          "vat": 19,
-          "discount": 3
-        },
-        {
-          "id": 6,
-          "name": "Monitor",
-          "description": "27-inch 4K monitor",
-          "category": "Electronics",
-          "unit": 5,
-          "price": 400,
-          "vat": 19,
-          "discount": 0
-        }
-      ],
-      "additionalOptions": { "purchaseOrder": "PO33456", "referenceNote": "Hardware update" },
-      "currency": { "value": "EUR", "isDefault": true }
-    }
+      {
+        "id": 6,
+        "name": "Monitor",
+        "description": "27-inch 4K monitor",
+        "category": "Electronics",
+        "unit": 5,
+        "price": 400,
+        "vat": 19,
+        "discount": 0
+      }
+    ],
+    "additionalOptions": { "purchaseOrder": "PO33456", "referenceNote": "Hardware update" },
+    "currency": { "value": "EUR", "isDefault": true }
   },
   {
-    "invoice": {
-      "id": "5",
-      "client": {
-        "businessName": "Creative Studios",
-        "email": "hello@creativestudios.com",
-        "nif": "ES3344556677",
-        "country": "ES",
-        "currency": { "value": "EUR", "isDefault": true },
-        "address": {
-          "street": "8 Art Street",
-          "city": "Madrid",
-          "postalCode": "28013",
-          "additional": "Near the gallery"
-        }
-      },
-      "date": { "issueDate": "2023-11-12T00:00:00.000Z", "dueDate": "2023-11-26T00:00:00.000Z" },
-      "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
-      "items": [
-        {
-          "id": 7,
-          "name": "Graphic Design Services",
-          "description": "Logo and brand identity design",
-          "category": "Design",
-          "unit": 1,
-          "price": 800,
-          "vat": 21,
-          "discount": 5
-        }
-      ],
-      "additionalOptions": { "purchaseOrder": "PO99887", "referenceNote": "Branding project" },
-      "currency": { "value": "EUR", "isDefault": true }
-    }
+    "id": 5,
+    "client": {
+      "businessName": "Creative Studios",
+      "email": "hello@creativestudios.com",
+      "nif": "ES3344556677",
+      "country": "ES",
+      "currency": { "value": "EUR", "isDefault": true },
+      "address": { "street": "8 Art Street", "city": "Madrid", "postalCode": "28013", "additional": "Near the gallery" }
+    },
+    "date": { "issueDate": "2023-11-12T00:00:00.000Z", "dueDate": "2023-11-26T00:00:00.000Z" },
+    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
+    "items": [
+      {
+        "id": 7,
+        "name": "Graphic Design Services",
+        "description": "Logo and brand identity design",
+        "category": "Design",
+        "unit": 1,
+        "price": 800,
+        "vat": 21,
+        "discount": 5
+      }
+    ],
+    "additionalOptions": { "purchaseOrder": "PO99887", "referenceNote": "Branding project" },
+    "currency": { "value": "EUR", "isDefault": true }
   }
 ]

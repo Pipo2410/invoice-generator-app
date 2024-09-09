@@ -6,8 +6,8 @@ import { currencies } from '@/assets/currencies';
 import { Separator } from '../ui/separator';
 
 export const InvoiceSummary = () => {
-  const vatExemption = useWatch({ name: 'invoice.vatExemption.label' });
-  const currency = useWatch({ name: 'invoice.currency.value' });
+  const vatExemption = useWatch({ name: 'vatExemption.label' });
+  const currency = useWatch({ name: 'currency.value' });
   const currencySign = currencies.find((el) => el.value === currency)?.sign;
 
   return (

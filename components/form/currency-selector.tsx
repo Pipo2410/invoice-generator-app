@@ -19,13 +19,13 @@ export const CurrencySelector = () => {
   } = useCreateInvoiceFormContext();
   const { getValues, setValue } = useFormContext();
 
-  const currencyValue = getValues('invoice.currency.value');
+  const currencyValue = getValues('currency.value');
   const selectedCurrency = currencies.find((cur) => cur.value === currencyValue);
   const icon = selectedCurrency?.icon || currencies[0]?.icon;
   const displayValue = selectedCurrency?.value || currencies[0]?.value;
 
   const handleSelect = (currentValue: string) => {
-    setValue('invoice.currency.value', currentValue === currencyValue ? '' : currentValue);
+    setValue('currency.value', currentValue === currencyValue ? '' : currentValue);
     setOpen(false);
   };
 

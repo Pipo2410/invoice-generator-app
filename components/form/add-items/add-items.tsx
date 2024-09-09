@@ -31,14 +31,14 @@ export const AddItems = () => {
   useEffect(() => {
     const selectedItem = INVOICE_ITEMS_ARRAY.find((item) => item.description === selectedValue);
 
-    const invoiceItems = getValues('invoice.items');
+    const invoiceItems = getValues('items');
 
     if (selectedItem) {
       invoiceItems.push(selectedItem);
-      setValue('invoice.items', invoiceItems);
+      setValue('items', invoiceItems);
       setSearchValue('');
       setSelectedValue('');
-      trigger('invoice.items');
+      trigger('items');
     }
   }, [selectedValue, getValues, trigger, setValue]);
 

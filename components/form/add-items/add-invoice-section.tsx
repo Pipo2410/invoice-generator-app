@@ -8,7 +8,7 @@ import { AddedItem } from './added-item';
 
 export const AddInvoiceSection = () => {
   const items: Item[] = useWatch({
-    name: 'invoice.items',
+    name: 'items',
   });
   return (
     <>

@@ -8,6 +8,7 @@ type CreateInvoiceFormContextValues = {
   setClients: Dispatch<SetStateAction<Client[]>>;
   appConfig: AppConfig;
   items: Item[];
+  invoiceId: number;
 };
 
 type CreateInvoiceFormContextProviderProps = {
@@ -30,6 +31,7 @@ export const CreateInvoiceFormContextProvider: React.FC<CreateInvoiceFormContext
         setClients: setClients,
         appConfig: initialState.appConfig,
         items: initialState.items,
+        invoiceId: initialState.invoiceId,
       }}
     >
       {children}
