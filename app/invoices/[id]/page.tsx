@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 
 import { Header } from '@/components/layout/create-invoice-header';
+import { FormType } from '@/context/model';
 import { fetchData } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
@@ -18,7 +19,7 @@ export default async function InvoicePage({ params }: Props) {
     notFound();
   }
 
-  const { invoice } = response;
+  const { invoice }: { invoice: FormType } = response;
 
   if (!response.ok) {
     notFound();
@@ -26,7 +27,9 @@ export default async function InvoicePage({ params }: Props) {
 
   return (
     <>
-      <Header invoiceNumber={invoice.id} />
+      <Header invoiceNumber={invoice.id}>
+        <p>{invoice.client.businessName}</p>
+      </Header>
     </>
   );
 }

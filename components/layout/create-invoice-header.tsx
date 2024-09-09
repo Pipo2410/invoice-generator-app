@@ -6,9 +6,10 @@ import { Button } from '@/components/ui/button';
 
 type Props = {
   invoiceNumber: number;
+  children?: React.ReactNode;
 };
 
-export const Header: React.FC<Props> = ({ invoiceNumber }) => (
+export const Header: React.FC<Props> = ({ invoiceNumber, children }) => (
   <div className="header flex flex-col gap-6">
     <Button size="icon" variant="ghost">
       <Link href="/invoices">
@@ -16,5 +17,6 @@ export const Header: React.FC<Props> = ({ invoiceNumber }) => (
       </Link>
     </Button>
     <h1 className="text-3xl font-semibold">New invoice #{invoiceNumber}</h1>
+    {children}
   </div>
 );

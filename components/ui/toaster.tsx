@@ -1,5 +1,6 @@
 'use client';
 
+import { Info } from 'lucide-react';
 import React from 'react';
 
 import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from '@/components/ui/toast';
@@ -13,6 +14,7 @@ export function Toaster() {
       {toasts.map(function ({ id, title, description, action, ...props }) {
         return (
           <Toast key={id} {...props}>
+            <Info className="w-10 self-start text-[#AC2C2B]" />
             <div className="grid gap-1">
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && <ToastDescription>{description}</ToastDescription>}

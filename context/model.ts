@@ -61,57 +61,6 @@ export type Date = z.infer<typeof DateSchema>;
 export type VatExemption = z.infer<typeof VatExemptionSchema>;
 export type Item = z.infer<typeof ItemSchema>;
 
-// figure out these ||
-// figure out these ||
-// figure out these ||
-// figure out these ||
-// figure out these \/
-
-// export type Clientss = {
-//   businessName?: string;
-//   email?: string;
-//   nif?: number;
-//   country?: string;
-//   currency?: string;
-//   address?: Client['address'];
-// };
-
-// export type InvoiceDate = {
-//   issueDate: Date;
-//   dueDate?: Date;
-// };
-
-// export type VATExemption = {
-//   value?: string;
-//   label?: string;
-// };
-
-// type Itemss = {
-//   name?: string;
-//   description?: string;
-//   category?: string;
-//   unit?: number;
-//   price?: number;
-//   vat?: number;
-//   discount?: number;
-// };
-
-// type CheckboxItem = {
-//   checked?: boolean;
-//   value?: number;
-// };
-
-// export type Invoice = {
-//   client?: Clientss;
-//   date: InvoiceDate;
-//   vatExemption?: VATExemption;
-//   items?: Itemss[];
-//   retention?: CheckboxItem;
-//   globalDiscount?: CheckboxItem;
-//   purchaseOrder?: string;
-//   referenceNote?: string;
-// };
-
 export type AppConfig = {
   vatArticles: VatExemption[];
   itemCategories: { value: string; label: string };
