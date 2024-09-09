@@ -13,13 +13,13 @@ type CustomFooterProps = {
   icon?: React.ReactNode;
 };
 
-export const CustomDialog = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <AlertDialog open>
-      <AlertDialogContent className="max-h-[80vh]">{children}</AlertDialogContent>
-    </AlertDialog>
-  );
-};
+type CustomDialogProps = { children: React.ReactNode; open: boolean };
+
+export const CustomDialog: React.FC<CustomDialogProps> = ({ children, open }) => (
+  <AlertDialog open={open}>
+    <AlertDialogContent className="max-h-[80vh]">{children}</AlertDialogContent>
+  </AlertDialog>
+);
 
 export const CustomDialogFooter: React.FC<CustomFooterProps> = ({
   cancelText,
@@ -28,23 +28,21 @@ export const CustomDialogFooter: React.FC<CustomFooterProps> = ({
   onAction,
   isActionLoading = false,
   icon,
-}) => {
-  return (
-    <AlertDialogFooter className="sm:justify-center sm:space-x-6">
-      <AlertDialogCancel
-        onClick={onCancel}
-        className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0"
-      >
-        {cancelText}
-      </AlertDialogCancel>
-      <AlertDialogAction
-        onClick={onAction}
-        className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0"
-        disabled={isActionLoading}
-      >
-        {actionText}
-        {icon}
-      </AlertDialogAction>
-    </AlertDialogFooter>
-  );
-};
+}) => (
+  <AlertDialogFooter className="sm:justify-center sm:space-x-6">
+    <AlertDialogCancel
+      onClick={onCancel}
+      className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0"
+    >
+      {cancelText}
+    </AlertDialogCancel>
+    <AlertDialogAction
+      onClick={onAction}
+      className="h-auto w-1/2 rounded-full border-2 border-black py-4 focus-visible:ring-0 focus-visible:ring-offset-0"
+      disabled={isActionLoading}
+    >
+      {actionText}
+      {icon}
+    </AlertDialogAction>
+  </AlertDialogFooter>
+);

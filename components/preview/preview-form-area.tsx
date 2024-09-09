@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { PreviewInvoice } from './preview-invoice';
 
-export const PreviewArea = () => (
+export const PreviewFormArea = () => (
   <div className="col-span-full xl:col-span-5">
     <Tabs defaultValue="preview" className="sticky top-2">
       <TabsList className="h-fit w-full bg-transparent p-0 px-6">
