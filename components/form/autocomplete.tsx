@@ -25,6 +25,7 @@ type Props<T extends string> = {
   iconClassName?: T;
   error: boolean;
   addOption?: boolean;
+  chooseValueBy?: 'value' | 'label';
 };
 
 export const AutoComplete = <T extends string>({
@@ -41,6 +42,7 @@ export const AutoComplete = <T extends string>({
   iconClassName,
   error,
   addOption,
+  chooseValueBy = 'value',
 }: Props<T>) => {
   const [open, setOpen] = useState(false);
   const inputWrapper = useRef<React.ElementRef<typeof CommandPrimitive>>(null);
@@ -166,8 +168,17 @@ export const AutoComplete = <T extends string>({
                       onSelect={onSelectItem}
                       className="group flex-col items-start gap-3 rounded-none py-2 pl-4 data-[selected=true]:bg-[#F8F8F8]"
                     >
-                      <span className="text-md font-semibold group-hover:text-[#101010]">{option.label}</span>
-                      <span className="text-xs group-hover:text-[#5A5858]">{option.value}</span>
+                      {chooseValueBy === 'value' ? (
+                        <>
+                          <span className="text-md font-semibold group-hover:text-[#101010]">{option.label}</span>
+                          <span className="text-xs group-hover:text-[#5A5858]">{option.value}</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="text-md font-semibold group-hover:text-[#101010]">{option.value}</span>
+                          <span className="text-xs group-hover:text-[#5A5858]">{option.label}</span>
+                        </>
+                      )}
                     </CommandItem>
                   ))}
                 </CommandGroup>

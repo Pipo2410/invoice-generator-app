@@ -2,9 +2,8 @@
 
 import { format } from 'date-fns';
 import { ChevronDown } from 'lucide-react';
-import React from 'react';
-import { useState } from 'react';
-import { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
+import React, { useState } from 'react';
+import { UseFormReturn } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -22,7 +21,7 @@ import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { FormType } from '@/context/model';
 import { cn } from '@/lib/utils';
 
-const options = [15, 30, 45, 60, 90];
+const daysOptions = [15, 30, 45, 60, 90];
 
 type Props = {
   form: UseFormReturn<FormType>;
@@ -31,21 +30,36 @@ type Props = {
 export const DueDate: React.FC<Props> = ({ form }) => {
   const [days, setDays] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+  // const { dueDate, issueDate } = form.watch('date'); // Use watch for reactive form updates
   const { dueDate, issueDate } = form.getValues('date');
-
   const { errors } = form.formState;
 
-  const calculateDueDate = (days: number, field: ControllerRenderProps<FormType>) => {
-    const newDueDate = new Date();
-
-    if (issueDate) {
-      newDueDate.setDate(issueDate.getDate() + days);
-    } else {
-      form.trigger('date.issueDate');
+  // Calculate due date based on selected days and issueDate
+  const calculateDueDate = (days: number) => {
+    if (!issueDate) {
+      form.trigger('date.issueDate'); // Ensure issueDate is set before calculation
       return;
     }
+
+    const newDueDate = new Date(issueDate);
+    newDueDate.setDate(issueDate.getDate() + days);
+
     setDays(days);
-    field.onChange(newDueDate);
+    form.setValue('date.dueDate', newDueDate);
+    form.clearErrors('date.dueDate');
+  };
+
+  // Handle custom date selection
+  const handleCustomDateSelect = (date: Date | undefined) => {
+    setDays(null); // Reset days when selecting a custom date
+
+    if (!date) {
+      form.resetField('date.dueDate');
+    } else {
+      form.setValue('date.dueDate', date);
+    }
+    form.clearErrors('date.dueDate');
+    setIsOpen(false);
   };
 
   return (
@@ -55,7 +69,7 @@ export const DueDate: React.FC<Props> = ({ form }) => {
           variant="ghost"
           size="sm"
           className={cn(
-            'group h-fit min-h-16 w-full justify-between rounded-xl border border-secondary bg-secondary p-4 py-3 text-base font-normal transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border data-[state=open]:border-[#E2E2E2] data-[state=open]:bg-light-blue',
+            'group h-fit min-h-16 w-full justify-between rounded-xl border border-secondary bg-secondary p-4 py-3 text-base font-normal transition-colors focus-visible:ring-0 focus-visible:ring-offset-0',
             errors.date?.dueDate && 'border-dark-orange',
           )}
         >
@@ -75,48 +89,29 @@ export const DueDate: React.FC<Props> = ({ form }) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[--radix-dropdown-menu-trigger-width] p-4">
-        {options.map((option) => (
-          <FormField
+        {daysOptions.map((option) => (
+          <DropdownMenuItem
             key={option}
-            control={form.control}
-            name="date.dueDate"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <DropdownMenuItem
-                    onSelect={() => calculateDueDate(option, field)}
-                    className="border-b px-2 py-4 text-[15px]"
-                  >
-                    <span>{option} days</span>
-                  </DropdownMenuItem>
-                </FormControl>
-              </FormItem>
-            )}
-          />
+            onSelect={() => calculateDueDate(option)}
+            className="border-b px-2 py-4 text-[15px]"
+          >
+            <span>{option} days</span>
+          </DropdownMenuItem>
         ))}
+
         <DropdownMenuSub>
           <DropdownMenuSubTrigger className="px-2 py-4">
             <span>Choose custom date</span>
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
-            <DropdownMenuSubContent className="ml-6">
+            <DropdownMenuSubContent className="ml-6 p-2">
               <FormField
                 control={form.control}
                 name="date.dueDate"
                 render={({ field }) => (
-                  // console.log(field);
                   <FormItem>
                     <FormControl>
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={(value) => {
-                          setIsOpen(false);
-                          setDays(null);
-                          field.onChange(value);
-                        }}
-                        initialFocus
-                      />
+                      <Calendar mode="single" selected={field.value} onSelect={handleCustomDateSelect} initialFocus />
                     </FormControl>
                   </FormItem>
                 )}

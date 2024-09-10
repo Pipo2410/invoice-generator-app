@@ -15,8 +15,8 @@ const TRANSFORMED_ITEMS = COMPANIES.map((item) =>
   // }).format(Number(item.description));
 
   ({
-    label: item.name,
-    value: item.nif,
+    label: item.nif,
+    value: item.name,
   }),
 );
 
@@ -24,7 +24,7 @@ export const SearchNifSelector = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<string>('');
   const { formState } = useFormContext();
-  const { setNif, setBusinessName } = useCreateClientContext();
+  const { setNif } = useCreateClientContext();
 
   const filteredItems = TRANSFORMED_ITEMS.filter(
     (item) =>
@@ -33,13 +33,15 @@ export const SearchNifSelector = () => {
   );
 
   const onSelect = (value: string) => {
-    const company = COMPANIES.find((el) => el.nif === value);
-
+    const company = COMPANIES.find((el) => el.name === value);
     setSelectedValue(value);
-    setNif(value);
-    if (company?.name) {
-      setBusinessName(company?.name);
+    if (company) {
+      setNif(company.nif);
     }
+
+    // if (company?.name) {
+    // setBusinessName(company?.name);
+    // }
   };
 
   const errors: FieldErrors<FormType> = formState.errors;
@@ -58,6 +60,7 @@ export const SearchNifSelector = () => {
         inputClassNames="h-fit text-base leading-4 border-none py-4 px-0 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent"
         iconClassName="mr-3 h-6 w-6"
         error={!!errors.items}
+        chooseValueBy="label"
       />
       {selectedValue ? (
         <p className="ml-4 flex gap-1 text-sm text-[#27A251]">

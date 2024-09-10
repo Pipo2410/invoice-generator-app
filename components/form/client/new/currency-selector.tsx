@@ -33,7 +33,7 @@ export const CurrencySelector = () => {
           <div className="flex flex-col text-start">
             {currency ? (
               <>
-                <span className="text-xs text-dark-gray">Issue date</span>
+                <span className="text-xs text-dark-gray">Currency*</span>
                 <span className="leading-[22px]">{currency}</span>
               </>
             ) : (

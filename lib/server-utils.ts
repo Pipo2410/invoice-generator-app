@@ -11,7 +11,7 @@ export const sendCreateClientRequest = (client: Client) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(client),
   };
-  const data = fetch(`http://localhost:3000/api/clients/create`, requestOptions).then((response) => response.json());
+  const data = fetch(`${process.env.API_PATH}/api/clients/create`, requestOptions).then((response) => response.json());
   revalidatePath('/', 'layout');
 
   return data;
@@ -26,7 +26,7 @@ export const sendCreateInvoiceRequest = async (invoice: FormType) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(invoice),
   };
-  const data = fetch(`http://localhost:3000/api/invoices`, requestOptions).then((response) => response.json());
+  const data = fetch(`${process.env.API_PATH}/api/invoices`, requestOptions).then((response) => response.json());
   revalidatePath('/', 'layout');
 
   console.log('response inside server action: ', data);

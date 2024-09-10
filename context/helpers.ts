@@ -7,7 +7,7 @@ export const formDefaultValues = {
     businessName: '',
     email: '',
     // nif: null,
-    country: '',
+    country: 'Portugal',
     currency: {
       value: 'EUR',
       isDefault: true,

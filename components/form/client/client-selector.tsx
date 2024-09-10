@@ -61,17 +61,16 @@ export const ClientSelector = () => {
     const isFormValid = ClientSchema.safeParse(client);
     if (!isFormValid.success) {
       console.log(isFormValid.error.issues);
-      // const errorFields = isFormValid.error.issues.map((el) => el.path[0]);
+      const errorFields = isFormValid.error.issues.map((el) => el.path[0]);
       toast({
         title: 'Error',
-        // description: `Please fill all required fields: ${errorFields}`,
+        description: `Please fill all required fields: ${errorFields}`,
         variant: 'destructive',
         duration: 3000,
       });
       return;
     }
     const clients: Client[] = await sendCreateClientRequest(client);
-    console.log(clients);
     setValue('client', client);
     setValue('currency.value', client.currency.value);
     setShowCreateUserForm(false);

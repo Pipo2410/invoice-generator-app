@@ -51,15 +51,12 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
           control={form.control}
           name="date.issueDate"
           render={({ field }) => (
-            // console.log(field);
             <FormItem>
               <FormControl>
                 <Calendar
                   mode="single"
-                  // selected={dateNow}
                   selected={field.value}
                   onSelect={(value) => {
-                    // setDate(value);
                     form.clearErrors('date.issueDate');
                     setIsOpen(false);
                     field.onChange(value);
@@ -67,7 +64,6 @@ export const IssueDate: React.FC<Props> = ({ form }) => {
                   initialFocus
                 />
               </FormControl>
-              {/* <FormMessage /> */}
             </FormItem>
           )}
         />

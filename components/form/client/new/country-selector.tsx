@@ -2,6 +2,7 @@
 
 import { ChevronDown } from 'lucide-react';
 import React, { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 
 import { IconComponent } from '@/components/navigation/icon-component';
 import { Button } from '@/components/ui/button';
@@ -16,8 +17,12 @@ export const CountrySelector = () => {
   } = useCreateInvoiceFormContext();
   const { setCountry } = useCreateClientContext();
 
+  const {
+    formState: { defaultValues },
+  } = useFormContext();
+
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(countries[0].label);
+  const [value, setValue] = useState(defaultValues?.client?.country);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -33,7 +38,7 @@ export const CountrySelector = () => {
           <div className="flex flex-col text-start">
             {value ? (
               <>
-                <span className="text-xs text-dark-gray">Country</span>
+                <span className="text-xs text-dark-gray">Country*</span>
                 <span className="leading-[22px]">{value}</span>
               </>
             ) : (

@@ -27,10 +27,10 @@ const ItemSchema = z.object({
 });
 
 export const ClientSchema = z.object({
-  businessName: z.string().min(2),
-  email: z.string(),
-  nif: z.string(),
-  country: z.string(),
+  businessName: z.string().min(1),
+  email: z.string().email(),
+  nif: z.string().min(9),
+  country: z.string().min(1),
   currency: CurrencySchema,
   address: z
     .object({

@@ -44,7 +44,7 @@ export const Content = () => {
       description: 'Please fill in all necessary information',
       variant: 'destructive',
       title: 'Title',
-      duration: 30000,
+      duration: 3000,
     });
   };
 
