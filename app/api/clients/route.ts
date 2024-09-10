@@ -7,5 +7,8 @@ export async function GET() {
   const jsonData = fs.readFileSync(filePath);
   const data = JSON.parse(jsonData.toString());
 
+  console.log('get clients');
+  console.log(data);
+
   return NextResponse.json(data);
 }

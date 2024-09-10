@@ -15,8 +15,6 @@ export default async function CreateInvoicePage() {
     return <p>Some error mate</p>;
   }
 
-  console.log(clientData);
-
   const invoiceId = invoicesData.length + 1;
 
   const initialState = createInitialState(appConfig, clientData, itemsData, invoiceId);
