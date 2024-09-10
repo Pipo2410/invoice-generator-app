@@ -33,6 +33,3 @@ export default async function InvoicePage({ params }: Props) {
     </>
   );
 }
-// console.log('data');
-// console.log(JSON.stringify(selectedInvoice, null, 2));
-// console.log('data');

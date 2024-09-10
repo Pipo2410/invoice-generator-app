@@ -1,46 +1,68 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { FieldErrors, useFormContext } from 'react-hook-form';
+import React, { useEffect, useMemo, useState } from 'react';
+import { FieldErrors, useFieldArray, useFormContext, useWatch } from 'react-hook-form';
 
 import { AutoComplete } from '@/components/form/autocomplete';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { INVOICE_ITEMS_ARRAY } from '@/context/helpers';
-import { FormType } from '@/context/model';
-
-const TRANSFORMED_ITEMS = INVOICE_ITEMS_ARRAY.map((item) =>
-  // const formattedPrice = new Intl.NumberFormat('de-DE', {
-  // 	minimumFractionDigits: 2,
-  // 	maximumFractionDigits: 2,
-  // }).format(Number(item.description));
-
-  ({
-    label: item.name,
-    value: item.description,
-  }),
-);
+import { useCreateInvoiceFormContext } from '@/context/app-context';
+import { Currency, FormType, Item } from '@/context/model';
+import { toast } from '@/hooks/use-toast';
 
 export const AddItems = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<string>('');
-  const { getValues, setValue, formState, trigger } = useFormContext();
+  const { items } = useCreateInvoiceFormContext();
+  const { getValues, formState } = useFormContext();
+  const currency: Currency = useWatch({ name: 'currency' });
+  const ItemsArray = getValues('items');
+  const { append } = useFieldArray({
+    name: 'items',
+  });
 
-  const filteredItems = TRANSFORMED_ITEMS.filter((item) =>
-    item.label.toLowerCase().includes(searchValue.toLowerCase()),
+  const filteredItems = useMemo(
+    () =>
+      items.reduce<{ label: string; value: string; id: string }[]>((acc, item) => {
+        const input = searchValue.toLowerCase();
+        const itemName = item.name.toLowerCase();
+        const formattedPrice = new Intl.NumberFormat('de-DE', {
+          style: 'currency',
+          currency: currency.value,
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(item.price);
+
+        if (itemName.includes(input)) {
+          acc.push({
+            label: item.name,
+            value: formattedPrice,
+            id: item.id,
+          });
+        }
+        return acc;
+      }, []),
+    [searchValue, currency, items],
   );
-  useEffect(() => {
-    const selectedItem = INVOICE_ITEMS_ARRAY.find((item) => item.description === selectedValue);
 
-    const invoiceItems = getValues('items');
+  useEffect(() => {
+    const selectedItem = items.find((item) => item.id === selectedValue);
+
+    const isPreviouslyAdded = ItemsArray.findIndex((item: Item) => item.id === selectedItem?.id);
+
+    if (isPreviouslyAdded !== -1) {
+      toast({
+        description: 'Item is already added',
+        duration: 3000,
+        title: 'Error',
+        variant: 'destructive',
+      });
+      return;
+    }
 
     if (selectedItem) {
-      invoiceItems.push(selectedItem);
-      setValue('items', invoiceItems);
-      setSearchValue('');
-      setSelectedValue('');
-      trigger('items');
+      append(selectedItem);
     }
-  }, [selectedValue, getValues, trigger, setValue]);
+  }, [selectedValue]);
 
   const errors: FieldErrors<FormType> = formState.errors;
 
@@ -63,11 +85,11 @@ export const AddItems = () => {
             // Optional props
             emptyMessage="No items found."
             placeholder="Search or create an item"
-            // inputClassNames="w-full h-fit py-5 justify-between text-base text-foreground font-normal placeholder:text-dark-gray placeholder:text-base border-none rounded-2xl"
             inputClassNames="h-fit text-base leading-4 border-none py-4 px-0 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent"
             iconClassName="mr-3 h-6 w-6"
             error={!!errors.items}
             addOption={true}
+            resetOnSelection
           />
         </AccordionContent>
       </AccordionItem>

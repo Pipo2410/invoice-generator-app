@@ -29,28 +29,29 @@ export const ClientSelector = () => {
       return;
     }
     // investigate this
-    const selectedClient = clients.find(
-      (client) => client.businessName === selectedValue || client.nif === selectedValue,
-    );
+    const selectedClient = clients.find((client) => client.id === selectedValue);
+
     if (selectedClient) {
       setValue('client', selectedClient);
     }
-  }, [selectedValue, clients, setValue]);
+  }, [selectedValue, setValue]);
 
   const errors: FieldErrors<FormType> = formState.errors;
 
-  const newItems = clients.map((item) => ({
-    label: item.businessName,
-    value: item.nif,
-  }));
+  const filteredItems = clients.reduce<{ label: string; value: string; id: string }[]>((acc, client) => {
+    const input = searchValue.toLowerCase();
+    const clientName = client.businessName.toLowerCase();
+    const nifNumber = client.nif.toLowerCase();
 
-  console.log(newItems);
-
-  const filteredItems = newItems.filter(
-    (client) =>
-      client.value.toLowerCase().includes(searchValue.toLowerCase()) ||
-      client.label.toLowerCase().includes(searchValue.toLowerCase()),
-  );
+    if (nifNumber.includes(input) || clientName.includes(input)) {
+      acc.push({
+        label: client.businessName,
+        value: client.nif,
+        id: client.id,
+      });
+    }
+    return acc;
+  }, []);
 
   const cancelClientCreationHandler = () => {
     setSelectedValue('');
@@ -60,7 +61,6 @@ export const ClientSelector = () => {
   const submitClientCreationHandler = async (client: Client) => {
     const isFormValid = ClientSchema.safeParse(client);
     if (!isFormValid.success) {
-      console.log(isFormValid.error.issues);
       const errorFields = isFormValid.error.issues.map((el) => el.path[0]);
       toast({
         title: 'Error',
@@ -74,7 +74,7 @@ export const ClientSelector = () => {
     setValue('client', client);
     setValue('currency.value', client.currency.value);
     setShowCreateUserForm(false);
-    setSelectedValue('389643090');
+    // setSelectedValue('389643090');
     setClients(clients);
   };
 

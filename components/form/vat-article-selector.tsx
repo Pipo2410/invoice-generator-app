@@ -20,12 +20,11 @@ type Props = {
 export const VatArticleSelector: React.FC<Props> = ({ form }) => {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
-
   const {
     appConfig: { vatArticles },
   } = useCreateInvoiceFormContext();
 
-  const buttonValue = vatArticles.find((framework) => framework.value === selectedValue)?.label;
+  const buttonValue = vatArticles.find((framework) => framework.label === selectedValue)?.label;
 
   const { errors } = form.formState;
 
@@ -38,7 +37,7 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
           role="combobox"
           aria-expanded={open}
           className={cn(
-            'group h-fit w-full justify-between rounded-xl bg-secondary p-5 pl-4 transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border data-[state=open]:border-[#E2E2E2] data-[state=open]:bg-light-blue',
+            'group h-fit w-full justify-between rounded-xl border border-secondary bg-secondary p-5 pl-4 transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border data-[state=open]:border-[#E2E2E2] data-[state=open]:bg-light-blue',
             errors.vatExemption && 'border border-dark-orange',
           )}
         >
@@ -68,9 +67,9 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
                         <CommandItem
                           className={cn(
                             'gap-3 rounded-none py-4 pl-4 data-[selected=true]:bg-[#F8F8F8]',
-                            selectedValue === article.value && 'bg-[#F8F8F8]',
+                            selectedValue === article.label && 'bg-[#F8F8F8]',
                           )}
-                          value={article.value}
+                          value={article.label}
                           onSelect={(currentValue) => {
                             setSelectedValue(currentValue === selectedValue ? '' : currentValue);
                             setOpen(false);
@@ -83,7 +82,6 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
                           </div>
                         </CommandItem>
                       </FormControl>
-                      {/* <FormMessage /> */}
                     </FormItem>
                   )}
                 />

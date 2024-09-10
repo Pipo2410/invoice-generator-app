@@ -3,6 +3,7 @@ import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { useCreateClientContext } from '@/context/create-client-context';
 import { Client } from '@/context/model';
 
@@ -18,6 +19,8 @@ type Props = {
 };
 
 export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => {
+  const { clients } = useCreateInvoiceFormContext();
+
   const {
     businessName,
     city,
@@ -39,6 +42,7 @@ export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => {
   } = useCreateClientContext();
 
   const newClientObject: Client = {
+    id: (clients.length + 1).toString(), // TODO: check this again
     businessName,
     address: {
       city,

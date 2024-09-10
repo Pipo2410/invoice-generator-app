@@ -16,7 +16,7 @@ export const AddInvoiceSection = () => {
       {!!items &&
         items.map((item, index) => (
           <AddedItem
-            key={`item-${item.name}-${Math.floor(Math.random() * 1000) + 1}`} // check again
+            key={`item-${item.id}-${Math.floor(Math.random() * 1000) + 1}`} // check again
             itemIndex={index}
             item={item}
           />

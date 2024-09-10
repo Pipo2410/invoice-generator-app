@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "businessName": "Client 12",
     "email": "client12@gmail.com",
     "nif": "309643090",
@@ -8,6 +9,7 @@
     "address": { "street": "Rua de sao Bento 644", "city": "Lisboa", "postalCode": "1254-223", "additional": "1dt-1e" }
   },
   {
+    "id": "2",
     "businessName": "Google",
     "email": "Google@gmail.com",
     "nif": "858356421",
@@ -16,6 +18,7 @@
     "address": { "street": "Calcada do monte 13", "city": "Lisboa", "postalCode": "1254-223", "additional": "1dt-1e" }
   },
   {
+    "id": "3",
     "businessName": "Company Abc",
     "email": "company.abc@gmail.com",
     "nif": "329643090",

@@ -123,5 +123,22 @@
     { "value": "de", "label": "Germany", "icon": "eu" },
     { "value": "cl", "label": "Chille", "icon": "cl" },
     { "value": "it", "label": "Italy", "icon": "kw" }
+  ],
+  "companies": [
+    {
+      "name": "Comms Zero Lda",
+      "nif": "123123123",
+      "id": "1"
+    },
+    {
+      "name": "Petz Lda",
+      "nif": "123123164",
+      "id": "2"
+    },
+    {
+      "name": "FX Consulting",
+      "nif": "123123421",
+      "id": "3"
+    }
   ]
 }

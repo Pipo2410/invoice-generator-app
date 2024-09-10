@@ -16,7 +16,7 @@ const VatExemptionSchema = z.object({
 });
 
 const ItemSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   name: z.string(),
   description: z.string(),
   category: z.string(),
@@ -27,6 +27,7 @@ const ItemSchema = z.object({
 });
 
 export const ClientSchema = z.object({
+  id: z.string(),
   businessName: z.string().min(1),
   email: z.string().email(),
   nif: z.string().min(9),
@@ -60,6 +61,7 @@ export type Client = z.infer<typeof ClientSchema>;
 export type Date = z.infer<typeof DateSchema>;
 export type VatExemption = z.infer<typeof VatExemptionSchema>;
 export type Item = z.infer<typeof ItemSchema>;
+export type Currency = z.infer<typeof CurrencySchema>;
 
 export type AppConfig = {
   vatArticles: VatExemption[];
@@ -80,6 +82,11 @@ export type AppConfig = {
     value: string;
     label: string;
     icon: string;
+  }[];
+  companies: {
+    name: string;
+    nif: string;
+    id: string;
   }[];
 };
 

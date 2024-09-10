@@ -1,7 +1,8 @@
+'use client';
+
 import { Command as CommandPrimitive } from 'cmdk';
 import { PlusIcon, ZoomIn } from 'lucide-react';
-import React from 'react';
-import { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
 import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
 import { Input } from '@/components/ui/input';
@@ -11,21 +12,28 @@ import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 
+export type AutocompleteItem<T extends string> = {
+  value: T;
+  label: string;
+  id: string;
+};
+
 type Props<T extends string> = {
   selectedValue: T;
   onSelectedValueChange: (value: T) => void;
   searchValue: string;
   onSearchValueChange: (value: string) => void;
-  items: { value: T; label: string }[];
+  items: AutocompleteItem<T>[];
   isLoading?: boolean;
   emptyMessage?: string;
   placeholder?: string;
-  inputClassNames?: T;
-  searchWrapperClasses?: T;
-  iconClassName?: T;
+  inputClassNames?: string;
+  searchWrapperClasses?: string;
+  iconClassName?: string;
   error: boolean;
   addOption?: boolean;
   chooseValueBy?: 'value' | 'label';
+  resetOnSelection?: boolean;
 };
 
 export const AutoComplete = <T extends string>({
@@ -43,20 +51,14 @@ export const AutoComplete = <T extends string>({
   error,
   addOption,
   chooseValueBy = 'value',
+  resetOnSelection = false,
 }: Props<T>) => {
   const [open, setOpen] = useState(false);
   const inputWrapper = useRef<React.ElementRef<typeof CommandPrimitive>>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const labels = useMemo(
-    () =>
-      items.reduce(
-        (acc, item) => {
-          acc[item.value] = item.label;
-          return acc;
-        },
-        {} as Record<string, string>,
-      ),
+    () => items.reduce((acc, item) => ({ ...acc, [item.id]: item.label }), {} as Record<string, string>),
     [items],
   );
 
@@ -65,20 +67,20 @@ export const AutoComplete = <T extends string>({
     onSearchValueChange('');
   };
 
-  const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     inputWrapper.current?.classList.remove('!bg-light-blue', '!border-[#CCD7FF]');
     if (!e.relatedTarget?.hasAttribute('cmdk-list') && labels[selectedValue] !== searchValue) {
       reset();
     }
   };
 
-  const onSelectItem = (inputValue: string) => {
+  const handleSelectItem = (inputValue: string) => {
     inputRef.current?.blur();
     if (inputValue === selectedValue) {
       reset();
     } else {
       onSelectedValueChange(inputValue as T);
-      onSearchValueChange(labels[inputValue] ?? '');
+      resetOnSelection ? onSearchValueChange('') : onSearchValueChange(labels[inputValue] ?? '');
     }
     setOpen(false);
   };
@@ -105,7 +107,7 @@ export const AutoComplete = <T extends string>({
                   inputWrapper.current?.classList.add('!bg-light-blue', '!border-[#CCD7FF]');
                   setOpen(true);
                 }}
-                onBlur={onInputBlur}
+                onBlur={handleInputBlur}
                 className="focus-visible:ring-0 focus-visible:ring-offset-0"
               >
                 <Input
@@ -138,13 +140,13 @@ export const AutoComplete = <T extends string>({
             <CommandList className="rounded-2xl">
               {searchValue && addOption && (
                 <CommandItem
-                  value={'create-new'}
+                  value="create-new"
                   onMouseDown={(e) => e.preventDefault()}
-                  onSelect={onSelectItem}
+                  onSelect={handleSelectItem}
                   className="group flex-col items-start gap-3 rounded-none py-3 pl-4 data-[selected=true]:bg-[#F8F8F8]"
                 >
                   <div className="flex items-center gap-2 p-0">
-                    <p className="rounded-none text-sm font-semibold text-dark-gray">{searchValue}</p>
+                    <p className="text-sm font-semibold text-dark-gray">{searchValue}</p>
                     <Button
                       type="button"
                       size="sm"
@@ -162,23 +164,18 @@ export const AutoComplete = <T extends string>({
                 <CommandGroup className="p-0">
                   {items.map((option) => (
                     <CommandItem
-                      key={option.value}
-                      value={option.value}
+                      key={option.id}
+                      value={option.id}
                       onMouseDown={(e) => e.preventDefault()}
-                      onSelect={onSelectItem}
+                      onSelect={() => handleSelectItem(option.id)}
                       className="group flex-col items-start gap-3 rounded-none py-2 pl-4 data-[selected=true]:bg-[#F8F8F8]"
                     >
-                      {chooseValueBy === 'value' ? (
-                        <>
-                          <span className="text-md font-semibold group-hover:text-[#101010]">{option.label}</span>
-                          <span className="text-xs group-hover:text-[#5A5858]">{option.value}</span>
-                        </>
-                      ) : (
-                        <>
-                          <span className="text-md font-semibold group-hover:text-[#101010]">{option.value}</span>
-                          <span className="text-xs group-hover:text-[#5A5858]">{option.label}</span>
-                        </>
-                      )}
+                      <span className="text-md font-semibold group-hover:text-[#101010]">
+                        {chooseValueBy === 'value' ? option.label : option.value}
+                      </span>
+                      <span className="text-xs group-hover:text-[#5A5858]">
+                        {chooseValueBy === 'value' ? option.value : option.label}
+                      </span>
                     </CommandItem>
                   ))}
                 </CommandGroup>

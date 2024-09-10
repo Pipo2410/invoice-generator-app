@@ -1,54 +1,54 @@
 import { CheckCircle } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { FieldErrors, useFormContext } from 'react-hook-form';
 
+import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { useCreateClientContext } from '@/context/create-client-context';
-import { COMPANIES } from '@/context/helpers';
 import { FormType } from '@/context/model';
 
 import { AutoComplete } from '../autocomplete';
 
-const TRANSFORMED_ITEMS = COMPANIES.map((item) =>
-  // const formattedPrice = new Intl.NumberFormat('de-DE', {
-  // 	minimumFractionDigits: 2,
-  // 	maximumFractionDigits: 2,
-  // }).format(Number(item.description));
-
-  ({
-    label: item.nif,
-    value: item.name,
-  }),
-);
-
 export const SearchNifSelector = () => {
   const [searchValue, setSearchValue] = useState<string>('');
-  const [selectedValue, setSelectedValue] = useState<string>('');
   const { formState } = useFormContext();
-  const { setNif } = useCreateClientContext();
+  const { setNif, nif } = useCreateClientContext();
 
-  const filteredItems = TRANSFORMED_ITEMS.filter(
-    (item) =>
-      item.label.toLowerCase().includes(searchValue.toLowerCase()) ||
-      item.value.toLowerCase().includes(searchValue.toLowerCase()),
+  const {
+    appConfig: { companies },
+  } = useCreateInvoiceFormContext();
+
+  const filteredItems = useMemo(
+    () =>
+      companies.reduce<{ label: string; value: string; id: string }[]>((acc, company) => {
+        const input = searchValue.toLowerCase();
+        const companyName = company.name.toLowerCase();
+        const nifNumber = company.nif.toLowerCase();
+
+        if (nifNumber.includes(input) || companyName.includes(input)) {
+          acc.push({
+            label: company.nif,
+            value: company.name,
+            id: company.id,
+          });
+        }
+        return acc;
+      }, []),
+    [searchValue],
   );
 
   const onSelect = (value: string) => {
-    const company = COMPANIES.find((el) => el.name === value);
-    setSelectedValue(value);
+    const company = companies.find((el) => el.id === value);
     if (company) {
       setNif(company.nif);
+      // setSearchValue(company.nif);
     }
-
-    // if (company?.name) {
-    // setBusinessName(company?.name);
-    // }
   };
 
   const errors: FieldErrors<FormType> = formState.errors;
   return (
     <div className="flex flex-col gap-1">
       <AutoComplete
-        selectedValue={selectedValue}
+        selectedValue={nif}
         onSelectedValueChange={(value) => onSelect(value)}
         searchValue={searchValue}
         onSearchValueChange={setSearchValue}
@@ -62,7 +62,7 @@ export const SearchNifSelector = () => {
         error={!!errors.items}
         chooseValueBy="label"
       />
-      {selectedValue ? (
+      {nif ? (
         <p className="ml-4 flex gap-1 text-sm text-[#27A251]">
           <CheckCircle width={20} height={20} />
           <span>Valid NIF</span>

@@ -31,12 +31,9 @@ export const Content = () => {
     defaultValues: { id: invoiceId, ...formDefaultValues },
   });
 
-  // TODO: Find even type
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmitHandler = (data: FormType, event: unknown) => {
     setOpenConfirmationDialog(true);
-    console.log(data);
-    console.log(event);
-    console.log('submitted');
   };
 
   const onError = () => {
@@ -53,9 +50,8 @@ export const Content = () => {
     [showPreview],
   );
 
-  const confirmSubmitDialogComponent = useMemo(() => {
-    console.log('halo from memo');
-    return (
+  const confirmSubmitDialogComponent = useMemo(
+    () => (
       <CustomDialog open={openConfirmationDialog}>
         {submitted ? (
           <InvoiceIssuedDialogContent />
@@ -63,15 +59,9 @@ export const Content = () => {
           <ConfirmInvoiceDialogContent setOpenDialog={setOpenConfirmationDialog} setSubmitted={setSubmitted} />
         )}
       </CustomDialog>
-    );
-  }, [submitted, openConfirmationDialog]);
-
-  // console.log('form');
-  // console.log(submitted);
-  // console.log(form.formState);
-  // console.log(form.getValues());
-  // console.log('form');
-  // console.log(`form.formState.errors${JSON.stringify(form.formState.errors)}`);
+    ),
+    [submitted, openConfirmationDialog],
+  );
 
   return (
     <div className="grid grid-cols-12">
