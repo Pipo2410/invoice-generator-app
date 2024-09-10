@@ -12,6 +12,7 @@ export const sendCreateClientRequest = (client: Client) => {
     body: JSON.stringify(client),
   };
   const data = fetch(`http://localhost:3000/api/clients/create`, requestOptions).then((response) => response.json());
+  revalidatePath('/', 'layout');
 
   return data;
 };

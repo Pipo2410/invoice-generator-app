@@ -54,7 +54,6 @@ export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => {
     email,
     nif,
   };
-
   const onClickCheckboxHandler = (value: boolean) => setCurrencyDefault(value);
   return (
     <Card className="rounded-3xl border-x-0 border-t-0 p-6 pt-4">
@@ -73,9 +72,10 @@ export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => {
         <div className="flex flex-col gap-1">
           <CustomInput
             placeholder="Client business name*"
-            value={businessName}
-            onInputHandler={(value) => setBusinessName(value)}
-            // onBlur={(event) => setBusinessName(event.target.value)}
+            // onInputHandler={(value) => form.setValue('additionalOptions.purchaseOrder', value)}
+            // value={businessName}
+            onInputHandler={(value) => console.log(value)}
+            onBlur={(event) => setBusinessName(event.target.value)}
           />
           <p className="ml-4 text-sm text-dark-gray">*Client legal name required</p>
         </div>

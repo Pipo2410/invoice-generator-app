@@ -5,32 +5,35 @@ import { useEffect, useState } from 'react';
 import { FieldErrors, useFormContext } from 'react-hook-form';
 
 import { AutoComplete } from '@/components/form/autocomplete';
-import { ClientCard } from '@/components/form/client/client-card';
-import { CreateClient } from '@/components/form/client/create-client';
-import { CurrencySelector } from '@/components/form/currency-selector';
+// import { ClientCard } from '@/components/form/client/client-card';
+// import { CreateClient } from '@/components/form/client/create-client';
+// import { CreateClientContextProvider } from '@/context/create-client-context';
+// import { ClientSchema, FormType } from '@/context/model';
+// import { Client } from '@/context/model';
+// import { sendCreateClientRequest } from '@/lib/server-utils';
+// import { CurrencySelector } from '@/components/form/currency-selector';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
-import { CreateClientContextProvider } from '@/context/create-client-context';
-import { ClientSchema, FormType } from '@/context/model';
-import { Client } from '@/context/model';
-import { useToast } from '@/hooks/use-toast';
-import { sendCreateClientRequest } from '@/lib/server-utils';
+import { FormType } from '@/context/model';
+
+// import { useToast } from '@/hooks/use-toast';
 
 export const ClientSelector = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<string>('');
-  const [showCreateUserForm, setShowCreateUserForm] = useState(false);
-  const { clients, setClients } = useCreateInvoiceFormContext();
+  // const [showCreateUserForm, setShowCreateUserForm] = useState(false);
+  // const { clients, setClients } = useCreateInvoiceFormContext();
+  const { clients } = useCreateInvoiceFormContext();
   const { setValue, formState } = useFormContext();
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   useEffect(() => {
     if (selectedValue === 'create-new') {
-      setShowCreateUserForm(true);
+      // setShowCreateUserForm(true);
       return;
     }
     // investigate this
     const selectedClient = clients.find(
-      (client) => client.businessName === selectedValue || String(client.nif) === selectedValue,
+      (client) => client.businessName === selectedValue || client.nif === selectedValue,
     );
     if (selectedClient) {
       setValue('client', selectedClient);
@@ -50,37 +53,38 @@ export const ClientSelector = () => {
       client.label.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
-  const cancelClientCreationHandler = () => {
-    setSelectedValue('');
-    setShowCreateUserForm(false);
-  };
+  // const cancelClientCreationHandler = () => {
+  //   setSelectedValue('');
+  //   setShowCreateUserForm(false);
+  // };
 
-  const submitClientCreationHandler = async (client: Client) => {
-    const isFormValid = ClientSchema.safeParse(client);
-    if (!isFormValid.success) {
-      console.log(isFormValid.error.issues);
-      const errorFields = isFormValid.error.issues.map((el) => el.path[0]);
-      toast({
-        title: 'Error',
-        description: `Please fill all required fields: ${errorFields}`,
-        variant: 'destructive',
-        duration: 3000,
-      });
-      return;
-    }
-    const clients: Client[] = await sendCreateClientRequest(client);
-    setValue('client', client);
-    setValue('currency.value', client.currency.value);
-    setShowCreateUserForm(false);
-    setSelectedValue('389643090');
-    setClients(clients);
-  };
+  // const submitClientCreationHandler = async (client: Client) => {
+  //   const isFormValid = ClientSchema.safeParse(client);
+  //   if (!isFormValid.success) {
+  //     console.log(isFormValid.error.issues);
+  //     // const errorFields = isFormValid.error.issues.map((el) => el.path[0]);
+  //     toast({
+  //       title: 'Error',
+  //       // description: `Please fill all required fields: ${errorFields}`,
+  //       variant: 'destructive',
+  //       duration: 3000,
+  //     });
+  //     return;
+  //   }
+  //   const clients: Client[] = await sendCreateClientRequest(client);
+  //   console.log(clients);
+  //   setValue('client', client);
+  //   setValue('currency.value', client.currency.value);
+  //   setShowCreateUserForm(false);
+  //   setSelectedValue('389643090');
+  //   setClients(clients);
+  // };
 
   return (
     <>
       {!selectedValue && (
         <>
-          <CurrencySelector />
+          {/* <CurrencySelector /> */}
           <div className="flex flex-col gap-1">
             <AutoComplete
               selectedValue={selectedValue}
@@ -103,13 +107,13 @@ export const ClientSelector = () => {
         </>
       )}
 
-      {showCreateUserForm && (
+      {/* {showCreateUserForm && (
         <CreateClientContextProvider>
           <CreateClient onCancel={cancelClientCreationHandler} onSubmit={submitClientCreationHandler} />
         </CreateClientContextProvider>
-      )}
+      )} */}
 
-      {selectedValue && !showCreateUserForm && <ClientCard setSelectedValue={setSelectedValue} />}
+      {/* {selectedValue && !showCreateUserForm && <ClientCard setSelectedValue={setSelectedValue} />} */}
     </>
   );
 };

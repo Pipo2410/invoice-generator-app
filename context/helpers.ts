@@ -152,7 +152,7 @@ export const createInitialState = (
 ): InitialCreateInvoiceState => {
   const initialState = {
     showPreview: true,
-    clients: clients,
+    clients,
     appConfig,
     items,
     invoiceId,

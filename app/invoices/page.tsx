@@ -73,7 +73,7 @@ export default async function Home() {
           <TabsContent value={tabs[1]}>
             <pre className="mt-2 w-[840px] rounded-md bg-white p-4">
               <code className="text-black">
-                {JSON.stringify({ invoice1: invoices[invoices.length - 1], length: invoices.length }, null, 2)}
+                {JSON.stringify({ invoice: invoices[invoices.length - 1], length: invoices.length }, null, 2)}
               </code>
             </pre>
           </TabsContent>

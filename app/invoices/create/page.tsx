@@ -11,6 +11,12 @@ export default async function CreateInvoicePage() {
     [fetchData('appConfig'), fetchData('clients'), fetchData('items'), fetchData('invoices')],
   );
 
+  if (!appConfig || !clientData || !itemsData || !invoicesData) {
+    return <p>Some error mate</p>;
+  }
+
+  console.log(clientData);
+
   const invoiceId = invoicesData.length + 1;
 
   const initialState = createInitialState(appConfig, clientData, itemsData, invoiceId);

@@ -27,7 +27,7 @@ export const CreateInvoiceFormContextProvider: React.FC<CreateInvoiceFormContext
   return (
     <CreateInvoiceFormContext.Provider
       value={{
-        clients: clients,
+        clients,
         setClients: setClients,
         appConfig: initialState.appConfig,
         items: initialState.items,

@@ -1,9 +1,10 @@
-import { headers } from 'next/headers';
+// import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+
+// import type { NextRequest } from 'next/server';
 
 // This function can be marked `async` if using `await` inside
-export async function middleware(request: NextRequest) {
+export async function middleware() {
   // const pathname = request.nextUrl.pathname;
   // const invoicePathRegex = /^\/api\/invoices\/(\d+)$/;
 
