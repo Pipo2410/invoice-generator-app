@@ -7,12 +7,13 @@ import { Checkbox } from '../ui/checkbox';
 type CustomCheckboxProps = {
   text: string;
   id: string;
+  checked?: boolean;
   onClick?: (value: boolean) => void;
   children?: React.ReactNode;
 };
 
-export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ text, id, onClick, children }) => {
-  const [isChecked, setIsChecked] = useState(false);
+export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ text, id, checked, onClick, children }) => {
+  const [isChecked, setIsChecked] = useState(checked ?? false);
 
   const handleCheck = () => {
     if (onClick) onClick(!isChecked);

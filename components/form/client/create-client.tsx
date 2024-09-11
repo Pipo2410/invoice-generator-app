@@ -1,4 +1,5 @@
 import React from 'react';
+import { useWatch } from 'react-hook-form';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
@@ -14,12 +15,14 @@ import { CurrencySelector } from './new/currency-selector';
 import { SearchNifSelector } from './search-nif-selector';
 
 type Props = {
+  isNewClient: boolean;
   onSubmit: (value: Client) => void;
   onCancel: () => void;
 };
 
-export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => {
+export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel }) => {
   const { clients } = useCreateInvoiceFormContext();
+  const preSelectedClient = useWatch({ name: 'client' });
 
   const {
     businessName,
@@ -41,43 +44,51 @@ export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => {
     setFloorNumber,
   } = useCreateClientContext();
 
-  const newClientObject: Client = {
-    id: (clients.length + 1).toString(), // TODO: check this again
-    businessName,
-    address: {
-      city,
-      street: streetAddress,
-      postalCode,
-      additional: floorNumber,
-    },
-    country,
-    currency: {
-      value: currencyValue,
-      isDefault: currencyDefault,
-    },
-    email,
-    nif,
-  };
+  const client: Client = isNewClient
+    ? {
+        id: (clients.length + 1).toString(),
+        businessName,
+        address: {
+          city,
+          street: streetAddress,
+          postalCode,
+          additional: floorNumber,
+        },
+        country,
+        currency: {
+          value: currencyValue,
+          isDefault: currencyDefault,
+        },
+        email,
+        nif,
+      }
+    : preSelectedClient;
+
   const onClickCheckboxHandler = (value: boolean) => setCurrencyDefault(value);
   return (
     <Card className="rounded-3xl border-x-0 border-t-0 p-6 pt-4">
       <CardHeader className="flex-col justify-between gap-6 space-y-0 p-0">
         <h3 className="font-semibold">Create new client</h3>
         <div className="flex items-center justify-between gap-2">
-          <CurrencySelector />
+          <CurrencySelector value={client.currency.value} />
           <div className="flex w-1/2 items-center space-x-2 px-4">
-            <CustomCheckbox text="Default currency for this client" id="currency" onClick={onClickCheckboxHandler} />
+            <CustomCheckbox
+              text="Default currency for this client"
+              id="currency"
+              checked={client.currency.isDefault}
+              onClick={onClickCheckboxHandler}
+            />
           </div>
         </div>
         <CountrySelector />
       </CardHeader>
       <CardContent className="flex flex-col gap-4 px-0 py-6">
-        <SearchNifSelector />
+        <SearchNifSelector value={client.nif} />
         <div className="flex flex-col gap-1">
           <CustomInput
             placeholder="Client business name*"
             // onInputHandler={(value) => form.setValue('additionalOptions.purchaseOrder', value)}
-            // value={businessName}
+            value={client.businessName}
             onInputHandler={(value) => console.log(value)}
             onBlur={(event) => setBusinessName(event.target.value)}
           />
@@ -86,6 +97,7 @@ export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => {
         <div className="flex flex-col gap-1">
           <CustomInput
             placeholder="Client email"
+            value={client.email}
             onInputHandler={(value) => console.log(value)}
             onBlur={(event) => setEmail(event.target.value)}
           />
@@ -143,9 +155,9 @@ export const CreateClient: React.FC<Props> = ({ onSubmit, onCancel }) => {
           variant="ghost"
           type="button"
           className="rounded-full border-[1.5px] bg-foreground px-20 py-3.5 text-white disabled:bg-[#7E8081] disabled:text-white"
-          onClick={() => onSubmit(newClientObject)}
+          onClick={() => onSubmit(client)}
         >
-          Create client
+          {isNewClient ? 'Create client' : 'Save Changes'}
         </Button>
       </CardFooter>
     </Card>

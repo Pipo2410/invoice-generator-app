@@ -1,24 +1,19 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { useFormContext, useWatch } from 'react-hook-form';
+import React from 'react';
+import { useWatch } from 'react-hook-form';
 
 import { IconComponent } from '@/components/navigation/icon-component';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { DEFAULT_CLIENT } from '@/context/helpers';
 import { Client } from '@/context/model';
 
 type Props = {
-  setSelectedValue: Dispatch<SetStateAction<string>>;
+  onClose: () => void;
+  onEdit: () => void;
 };
 
-export const ClientCard: React.FC<Props> = ({ setSelectedValue }) => {
-  const { setValue } = useFormContext();
+export const ClientCard: React.FC<Props> = ({ onClose, onEdit }) => {
   const client: Client = useWatch({ name: 'client' });
 
-  const onClose = () => {
-    setSelectedValue('');
-    setValue('client', DEFAULT_CLIENT);
-  };
   return (
     <Card className="rounded-3xl border-x-0 border-t-0">
       <CardHeader className="flex-row justify-between">
@@ -30,8 +25,16 @@ export const ClientCard: React.FC<Props> = ({ setSelectedValue }) => {
           <h3 className="font-semibold">{client.businessName}</h3>
         </div>
         <div className="flex items-center gap-4">
-          <IconComponent icon="edit" className="fill-dark-blue" />
-          <IconComponent icon="close" className="fill-dark-blue hover:cursor-pointer" onClick={onClose} />
+          <IconComponent
+            icon="edit"
+            className="fill-dark-blue hover:cursor-pointer hover:opacity-70"
+            onClick={onEdit}
+          />
+          <IconComponent
+            icon="close"
+            className="fill-dark-blue hover:cursor-pointer hover:opacity-70"
+            onClick={onClose}
+          />
         </div>
       </CardHeader>
       <CardContent className="flex flex-col gap-2">

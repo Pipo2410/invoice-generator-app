@@ -8,8 +8,8 @@ import { FormType } from '@/context/model';
 
 import { AutoComplete } from '../autocomplete';
 
-export const SearchNifSelector = () => {
-  const [searchValue, setSearchValue] = useState<string>('');
+export const SearchNifSelector = ({ value }: { value?: string }) => {
+  const [searchValue, setSearchValue] = useState<string>(value || '');
   const { formState } = useFormContext();
   const { setNif, nif } = useCreateClientContext();
 
