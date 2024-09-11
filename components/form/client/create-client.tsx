@@ -109,11 +109,13 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
             <AccordionContent className="my-4 flex flex-col gap-4 py-0">
               <CustomInput
                 placeholder="Street address"
+                value={client.address?.street}
                 onInputHandler={(value) => setStreetAddress(value)}
                 // onBlur={(event) => setStreetAddress(event.target.value)}
               />
               <CustomInput
                 placeholder="City"
+                value={client.address?.city}
                 onInputHandler={(value) => setCity(value)}
                 // onBlur={(event) => setCity(event.target.value)}
               />
@@ -121,13 +123,14 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
                 <CustomInput
                   placeholder="Postal code"
                   // onInputHandler={(value) => console.log('value', value)}
-
+                  value={client.address?.postalCode}
                   onInputHandler={(value) => setPostalCode(value)}
                   // onBlur={(event) => setPostalCode(event.target.value)}
                   wrapperClasses="w-1/2"
                 />
                 <CustomInput
                   placeholder="Floor, door number"
+                  value={client.address?.additional}
                   onInputHandler={(value) => setFloorNumber(value)}
                   // onBlur={(event) => setFloorNumber(event.target.value)}
                   wrapperClasses="w-1/2"
