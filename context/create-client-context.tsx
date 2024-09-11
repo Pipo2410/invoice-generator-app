@@ -3,7 +3,11 @@
 import React from 'react';
 import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 
+import { Client } from './model';
+
 type CreateClientContextValues = {
+  id: string;
+  setId: Dispatch<SetStateAction<string>>;
   businessName: string;
   setBusinessName: Dispatch<SetStateAction<string>>;
   country: string;
@@ -27,27 +31,31 @@ type CreateClientContextValues = {
 };
 
 type CreateContextProviderProps = {
+  currentClient: Client;
   children?: React.ReactNode;
 };
 
 export const CreateClientContext = createContext<CreateClientContextValues | null>(null);
 CreateClientContext.displayName = 'CreateClientContext';
 
-export const CreateClientContextProvider: React.FC<CreateContextProviderProps> = ({ children }) => {
-  const [businessName, setBusinessName] = useState('');
-  const [country, setCountry] = useState('');
-  const [currencyValue, setCurrencyValue] = useState('EUR');
-  const [currencyDefault, setCurrencyDefault] = useState(false);
-  const [nif, setNif] = useState('');
-  const [email, setEmail] = useState('');
-  const [streetAddress, setStreetAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [postalCode, setPostalCode] = useState('');
-  const [floorNumber, setFloorNumber] = useState('');
+export const CreateClientContextProvider: React.FC<CreateContextProviderProps> = ({ currentClient, children }) => {
+  const [id, setId] = useState(currentClient.id);
+  const [businessName, setBusinessName] = useState(currentClient.businessName);
+  const [country, setCountry] = useState(currentClient.country);
+  const [currencyValue, setCurrencyValue] = useState(currentClient.currency.value);
+  const [currencyDefault, setCurrencyDefault] = useState(currentClient.currency.isDefault);
+  const [nif, setNif] = useState(currentClient.nif);
+  const [email, setEmail] = useState(currentClient.email);
+  const [streetAddress, setStreetAddress] = useState(currentClient.address?.street || '');
+  const [city, setCity] = useState(currentClient.address?.city || '');
+  const [postalCode, setPostalCode] = useState(currentClient.address?.postalCode || '');
+  const [floorNumber, setFloorNumber] = useState(currentClient.address?.additional || '');
 
   return (
     <CreateClientContext.Provider
       value={{
+        id,
+        setId,
         businessName,
         setBusinessName,
         country,

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { FieldErrors, useFormContext } from 'react-hook-form';
+import { FieldErrors, useFormContext, useWatch } from 'react-hook-form';
 
 import { AutoComplete } from '@/components/form/autocomplete';
 import { ClientCard } from '@/components/form/client/client-card';
@@ -14,7 +14,7 @@ import { DEFAULT_CLIENT } from '@/context/helpers';
 import { ClientSchema, FormType } from '@/context/model';
 import { Client } from '@/context/model';
 import { useToast } from '@/hooks/use-toast';
-import { sendCreateClientRequest } from '@/lib/server-utils';
+import { sendCreateClientRequest, updateClientRequest } from '@/lib/server-utils';
 
 export const ClientSelector = () => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -24,6 +24,7 @@ export const ClientSelector = () => {
   const { clients, setClients } = useCreateInvoiceFormContext();
   const { setValue, formState } = useFormContext();
   const { toast } = useToast();
+  const currentClient: Client = useWatch({ name: 'client' });
 
   useEffect(() => {
     if (isNewClient) {
@@ -63,7 +64,7 @@ export const ClientSelector = () => {
     setShowCreateUserForm(false);
   };
 
-  const submitClientCreationHandler = async (client: Client) => {
+  const submitClientCreationHandler = async (client: Client, action: 'create' | 'update') => {
     const isFormValid = ClientSchema.safeParse(client);
     if (!isFormValid.success) {
       const errorFields = isFormValid.error.issues.map((el) => el.path[0]);
@@ -75,13 +76,25 @@ export const ClientSelector = () => {
       });
       return;
     }
-    const updatedClients: Client[] = await sendCreateClientRequest(client);
-    setValue('client', client);
-    setValue('currency.value', client.currency.value);
-    setShowCreateUserForm(false);
-    setIsNewClient(false);
-    setClients(updatedClients);
-    setSelectedValue(client.id); // Show the newly created client card
+
+    let updatedClients: Client[];
+    console.log('action');
+    try {
+      // handle this
+      if (action === 'create') {
+        updatedClients = await sendCreateClientRequest(client);
+      } else {
+        updatedClients = await updateClientRequest(client);
+      }
+      setValue('client', client);
+      setValue('currency.value', client.currency.value);
+      setShowCreateUserForm(false);
+      setIsNewClient(false);
+      setClients(updatedClients);
+      setSelectedValue(client.id); // Show the newly created client card
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const editClientCardHandler = () => {
@@ -131,7 +144,7 @@ export const ClientSelector = () => {
       )}
 
       {showCreateUserForm && (
-        <CreateClientContextProvider>
+        <CreateClientContextProvider currentClient={currentClient}>
           <CreateClient
             onCancel={cancelClientCreationHandler}
             onSubmit={submitClientCreationHandler}

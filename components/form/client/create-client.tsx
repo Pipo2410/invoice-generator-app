@@ -1,10 +1,8 @@
 import React from 'react';
-import { useWatch } from 'react-hook-form';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { useCreateClientContext } from '@/context/create-client-context';
 import { Client } from '@/context/model';
 
@@ -16,15 +14,13 @@ import { SearchNifSelector } from './search-nif-selector';
 
 type Props = {
   isNewClient: boolean;
-  onSubmit: (value: Client) => void;
+  onSubmit: (value: Client, action: 'create' | 'update') => void;
   onCancel: () => void;
 };
 
 export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel }) => {
-  const { clients } = useCreateInvoiceFormContext();
-  const preSelectedClient = useWatch({ name: 'client' });
-
   const {
+    id,
     businessName,
     city,
     country,
@@ -44,25 +40,24 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
     setFloorNumber,
   } = useCreateClientContext();
 
-  const client: Client = isNewClient
-    ? {
-        id: (clients.length + 1).toString(),
-        businessName,
-        address: {
-          city,
-          street: streetAddress,
-          postalCode,
-          additional: floorNumber,
-        },
-        country,
-        currency: {
-          value: currencyValue,
-          isDefault: currencyDefault,
-        },
-        email,
-        nif,
-      }
-    : preSelectedClient;
+  const client: Client = {
+    id,
+    businessName,
+    address: {
+      city,
+      street: streetAddress,
+      postalCode,
+      additional: floorNumber,
+    },
+    country,
+    currency: {
+      value: currencyValue,
+      isDefault: currencyDefault,
+    },
+    email,
+    nif,
+  };
+  console.log('create-client: client', JSON.stringify(client, null, 2));
 
   const onClickCheckboxHandler = (value: boolean) => setCurrencyDefault(value);
   return (
@@ -155,7 +150,7 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
           variant="ghost"
           type="button"
           className="rounded-full border-[1.5px] bg-foreground px-20 py-3.5 text-white disabled:bg-[#7E8081] disabled:text-white"
-          onClick={() => onSubmit(client)}
+          onClick={() => (isNewClient ? onSubmit(client, 'create') : onSubmit(client, 'update'))}
         >
           {isNewClient ? 'Create client' : 'Save Changes'}
         </Button>

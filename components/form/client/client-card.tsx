@@ -13,6 +13,7 @@ type Props = {
 
 export const ClientCard: React.FC<Props> = ({ onClose, onEdit }) => {
   const client: Client = useWatch({ name: 'client' });
+  const { address } = client;
 
   return (
     <Card className="rounded-3xl border-x-0 border-t-0">
@@ -40,7 +41,9 @@ export const ClientCard: React.FC<Props> = ({ onClose, onEdit }) => {
       <CardContent className="flex flex-col gap-2">
         <p>NIF {client.nif}</p>
         <p>{client.country}</p>
-        <p>Rua Dom Francisco No. 15 3010-010 - Lisbon</p>
+        <p>
+          {address?.street} {address?.additional} {address?.postalCode} - {address?.city}
+        </p>
         <p className="font-semibold">{client.email}</p>
       </CardContent>
     </Card>
