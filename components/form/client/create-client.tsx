@@ -3,8 +3,11 @@ import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { useCreateClientContext } from '@/context/create-client-context';
-import { Client } from '@/context/model';
+import { mapErrorsToFields } from '@/context/helpers';
+import { Client, ClientSchema } from '@/context/model';
+import { toast } from '@/hooks/use-toast';
 
 import { CustomCheckbox } from '../custom-checkbox';
 import { CustomInput } from '../custom-input';
@@ -19,6 +22,7 @@ type Props = {
 };
 
 export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel }) => {
+  const { clients } = useCreateInvoiceFormContext();
   const {
     id,
     businessName,
@@ -31,6 +35,7 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
     streetAddress,
     postalCode,
     floorNumber,
+    errors,
     setBusinessName,
     setCity,
     setCurrencyDefault,
@@ -38,10 +43,13 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
     setStreetAddress,
     setPostalCode,
     setFloorNumber,
+    setErrors,
   } = useCreateClientContext();
 
+  const newClientId = clients.length + 1;
+
   const client: Client = {
-    id,
+    id: id || newClientId.toString(),
     businessName,
     address: {
       city,
@@ -57,7 +65,24 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
     email,
     nif,
   };
-  console.log('create-client: client', JSON.stringify(client, null, 2));
+
+  const onSubmitHandler = () => {
+    const validationResult = ClientSchema.safeParse(client);
+
+    if (!validationResult.success) {
+      const formattedErrors = mapErrorsToFields(validationResult.error.issues);
+      setErrors(formattedErrors);
+      toast({
+        title: 'Error',
+        description: `Please fill all required fields`,
+        variant: 'destructive',
+        duration: 3000,
+      });
+      return;
+    }
+
+    return isNewClient ? onSubmit(client, 'create') : onSubmit(client, 'update');
+  };
 
   const onClickCheckboxHandler = (value: boolean) => setCurrencyDefault(value);
   return (
@@ -65,7 +90,7 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
       <CardHeader className="flex-col justify-between gap-6 space-y-0 p-0">
         <h3 className="font-semibold">Create new client</h3>
         <div className="flex items-center justify-between gap-2">
-          <CurrencySelector value={client.currency.value} />
+          <CurrencySelector value={client.currency.value} error={!!errors['currency']} />
           <div className="flex w-1/2 items-center space-x-2 px-4">
             <CustomCheckbox
               text="Default currency for this client"
@@ -75,26 +100,29 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
             />
           </div>
         </div>
-        <CountrySelector />
+        <CountrySelector error={!!errors['country']} defaultValue={client.country} />
       </CardHeader>
       <CardContent className="flex flex-col gap-4 px-0 py-6">
-        <SearchNifSelector value={client.nif} />
+        <SearchNifSelector value={client.nif} error={!!errors['nif']} />
         <div className="flex flex-col gap-1">
           <CustomInput
+            id="business-name"
+            type="text"
             placeholder="Client business name*"
-            // onInputHandler={(value) => form.setValue('additionalOptions.purchaseOrder', value)}
+            error={!!errors['businessName']}
             value={client.businessName}
-            onInputHandler={(value) => console.log(value)}
-            onBlur={(event) => setBusinessName(event.target.value)}
+            onInputHandler={(value) => setBusinessName(value)}
           />
           <p className="ml-4 text-sm text-dark-gray">*Client legal name required</p>
         </div>
         <div className="flex flex-col gap-1">
           <CustomInput
+            id="client-email"
+            type="text"
             placeholder="Client email"
             value={client.email}
-            onInputHandler={(value) => console.log(value)}
-            onBlur={(event) => setEmail(event.target.value)}
+            error={!!errors['email']}
+            onInputHandler={(value) => setEmail(value)}
           />
           <p className="ml-4 text-sm text-dark-gray">Use coma (,) to add more than one email.</p>
         </div>
@@ -108,31 +136,34 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
             </AccordionTrigger>
             <AccordionContent className="my-4 flex flex-col gap-4 py-0">
               <CustomInput
+                id="street-address"
+                type="text"
                 placeholder="Street address"
-                value={client.address?.street}
+                value={client.address?.street ?? ''}
                 onInputHandler={(value) => setStreetAddress(value)}
-                // onBlur={(event) => setStreetAddress(event.target.value)}
               />
               <CustomInput
+                id="address-city"
+                type="text"
                 placeholder="City"
-                value={client.address?.city}
+                value={client.address?.city ?? ''}
                 onInputHandler={(value) => setCity(value)}
-                // onBlur={(event) => setCity(event.target.value)}
               />
               <div className="flex gap-4">
                 <CustomInput
+                  id="postal-code"
+                  type="text"
                   placeholder="Postal code"
-                  // onInputHandler={(value) => console.log('value', value)}
-                  value={client.address?.postalCode}
+                  value={client.address?.postalCode ?? ''}
                   onInputHandler={(value) => setPostalCode(value)}
-                  // onBlur={(event) => setPostalCode(event.target.value)}
                   wrapperClasses="w-1/2"
                 />
                 <CustomInput
+                  id="additional-address"
+                  type="text"
                   placeholder="Floor, door number"
-                  value={client.address?.additional}
+                  value={client.address?.additional ?? ''}
                   onInputHandler={(value) => setFloorNumber(value)}
-                  // onBlur={(event) => setFloorNumber(event.target.value)}
                   wrapperClasses="w-1/2"
                 />
               </div>
@@ -140,11 +171,11 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
           </AccordionItem>
         </Accordion>
       </CardContent>
-      <CardFooter className="justify-around p-0">
+      <CardFooter className="justify-around gap-4 px-3">
         <Button
           variant="ghost"
           type="button"
-          className="rounded-full border-[1.5px] bg-white px-20 py-3.5 text-[#7E8081]"
+          className="min-h-12 w-full rounded-full border-[1.5px] bg-white py-3.5 font-semibold text-[#7E8081]"
           onClick={onCancel}
         >
           Cancel
@@ -152,8 +183,8 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
         <Button
           variant="ghost"
           type="button"
-          className="rounded-full border-[1.5px] bg-foreground px-20 py-3.5 text-white disabled:bg-[#7E8081] disabled:text-white"
-          onClick={() => (isNewClient ? onSubmit(client, 'create') : onSubmit(client, 'update'))}
+          className="min-h-12 w-full rounded-full border-[1.5px] bg-foreground py-3.5 font-semibold text-white disabled:bg-[#7E8081] disabled:text-white"
+          onClick={onSubmitHandler}
         >
           {isNewClient ? 'Create client' : 'Save Changes'}
         </Button>

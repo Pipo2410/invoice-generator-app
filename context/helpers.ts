@@ -1,3 +1,5 @@
+import { ZodIssue } from 'zod';
+
 import { currencies } from '@/assets/currencies';
 
 import { AppConfig, Client, InitialCreateInvoiceState, Item } from './model';
@@ -10,7 +12,7 @@ export const formDefaultValues = {
     country: 'Portugal',
     currency: {
       value: 'EUR',
-      isDefault: true,
+      isDefault: false,
     },
   },
   date: {
@@ -20,6 +22,10 @@ export const formDefaultValues = {
   currency: {
     value: currencies[0].value,
     isDefault: false,
+  },
+  additionalOptions: {
+    purchaseOrder: '',
+    referenceNote: '',
   },
 };
 
@@ -46,3 +52,13 @@ export const createInitialState = (
   };
   return structuredClone(initialState);
 };
+
+export const mapErrorsToFields = (errors: Array<ZodIssue>) =>
+  errors.reduce(
+    (acc, error) => {
+      const fieldName = error.path[0];
+      acc[fieldName] = error.message; // Store the error message for each field
+      return acc;
+    },
+    {} as Record<string, string | null>,
+  );

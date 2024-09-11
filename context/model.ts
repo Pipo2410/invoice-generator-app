@@ -31,7 +31,7 @@ export const ClientSchema = z.object({
   businessName: z.string().min(1),
   email: z.string().email(),
   nif: z.string().min(9),
-  country: z.string().min(1),
+  country: z.string().min(2),
   currency: CurrencySchema,
   address: z
     .object({
@@ -50,8 +50,8 @@ export const formSchema = z.object({
   vatExemption: VatExemptionSchema,
   items: z.array(ItemSchema).min(1),
   additionalOptions: z.object({
-    purchaseOrder: z.string(),
-    referenceNote: z.string(),
+    purchaseOrder: z.string().min(1),
+    referenceNote: z.string().min(1),
   }),
   currency: CurrencySchema,
 });

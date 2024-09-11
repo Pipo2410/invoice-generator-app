@@ -1,11 +1,11 @@
 'use client';
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
 import { FieldErrors, useFormContext, useWatch } from 'react-hook-form';
 
 import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { DEFAULT_CLIENT } from '@/context/helpers';
-import { ClientSchema, FormType } from '@/context/model';
+import { FormType } from '@/context/model';
 import { Client } from '@/context/model';
 import { useToast } from '@/hooks/use-toast';
 import { sendCreateClientRequest, updateClientRequest } from '@/lib/server-utils';
@@ -27,27 +27,28 @@ type UseClientSelector = {
 };
 
 export const useClientSelector = (): UseClientSelector => {
-  const [searchValue, setSearchValue] = useState<string>('');
-  const [selectedValue, setSelectedValue] = useState<string>('');
+  const [searchValue, setSearchValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState('');
   const [showCreateUserForm, setShowCreateUserForm] = useState(false);
   const [isNewClient, setIsNewClient] = useState(false);
   const { clients, setClients } = useCreateInvoiceFormContext();
   const { setValue, formState } = useFormContext();
-  const { toast } = useToast();
   const currentClient: Client = useWatch({ name: 'client' });
 
-  useEffect(() => {
+  const handleClientSelection = useCallback(() => {
     if (isNewClient) {
       setShowCreateUserForm(true);
-      return;
-    }
-
-    const selectedClient = clients.find((client) => client.id === selectedValue);
-
-    if (selectedClient) {
-      setValue('client', selectedClient);
+    } else {
+      const selectedClient = clients.find((client) => client.id === selectedValue);
+      if (selectedClient) {
+        setValue('client', selectedClient);
+      }
     }
   }, [selectedValue, isNewClient, clients, setValue]);
+
+  useEffect(() => {
+    handleClientSelection();
+  }, [handleClientSelection]);
 
   const errors: FieldErrors<FormType> = formState.errors;
 
@@ -66,36 +67,11 @@ export const useClientSelector = (): UseClientSelector => {
     return acc;
   }, []);
 
-  const cancelClientCreationHandler = () => {
-    if (isNewClient) {
-      setSelectedValue('');
-    }
-    setIsNewClient(false);
-    setShowCreateUserForm(false);
-  };
-
   const submitClientCreationHandler = async (client: Client, action: 'create' | 'update') => {
-    const isFormValid = ClientSchema.safeParse(client);
-    if (!isFormValid.success) {
-      const errorFields = isFormValid.error.issues.map((el) => el.path[0]);
-      toast({
-        title: 'Error',
-        description: `Please fill all required fields: ${errorFields}`,
-        variant: 'destructive',
-        duration: 3000,
-      });
-      return;
-    }
-
-    let updatedClients: Client[];
-    console.log('action');
     try {
       // handle this
-      if (action === 'create') {
-        updatedClients = await sendCreateClientRequest(client);
-      } else {
-        updatedClients = await updateClientRequest(client);
-      }
+      const updatedClients =
+        action === 'create' ? await sendCreateClientRequest(client) : await updateClientRequest(client);
       setValue('client', client);
       setValue('currency.value', client.currency.value);
       setShowCreateUserForm(false);
@@ -105,6 +81,12 @@ export const useClientSelector = (): UseClientSelector => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const cancelClientCreationHandler = () => {
+    if (isNewClient) setSelectedValue('');
+    setIsNewClient(false);
+    setShowCreateUserForm(false);
   };
 
   const editClientCardHandler = () => {
@@ -120,12 +102,8 @@ export const useClientSelector = (): UseClientSelector => {
   };
 
   const onSelect = (value: string) => {
-    if (value === 'create-new') {
-      setIsNewClient(true);
-    } else {
-      setSelectedValue(value);
-      setIsNewClient(false);
-    }
+    setIsNewClient(value === 'create-new');
+    setSelectedValue(value);
   };
 
   return {

@@ -1,17 +1,16 @@
 import { CheckCircle } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
-import { FieldErrors, useFormContext } from 'react-hook-form';
 
 import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { useCreateClientContext } from '@/context/create-client-context';
-import { FormType } from '@/context/model';
 
 import { AutoComplete } from '../autocomplete';
 
-export const SearchNifSelector = ({ value }: { value?: string }) => {
-  const [searchValue, setSearchValue] = useState<string>(value || '');
-  const { formState } = useFormContext();
-  const { setNif, nif } = useCreateClientContext();
+type Props = { value?: string; error?: boolean };
+
+export const SearchNifSelector: React.FC<Props> = ({ value, error }) => {
+  const [searchValue, setSearchValue] = useState(value || '');
+  const { setNif, nif, setBusinessName } = useCreateClientContext();
 
   const {
     appConfig: { companies },
@@ -40,18 +39,23 @@ export const SearchNifSelector = ({ value }: { value?: string }) => {
     const company = companies.find((el) => el.id === value);
     if (company) {
       setNif(company.nif);
-      // setSearchValue(company.nif);
+      setBusinessName(company.name);
+    } else {
+      setNif('');
     }
   };
 
-  const errors: FieldErrors<FormType> = formState.errors;
+  const onSearchValueChange = (value: string) => {
+    setSearchValue(value);
+  };
+
   return (
     <div className="flex flex-col gap-1">
       <AutoComplete
         selectedValue={nif}
-        onSelectedValueChange={(value) => onSelect(value)}
+        onSelectedValueChange={onSelect}
         searchValue={searchValue}
-        onSearchValueChange={setSearchValue}
+        onSearchValueChange={onSearchValueChange}
         items={filteredItems ?? []}
         // Optional props
         emptyMessage="No items found."
@@ -59,7 +63,7 @@ export const SearchNifSelector = ({ value }: { value?: string }) => {
         searchWrapperClasses="bg-secondary"
         inputClassNames="h-fit text-base leading-4 border-none py-4 px-0 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent"
         iconClassName="mr-3 h-6 w-6"
-        error={!!errors.items}
+        error={error}
         chooseValueBy="label"
       />
       {nif ? (

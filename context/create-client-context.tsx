@@ -28,6 +28,8 @@ type CreateClientContextValues = {
   setPostalCode: Dispatch<SetStateAction<string>>;
   floorNumber: string;
   setFloorNumber: Dispatch<SetStateAction<string>>;
+  errors: Record<string, string | null>;
+  setErrors: Dispatch<SetStateAction<Record<string, string | null>>>;
 };
 
 type CreateContextProviderProps = {
@@ -50,6 +52,8 @@ export const CreateClientContextProvider: React.FC<CreateContextProviderProps> =
   const [city, setCity] = useState(currentClient.address?.city || '');
   const [postalCode, setPostalCode] = useState(currentClient.address?.postalCode || '');
   const [floorNumber, setFloorNumber] = useState(currentClient.address?.additional || '');
+
+  const [errors, setErrors] = useState<Record<string, string | null>>({});
 
   return (
     <CreateClientContext.Provider
@@ -76,6 +80,8 @@ export const CreateClientContextProvider: React.FC<CreateContextProviderProps> =
         setPostalCode,
         floorNumber,
         setFloorNumber,
+        errors,
+        setErrors,
       }}
     >
       {children}

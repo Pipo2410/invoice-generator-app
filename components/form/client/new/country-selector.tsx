@@ -10,19 +10,29 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { useCreateClientContext } from '@/context/create-client-context';
+import { cn } from '@/lib/utils';
 
-export const CountrySelector = () => {
+export const CountrySelector = ({ error, defaultValue }: { error: boolean; defaultValue: string }) => {
+  const {
+    formState: { defaultValues },
+  } = useFormContext();
   const {
     appConfig: { countries },
   } = useCreateInvoiceFormContext();
   const { setCountry } = useCreateClientContext();
-
-  const {
-    formState: { defaultValues },
-  } = useFormContext();
-
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(defaultValues?.client?.country);
+  const [value, setValue] = useState(defaultValue || defaultValues?.client?.country);
+
+  const onSelect = (selectedValue: string) => {
+    setOpen(false);
+    if (selectedValue === value) {
+      setValue('');
+      setCountry('');
+      return;
+    }
+    setValue(selectedValue);
+    setCountry(selectedValue);
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -33,17 +43,14 @@ export const CountrySelector = () => {
           role="combobox"
           type="button"
           aria-expanded={open}
-          className="group h-fit min-h-16 w-full justify-between gap-1 rounded-2xl border border-secondary bg-secondary p-4 py-3 text-base font-normal transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border data-[state=open]:border-[#E2E2E2] data-[state=open]:bg-light-blue"
+          className={cn(
+            'group h-fit min-h-16 w-full justify-between gap-1 rounded-2xl border border-secondary bg-secondary p-4 py-3 text-base font-normal transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border data-[state=open]:border-[#E2E2E2] data-[state=open]:bg-light-blue',
+            error && 'border-dark-orange',
+          )}
         >
           <div className="flex flex-col text-start">
-            {value ? (
-              <>
-                <span className="text-xs text-dark-gray">Country*</span>
-                <span className="leading-[22px]">{value}</span>
-              </>
-            ) : (
-              <span>Select</span>
-            )}
+            <span className={cn('text-dark-gray', value && 'text-xs')}>Country*</span>
+            {value && <span className="leading-[22px]">{value}</span>}
           </div>
           <ChevronDown className="relative top-[1px] ml-1 h-5 w-5 transition duration-200 group-data-[state=open]:rotate-180" />
         </Button>
@@ -64,11 +71,7 @@ export const CountrySelector = () => {
                   className="gap-3 py-4 pl-4 data-[selected=true]:bg-light-blue"
                   key={cur.value}
                   value={cur.label}
-                  onSelect={(clickedValue) => {
-                    setValue(clickedValue);
-                    setCountry(clickedValue);
-                    setOpen(false);
-                  }}
+                  onSelect={onSelect}
                 >
                   <IconComponent icon={cur.icon} className="h-8 w-8 fill-dark-gray" />
                   <div className="flex flex-col">

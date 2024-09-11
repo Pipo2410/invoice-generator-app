@@ -9,8 +9,11 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { useCreateClientContext } from '@/context/create-client-context';
+import { cn } from '@/lib/utils';
 
-export const CurrencySelector = ({ value }: { value: string }) => {
+type Props = { value: string; error: boolean };
+
+export const CurrencySelector: React.FC<Props> = ({ value, error }) => {
   const {
     appConfig: { currencies },
   } = useCreateInvoiceFormContext();
@@ -28,16 +31,19 @@ export const CurrencySelector = ({ value }: { value: string }) => {
           role="combobox"
           type="button"
           aria-expanded={open}
-          className="group h-fit min-h-16 w-1/2 justify-between gap-1 rounded-2xl border border-secondary bg-secondary p-4 py-3 text-base font-normal transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border data-[state=open]:border-[#E2E2E2] data-[state=open]:bg-light-blue"
+          className={cn(
+            'group h-fit min-h-16 w-1/2 justify-between gap-1 rounded-2xl border border-secondary bg-secondary p-4 py-3 text-base font-normal transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border data-[state=open]:border-[#E2E2E2] data-[state=open]:bg-light-blue',
+            error && 'border-dark-orange',
+          )}
         >
           <div className="flex flex-col text-start">
             {value || currency ? (
               <>
                 <span className="text-xs text-dark-gray">Currency*</span>
-                <span className="leading-[22px]">{value ?? currency}</span>
+                <span className="leading-[22px] text-foreground">{value ?? currency}</span>
               </>
             ) : (
-              <span>Select</span>
+              <span className="text-dark-gray">Select</span>
             )}
           </div>
           <ChevronDown className="relative top-[1px] ml-1 h-5 w-5 transition duration-200 group-data-[state=open]:rotate-180" />

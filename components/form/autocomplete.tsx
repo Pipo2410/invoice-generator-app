@@ -30,7 +30,7 @@ type Props<T extends string> = {
   inputClassNames?: string;
   searchWrapperClasses?: string;
   iconClassName?: string;
-  error: boolean;
+  error?: boolean;
   addOption?: boolean;
   chooseValueBy?: 'value' | 'label';
   resetOnSelection?: boolean;
