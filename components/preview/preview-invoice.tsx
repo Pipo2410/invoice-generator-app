@@ -2,11 +2,10 @@ import React from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { currencies } from '@/assets/currencies';
+import { InvoiceSummary } from '@/components/form/invoice-summary';
 import { Card } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import { Client, Item } from '@/context/model';
-
-import { InvoiceSummary } from '../form/invoice-summary';
-import { Separator } from '../ui/separator';
 
 export const PreviewInvoice = () => {
   const { getValues } = useFormContext();
@@ -33,7 +32,7 @@ export const PreviewInvoice = () => {
   });
 
   return (
-    <Card className="flex w-full flex-col gap-4 px-4 pb-8 pt-6">
+    <Card className="flex w-full flex-col gap-4 rounded-2xl px-4 pb-8 pt-6">
       <div className="flex flex-col gap-1 p-2">
         <div className="flex flex-col gap-1">
           <h3 className="font-semibold">Invoice</h3>
