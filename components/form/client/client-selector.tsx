@@ -34,7 +34,7 @@ export const ClientSelector = () => {
           <div className="flex flex-col gap-1">
             <AutoComplete
               selectedValue={selectedValue}
-              onSelectedValueChange={(value) => onSelect(value)}
+              onSelectedValueChange={onSelect}
               searchValue={searchValue}
               onSearchValueChange={setSearchValue}
               items={filteredItems ?? []}

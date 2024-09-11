@@ -7,7 +7,6 @@ import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { DEFAULT_CLIENT } from '@/context/helpers';
 import { FormType } from '@/context/model';
 import { Client } from '@/context/model';
-import { useToast } from '@/hooks/use-toast';
 import { sendCreateClientRequest, updateClientRequest } from '@/lib/server-utils';
 
 type UseClientSelector = {

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { FieldErrors, useFieldArray, useFormContext, useWatch } from 'react-hook-form';
 
 import { AutoComplete } from '@/components/form/autocomplete';
@@ -44,8 +44,8 @@ export const AddItems = () => {
     [searchValue, currency, items],
   );
 
-  useEffect(() => {
-    const selectedItem = items.find((item) => item.id === selectedValue);
+  const onSelect = (value: string) => {
+    const selectedItem = items.find((item) => item.id === value);
 
     const isPreviouslyAdded = ItemsArray.findIndex((item: Item) => item.id === selectedItem?.id);
 
@@ -61,8 +61,9 @@ export const AddItems = () => {
 
     if (selectedItem) {
       append(selectedItem);
+      setSelectedValue(''); // Reset selected value
     }
-  }, [selectedValue]);
+  };
 
   const errors: FieldErrors<FormType> = formState.errors;
 
@@ -78,7 +79,7 @@ export const AddItems = () => {
         <AccordionContent className="my-4 py-0">
           <AutoComplete
             selectedValue={selectedValue}
-            onSelectedValueChange={setSelectedValue}
+            onSelectedValueChange={onSelect}
             searchValue={searchValue}
             onSearchValueChange={setSearchValue}
             items={filteredItems ?? []}
