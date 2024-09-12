@@ -9,7 +9,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: number }
   const jsonData = fs.readFileSync(filePath);
   const data = JSON.parse(jsonData.toString());
 
-  const selectedInvoice = data.find((invoice: FormType) => invoice.id === +params.id);
+  const selectedInvoice = data.find((invoice: FormType) => invoice.invoiceId === +params.id);
 
   if (!selectedInvoice) {
     return NextResponse.json({ reason: `Invoice with the id: ${params.id} not found`, ok: false });

@@ -43,7 +43,7 @@ export default async function InvoicePage({ params }: Props) {
 
   return (
     <main className="relative mb-10 flex w-full flex-col gap-10">
-      <Header invoiceNumber={invoice.id}>
+      <Header invoiceNumber={invoice.invoiceId}>
         <p>{invoice.client.businessName}</p>
       </Header>
       <div className="grid grid-cols-12">

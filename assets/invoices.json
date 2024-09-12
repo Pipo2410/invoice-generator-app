@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "invoiceId": 1,
     "client": {
       "businessName": "Tech Innovators Inc.",
       "email": "contact@techinnovators.com",
@@ -33,7 +33,7 @@
     "status": "issued"
   },
   {
-    "id": 2,
+    "invoiceId": 2,
     "client": {
       "businessName": "Eco Builders Ltd.",
       "email": "info@ecobuilders.co.uk",
@@ -62,10 +62,10 @@
     ],
     "additionalOptions": { "purchaseOrder": "PO98765", "referenceNote": "Installation phase 1" },
     "currency": { "value": "GBP", "isDefault": true },
-    "status": "issued"
+    "status": "overdue"
   },
   {
-    "id": 3,
+    "invoiceId": 3,
     "client": {
       "businessName": "Gourmet Foods LLC",
       "email": "orders@gourmetfoods.com",
@@ -103,7 +103,7 @@
     "status": "issued"
   },
   {
-    "id": 4,
+    "invoiceId": 4,
     "client": {
       "businessName": "Tech Gear Pro",
       "email": "support@techgearpro.com",
@@ -138,10 +138,10 @@
     ],
     "additionalOptions": { "purchaseOrder": "PO33456", "referenceNote": "Hardware update" },
     "currency": { "value": "EUR", "isDefault": true },
-    "status": "issued"
+    "status": "paid"
   },
   {
-    "id": 5,
+    "invoiceId": 5,
     "client": {
       "businessName": "Creative Studios",
       "email": "hello@creativestudios.com",
@@ -166,6 +166,6 @@
     ],
     "additionalOptions": { "purchaseOrder": "PO99887", "referenceNote": "Branding project" },
     "currency": { "value": "EUR", "isDefault": true },
-    "status": "issued"
+    "status": "draft"
   }
 ]

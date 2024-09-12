@@ -1,10 +1,8 @@
-import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import React from 'react';
 
 import { columns } from '@/components/invoices/columns';
-import { DataTable } from '@/components/invoices/data-table';
-import { DataTableDemo } from '@/components/invoices/list-invoices';
+import { ListInvoices } from '@/components/invoices/list-invoices';
 import { IconComponent } from '@/components/navigation/icon-component';
 import {
   Menubar,
@@ -16,12 +14,13 @@ import {
   MenubarTrigger,
 } from '@/components/ui/menubar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { IssuedInvoice } from '@/context/model';
 import { fetchData } from '@/lib/utils';
 
 const tabs = ['Overview', 'Invoices', 'Invoice templates', 'Clients', 'Items', 'Settings'];
 
 export default async function Home() {
-  const invoices = await fetchData('/invoices');
+  const invoices: IssuedInvoice[] = await fetchData('/invoices');
 
   return (
     <main className="flex h-fit w-full flex-col gap-10">
@@ -70,18 +69,8 @@ export default async function Home() {
           </TabsList>
           <TabsContent value={tabs[1]}>
             <br />
+            <ListInvoices columns={columns} data={invoices} />
             <br />
-            <DataTable columns={columns} data={invoices} />
-            <br />
-            <br />
-            <DataTableDemo />
-            <br />
-            <br />
-            <pre className="mt-2 w-[840px] rounded-md bg-white p-4">
-              <code className="text-black">
-                {JSON.stringify({ invoice: invoices[invoices.length - 1], length: invoices.length }, null, 2)}
-              </code>
-            </pre>
           </TabsContent>
         </Tabs>
       </div>

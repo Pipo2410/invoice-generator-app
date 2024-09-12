@@ -44,7 +44,7 @@ export const ClientSchema = z.object({
 });
 
 export const formSchema = z.object({
-  id: z.number(),
+  invoiceId: z.number(),
   client: ClientSchema,
   date: DateSchema,
   vatExemption: VatExemptionSchema,
