@@ -56,12 +56,17 @@ export const formSchema = z.object({
   currency: CurrencySchema,
 });
 
+export const IssuedInvoiceSchema = formSchema.extend({
+  status: z.enum(['issued', 'draft', 'paid', 'overdue']),
+});
+
 export type FormType = z.infer<typeof formSchema>;
 export type Client = z.infer<typeof ClientSchema>;
 export type Date = z.infer<typeof DateSchema>;
 export type VatExemption = z.infer<typeof VatExemptionSchema>;
 export type Item = z.infer<typeof ItemSchema>;
 export type Currency = z.infer<typeof CurrencySchema>;
+export type IssuedInvoice = z.infer<typeof IssuedInvoiceSchema>;
 
 export type AppConfig = {
   vatArticles: VatExemption[];

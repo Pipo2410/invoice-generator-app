@@ -2,6 +2,8 @@ import fs from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 
+import { IssuedInvoice } from '@/context/model';
+
 export async function GET() {
   const filePath = path.join(process.cwd(), 'assets', 'invoices.json');
   const jsonData = fs.readFileSync(filePath);
@@ -19,12 +21,16 @@ export async function POST(req: NextRequest) {
   const fileData = fs.readFileSync(filePath);
   const parsedData = JSON.parse(fileData.toString());
 
-  const data = await req.json();
+  const data: IssuedInvoice = await req.json();
+  const newInvoice = {
+    ...data,
+    status: 'issued',
+  };
 
-  parsedData.push(data);
+  parsedData.push(newInvoice);
   fs.writeFileSync(filePath, JSON.stringify(parsedData));
 
-  console.log('POST: /api/invoices => New invoice created', data);
+  console.log('POST: /api/invoices => New invoice created', newInvoice);
 
   return Response.json(parsedData);
 }

@@ -29,7 +29,8 @@
       }
     ],
     "additionalOptions": { "purchaseOrder": "PO12345", "referenceNote": "Monthly payment" },
-    "currency": { "value": "USD", "isDefault": true }
+    "currency": { "value": "USD", "isDefault": true },
+    "status": "issued"
   },
   {
     "id": 2,
@@ -60,7 +61,8 @@
       }
     ],
     "additionalOptions": { "purchaseOrder": "PO98765", "referenceNote": "Installation phase 1" },
-    "currency": { "value": "GBP", "isDefault": true }
+    "currency": { "value": "GBP", "isDefault": true },
+    "status": "issued"
   },
   {
     "id": 3,
@@ -97,7 +99,8 @@
       }
     ],
     "additionalOptions": { "purchaseOrder": "PO24680", "referenceNote": "Quarterly supply" },
-    "currency": { "value": "EUR", "isDefault": true }
+    "currency": { "value": "EUR", "isDefault": true },
+    "status": "issued"
   },
   {
     "id": 4,
@@ -134,7 +137,8 @@
       }
     ],
     "additionalOptions": { "purchaseOrder": "PO33456", "referenceNote": "Hardware update" },
-    "currency": { "value": "EUR", "isDefault": true }
+    "currency": { "value": "EUR", "isDefault": true },
+    "status": "issued"
   },
   {
     "id": 5,
@@ -161,6 +165,7 @@
       }
     ],
     "additionalOptions": { "purchaseOrder": "PO99887", "referenceNote": "Branding project" },
-    "currency": { "value": "EUR", "isDefault": true }
+    "currency": { "value": "EUR", "isDefault": true },
+    "status": "issued"
   }
 ]
