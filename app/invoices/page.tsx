@@ -24,8 +24,8 @@ export default async function Home() {
 
   return (
     <main className="flex h-fit w-full flex-col gap-10">
-      <div className="flex w-fit flex-col gap-10">
-        <div className="flex justify-between">
+      <div className="flex flex-col gap-10">
+        <div className="flex w-3/5 justify-between">
           <h1 className="text-3xl">Invoices</h1>
 
           <div className="flex items-center gap-4">
@@ -60,17 +60,15 @@ export default async function Home() {
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab}
-                className="rounded-full px-6 py-2 hover:bg-light-blue hover:font-semibold hover:text-dark-blue data-[state=active]:bg-light-blue data-[state=active]:font-semibold data-[state=active]:text-dark-blue data-[state=active]:shadow-none"
+                className="rounded-full px-6 py-2 hover:bg-light-blue hover:text-dark-blue data-[state=active]:bg-light-blue data-[state=active]:font-semibold data-[state=active]:text-dark-blue data-[state=active]:shadow-none"
                 value={tab}
               >
                 {tab}
               </TabsTrigger>
             ))}
           </TabsList>
-          <TabsContent value={tabs[1]}>
-            <br />
+          <TabsContent value={tabs[1]} className="mt-10 w-[80vw]">
             <ListInvoices columns={columns} data={invoices} />
-            <br />
           </TabsContent>
         </Tabs>
       </div>

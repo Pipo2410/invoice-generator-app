@@ -28,7 +28,7 @@ export const Content = () => {
 
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
-    defaultValues: { id: invoiceId, ...formDefaultValues },
+    defaultValues: { invoiceId: invoiceId, ...formDefaultValues },
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -21,7 +21,7 @@ export const columns: ColumnDef<IssuedInvoice>[] = [
     ),
     cell: ({ row }) => (
       <div className="flex flex-col justify-center">
-        <p>{row.getValue('invoiceId')}#</p>
+        <p className="font-semibold">{row.getValue('invoiceId')}#</p>
         <p className="text-dark-gray">invoice</p>
       </div>
     ),
@@ -29,32 +29,52 @@ export const columns: ColumnDef<IssuedInvoice>[] = [
   {
     accessorKey: 'clientName', // Accessing nested field
     accessorFn: ({ client }) => client.businessName,
-    header: 'Client',
-    cell: ({ row }) => <div className="capitalize">{row.getValue('clientName')}</div>,
+    header: ({ column }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Client
+        <ChevronsUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => <div className="text-base font-semibold capitalize">{row.getValue('clientName')}</div>,
   },
   {
     accessorKey: 'issueDate', // Accessing nested field
     accessorFn: ({ date }) => date.issueDate,
-    header: 'Issue Date',
+    header: ({ column }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Issue Date
+        <ChevronsUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => {
       const issueDate: Date = row.getValue('issueDate');
-      const formattedDate = format(issueDate, 'PPP');
-      return <div className="capitalize">{formattedDate}</div>;
+      const formattedDate = format(issueDate, 'MMM d, yyyy');
+      return <div className="text-xs capitalize text-dark-gray">{formattedDate}</div>;
     },
   },
   {
     accessorKey: 'dueDate', // Accessing nested field
-    header: 'Due date',
+    header: ({ column }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Due date
+        <ChevronsUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     accessorFn: ({ date }) => date.dueDate,
     cell: ({ row }) => {
       const dueDate: Date = row.getValue('dueDate');
-      const formattedDate = format(dueDate, 'PPP');
-      return <div className="capitalize">{formattedDate}</div>;
+      const formattedDate = format(dueDate, 'MMM d, yyyy');
+      return <div className="text-xs capitalize text-dark-gray">{formattedDate}</div>;
     },
   },
   {
     accessorKey: 'status', // Accessing nested field
-    header: 'Status',
+    header: ({ column }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Status
+        <ChevronsUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => {
       const status: IssuedInvoice['status'] = row.getValue('status');
 
@@ -68,7 +88,7 @@ export const columns: ColumnDef<IssuedInvoice>[] = [
       const variant = statusVariantMap[status];
 
       return (
-        <Badge variant={variant} className="capitalize">
+        <Badge variant={variant} className="font-normal capitalize">
           {status}
         </Badge>
       );

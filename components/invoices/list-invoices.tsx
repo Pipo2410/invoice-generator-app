@@ -12,7 +12,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, SlidersHorizontal } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -36,6 +37,7 @@ export function ListInvoices<TData, TValue>({ columns, data }: DataTableProps<TD
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const router = useRouter();
 
   const table = useReactTable({
     data,
@@ -58,17 +60,18 @@ export function ListInvoices<TData, TValue>({ columns, data }: DataTableProps<TD
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="mb-8 flex w-fit items-center">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn('invoiceId')?.getFilterValue() as string) ?? ''}
-          onChange={(event) => table.getColumn('invoiceId')?.setFilterValue(event.target.value)}
-          className="max-w-sm"
+          placeholder="Search for client name or invoice number"
+          value={(table.getColumn('clientName')?.getFilterValue() as string) ?? ''}
+          onChange={(event) => table.getColumn('clientName')?.setFilterValue(event.target.value)}
+          className="mr-4 h-auto w-[600px] rounded-2xl bg-white p-4 focus-visible:ring-0 focus-visible:ring-offset-0"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Filters <ChevronDown className="ml-2 h-4 w-4" />
+            <Button variant="ghost" className="ml-auto rounded-full border-none bg-light-blue text-dark-blue">
+              <SlidersHorizontal className="mr-1 h-4 w-4" />
+              Filters
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -88,7 +91,8 @@ export function ListInvoices<TData, TValue>({ columns, data }: DataTableProps<TD
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="">
+      <div>
+        <h5 className="font-semibold text-dark-gray">{data.length} documents</h5>
         <Table className="border-separate border-spacing-x-0 border-spacing-y-2">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -104,13 +108,18 @@ export function ListInvoices<TData, TValue>({ columns, data }: DataTableProps<TD
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} className="space-x-0">
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && 'selected'}
+                  className="space-x-0 bg-white hover:cursor-pointer"
+                  onClick={() => router.push(`/invoices/${row.getValue('invoiceId')}`)}
+                >
                   {row.getVisibleCells().map((cell, index, cells) => (
                     <TableCell
                       className={cn(
                         'border border-x-0',
-                        index === 0 && 'rounded-bl-xl rounded-tl-xl border-l',
-                        index === cells.length - 1 && 'rounded-br-xl rounded-tr-xl border-r',
+                        index === 0 && 'rounded-bl-2xl rounded-tl-2xl border-l',
+                        index === cells.length - 1 && 'rounded-br-2xl rounded-tr-2xl border-r',
                       )}
                       key={cell.id}
                     >
@@ -130,15 +139,11 @@ export function ListInvoices<TData, TValue>({ columns, data }: DataTableProps<TD
         </Table>
       </div>
       <div className="flex items-center justify-center space-x-2 py-4">
-        {/* <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s)
-          selected.
-        </div> */}
         <div className="flex items-center gap-3 space-x-2">
           <Button variant="ghost" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
             <ChevronLeft />
           </Button>
-          {table.getPageOptions()} of {table.getPageCount()}
+          {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
           <Button variant="ghost" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
             <ChevronRight />
           </Button>
