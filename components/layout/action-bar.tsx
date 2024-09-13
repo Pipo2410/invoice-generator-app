@@ -26,7 +26,7 @@ export const ActionBar = () => {
         <Button
           variant="ghost"
           type="button"
-          className="rounded-full border-[1.5px] bg-white px-20 py-3.5 text-[#7E8081]"
+          className="rounded-full border-[1.5px] bg-white px-20 py-3.5 text-light-gray"
         >
           Save as draft
         </Button>
@@ -34,7 +34,7 @@ export const ActionBar = () => {
           form="create-invoice"
           variant="ghost"
           type="submit"
-          className="rounded-full border-[1.5px] bg-foreground px-20 py-3.5 text-white disabled:bg-[#7E8081] disabled:text-white"
+          className="disabled:bg-light-gtext-light-gray rounded-full border-[1.5px] bg-foreground px-20 py-3.5 text-white disabled:text-white"
         >
           Issue invoice
         </Button>

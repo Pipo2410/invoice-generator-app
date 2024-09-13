@@ -2,7 +2,7 @@ import { ZodIssue } from 'zod';
 
 import { currencies } from '@/assets/currencies';
 
-import { AppConfig, Client, InitialCreateInvoiceState, Item } from './model';
+import { AppConfig, Client, InitialCreateInvoiceState, IssuedInvoice, Item } from './model';
 
 export const formDefaultValues = {
   client: {
@@ -62,3 +62,10 @@ export const mapErrorsToFields = (errors: Array<ZodIssue>) =>
     },
     {} as Record<string, string | null>,
   );
+
+export const statusVariantMap: Record<IssuedInvoice['status'], 'warning' | 'success' | 'destructive' | 'outline'> = {
+  draft: 'warning',
+  paid: 'success',
+  overdue: 'destructive',
+  issued: 'outline', // issued as the default or neutral state
+};

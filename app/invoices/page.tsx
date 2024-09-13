@@ -47,7 +47,7 @@ export default async function Home() {
               </MenubarMenu>
             </Menubar>
             <Link
-              className="flex items-center gap-1 rounded-full bg-dark-blue px-16 py-3 text-white"
+              className="flex items-center gap-1 rounded-full bg-dark-blue px-16 py-3 text-white hover:opacity-90"
               href={'/invoices/create'}
             >
               <span className="text-base">Create invoice</span>

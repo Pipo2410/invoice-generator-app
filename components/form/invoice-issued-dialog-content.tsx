@@ -33,8 +33,9 @@ export const InvoiceIssuedDialogContent = () => {
         cancelText="Not now"
         actionText="Send invoice"
         icon={<Send className="ml-2" />}
-        onCancel={() => router.push(`/invoices/${getValues('id')}`)}
-        onAction={() => router.push(`/invoices/${getValues('id')}`)}
+        // test this?
+        onCancel={() => router.push(`/invoices/${getValues('invoiceId')}`)}
+        onAction={() => router.push(`/invoices/${getValues('invoiceId')}`)}
       />
     </>
   );

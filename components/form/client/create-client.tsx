@@ -175,7 +175,7 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
         <Button
           variant="ghost"
           type="button"
-          className="min-h-12 w-full rounded-full border-[1.5px] bg-white py-3.5 font-semibold text-[#7E8081]"
+          className="min-h-12 w-full rounded-full border-[1.5px] bg-white py-3.5 font-semibold text-light-gray"
           onClick={onCancel}
         >
           Cancel
@@ -183,7 +183,7 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
         <Button
           variant="ghost"
           type="button"
-          className="min-h-12 w-full rounded-full border-[1.5px] bg-foreground py-3.5 font-semibold text-white disabled:bg-[#7E8081] disabled:text-white"
+          className="disabled:bg-lighttext-light-gray min-h-12 w-full rounded-full border-[1.5px] bg-foreground py-3.5 font-semibold text-white disabled:text-white"
           onClick={onSubmitHandler}
         >
           {isNewClient ? 'Create client' : 'Save Changes'}

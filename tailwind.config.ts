@@ -23,6 +23,7 @@ const config = {
       },
       colors: {
         'light-blue': '#EDF1FF',
+        'light-gray': '#7E8081',
         'dark-blue': '#4871FF',
         'dark-gray': '#58595A',
         'dark-orange': '#EB4E23',

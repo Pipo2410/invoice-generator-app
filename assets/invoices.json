@@ -55,7 +55,7 @@
         "description": "Eco-friendly solar panel installation",
         "category": "Energy",
         "unit": 50,
-        "price": 200,
+        "price": 2680,
         "vat": 5,
         "discount": 10
       }
@@ -83,7 +83,7 @@
         "description": "Selection of French cheeses",
         "category": "Food",
         "unit": 100,
-        "price": 15,
+        "price": 1500,
         "vat": 10,
         "discount": 0
       },
@@ -93,7 +93,7 @@
         "description": "Extra virgin olive oil",
         "category": "Food",
         "unit": 200,
-        "price": 12,
+        "price": 120,
         "vat": 10,
         "discount": 5
       }
@@ -176,12 +176,7 @@
       "nif": "IT1122334455",
       "country": "IT",
       "currency": { "value": "EUR", "isDefault": true },
-      "address": {
-        "street": "10 Eco Blvd",
-        "city": "Milan",
-        "postalCode": "20122",
-        "additional": ""
-      }
+      "address": { "street": "10 Eco Blvd", "city": "Milan", "postalCode": "20122", "additional": "" }
     },
     "date": { "issueDate": "2023-08-01T00:00:00.000Z", "dueDate": "2023-08-15T00:00:00.000Z" },
     "vatExemption": { "value": "M03", "label": "Exempt Article 7 of CIVA" },
@@ -242,12 +237,7 @@
       "nif": "CA2233445566",
       "country": "CA",
       "currency": { "value": "CAD", "isDefault": true },
-      "address": {
-        "street": "789 Tech Park",
-        "city": "Toronto",
-        "postalCode": "M5H 2N2",
-        "additional": "Building B"
-      }
+      "address": { "street": "789 Tech Park", "city": "Toronto", "postalCode": "M5H 2N2", "additional": "Building B" }
     },
     "date": { "issueDate": "2023-07-10T00:00:00.000Z", "dueDate": "2023-07-24T00:00:00.000Z" },
     "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
@@ -275,12 +265,7 @@
       "nif": "AU3344556677",
       "country": "AU",
       "currency": { "value": "AUD", "isDefault": true },
-      "address": {
-        "street": "101 Media Blvd",
-        "city": "Sydney",
-        "postalCode": "2000",
-        "additional": "3rd Floor"
-      }
+      "address": { "street": "101 Media Blvd", "city": "Sydney", "postalCode": "2000", "additional": "3rd Floor" }
     },
     "date": { "issueDate": "2023-05-25T00:00:00.000Z", "dueDate": "2023-06-08T00:00:00.000Z" },
     "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
@@ -308,12 +293,7 @@
       "nif": "IN6677889900",
       "country": "IN",
       "currency": { "value": "INR", "isDefault": true },
-      "address": {
-        "street": "42 Health Plaza",
-        "city": "Mumbai",
-        "postalCode": "400001",
-        "additional": "Unit 5"
-      }
+      "address": { "street": "42 Health Plaza", "city": "Mumbai", "postalCode": "400001", "additional": "Unit 5" }
     },
     "date": { "issueDate": "2023-09-02T00:00:00.000Z", "dueDate": "2023-09-16T00:00:00.000Z" },
     "vatExemption": { "value": "M07", "label": "Exempt Article 18 of CIVA" },
@@ -510,12 +490,7 @@
       "nif": "IT1122334455",
       "country": "IT",
       "currency": { "value": "EUR", "isDefault": true },
-      "address": {
-        "street": "10 Eco Blvd",
-        "city": "Milan",
-        "postalCode": "20122",
-        "additional": ""
-      }
+      "address": { "street": "10 Eco Blvd", "city": "Milan", "postalCode": "20122", "additional": "" }
     },
     "date": { "issueDate": "2023-08-01T00:00:00.000Z", "dueDate": "2023-08-15T00:00:00.000Z" },
     "vatExemption": { "value": "M03", "label": "Exempt Article 7 of CIVA" },
@@ -576,12 +551,7 @@
       "nif": "CA2233445566",
       "country": "CA",
       "currency": { "value": "CAD", "isDefault": true },
-      "address": {
-        "street": "789 Tech Park",
-        "city": "Toronto",
-        "postalCode": "M5H 2N2",
-        "additional": "Building B"
-      }
+      "address": { "street": "789 Tech Park", "city": "Toronto", "postalCode": "M5H 2N2", "additional": "Building B" }
     },
     "date": { "issueDate": "2023-07-10T00:00:00.000Z", "dueDate": "2023-07-24T00:00:00.000Z" },
     "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
@@ -609,12 +579,7 @@
       "nif": "AU3344556677",
       "country": "AU",
       "currency": { "value": "AUD", "isDefault": true },
-      "address": {
-        "street": "101 Media Blvd",
-        "city": "Sydney",
-        "postalCode": "2000",
-        "additional": "3rd Floor"
-      }
+      "address": { "street": "101 Media Blvd", "city": "Sydney", "postalCode": "2000", "additional": "3rd Floor" }
     },
     "date": { "issueDate": "2023-05-25T00:00:00.000Z", "dueDate": "2023-06-08T00:00:00.000Z" },
     "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
@@ -642,12 +607,7 @@
       "nif": "IN6677889900",
       "country": "IN",
       "currency": { "value": "INR", "isDefault": true },
-      "address": {
-        "street": "42 Health Plaza",
-        "city": "Mumbai",
-        "postalCode": "400001",
-        "additional": "Unit 5"
-      }
+      "address": { "street": "42 Health Plaza", "city": "Mumbai", "postalCode": "400001", "additional": "Unit 5" }
     },
     "date": { "issueDate": "2023-09-02T00:00:00.000Z", "dueDate": "2023-09-16T00:00:00.000Z" },
     "vatExemption": { "value": "M07", "label": "Exempt Article 18 of CIVA" },
@@ -844,12 +804,7 @@
       "nif": "IT1122334455",
       "country": "IT",
       "currency": { "value": "EUR", "isDefault": true },
-      "address": {
-        "street": "10 Eco Blvd",
-        "city": "Milan",
-        "postalCode": "20122",
-        "additional": ""
-      }
+      "address": { "street": "10 Eco Blvd", "city": "Milan", "postalCode": "20122", "additional": "" }
     },
     "date": { "issueDate": "2023-08-01T00:00:00.000Z", "dueDate": "2023-08-15T00:00:00.000Z" },
     "vatExemption": { "value": "M03", "label": "Exempt Article 7 of CIVA" },
@@ -910,12 +865,7 @@
       "nif": "CA2233445566",
       "country": "CA",
       "currency": { "value": "CAD", "isDefault": true },
-      "address": {
-        "street": "789 Tech Park",
-        "city": "Toronto",
-        "postalCode": "M5H 2N2",
-        "additional": "Building B"
-      }
+      "address": { "street": "789 Tech Park", "city": "Toronto", "postalCode": "M5H 2N2", "additional": "Building B" }
     },
     "date": { "issueDate": "2023-07-10T00:00:00.000Z", "dueDate": "2023-07-24T00:00:00.000Z" },
     "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
@@ -943,12 +893,7 @@
       "nif": "AU3344556677",
       "country": "AU",
       "currency": { "value": "AUD", "isDefault": true },
-      "address": {
-        "street": "101 Media Blvd",
-        "city": "Sydney",
-        "postalCode": "2000",
-        "additional": "3rd Floor"
-      }
+      "address": { "street": "101 Media Blvd", "city": "Sydney", "postalCode": "2000", "additional": "3rd Floor" }
     },
     "date": { "issueDate": "2023-05-25T00:00:00.000Z", "dueDate": "2023-06-08T00:00:00.000Z" },
     "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
@@ -976,12 +921,7 @@
       "nif": "IN6677889900",
       "country": "IN",
       "currency": { "value": "INR", "isDefault": true },
-      "address": {
-        "street": "42 Health Plaza",
-        "city": "Mumbai",
-        "postalCode": "400001",
-        "additional": "Unit 5"
-      }
+      "address": { "street": "42 Health Plaza", "city": "Mumbai", "postalCode": "400001", "additional": "Unit 5" }
     },
     "date": { "issueDate": "2023-09-02T00:00:00.000Z", "dueDate": "2023-09-16T00:00:00.000Z" },
     "vatExemption": { "value": "M07", "label": "Exempt Article 18 of CIVA" },
