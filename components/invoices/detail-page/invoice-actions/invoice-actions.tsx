@@ -3,12 +3,12 @@ import { ArrowDownToLine, CopyPlus, FilePlus, Send } from 'lucide-react';
 import React from 'react';
 
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { statusVariantMap } from '@/context/helpers';
 import { IssuedInvoice } from '@/context/model';
 
 import { IconButton } from './icon-button';
+import { UpdateStatusSection } from './update-status-section';
 
 type Props = {
   invoice: IssuedInvoice;
@@ -74,11 +74,9 @@ export const InvoiceActions: React.FC<Props> = ({ invoice }) => {
               <span className="text-dark-gray">{formatDate(invoice.date.dueDate)}</span>
             </p>
           </div>
-          <Button className="mt-64 min-h-14 rounded-full font-semibold">Mark as paid</Button>
+          <UpdateStatusSection invoice={invoice} />
         </div>
       </div>
-
-      {/* FOOTER / SUMMARY */}
     </Card>
   );
 };

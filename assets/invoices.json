@@ -6,7 +6,10 @@
       "email": "contact@techinnovators.com",
       "nif": "123456789",
       "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
+      "currency": {
+        "value": "USD",
+        "isDefault": true
+      },
       "address": {
         "street": "123 Innovation Way",
         "city": "San Francisco",
@@ -14,8 +17,14 @@
         "additional": "Suite 400"
       }
     },
-    "date": { "issueDate": "2023-09-01T00:00:00.000Z", "dueDate": "2023-09-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M01", "label": "1 Article 16(6) of CIVA" },
+    "date": {
+      "issueDate": "2023-09-01T00:00:00.000Z",
+      "dueDate": "2023-09-15T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M01",
+      "label": "1 Article 16(6) of CIVA"
+    },
     "items": [
       {
         "id": 1,
@@ -28,9 +37,15 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO12345", "referenceNote": "Monthly payment" },
-    "currency": { "value": "USD", "isDefault": true },
-    "status": "issued"
+    "additionalOptions": {
+      "purchaseOrder": "PO12345",
+      "referenceNote": "Monthly payment"
+    },
+    "currency": {
+      "value": "USD",
+      "isDefault": true
+    },
+    "status": "overdue"
   },
   {
     "invoiceId": 2,
@@ -46,8 +61,14 @@
         "additional": "Near the park"
       }
     },
-    "date": { "issueDate": "2023-08-15T00:00:00.000Z", "dueDate": "2023-08-30T00:00:00.000Z" },
-    "vatExemption": { "value": "M02", "label": "Article 6 of Decree-Law 198/90 of June 19th" },
+    "date": {
+      "issueDate": "2023-08-15T00:00:00.000Z",
+      "dueDate": "2023-08-30T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M02",
+      "label": "Article 6 of Decree-Law 198/90 of June 19th"
+    },
     "items": [
       {
         "id": 2,
@@ -60,8 +81,14 @@
         "discount": 10
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO98765", "referenceNote": "Installation phase 1" },
-    "currency": { "value": "GBP", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO98765",
+      "referenceNote": "Installation phase 1"
+    },
+    "currency": {
+      "value": "GBP",
+      "isDefault": true
+    },
     "status": "overdue"
   },
   {
@@ -71,11 +98,25 @@
       "email": "orders@gourmetfoods.com",
       "nif": "FR1122334455",
       "country": "FR",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "22 Rue de la Paix", "city": "Paris", "postalCode": "75002", "additional": "" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "22 Rue de la Paix",
+        "city": "Paris",
+        "postalCode": "75002",
+        "additional": ""
+      }
     },
-    "date": { "issueDate": "2023-07-01T00:00:00.000Z", "dueDate": "2023-07-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
+    "date": {
+      "issueDate": "2023-07-01T00:00:00.000Z",
+      "dueDate": "2023-07-15T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M04",
+      "label": "Exempt Article 13 of CIVA"
+    },
     "items": [
       {
         "id": 3,
@@ -98,8 +139,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO24680", "referenceNote": "Quarterly supply" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO24680",
+      "referenceNote": "Quarterly supply"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "issued"
   },
   {
@@ -109,11 +156,25 @@
       "email": "support@techgearpro.com",
       "nif": "DE5566778899",
       "country": "DE",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "46 Tech Avenue", "city": "Berlin", "postalCode": "10115", "additional": "Building A" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "46 Tech Avenue",
+        "city": "Berlin",
+        "postalCode": "10115",
+        "additional": "Building A"
+      }
     },
-    "date": { "issueDate": "2023-10-05T00:00:00.000Z", "dueDate": "2023-10-20T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
+    "date": {
+      "issueDate": "2023-10-05T00:00:00.000Z",
+      "dueDate": "2023-10-20T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M05",
+      "label": "Exempt Article 14 of CIVA"
+    },
     "items": [
       {
         "id": 5,
@@ -136,8 +197,14 @@
         "discount": 0
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO33456", "referenceNote": "Hardware update" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO33456",
+      "referenceNote": "Hardware update"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "paid"
   },
   {
@@ -147,11 +214,25 @@
       "email": "hello@creativestudios.com",
       "nif": "ES3344556677",
       "country": "ES",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "8 Art Street", "city": "Madrid", "postalCode": "28013", "additional": "Near the gallery" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "8 Art Street",
+        "city": "Madrid",
+        "postalCode": "28013",
+        "additional": "Near the gallery"
+      }
     },
-    "date": { "issueDate": "2023-11-12T00:00:00.000Z", "dueDate": "2023-11-26T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
+    "date": {
+      "issueDate": "2023-11-12T00:00:00.000Z",
+      "dueDate": "2023-11-26T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M06",
+      "label": "Exempt Article 15 of CIVA"
+    },
     "items": [
       {
         "id": 7,
@@ -164,8 +245,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO99887", "referenceNote": "Branding project" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO99887",
+      "referenceNote": "Branding project"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "draft"
   },
   {
@@ -175,11 +262,25 @@
       "email": "support@greentech.com",
       "nif": "IT1122334455",
       "country": "IT",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "10 Eco Blvd", "city": "Milan", "postalCode": "20122", "additional": "" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "10 Eco Blvd",
+        "city": "Milan",
+        "postalCode": "20122",
+        "additional": ""
+      }
     },
-    "date": { "issueDate": "2023-08-01T00:00:00.000Z", "dueDate": "2023-08-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M03", "label": "Exempt Article 7 of CIVA" },
+    "date": {
+      "issueDate": "2023-08-01T00:00:00.000Z",
+      "dueDate": "2023-08-15T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M03",
+      "label": "Exempt Article 7 of CIVA"
+    },
     "items": [
       {
         "id": 8,
@@ -192,8 +293,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO12367", "referenceNote": "Energy upgrade" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO12367",
+      "referenceNote": "Energy upgrade"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "overdue"
   },
   {
@@ -203,7 +310,10 @@
       "email": "contact@luxuryinteriors.com",
       "nif": "US9988776655",
       "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
+      "currency": {
+        "value": "USD",
+        "isDefault": true
+      },
       "address": {
         "street": "500 Rich Ave",
         "city": "New York",
@@ -211,8 +321,14 @@
         "additional": "Penthouse Suite"
       }
     },
-    "date": { "issueDate": "2023-06-20T00:00:00.000Z", "dueDate": "2023-07-05T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
+    "date": {
+      "issueDate": "2023-06-20T00:00:00.000Z",
+      "dueDate": "2023-07-05T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M04",
+      "label": "Exempt Article 13 of CIVA"
+    },
     "items": [
       {
         "id": 9,
@@ -225,8 +341,14 @@
         "discount": 0
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO76432", "referenceNote": "Phase 1 design" },
-    "currency": { "value": "USD", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO76432",
+      "referenceNote": "Phase 1 design"
+    },
+    "currency": {
+      "value": "USD",
+      "isDefault": true
+    },
     "status": "paid"
   },
   {
@@ -236,11 +358,25 @@
       "email": "info@brightfuturetech.com",
       "nif": "CA2233445566",
       "country": "CA",
-      "currency": { "value": "CAD", "isDefault": true },
-      "address": { "street": "789 Tech Park", "city": "Toronto", "postalCode": "M5H 2N2", "additional": "Building B" }
+      "currency": {
+        "value": "CAD",
+        "isDefault": true
+      },
+      "address": {
+        "street": "789 Tech Park",
+        "city": "Toronto",
+        "postalCode": "M5H 2N2",
+        "additional": "Building B"
+      }
     },
-    "date": { "issueDate": "2023-07-10T00:00:00.000Z", "dueDate": "2023-07-24T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
+    "date": {
+      "issueDate": "2023-07-10T00:00:00.000Z",
+      "dueDate": "2023-07-24T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M05",
+      "label": "Exempt Article 14 of CIVA"
+    },
     "items": [
       {
         "id": 10,
@@ -253,8 +389,14 @@
         "discount": 0
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO55678", "referenceNote": "Monthly cloud service" },
-    "currency": { "value": "CAD", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO55678",
+      "referenceNote": "Monthly cloud service"
+    },
+    "currency": {
+      "value": "CAD",
+      "isDefault": true
+    },
     "status": "issued"
   },
   {
@@ -264,11 +406,25 @@
       "email": "media@globalmediagroup.com",
       "nif": "AU3344556677",
       "country": "AU",
-      "currency": { "value": "AUD", "isDefault": true },
-      "address": { "street": "101 Media Blvd", "city": "Sydney", "postalCode": "2000", "additional": "3rd Floor" }
+      "currency": {
+        "value": "AUD",
+        "isDefault": true
+      },
+      "address": {
+        "street": "101 Media Blvd",
+        "city": "Sydney",
+        "postalCode": "2000",
+        "additional": "3rd Floor"
+      }
     },
-    "date": { "issueDate": "2023-05-25T00:00:00.000Z", "dueDate": "2023-06-08T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
+    "date": {
+      "issueDate": "2023-05-25T00:00:00.000Z",
+      "dueDate": "2023-06-08T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M06",
+      "label": "Exempt Article 15 of CIVA"
+    },
     "items": [
       {
         "id": 11,
@@ -281,8 +437,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO99822", "referenceNote": "Q3 Campaign" },
-    "currency": { "value": "AUD", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO99822",
+      "referenceNote": "Q3 Campaign"
+    },
+    "currency": {
+      "value": "AUD",
+      "isDefault": true
+    },
     "status": "draft"
   },
   {
@@ -292,11 +454,25 @@
       "email": "sales@medicalequipco.com",
       "nif": "IN6677889900",
       "country": "IN",
-      "currency": { "value": "INR", "isDefault": true },
-      "address": { "street": "42 Health Plaza", "city": "Mumbai", "postalCode": "400001", "additional": "Unit 5" }
+      "currency": {
+        "value": "INR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "42 Health Plaza",
+        "city": "Mumbai",
+        "postalCode": "400001",
+        "additional": "Unit 5"
+      }
     },
-    "date": { "issueDate": "2023-09-02T00:00:00.000Z", "dueDate": "2023-09-16T00:00:00.000Z" },
-    "vatExemption": { "value": "M07", "label": "Exempt Article 18 of CIVA" },
+    "date": {
+      "issueDate": "2023-09-02T00:00:00.000Z",
+      "dueDate": "2023-09-16T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M07",
+      "label": "Exempt Article 18 of CIVA"
+    },
     "items": [
       {
         "id": 12,
@@ -309,8 +485,14 @@
         "discount": 2
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO22334", "referenceNote": "Q4 Medical Devices" },
-    "currency": { "value": "INR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO22334",
+      "referenceNote": "Q4 Medical Devices"
+    },
+    "currency": {
+      "value": "INR",
+      "isDefault": true
+    },
     "status": "issued"
   },
   {
@@ -320,7 +502,10 @@
       "email": "contact@techinnovators.com",
       "nif": "123456789",
       "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
+      "currency": {
+        "value": "USD",
+        "isDefault": true
+      },
       "address": {
         "street": "123 Innovation Way",
         "city": "San Francisco",
@@ -328,8 +513,14 @@
         "additional": "Suite 400"
       }
     },
-    "date": { "issueDate": "2023-09-01T00:00:00.000Z", "dueDate": "2023-09-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M01", "label": "1 Article 16(6) of CIVA" },
+    "date": {
+      "issueDate": "2023-09-01T00:00:00.000Z",
+      "dueDate": "2023-09-15T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M01",
+      "label": "1 Article 16(6) of CIVA"
+    },
     "items": [
       {
         "id": 1,
@@ -342,9 +533,15 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO12345", "referenceNote": "Monthly payment" },
-    "currency": { "value": "USD", "isDefault": true },
-    "status": "issued"
+    "additionalOptions": {
+      "purchaseOrder": "PO12345",
+      "referenceNote": "Monthly payment"
+    },
+    "currency": {
+      "value": "USD",
+      "isDefault": true
+    },
+    "status": "paid"
   },
   {
     "invoiceId": 12,
@@ -360,8 +557,14 @@
         "additional": "Near the park"
       }
     },
-    "date": { "issueDate": "2023-08-15T00:00:00.000Z", "dueDate": "2023-08-30T00:00:00.000Z" },
-    "vatExemption": { "value": "M02", "label": "Article 6 of Decree-Law 198/90 of June 19th" },
+    "date": {
+      "issueDate": "2023-08-15T00:00:00.000Z",
+      "dueDate": "2023-08-30T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M02",
+      "label": "Article 6 of Decree-Law 198/90 of June 19th"
+    },
     "items": [
       {
         "id": 2,
@@ -374,8 +577,14 @@
         "discount": 10
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO98765", "referenceNote": "Installation phase 1" },
-    "currency": { "value": "GBP", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO98765",
+      "referenceNote": "Installation phase 1"
+    },
+    "currency": {
+      "value": "GBP",
+      "isDefault": true
+    },
     "status": "overdue"
   },
   {
@@ -385,11 +594,25 @@
       "email": "orders@gourmetfoods.com",
       "nif": "FR1122334455",
       "country": "FR",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "22 Rue de la Paix", "city": "Paris", "postalCode": "75002", "additional": "" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "22 Rue de la Paix",
+        "city": "Paris",
+        "postalCode": "75002",
+        "additional": ""
+      }
     },
-    "date": { "issueDate": "2023-07-01T00:00:00.000Z", "dueDate": "2023-07-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
+    "date": {
+      "issueDate": "2023-07-01T00:00:00.000Z",
+      "dueDate": "2023-07-15T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M04",
+      "label": "Exempt Article 13 of CIVA"
+    },
     "items": [
       {
         "id": 3,
@@ -412,8 +635,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO24680", "referenceNote": "Quarterly supply" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO24680",
+      "referenceNote": "Quarterly supply"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "issued"
   },
   {
@@ -423,11 +652,25 @@
       "email": "support@techgearpro.com",
       "nif": "DE5566778899",
       "country": "DE",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "46 Tech Avenue", "city": "Berlin", "postalCode": "10115", "additional": "Building A" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "46 Tech Avenue",
+        "city": "Berlin",
+        "postalCode": "10115",
+        "additional": "Building A"
+      }
     },
-    "date": { "issueDate": "2023-10-05T00:00:00.000Z", "dueDate": "2023-10-20T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
+    "date": {
+      "issueDate": "2023-10-05T00:00:00.000Z",
+      "dueDate": "2023-10-20T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M05",
+      "label": "Exempt Article 14 of CIVA"
+    },
     "items": [
       {
         "id": 5,
@@ -450,8 +693,14 @@
         "discount": 0
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO33456", "referenceNote": "Hardware update" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO33456",
+      "referenceNote": "Hardware update"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "paid"
   },
   {
@@ -461,11 +710,25 @@
       "email": "hello@creativestudios.com",
       "nif": "ES3344556677",
       "country": "ES",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "8 Art Street", "city": "Madrid", "postalCode": "28013", "additional": "Near the gallery" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "8 Art Street",
+        "city": "Madrid",
+        "postalCode": "28013",
+        "additional": "Near the gallery"
+      }
     },
-    "date": { "issueDate": "2023-11-12T00:00:00.000Z", "dueDate": "2023-11-26T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
+    "date": {
+      "issueDate": "2023-11-12T00:00:00.000Z",
+      "dueDate": "2023-11-26T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M06",
+      "label": "Exempt Article 15 of CIVA"
+    },
     "items": [
       {
         "id": 7,
@@ -478,8 +741,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO99887", "referenceNote": "Branding project" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO99887",
+      "referenceNote": "Branding project"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "draft"
   },
   {
@@ -489,11 +758,25 @@
       "email": "support@greentech.com",
       "nif": "IT1122334455",
       "country": "IT",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "10 Eco Blvd", "city": "Milan", "postalCode": "20122", "additional": "" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "10 Eco Blvd",
+        "city": "Milan",
+        "postalCode": "20122",
+        "additional": ""
+      }
     },
-    "date": { "issueDate": "2023-08-01T00:00:00.000Z", "dueDate": "2023-08-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M03", "label": "Exempt Article 7 of CIVA" },
+    "date": {
+      "issueDate": "2023-08-01T00:00:00.000Z",
+      "dueDate": "2023-08-15T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M03",
+      "label": "Exempt Article 7 of CIVA"
+    },
     "items": [
       {
         "id": 8,
@@ -506,8 +789,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO12367", "referenceNote": "Energy upgrade" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO12367",
+      "referenceNote": "Energy upgrade"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "overdue"
   },
   {
@@ -517,7 +806,10 @@
       "email": "contact@luxuryinteriors.com",
       "nif": "US9988776655",
       "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
+      "currency": {
+        "value": "USD",
+        "isDefault": true
+      },
       "address": {
         "street": "500 Rich Ave",
         "city": "New York",
@@ -525,8 +817,14 @@
         "additional": "Penthouse Suite"
       }
     },
-    "date": { "issueDate": "2023-06-20T00:00:00.000Z", "dueDate": "2023-07-05T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
+    "date": {
+      "issueDate": "2023-06-20T00:00:00.000Z",
+      "dueDate": "2023-07-05T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M04",
+      "label": "Exempt Article 13 of CIVA"
+    },
     "items": [
       {
         "id": 9,
@@ -539,8 +837,14 @@
         "discount": 0
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO76432", "referenceNote": "Phase 1 design" },
-    "currency": { "value": "USD", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO76432",
+      "referenceNote": "Phase 1 design"
+    },
+    "currency": {
+      "value": "USD",
+      "isDefault": true
+    },
     "status": "paid"
   },
   {
@@ -550,11 +854,25 @@
       "email": "info@brightfuturetech.com",
       "nif": "CA2233445566",
       "country": "CA",
-      "currency": { "value": "CAD", "isDefault": true },
-      "address": { "street": "789 Tech Park", "city": "Toronto", "postalCode": "M5H 2N2", "additional": "Building B" }
+      "currency": {
+        "value": "CAD",
+        "isDefault": true
+      },
+      "address": {
+        "street": "789 Tech Park",
+        "city": "Toronto",
+        "postalCode": "M5H 2N2",
+        "additional": "Building B"
+      }
     },
-    "date": { "issueDate": "2023-07-10T00:00:00.000Z", "dueDate": "2023-07-24T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
+    "date": {
+      "issueDate": "2023-07-10T00:00:00.000Z",
+      "dueDate": "2023-07-24T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M05",
+      "label": "Exempt Article 14 of CIVA"
+    },
     "items": [
       {
         "id": 10,
@@ -567,8 +885,14 @@
         "discount": 0
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO55678", "referenceNote": "Monthly cloud service" },
-    "currency": { "value": "CAD", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO55678",
+      "referenceNote": "Monthly cloud service"
+    },
+    "currency": {
+      "value": "CAD",
+      "isDefault": true
+    },
     "status": "issued"
   },
   {
@@ -578,11 +902,25 @@
       "email": "media@globalmediagroup.com",
       "nif": "AU3344556677",
       "country": "AU",
-      "currency": { "value": "AUD", "isDefault": true },
-      "address": { "street": "101 Media Blvd", "city": "Sydney", "postalCode": "2000", "additional": "3rd Floor" }
+      "currency": {
+        "value": "AUD",
+        "isDefault": true
+      },
+      "address": {
+        "street": "101 Media Blvd",
+        "city": "Sydney",
+        "postalCode": "2000",
+        "additional": "3rd Floor"
+      }
     },
-    "date": { "issueDate": "2023-05-25T00:00:00.000Z", "dueDate": "2023-06-08T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
+    "date": {
+      "issueDate": "2023-05-25T00:00:00.000Z",
+      "dueDate": "2023-06-08T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M06",
+      "label": "Exempt Article 15 of CIVA"
+    },
     "items": [
       {
         "id": 11,
@@ -595,8 +933,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO99822", "referenceNote": "Q3 Campaign" },
-    "currency": { "value": "AUD", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO99822",
+      "referenceNote": "Q3 Campaign"
+    },
+    "currency": {
+      "value": "AUD",
+      "isDefault": true
+    },
     "status": "draft"
   },
   {
@@ -606,11 +950,25 @@
       "email": "sales@medicalequipco.com",
       "nif": "IN6677889900",
       "country": "IN",
-      "currency": { "value": "INR", "isDefault": true },
-      "address": { "street": "42 Health Plaza", "city": "Mumbai", "postalCode": "400001", "additional": "Unit 5" }
+      "currency": {
+        "value": "INR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "42 Health Plaza",
+        "city": "Mumbai",
+        "postalCode": "400001",
+        "additional": "Unit 5"
+      }
     },
-    "date": { "issueDate": "2023-09-02T00:00:00.000Z", "dueDate": "2023-09-16T00:00:00.000Z" },
-    "vatExemption": { "value": "M07", "label": "Exempt Article 18 of CIVA" },
+    "date": {
+      "issueDate": "2023-09-02T00:00:00.000Z",
+      "dueDate": "2023-09-16T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M07",
+      "label": "Exempt Article 18 of CIVA"
+    },
     "items": [
       {
         "id": 12,
@@ -623,8 +981,14 @@
         "discount": 2
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO22334", "referenceNote": "Q4 Medical Devices" },
-    "currency": { "value": "INR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO22334",
+      "referenceNote": "Q4 Medical Devices"
+    },
+    "currency": {
+      "value": "INR",
+      "isDefault": true
+    },
     "status": "issued"
   },
   {
@@ -634,7 +998,10 @@
       "email": "contact@techinnovators.com",
       "nif": "123456789",
       "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
+      "currency": {
+        "value": "USD",
+        "isDefault": true
+      },
       "address": {
         "street": "123 Innovation Way",
         "city": "San Francisco",
@@ -642,8 +1009,14 @@
         "additional": "Suite 400"
       }
     },
-    "date": { "issueDate": "2023-09-01T00:00:00.000Z", "dueDate": "2023-09-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M01", "label": "1 Article 16(6) of CIVA" },
+    "date": {
+      "issueDate": "2023-09-01T00:00:00.000Z",
+      "dueDate": "2023-09-15T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M01",
+      "label": "1 Article 16(6) of CIVA"
+    },
     "items": [
       {
         "id": 1,
@@ -656,8 +1029,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO12345", "referenceNote": "Monthly payment" },
-    "currency": { "value": "USD", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO12345",
+      "referenceNote": "Monthly payment"
+    },
+    "currency": {
+      "value": "USD",
+      "isDefault": true
+    },
     "status": "issued"
   },
   {
@@ -674,8 +1053,14 @@
         "additional": "Near the park"
       }
     },
-    "date": { "issueDate": "2023-08-15T00:00:00.000Z", "dueDate": "2023-08-30T00:00:00.000Z" },
-    "vatExemption": { "value": "M02", "label": "Article 6 of Decree-Law 198/90 of June 19th" },
+    "date": {
+      "issueDate": "2023-08-15T00:00:00.000Z",
+      "dueDate": "2023-08-30T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M02",
+      "label": "Article 6 of Decree-Law 198/90 of June 19th"
+    },
     "items": [
       {
         "id": 2,
@@ -688,8 +1073,14 @@
         "discount": 10
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO98765", "referenceNote": "Installation phase 1" },
-    "currency": { "value": "GBP", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO98765",
+      "referenceNote": "Installation phase 1"
+    },
+    "currency": {
+      "value": "GBP",
+      "isDefault": true
+    },
     "status": "overdue"
   },
   {
@@ -699,11 +1090,25 @@
       "email": "orders@gourmetfoods.com",
       "nif": "FR1122334455",
       "country": "FR",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "22 Rue de la Paix", "city": "Paris", "postalCode": "75002", "additional": "" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "22 Rue de la Paix",
+        "city": "Paris",
+        "postalCode": "75002",
+        "additional": ""
+      }
     },
-    "date": { "issueDate": "2023-07-01T00:00:00.000Z", "dueDate": "2023-07-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
+    "date": {
+      "issueDate": "2023-07-01T00:00:00.000Z",
+      "dueDate": "2023-07-15T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M04",
+      "label": "Exempt Article 13 of CIVA"
+    },
     "items": [
       {
         "id": 3,
@@ -726,8 +1131,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO24680", "referenceNote": "Quarterly supply" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO24680",
+      "referenceNote": "Quarterly supply"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "issued"
   },
   {
@@ -737,11 +1148,25 @@
       "email": "support@techgearpro.com",
       "nif": "DE5566778899",
       "country": "DE",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "46 Tech Avenue", "city": "Berlin", "postalCode": "10115", "additional": "Building A" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "46 Tech Avenue",
+        "city": "Berlin",
+        "postalCode": "10115",
+        "additional": "Building A"
+      }
     },
-    "date": { "issueDate": "2023-10-05T00:00:00.000Z", "dueDate": "2023-10-20T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
+    "date": {
+      "issueDate": "2023-10-05T00:00:00.000Z",
+      "dueDate": "2023-10-20T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M05",
+      "label": "Exempt Article 14 of CIVA"
+    },
     "items": [
       {
         "id": 5,
@@ -764,8 +1189,14 @@
         "discount": 0
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO33456", "referenceNote": "Hardware update" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO33456",
+      "referenceNote": "Hardware update"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "paid"
   },
   {
@@ -775,11 +1206,25 @@
       "email": "hello@creativestudios.com",
       "nif": "ES3344556677",
       "country": "ES",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "8 Art Street", "city": "Madrid", "postalCode": "28013", "additional": "Near the gallery" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "8 Art Street",
+        "city": "Madrid",
+        "postalCode": "28013",
+        "additional": "Near the gallery"
+      }
     },
-    "date": { "issueDate": "2023-11-12T00:00:00.000Z", "dueDate": "2023-11-26T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
+    "date": {
+      "issueDate": "2023-11-12T00:00:00.000Z",
+      "dueDate": "2023-11-26T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M06",
+      "label": "Exempt Article 15 of CIVA"
+    },
     "items": [
       {
         "id": 7,
@@ -792,8 +1237,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO99887", "referenceNote": "Branding project" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO99887",
+      "referenceNote": "Branding project"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "draft"
   },
   {
@@ -803,11 +1254,25 @@
       "email": "support@greentech.com",
       "nif": "IT1122334455",
       "country": "IT",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "10 Eco Blvd", "city": "Milan", "postalCode": "20122", "additional": "" }
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "10 Eco Blvd",
+        "city": "Milan",
+        "postalCode": "20122",
+        "additional": ""
+      }
     },
-    "date": { "issueDate": "2023-08-01T00:00:00.000Z", "dueDate": "2023-08-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M03", "label": "Exempt Article 7 of CIVA" },
+    "date": {
+      "issueDate": "2023-08-01T00:00:00.000Z",
+      "dueDate": "2023-08-15T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M03",
+      "label": "Exempt Article 7 of CIVA"
+    },
     "items": [
       {
         "id": 8,
@@ -820,8 +1285,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO12367", "referenceNote": "Energy upgrade" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO12367",
+      "referenceNote": "Energy upgrade"
+    },
+    "currency": {
+      "value": "EUR",
+      "isDefault": true
+    },
     "status": "overdue"
   },
   {
@@ -831,7 +1302,10 @@
       "email": "contact@luxuryinteriors.com",
       "nif": "US9988776655",
       "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
+      "currency": {
+        "value": "USD",
+        "isDefault": true
+      },
       "address": {
         "street": "500 Rich Ave",
         "city": "New York",
@@ -839,8 +1313,14 @@
         "additional": "Penthouse Suite"
       }
     },
-    "date": { "issueDate": "2023-06-20T00:00:00.000Z", "dueDate": "2023-07-05T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
+    "date": {
+      "issueDate": "2023-06-20T00:00:00.000Z",
+      "dueDate": "2023-07-05T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M04",
+      "label": "Exempt Article 13 of CIVA"
+    },
     "items": [
       {
         "id": 9,
@@ -853,8 +1333,14 @@
         "discount": 0
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO76432", "referenceNote": "Phase 1 design" },
-    "currency": { "value": "USD", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO76432",
+      "referenceNote": "Phase 1 design"
+    },
+    "currency": {
+      "value": "USD",
+      "isDefault": true
+    },
     "status": "paid"
   },
   {
@@ -864,11 +1350,25 @@
       "email": "info@brightfuturetech.com",
       "nif": "CA2233445566",
       "country": "CA",
-      "currency": { "value": "CAD", "isDefault": true },
-      "address": { "street": "789 Tech Park", "city": "Toronto", "postalCode": "M5H 2N2", "additional": "Building B" }
+      "currency": {
+        "value": "CAD",
+        "isDefault": true
+      },
+      "address": {
+        "street": "789 Tech Park",
+        "city": "Toronto",
+        "postalCode": "M5H 2N2",
+        "additional": "Building B"
+      }
     },
-    "date": { "issueDate": "2023-07-10T00:00:00.000Z", "dueDate": "2023-07-24T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
+    "date": {
+      "issueDate": "2023-07-10T00:00:00.000Z",
+      "dueDate": "2023-07-24T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M05",
+      "label": "Exempt Article 14 of CIVA"
+    },
     "items": [
       {
         "id": 10,
@@ -881,8 +1381,14 @@
         "discount": 0
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO55678", "referenceNote": "Monthly cloud service" },
-    "currency": { "value": "CAD", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO55678",
+      "referenceNote": "Monthly cloud service"
+    },
+    "currency": {
+      "value": "CAD",
+      "isDefault": true
+    },
     "status": "issued"
   },
   {
@@ -892,11 +1398,25 @@
       "email": "media@globalmediagroup.com",
       "nif": "AU3344556677",
       "country": "AU",
-      "currency": { "value": "AUD", "isDefault": true },
-      "address": { "street": "101 Media Blvd", "city": "Sydney", "postalCode": "2000", "additional": "3rd Floor" }
+      "currency": {
+        "value": "AUD",
+        "isDefault": true
+      },
+      "address": {
+        "street": "101 Media Blvd",
+        "city": "Sydney",
+        "postalCode": "2000",
+        "additional": "3rd Floor"
+      }
     },
-    "date": { "issueDate": "2023-05-25T00:00:00.000Z", "dueDate": "2023-06-08T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
+    "date": {
+      "issueDate": "2023-05-25T00:00:00.000Z",
+      "dueDate": "2023-06-08T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M06",
+      "label": "Exempt Article 15 of CIVA"
+    },
     "items": [
       {
         "id": 11,
@@ -909,8 +1429,14 @@
         "discount": 5
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO99822", "referenceNote": "Q3 Campaign" },
-    "currency": { "value": "AUD", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO99822",
+      "referenceNote": "Q3 Campaign"
+    },
+    "currency": {
+      "value": "AUD",
+      "isDefault": true
+    },
     "status": "draft"
   },
   {
@@ -920,11 +1446,25 @@
       "email": "sales@medicalequipco.com",
       "nif": "IN6677889900",
       "country": "IN",
-      "currency": { "value": "INR", "isDefault": true },
-      "address": { "street": "42 Health Plaza", "city": "Mumbai", "postalCode": "400001", "additional": "Unit 5" }
+      "currency": {
+        "value": "INR",
+        "isDefault": true
+      },
+      "address": {
+        "street": "42 Health Plaza",
+        "city": "Mumbai",
+        "postalCode": "400001",
+        "additional": "Unit 5"
+      }
     },
-    "date": { "issueDate": "2023-09-02T00:00:00.000Z", "dueDate": "2023-09-16T00:00:00.000Z" },
-    "vatExemption": { "value": "M07", "label": "Exempt Article 18 of CIVA" },
+    "date": {
+      "issueDate": "2023-09-02T00:00:00.000Z",
+      "dueDate": "2023-09-16T00:00:00.000Z"
+    },
+    "vatExemption": {
+      "value": "M07",
+      "label": "Exempt Article 18 of CIVA"
+    },
     "items": [
       {
         "id": 12,
@@ -937,8 +1477,14 @@
         "discount": 2
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO22334", "referenceNote": "Q4 Medical Devices" },
-    "currency": { "value": "INR", "isDefault": true },
+    "additionalOptions": {
+      "purchaseOrder": "PO22334",
+      "referenceNote": "Q4 Medical Devices"
+    },
+    "currency": {
+      "value": "INR",
+      "isDefault": true
+    },
     "status": "issued"
   }
 ]

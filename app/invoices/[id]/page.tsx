@@ -2,8 +2,9 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 
 import { InvoiceActions } from '@/components/invoices/detail-page/invoice-actions/invoice-actions';
-import { InvoicePreview } from '@/components/invoices/detail-page/invoice-preview';
+import { InvoicePreview } from '@/components/invoices/detail-page/invoice-preview/invoice-preview';
 import { Header } from '@/components/layout/create-invoice-header';
+import { Toaster } from '@/components/ui/toaster';
 import { AppConfig } from '@/context/model';
 import { fetchData } from '@/lib/utils';
 
@@ -41,6 +42,7 @@ export default async function InvoicePage({ params }: Props) {
           <InvoiceActions invoice={invoice} />
         </div>
       </div>
+      <Toaster />
     </main>
   );
 }
