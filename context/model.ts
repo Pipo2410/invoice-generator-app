@@ -35,11 +35,27 @@ export const ClientSchema = z.object({
   currency: CurrencySchema,
   address: z
     .object({
-      street: z.string(),
-      city: z.string(),
-      postalCode: z.string(),
-      additional: z.string(),
+      street: z.string().optional(),
+      city: z.string().optional(),
+      postalCode: z.string().optional(),
+      additional: z.string().optional(),
     })
+    .refine(
+      (data) => {
+        const hasAnyField = data.street || data.city || data.postalCode || data.additional;
+        const allFieldsAreValid =
+          (data.street?.trim() || !data.street) &&
+          (data.city?.trim() || !data.city) &&
+          (data.postalCode?.trim() || !data.postalCode) &&
+          (data.additional?.trim() || !data.additional);
+
+        // If any field is present, check none of them are empty or whitespace
+        return !hasAnyField || allFieldsAreValid;
+      },
+      {
+        message: 'If provided, address fields must not be empty or just whitespace.',
+      },
+    )
     .optional(),
 });
 

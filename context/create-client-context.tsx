@@ -20,14 +20,14 @@ type CreateClientContextValues = {
   setNif: Dispatch<SetStateAction<string>>;
   email: string;
   setEmail: Dispatch<SetStateAction<string>>;
-  streetAddress: string;
-  setStreetAddress: Dispatch<SetStateAction<string>>;
-  city: string;
-  setCity: Dispatch<SetStateAction<string>>;
-  postalCode: string;
-  setPostalCode: Dispatch<SetStateAction<string>>;
-  floorNumber: string;
-  setFloorNumber: Dispatch<SetStateAction<string>>;
+  streetAddress: string | undefined;
+  setStreetAddress: Dispatch<SetStateAction<string | undefined>>;
+  city: string | undefined;
+  setCity: Dispatch<SetStateAction<string | undefined>>;
+  postalCode: string | undefined;
+  setPostalCode: Dispatch<SetStateAction<string | undefined>>;
+  floorNumber: string | undefined;
+  setFloorNumber: Dispatch<SetStateAction<string | undefined>>;
   errors: Record<string, string | null>;
   setErrors: Dispatch<SetStateAction<Record<string, string | null>>>;
 };
@@ -48,10 +48,10 @@ export const CreateClientContextProvider: React.FC<CreateContextProviderProps> =
   const [currencyDefault, setCurrencyDefault] = useState(currentClient.currency.isDefault);
   const [nif, setNif] = useState(currentClient.nif);
   const [email, setEmail] = useState(currentClient.email);
-  const [streetAddress, setStreetAddress] = useState(currentClient.address?.street || '');
-  const [city, setCity] = useState(currentClient.address?.city || '');
-  const [postalCode, setPostalCode] = useState(currentClient.address?.postalCode || '');
-  const [floorNumber, setFloorNumber] = useState(currentClient.address?.additional || '');
+  const [streetAddress, setStreetAddress] = useState(currentClient.address?.street);
+  const [city, setCity] = useState(currentClient.address?.city);
+  const [postalCode, setPostalCode] = useState(currentClient.address?.postalCode);
+  const [floorNumber, setFloorNumber] = useState(currentClient.address?.additional);
 
   const [errors, setErrors] = useState<Record<string, string | null>>({});
 

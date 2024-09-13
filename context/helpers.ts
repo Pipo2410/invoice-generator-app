@@ -69,3 +69,14 @@ export const statusVariantMap: Record<IssuedInvoice['status'], 'warning' | 'succ
   overdue: 'destructive',
   issued: 'outline', // issued as the default or neutral state
 };
+
+export const shouldcreateAddressField = (city?: string, street?: string, postalCode?: string, additional?: string) => {
+  const addressFields = {
+    city,
+    street,
+    postalCode,
+    additional,
+  };
+
+  return Object.values(addressFields).some(Boolean) ? addressFields : undefined;
+};

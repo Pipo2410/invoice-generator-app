@@ -41,9 +41,11 @@ export const ClientCard: React.FC<Props> = ({ onClose, onEdit }) => {
       <CardContent className="flex flex-col gap-2">
         <p>NIF {client.nif}</p>
         <p>{client.country}</p>
-        <p>
-          {address?.street} {address?.additional} {address?.postalCode} - {address?.city}
-        </p>
+        {address && (
+          <p>
+            {address?.street} {address?.additional} {address?.postalCode} - {address?.city}
+          </p>
+        )}
         <p className="font-semibold">{client.email}</p>
       </CardContent>
     </Card>

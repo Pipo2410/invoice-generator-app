@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { useCreateClientContext } from '@/context/create-client-context';
-import { mapErrorsToFields } from '@/context/helpers';
+import { mapErrorsToFields, shouldcreateAddressField } from '@/context/helpers';
 import { Client, ClientSchema } from '@/context/model';
 import { toast } from '@/hooks/use-toast';
 
@@ -48,15 +48,15 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
 
   const newClientId = clients.length + 1;
 
+  const address = useMemo(
+    () => shouldcreateAddressField(city, streetAddress, postalCode, floorNumber),
+    [city, postalCode, streetAddress, floorNumber],
+  );
+
   const client: Client = {
     id: id || newClientId.toString(),
     businessName,
-    address: {
-      city,
-      street: streetAddress,
-      postalCode,
-      additional: floorNumber,
-    },
+    address,
     country,
     currency: {
       value: currencyValue,
@@ -74,7 +74,7 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
       setErrors(formattedErrors);
       toast({
         title: 'Error',
-        description: `Please fill all required fields`,
+        description: `Please fill all required fields. ${formattedErrors['address']}`,
         variant: 'destructive',
         duration: 3000,
       });
@@ -141,6 +141,7 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
                 placeholder="Street address"
                 value={client.address?.street ?? ''}
                 onInputHandler={(value) => setStreetAddress(value)}
+                // error={!!errors['address']}
               />
               <CustomInput
                 id="address-city"
@@ -148,6 +149,7 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
                 placeholder="City"
                 value={client.address?.city ?? ''}
                 onInputHandler={(value) => setCity(value)}
+                // error={!!errors['city']}
               />
               <div className="flex gap-4">
                 <CustomInput
@@ -156,6 +158,7 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
                   placeholder="Postal code"
                   value={client.address?.postalCode ?? ''}
                   onInputHandler={(value) => setPostalCode(value)}
+                  // error={!!errors['postalCode']}
                   wrapperClasses="w-1/2"
                 />
                 <CustomInput
@@ -164,6 +167,7 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
                   placeholder="Floor, door number"
                   value={client.address?.additional ?? ''}
                   onInputHandler={(value) => setFloorNumber(value)}
+                  // error={!!errors['additional']}
                   wrapperClasses="w-1/2"
                 />
               </div>
