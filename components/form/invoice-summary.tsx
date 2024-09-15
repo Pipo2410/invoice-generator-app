@@ -1,14 +1,21 @@
 import React from 'react';
 import { useWatch } from 'react-hook-form';
 
-import { currencies } from '@/assets/currencies';
+import { useCreateInvoiceFormContext } from '@/context/app-context';
+import { useCalcucatePrice } from '@/hooks/use-calculate-price';
 
 import { Separator } from '../ui/separator';
 
 export const InvoiceSummary = () => {
+  const {
+    appConfig: { currencies },
+  } = useCreateInvoiceFormContext();
+
   const vatExemption = useWatch({ name: 'vatExemption.label' });
   const currency = useWatch({ name: 'currency.value' });
   const currencySign = currencies.find((el) => el.value === currency)?.sign;
+
+  const { finalPrice } = useCalcucatePrice();
 
   return (
     <div className="flex flex-col gap-8 text-dark-gray">
@@ -37,7 +44,10 @@ export const InvoiceSummary = () => {
 
       <div className="flex justify-between">
         <p>Total</p>
-        <p className="text-foreground">1.537,50{currencySign}</p>
+        <p className="text-foreground">
+          {finalPrice}
+          {currencySign}
+        </p>
       </div>
       <div className="flex justify-between">
         <p>VAT Exemption</p>

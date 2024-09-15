@@ -1,24 +1,30 @@
 import React from 'react';
-import { useWatch } from 'react-hook-form';
+import { UseFormReturn, useFieldArray } from 'react-hook-form';
 
-import { Item } from '@/context/model';
+import { FormType, Item } from '@/context/model';
 
 import { AddItems } from './add-items';
 import { AddedItem } from './added-item';
 
-export const AddInvoiceSection = () => {
-  const items: Item[] = useWatch({
+type Props = {
+  form: UseFormReturn<FormType>;
+};
+
+export const AddInvoiceSection: React.FC<Props> = ({ form }) => {
+  const { append, remove, fields } = useFieldArray({
     name: 'items',
   });
+
   return (
     <>
-      <AddItems />
-      {!!items &&
-        items.map((item, index) => (
+      <AddItems form={form} appendFunction={append} />
+      {!!fields.length &&
+        fields.map((item, index) => (
           <AddedItem
-            key={`item-${item.id}-${Math.floor(Math.random() * 1000) + 1}`} // check again
             itemIndex={index}
-            item={item}
+            key={item.id} // check again
+            item={item as Item} // fix this
+            onRemoveItem={remove}
           />
         ))}
     </>

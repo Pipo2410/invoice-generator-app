@@ -23,7 +23,7 @@ const ItemSchema = z.object({
   unit: z.number(),
   price: z.number(),
   vat: z.number(),
-  discount: z.number(),
+  discount: z.number().optional(),
 });
 
 export const ClientSchema = z.object({

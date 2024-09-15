@@ -1,8 +1,9 @@
 'use client';
 
+// import { DevTool } from '@hookform/devtools';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useMemo, useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { PreviewFormArea } from '@/components/preview/preview-form-area';
 import { Form } from '@/components/ui/form';
@@ -31,8 +32,7 @@ export const Content = () => {
     defaultValues: { invoiceId: invoiceId, ...formDefaultValues },
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmitHandler = (data: FormType, event: unknown) => {
+  const onSubmitHandler = () => {
     setOpenConfirmationDialog(true);
   };
 
@@ -45,9 +45,8 @@ export const Content = () => {
     });
   };
 
-  const toggleLayoutClasses = useMemo(
-    () => cn(showPreview ? 'col-span-full xl:col-span-7 xl:mr-[75px]' : 'col-span-full xl:col-span-10'),
-    [showPreview],
+  const toggleLayoutClasses = cn(
+    showPreview ? 'col-span-full xl:col-span-7 xl:mr-[75px]' : 'col-span-full xl:col-span-10',
   );
 
   const confirmSubmitDialogComponent = useMemo(
@@ -63,24 +62,25 @@ export const Content = () => {
     [submitted, openConfirmationDialog],
   );
 
+  console.log(`form.formState.errors: ${JSON.stringify(form.formState.errors, null, 2)}`);
+
   return (
     <div className="grid grid-cols-12">
-      <FormProvider {...form}>
+      <Form {...form}>
         <div className={toggleLayoutClasses}>
-          <Form {...form}>
-            <form
-              id="create-invoice"
-              className="flex flex-col gap-6"
-              onSubmit={form.handleSubmit(onSubmitHandler, onError)}
-            >
-              <FormContent form={form} />
-            </form>
-          </Form>
+          <form
+            id="create-invoice"
+            className="flex flex-col gap-6"
+            onSubmit={form.handleSubmit(onSubmitHandler, onError)}
+          >
+            <FormContent form={form} />
+          </form>
         </div>
         {showPreview && <PreviewFormArea />}
         {confirmSubmitDialogComponent}
-        <Toaster />
-      </FormProvider>
+      </Form>
+      {/* <DevTool control={form.control} /> */}
+      <Toaster />
     </div>
   );
 };

@@ -23,7 +23,7 @@ export const FormContent: React.FC<Props> = ({ form }) => (
     </div>
     <div>
       <Separator />
-      <AddInvoiceSection />
+      <AddInvoiceSection form={form} />
       <AdditionalOptions form={form} />
     </div>
     <div className="summary">

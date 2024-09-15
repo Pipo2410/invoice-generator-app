@@ -14,8 +14,8 @@ type Props = {
 };
 
 export const ConfirmInvoiceDialogContent: React.FC<Props> = ({ setOpenDialog, setSubmitted }) => {
-  const { getValues } = useFormContext();
-  const formValues = getValues() as FormType;
+  const { getValues } = useFormContext<FormType>();
+  const formValues = getValues();
 
   const handleIssueInvoice = async () => {
     const response = await sendCreateInvoiceRequest(formValues);

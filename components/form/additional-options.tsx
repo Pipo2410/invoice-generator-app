@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { FormType } from '@/context/model';
 
+import { FormControl, FormField, FormItem } from '../ui/form';
 import { Input } from '../ui/input';
 import { CustomCheckbox } from './custom-checkbox';
 import { CustomInput } from './custom-input';
@@ -16,7 +17,7 @@ type Props = {
 };
 
 export const AdditionalOptions: React.FC<Props> = ({ form }) => {
-  const { formState } = form;
+  const { formState, control } = form;
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1" className="w-full">
@@ -55,22 +56,58 @@ export const AdditionalOptions: React.FC<Props> = ({ form }) => {
               </Select>
             </CustomCheckbox>
           </div>
-          <CustomInput
+          <FormField
+            control={control}
+            name={`additionalOptions.purchaseOrder`}
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <CustomInput
+                    id="purchase-order"
+                    type="text"
+                    placeholder="Purchase order"
+                    value={field.value}
+                    error={!!formState.errors.additionalOptions?.purchaseOrder}
+                    onInputHandler={(value) => field.onChange(value)} // Only called on blur
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name={`additionalOptions.referenceNote`}
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <CustomInput
+                    id="purchase-order"
+                    type="text"
+                    placeholder="Reference note"
+                    value={field.value}
+                    error={!!formState.errors.additionalOptions?.referenceNote}
+                    onInputHandler={(value) => field.onChange(value)} // Only called on blur
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          {/* <CustomInput
             id="purchase-order"
             type="text"
             placeholder="Reference note"
             value={form.getValues('additionalOptions.purchaseOrder')}
             error={!!formState.errors.additionalOptions?.purchaseOrder}
             onInputHandler={(value) => form.setValue('additionalOptions.purchaseOrder', value)} // Only called on blur
-          />
-          <CustomInput
+          /> */}
+          {/* <CustomInput
             id="reference-note"
             type="text"
             placeholder="Client business name*"
             error={!!formState.errors.additionalOptions?.referenceNote}
             value={form.getValues('additionalOptions.referenceNote')} // Controlled value from parent
             onInputHandler={(value) => form.setValue('additionalOptions.referenceNote', value)} // Only called on blur
-          />
+          /> */}
         </AccordionContent>
       </AccordionItem>
     </Accordion>

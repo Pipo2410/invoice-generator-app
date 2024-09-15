@@ -18,8 +18,8 @@ export default async function InvoicePage({ params }: Props) {
   let response;
   let appConfig: AppConfig;
   try {
-    response = await fetchData(`/invoices/${params.id}`);
-    appConfig = await fetchData(`/appConfig`);
+    response = await fetchData(`invoices/${params.id}`);
+    appConfig = await fetchData(`appConfig`);
   } catch (error) {
     notFound();
   }

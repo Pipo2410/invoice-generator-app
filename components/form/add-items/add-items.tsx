@@ -1,24 +1,26 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
-import { FieldErrors, useFieldArray, useFormContext, useWatch } from 'react-hook-form';
+import { FieldErrors, FieldValues, UseFieldArrayAppend, UseFormReturn } from 'react-hook-form';
 
 import { AutoComplete } from '@/components/form/autocomplete';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
-import { Currency, FormType, Item } from '@/context/model';
+import { FormType, Item } from '@/context/model';
 import { toast } from '@/hooks/use-toast';
 
-export const AddItems = () => {
+type Props = {
+  form: UseFormReturn<FormType>;
+  appendFunction: UseFieldArrayAppend<FieldValues, 'items'>;
+};
+
+export const AddItems: React.FC<Props> = ({ form, appendFunction }) => {
+  const { items } = useCreateInvoiceFormContext();
+
+  const currency = form.watch('currency');
+  const invoiceItems = form.getValues('items');
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<string>('');
-  const { items } = useCreateInvoiceFormContext();
-  const { getValues, formState } = useFormContext();
-  const currency: Currency = useWatch({ name: 'currency' });
-  const ItemsArray = getValues('items');
-  const { append } = useFieldArray({
-    name: 'items',
-  });
 
   const filteredItems = useMemo(
     () =>
@@ -47,7 +49,7 @@ export const AddItems = () => {
   const onSelect = (value: string) => {
     const selectedItem = items.find((item) => item.id === value);
 
-    const isPreviouslyAdded = ItemsArray.findIndex((item: Item) => item.id === selectedItem?.id);
+    const isPreviouslyAdded = invoiceItems.findIndex((item: Item) => item.id === selectedItem?.id);
 
     if (isPreviouslyAdded !== -1) {
       toast({
@@ -60,12 +62,12 @@ export const AddItems = () => {
     }
 
     if (selectedItem) {
-      append(selectedItem);
+      appendFunction(selectedItem);
       setSelectedValue(''); // Reset selected value
     }
   };
 
-  const errors: FieldErrors<FormType> = formState.errors;
+  const errors: FieldErrors<FormType> = form.formState.errors;
 
   return (
     <Accordion type="single" collapsible>

@@ -1,7 +1,5 @@
 import { ZodIssue } from 'zod';
 
-import { currencies } from '@/assets/currencies';
-
 import { AppConfig, Client, InitialCreateInvoiceState, IssuedInvoice, Item } from './model';
 
 export const formDefaultValues = {
@@ -20,7 +18,7 @@ export const formDefaultValues = {
   },
   items: [],
   currency: {
-    value: currencies[0].value,
+    value: 'EUR',
     isDefault: false,
   },
   additionalOptions: {

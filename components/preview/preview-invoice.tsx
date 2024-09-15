@@ -2,19 +2,28 @@ import { format } from 'date-fns';
 import React from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import { currencies } from '@/assets/currencies';
 import { InvoiceSummary } from '@/components/form/invoice-summary';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { Client, Date, Item } from '@/context/model';
 
 export const PreviewInvoice = () => {
   const { getValues } = useFormContext();
+  const {
+    appConfig: { currencies },
+  } = useCreateInvoiceFormContext();
+  // const form = useFormContext<FormType>();
   const client: Client = useWatch({ name: 'client' });
   const items: Item[] = useWatch({
     name: 'items',
   });
 
+  // const hh = form.watch('items');
+  // console.log(`itemoss: ${JSON.stringify(items)}`);
+  // console.log(`itemoss: ${JSON.stringify(hh)}`);
+
+  // console.log(`calculatePrice: ${JSON.stringify(halooooo)}`);
   const purchaseOrder = useWatch({
     name: 'additionalOptions.purchaseOrder',
   });
@@ -25,7 +34,7 @@ export const PreviewInvoice = () => {
   const currency = getValues('currency');
   const dueDate: Date['dueDate'] = getValues('date.dueDate');
 
-  const currencySign = currencies.find((el) => el.label === currency)?.sign;
+  const currencySign = currencies.find((cur) => cur.value === currency.value)?.sign;
 
   return (
     <Card className="flex w-full flex-col gap-4 rounded-2xl px-4 pb-8 pt-6">
@@ -67,7 +76,57 @@ export const PreviewInvoice = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-8">
+      {/* ITEM SECTION */}
+      <div className="flex flex-col gap-8 py-4">
+        <p className="text-sm font-semibold text-light-gray">Item</p>
+        <div className="flex flex-col gap-2">
+          {/* Table Header */}
+          <table className="w-full table-auto border-separate border-spacing-2 text-xs">
+            <thead className="font-semibold text-light-gray">
+              <tr>
+                <th className="w-[40%]"></th>
+                <th>Unit price</th>
+                <th>Units</th>
+                <th>VAT</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {!!items && items.length ? (
+                items.map((item) => {
+                  const formattedPrice = new Intl.NumberFormat('de-DE', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  }).format(item.price);
+
+                  return (
+                    <tr key={item.id} className="rounded-sm p-1 text-center text-foreground">
+                      <td className="rounded-none text-start">{item.name}</td>
+                      <td className="bg-background">{formattedPrice}</td>
+                      <td className="bg-background">{item.unit}</td>
+                      <td className="bg-background">{item.vat} %</td>
+                      <td className="bg-background">
+                        {formattedPrice} {currencySign}
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr className="rounded-sm p-1 text-center text-foreground">
+                  <td></td>
+                  <td className="bg-background">0</td>
+                  <td className="bg-background">0</td>
+                  <td className="bg-background">0</td>
+                  <td className="bg-background">0</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {/* END ITEM SECTION */}
+
+      {/* <div className="flex flex-col gap-8">
         <p>Item</p>
         <div className="flex flex-col gap-2">
           <div className="grid grid-cols-6 gap-0.5 text-end text-xs">
@@ -104,7 +163,7 @@ export const PreviewInvoice = () => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
       <InvoiceSummary />
       {purchaseOrder && (
         <p>

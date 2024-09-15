@@ -2,28 +2,30 @@
 
 import { Trash2 } from 'lucide-react';
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
+import { UseFieldArrayRemove, useFormContext } from 'react-hook-form';
 
-import { currencies } from '@/assets/currencies';
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
-import { Item } from '@/context/model';
+import { useCreateInvoiceFormContext } from '@/context/app-context';
+import { FormType, Item } from '@/context/model';
 import { cn } from '@/lib/utils';
 
 type Props = {
   item: Item;
   itemIndex: number;
+  onRemoveItem: UseFieldArrayRemove;
 };
 
-export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
-  const { getValues, control, setValue } = useFormContext();
+export const AddedItem: React.FC<Props> = ({ item, itemIndex, onRemoveItem }) => {
+  const { getValues, control, formState } = useFormContext<FormType>();
+  const {
+    appConfig: { currencies },
+  } = useCreateInvoiceFormContext();
+  const { currency } = getValues();
 
-  const { currency, items } = getValues();
-
-  const currencySign = currencies.find((el) => el.label === currency)?.sign;
-  const filteredItems = items.filter((el: Item) => el.name !== item.name);
+  const currencySign = currencies.find((el) => el.value === currency.value)?.sign;
 
   return (
     <>
@@ -31,16 +33,15 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
         <div className="flex items-center gap-2">
           <FormField
             control={control}
-            name={`items.${itemIndex}`}
+            name={`items.${itemIndex}.name`}
             render={({ field }) => (
               <FormItem className="flex w-full space-y-0">
                 <FormControl>
                   <Input
                     className={cn(
-                      'rounded-sm border-none bg-white px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0',
+                      'rounded-sm border-transparent bg-white px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0',
                     )}
                     {...field}
-                    value={item.name}
                   />
                 </FormControl>
               </FormItem>
@@ -48,13 +49,14 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
           />
           <FormField
             control={control}
-            name="items"
-            render={() => (
+            name={`items.${itemIndex}.description`}
+            render={({ field }) => (
               <FormItem className="flex w-full space-y-0">
                 <FormControl>
                   <Input
                     placeholder={item.description}
-                    className="rounded-sm border-none bg-white px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+                    className="rounded-sm border-transparent bg-white px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+                    {...field}
                   />
                 </FormControl>
               </FormItem>
@@ -63,20 +65,21 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
           <Trash2
             size={48}
             className="hover:cursor-pointer"
-            onClick={() => {
-              // setItems((prev) => prev.filter((el) => el.id !== item.id));
-              setValue('items', filteredItems); // gets ts error when items.array.nonEmpty() from zod
-            }}
+            onClick={() => onRemoveItem()}
+            // onClick={() => {
+            //    setItems((prev) => prev.filter((el) => el.id !== item.id));
+            //   setValue('items', onRemoveItem); // gets ts error when items.array.nonEmpty() from zod
+            // }}
           />
         </div>
         <div className="flex gap-2">
           <FormField
             control={control}
-            name="items"
-            render={() => (
+            name={`items.${itemIndex}.category`}
+            render={({ field }) => (
               <FormItem className="w-1/5">
-                <Select>
-                  <SelectTrigger className="rounded-sm border-none bg-white px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0">
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <SelectTrigger className="rounded-sm border-transparent bg-white px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0">
                     <SelectValue placeholder="Type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -92,48 +95,56 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
           />
           <FormField
             control={control}
-            name="items"
-            render={() => (
-              <FormItem className="w-1/5">
-                <Select>
-                  <SelectTrigger className="rounded-sm border-none bg-white px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0">
-                    <SelectValue placeholder="Type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {['Service', 'SomethingElse'].map((option) => (
-                      <SelectItem key={option} value={option}>
-                        {option}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </FormItem>
-            )}
+            name={`items.${itemIndex}.unit`}
+            render={({ field }) => {
+              console.log(field);
+              return (
+                <FormItem className="w-1/5">
+                  <Select onValueChange={(value) => field.onChange(+value)}>
+                    <SelectTrigger className="rounded-sm border-transparent bg-white px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0">
+                      <SelectValue placeholder="Type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {[1, 2, 3, 4].map((option) => (
+                        <SelectItem key={option} value={String(option)}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              );
+            }}
           />
           <FormField
             control={control}
-            name="items"
+            name={`items.${itemIndex}.price`}
             render={() => (
               <FormItem className="w-1/5">
                 <Input
                   placeholder={`${item.price} ${currencySign}`}
-                  className="rounded-sm border-none bg-white px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+                  className="rounded-sm border-transparent bg-white px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </FormItem>
             )}
           />
           <FormField
             control={control}
-            name="items"
-            render={() => (
+            name={`items.${itemIndex}.vat`}
+            render={({ field }) => (
               <FormItem className="w-1/5">
-                <Select>
-                  <SelectTrigger className="rounded-sm border-none bg-white px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0">
-                    <SelectValue placeholder="Type" />
+                <Select onValueChange={(value) => field.onChange(+value)} defaultValue={String(field.value)}>
+                  <SelectTrigger
+                    className={cn(
+                      'rounded-sm border-transparent bg-white px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0',
+                      !!formState.errors.items?.[itemIndex]?.vat && '!border-dark-orange', // might not need
+                    )}
+                  >
+                    {field.value}%
                   </SelectTrigger>
                   <SelectContent>
-                    {['Service', 'SomethingElse'].map((option) => (
-                      <SelectItem key={option} value={option}>
+                    {[22, 23, 24, 25, 26].map((option) => (
+                      <SelectItem key={option} value={String(option)}>
                         {option}
                       </SelectItem>
                     ))}
@@ -144,15 +155,23 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex }) => {
           />
           <FormField
             control={control}
-            name="items"
-            render={() => (
-              <FormItem className="w-1/5">
-                <Input
-                  placeholder={`${item.discount} %`}
-                  className="rounded-sm border-none bg-white px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
-                />
-              </FormItem>
-            )}
+            name={`items.${itemIndex}.discount`}
+            render={({ field }) => {
+              console.log(field);
+              console.log(formState.errors.items?.[itemIndex]?.discount);
+              return (
+                <FormItem className="w-1/5">
+                  <Input
+                    type="number"
+                    placeholder="Discount %"
+                    className="rounded-sm border-transparent bg-white px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+                    error={!!formState.errors.items?.[itemIndex]?.discount}
+                    {...field}
+                    onChange={(e) => field.onChange(+e.target.value)}
+                  />
+                </FormItem>
+              );
+            }}
           />
         </div>
       </div>
