@@ -1,40 +1,28 @@
-import { format } from 'date-fns';
 import React from 'react';
-import { useFormContext, useWatch } from 'react-hook-form';
+import { UseFormReturn, useWatch } from 'react-hook-form';
 
 import { InvoiceSummary } from '@/components/form/invoice-summary';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { useCreateInvoiceFormContext } from '@/context/app-context';
-import { Client, Date, Item } from '@/context/model';
+import { formatDate, formatPrice } from '@/context/helpers';
+import { Date, FormType } from '@/context/model';
+import { useCalculatePrice } from '@/hooks/use-calculate-price';
 
-export const PreviewInvoice = () => {
-  const { getValues } = useFormContext();
-  const {
-    appConfig: { currencies },
-  } = useCreateInvoiceFormContext();
-  // const form = useFormContext<FormType>();
-  const client: Client = useWatch({ name: 'client' });
-  const items: Item[] = useWatch({
-    name: 'items',
-  });
+type Props = {
+  form: UseFormReturn<FormType>;
+};
 
-  // const hh = form.watch('items');
-  // console.log(`itemoss: ${JSON.stringify(items)}`);
-  // console.log(`itemoss: ${JSON.stringify(hh)}`);
+export const PreviewInvoice: React.FC<Props> = ({ form }) => {
+  const { getValues, control } = form;
 
-  // console.log(`calculatePrice: ${JSON.stringify(halooooo)}`);
-  const purchaseOrder = useWatch({
-    name: 'additionalOptions.purchaseOrder',
-  });
-  const referenceNote = useWatch({
-    name: 'additionalOptions.referenceNote',
-  });
+  const client = useWatch({ control, name: 'client' });
+  const purchaseOrder = useWatch({ control, name: 'additionalOptions.purchaseOrder' });
+  const referenceNote = useWatch({ control, name: 'additionalOptions.referenceNote' });
 
   const currency = getValues('currency');
   const dueDate: Date['dueDate'] = getValues('date.dueDate');
 
-  const currencySign = currencies.find((cur) => cur.value === currency.value)?.sign;
+  const { updatedItems } = useCalculatePrice();
 
   return (
     <Card className="flex w-full flex-col gap-4 rounded-2xl px-4 pb-8 pt-6">
@@ -67,7 +55,7 @@ export const PreviewInvoice = () => {
         <div className="-mx-1 flex justify-center border-b border-t border-dotted py-4">
           <div className="flex flex-col items-center">
             <p>Due date</p>
-            {dueDate && <p className="font-semibold">{format(dueDate, 'MMM d, yyyy')}</p>}
+            {dueDate && <p className="font-semibold">{formatDate(dueDate)}</p>}
           </div>
           <Separator orientation="vertical" className="mx-5 h-auto" />
           <div className="flex flex-col items-center">
@@ -92,8 +80,8 @@ export const PreviewInvoice = () => {
               </tr>
             </thead>
             <tbody>
-              {!!items && items.length ? (
-                items.map((item) => {
+              {!!updatedItems && updatedItems.length ? (
+                updatedItems.map((item) => {
                   const formattedPrice = new Intl.NumberFormat('de-DE', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
@@ -105,9 +93,7 @@ export const PreviewInvoice = () => {
                       <td className="bg-background">{formattedPrice}</td>
                       <td className="bg-background">{item.unit}</td>
                       <td className="bg-background">{item.vat} %</td>
-                      <td className="bg-background">
-                        {formattedPrice} {currencySign}
-                      </td>
+                      <td className="bg-background">{formatPrice(item.totalPrice, currency.value)}</td>
                     </tr>
                   );
                 })
@@ -125,46 +111,7 @@ export const PreviewInvoice = () => {
         </div>
       </div>
       {/* END ITEM SECTION */}
-
-      {/* <div className="flex flex-col gap-8">
-        <p>Item</p>
-        <div className="flex flex-col gap-2">
-          <div className="grid grid-cols-6 gap-0.5 text-end text-xs">
-            <span className="col-start-3 col-end-4">Unit price</span>
-            <span className="col-start-4 col-end-5">Units</span>
-            <span className="col-start-5 col-end-6">VAT</span>
-            <span className="col-start-6 col-end-7">Total</span>
-          </div>
-          {!!items && items.length ? (
-            items.map((item) => {
-              const formattedPrice = new Intl.NumberFormat('de-DE', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              }).format(item.price);
-              return (
-                <div key={item.id} className="grid grid-cols-6 gap-0.5 py-1 text-end text-xs">
-                  <span className="col-start-1 col-end-3 text-start">{item.name}</span>
-                  <span className="col-start-3 col-end-4 rounded-sm bg-background p-1">{formattedPrice}</span>
-                  <span className="col-start-4 col-end-5 rounded-sm bg-background p-1">{item.unit}</span>
-                  <span className="col-start-5 col-end-6 rounded-sm bg-background p-1">{item.vat} %</span>
-                  <span className="col-start-6 col-end-7 rounded-sm bg-background p-1">
-                    {formattedPrice} {currencySign}
-                  </span>
-                </div>
-              );
-            })
-          ) : (
-            <div className="grid grid-cols-6 gap-0.5 py-1 text-end text-xs">
-              <span className="col-start-1 col-end-3 text-start"></span>
-              <span className="col-start-3 col-end-4 rounded-sm bg-background p-1">0</span>
-              <span className="col-start-4 col-end-5 rounded-sm bg-background p-1">0</span>
-              <span className="col-start-5 col-end-6 rounded-sm bg-background p-1">0</span>
-              <span className="col-start-6 col-end-7 rounded-sm bg-background p-1">0</span>
-            </div>
-          )}
-        </div>
-      </div> */}
-      <InvoiceSummary />
+      <InvoiceSummary form={form} />
       {purchaseOrder && (
         <p>
           <span className="font-semibold">Reference note: </span>

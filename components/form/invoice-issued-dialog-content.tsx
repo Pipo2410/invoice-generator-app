@@ -1,17 +1,22 @@
 import { Check, Send } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 
 import { AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import { FormType } from '@/context/model';
 
 import { EmailPreview } from '../preview/email-preview';
 import { CustomCheckbox } from './custom-checkbox';
 import { CustomDialogFooter } from './custom-dialog';
 
-export const InvoiceIssuedDialogContent = () => {
+type Props = {
+  form: UseFormReturn<FormType>;
+};
+
+export const InvoiceIssuedDialogContent: React.FC<Props> = ({ form }) => {
   const router = useRouter();
-  const { getValues } = useFormContext();
+  const invoiceId = form.getValues('invoiceId');
   return (
     <>
       <AlertDialogHeader className="flex flex-col items-center">
@@ -19,23 +24,24 @@ export const InvoiceIssuedDialogContent = () => {
           <Check />
         </div>
         <div className="flex flex-col items-center">
-          <AlertDialogTitle>Invoice #123 issued</AlertDialogTitle>
+          <AlertDialogTitle>
+            Invoice <span className="font-semibold">{invoiceId}</span> issued
+          </AlertDialogTitle>
           <AlertDialogDescription className="center text-center">
             Send the invoice to your client and we will track it to ensure you are paid on time.
           </AlertDialogDescription>
           <CustomCheckbox text="Default currency for this client" id="currency" />
         </div>
         <div className="max-h-96 overflow-scroll">
-          <EmailPreview />
+          <EmailPreview form={form} />
         </div>
       </AlertDialogHeader>
       <CustomDialogFooter
         cancelText="Not now"
         actionText="Send invoice"
         icon={<Send className="ml-2" />}
-        // test this?
-        onCancel={() => router.push(`/invoices/${getValues('invoiceId')}`)}
-        onAction={() => router.push(`/invoices/${getValues('invoiceId')}`)}
+        onCancel={() => router.push(`/invoices/${form.getValues('invoiceId')}`)}
+        onAction={() => router.push(`/invoices/${form.getValues('invoiceId')}`)}
       />
     </>
   );

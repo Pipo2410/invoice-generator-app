@@ -1,11 +1,10 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-import { format } from 'date-fns';
 import { ChevronsUpDown } from 'lucide-react';
 import React from 'react';
 
-import { statusVariantMap } from '@/context/helpers';
+import { formatDate, statusVariantMap } from '@/context/helpers';
 import { IssuedInvoice } from '@/context/model';
 
 import { Badge } from '../ui/badge';
@@ -49,7 +48,7 @@ export const columns: ColumnDef<IssuedInvoice>[] = [
     ),
     cell: ({ row }) => {
       const issueDate: Date = row.getValue('issueDate');
-      const formattedDate = format(issueDate, 'MMM d, yyyy');
+      const formattedDate = formatDate(issueDate);
       return <div className="text-xs capitalize text-dark-gray">{formattedDate}</div>;
     },
   },
@@ -64,7 +63,7 @@ export const columns: ColumnDef<IssuedInvoice>[] = [
     accessorFn: ({ date }) => date.dueDate,
     cell: ({ row }) => {
       const dueDate: Date = row.getValue('dueDate');
-      const formattedDate = format(dueDate, 'MMM d, yyyy');
+      const formattedDate = formatDate(dueDate);
       return <div className="text-xs capitalize text-dark-gray">{formattedDate}</div>;
     },
   },

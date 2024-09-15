@@ -29,7 +29,10 @@ export const Content = () => {
 
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
-    defaultValues: { invoiceId: invoiceId, ...formDefaultValues },
+    defaultValues: {
+      invoiceId: invoiceId,
+      ...formDefaultValues,
+    },
   });
 
   const onSubmitHandler = () => {
@@ -53,7 +56,7 @@ export const Content = () => {
     () => (
       <CustomDialog open={openConfirmationDialog}>
         {submitted ? (
-          <InvoiceIssuedDialogContent />
+          <InvoiceIssuedDialogContent form={form} />
         ) : (
           <ConfirmInvoiceDialogContent setOpenDialog={setOpenConfirmationDialog} setSubmitted={setSubmitted} />
         )}
@@ -61,8 +64,6 @@ export const Content = () => {
     ),
     [submitted, openConfirmationDialog],
   );
-
-  console.log(`form.formState.errors: ${JSON.stringify(form.formState.errors, null, 2)}`);
 
   return (
     <div className="grid grid-cols-12">
@@ -76,7 +77,7 @@ export const Content = () => {
             <FormContent form={form} />
           </form>
         </div>
-        {showPreview && <PreviewFormArea />}
+        {showPreview && <PreviewFormArea form={form} />}
         {confirmSubmitDialogComponent}
       </Form>
       {/* <DevTool control={form.control} /> */}

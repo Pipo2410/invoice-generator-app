@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { ZodIssue } from 'zod';
 
 import { AppConfig, Client, InitialCreateInvoiceState, IssuedInvoice, Item } from './model';
@@ -16,6 +17,7 @@ export const formDefaultValues = {
   date: {
     issueDate: new Date(),
   },
+
   items: [],
   currency: {
     value: 'EUR',
@@ -24,6 +26,14 @@ export const formDefaultValues = {
   additionalOptions: {
     purchaseOrder: '',
     referenceNote: '',
+  },
+  retention: {
+    isSelected: false,
+    value: 0,
+  },
+  globalDiscount: {
+    isSelected: false,
+    value: 0,
   },
 };
 
@@ -78,3 +88,13 @@ export const shouldcreateAddressField = (city?: string, street?: string, postalC
 
   return Object.values(addressFields).some(Boolean) ? addressFields : undefined;
 };
+
+export const formatPrice = (price: number, currency: string) =>
+  new Intl.NumberFormat('de-DE', {
+    style: 'currency',
+    currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price ?? 0);
+
+export const formatDate = (date: Date) => format(date, 'MMM d, yyyy');

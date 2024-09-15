@@ -3,6 +3,7 @@ import { useFormContext } from 'react-hook-form';
 
 import { AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { FormType } from '@/context/model';
+import { useCalculatePrice } from '@/hooks/use-calculate-price';
 import { sendCreateInvoiceRequest } from '@/lib/server-utils';
 
 import { IconComponent } from '../navigation/icon-component';
@@ -17,8 +18,15 @@ export const ConfirmInvoiceDialogContent: React.FC<Props> = ({ setOpenDialog, se
   const { getValues } = useFormContext<FormType>();
   const formValues = getValues();
 
+  const { updatedItems } = useCalculatePrice();
+
+  const dataToBeSubmitted = {
+    ...formValues,
+    items: updatedItems,
+  };
+
   const handleIssueInvoice = async () => {
-    const response = await sendCreateInvoiceRequest(formValues);
+    const response = await sendCreateInvoiceRequest(dataToBeSubmitted);
     console.log(`Invoices after submission: ${response}`);
     setSubmitted(true);
   };

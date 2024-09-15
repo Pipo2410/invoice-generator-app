@@ -1,11 +1,17 @@
 import React from 'react';
+import { UseFormReturn } from 'react-hook-form';
 
 import { EmailPreview } from '@/components/preview/email-preview';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { FormType } from '@/context/model';
 
 import { PreviewInvoice } from './preview-invoice';
 
-export const PreviewFormArea = () => (
+type Props = {
+  form: UseFormReturn<FormType>;
+};
+
+export const PreviewFormArea: React.FC<Props> = ({ form }) => (
   <div className="col-span-full xl:col-span-5">
     <Tabs defaultValue="preview" className="sticky top-2">
       <TabsList className="h-fit w-full bg-transparent p-0 px-6">
@@ -23,10 +29,10 @@ export const PreviewFormArea = () => (
         </TabsTrigger>
       </TabsList>
       <TabsContent value="preview" className="mt-4">
-        <PreviewInvoice />
+        <PreviewInvoice form={form} />
       </TabsContent>
       <TabsContent value="email" className="mt-4">
-        <EmailPreview />
+        <EmailPreview form={form} />
       </TabsContent>
     </Tabs>
   </div>

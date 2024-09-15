@@ -26,6 +26,20 @@ const ItemSchema = z.object({
   discount: z.number().optional(),
 });
 
+const GlobalDiscountSchema = z
+  .object({
+    isSelected: z.boolean(),
+    value: z.number(),
+  })
+  .optional();
+
+const RetentionSchema = z
+  .object({
+    isSelected: z.boolean(),
+    value: z.number(),
+  })
+  .optional();
+
 export const ClientSchema = z.object({
   id: z.string(),
   businessName: z.string().min(1),
@@ -59,6 +73,14 @@ export const ClientSchema = z.object({
     .optional(),
 });
 
+const priceSchema = z.object({
+  subTotal: z.number(),
+  vatTotal: z.number(),
+  discountTotal: z.number(),
+  retentionAmount: z.number().optional(),
+  total: z.number(),
+});
+
 export const formSchema = z.object({
   invoiceId: z.number(),
   client: ClientSchema,
@@ -69,7 +91,10 @@ export const formSchema = z.object({
     purchaseOrder: z.string().min(1),
     referenceNote: z.string().min(1),
   }),
+  globalDiscount: GlobalDiscountSchema,
+  retention: RetentionSchema,
   currency: CurrencySchema,
+  price: priceSchema,
 });
 
 export const IssuedInvoiceSchema = formSchema.extend({
@@ -82,6 +107,8 @@ export type Date = z.infer<typeof DateSchema>;
 export type VatExemption = z.infer<typeof VatExemptionSchema>;
 export type Item = z.infer<typeof ItemSchema>;
 export type Currency = z.infer<typeof CurrencySchema>;
+export type Retention = z.infer<typeof RetentionSchema>;
+export type GlobalDiscount = z.infer<typeof GlobalDiscountSchema>;
 export type IssuedInvoice = z.infer<typeof IssuedInvoiceSchema>;
 
 export type AppConfig = {

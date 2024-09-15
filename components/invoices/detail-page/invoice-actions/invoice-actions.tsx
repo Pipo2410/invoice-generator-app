@@ -1,10 +1,9 @@
-import { format } from 'date-fns';
 import { ArrowDownToLine, CopyPlus, FilePlus, Send } from 'lucide-react';
 import React from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
-import { statusVariantMap } from '@/context/helpers';
+import { formatDate, formatPrice, statusVariantMap } from '@/context/helpers';
 import { IssuedInvoice } from '@/context/model';
 
 import { IconButton } from './icon-button';
@@ -13,8 +12,6 @@ import { UpdateStatusSection } from './update-status-section';
 type Props = {
   invoice: IssuedInvoice;
 };
-
-export const formatDate = (date: Date) => format(date, 'MMM d, yyyy');
 
 export const InvoiceActions: React.FC<Props> = ({ invoice }) => {
   const variant = statusVariantMap[invoice.status];
@@ -63,7 +60,8 @@ export const InvoiceActions: React.FC<Props> = ({ invoice }) => {
               Units <span className="font-semibold">{invoice.items.length}</span>
             </p>
             <p>
-              Total amount <span className="font-semibold">{'invoice.price'}</span>
+              Total amount{' '}
+              <span className="font-semibold">{formatPrice(invoice.price.total, invoice.currency.value)}</span>
             </p>
           </div>
           <div className="flex flex-col gap-2 rounded-2xl border p-4">

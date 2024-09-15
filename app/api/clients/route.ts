@@ -41,7 +41,6 @@ export async function PUT(req: NextRequest) {
   }
 
   parsedData[index] = { ...parsedData[index], ...data };
-  console.log(parsedData[index]);
   fs.writeFileSync(filePath, JSON.stringify(parsedData, null, 2));
 
   return NextResponse.json(parsedData);

@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
   };
 
   parsedData.push(newInvoice);
-  fs.writeFileSync(filePath, JSON.stringify(parsedData));
+  fs.writeFileSync(filePath, JSON.stringify(parsedData, null, 2));
 
   console.log('POST: /api/invoices => New invoice created', newInvoice);
 

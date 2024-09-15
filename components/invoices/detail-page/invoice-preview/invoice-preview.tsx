@@ -4,7 +4,7 @@ import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { statusVariantMap } from '@/context/helpers';
+import { formatDate, formatPrice, statusVariantMap } from '@/context/helpers';
 import { AppConfig, IssuedInvoice } from '@/context/model';
 
 type Props = {
@@ -53,12 +53,12 @@ export const InvoicePreview: React.FC<Props> = ({ invoice, appConfig }) => {
         <div className="flex justify-center border-b border-t border-dashed py-4 text-sm text-dark-gray">
           <div className="flex flex-col">
             <p>Number</p>
-            <p className="font-semibold">{referenceNote}</p>
+            <p className="font-semibold">#{invoice.invoiceId}</p>
           </div>
           <Separator orientation="vertical" className="mx-5 h-auto" />
           <div className="flex flex-col">
             <p>Due date</p>
-            <p className="font-semibold">{format(invoice.date.dueDate, 'MMM d, yyyy')}</p>
+            <p className="font-semibold">{formatDate(invoice.date.dueDate)}</p>
           </div>
           <Separator orientation="vertical" className="mx-5 h-auto" />
           <div className="flex flex-col">
@@ -84,20 +84,14 @@ export const InvoicePreview: React.FC<Props> = ({ invoice, appConfig }) => {
             </thead>
             <tbody>
               {items.map((item) => {
-                const formattedPrice = new Intl.NumberFormat('de-DE', {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                }).format(item.price);
-
+                const formattedPrice = formatPrice(item.price, invoice.currency.value);
                 return (
                   <tr key={item.id} className="rounded-sm p-1 text-center text-foreground">
                     <td className="rounded-none text-start">{item.name}</td>
                     <td className="bg-background">{formattedPrice}</td>
                     <td className="bg-background">{item.unit}</td>
                     <td className="bg-background">{item.vat} %</td>
-                    <td className="bg-background">
-                      {formattedPrice} {currencySign}
-                    </td>
+                    <td className="bg-background">{formattedPrice}</td>
                   </tr>
                 );
               })}
@@ -119,27 +113,34 @@ export const InvoicePreview: React.FC<Props> = ({ invoice, appConfig }) => {
         <div className="flex flex-col gap-4 border-b border-dashed">
           <div className="flex justify-between">
             <p>Retention</p>
-            <p className="font-semibold text-foreground">-</p>
+            <p className="font-semibold text-foreground">
+              {invoice.price.retentionAmount ? formatPrice(invoice.price.retentionAmount, invoice.currency.value) : '-'}
+            </p>
           </div>
           <div className="flex justify-between">
             <p>Subtotal</p>
-            <p className="font-semibold text-foreground">1.250,00{currencySign}</p>
+            <p className="font-semibold text-foreground">
+              {formatPrice(invoice.price.subTotal, invoice.currency.value)}
+              {currencySign}
+            </p>
           </div>
           <div className="flex justify-between">
-            <p>
-              VAT <span className="font-bold">(23%)</span>
+            <p>VAT</p>
+            <p className="font-semibold text-foreground">
+              {formatPrice(invoice.price.vatTotal, invoice.currency.value)}
             </p>
-            <p className="font-semibold text-foreground">287,50{currencySign}</p>
           </div>
           <div className="mb-4 flex justify-between">
             <p>Discount</p>
-            <p className="font-semibold text-foreground">125,00{currencySign}</p>
+            <p className="font-semibold text-foreground">
+              {formatPrice(invoice.price.discountTotal, invoice.currency.value)}
+            </p>
           </div>
         </div>
 
         <div className="flex justify-between text-base font-semibold text-foreground">
           <p>Total</p>
-          <p>1.537,50{currencySign}</p>
+          <p>{formatPrice(invoice.price.total, invoice.currency.value)}</p>
         </div>
         <div className="flex justify-between text-xs text-foreground">
           <p>VAT Exemption</p>

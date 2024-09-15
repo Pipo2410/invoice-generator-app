@@ -11,8 +11,6 @@ export const UpdateStatusSection = ({ invoice }: { invoice: IssuedInvoice }) => 
   const [invoiceStatus, setInvoiceStatus] = useState(invoice.status);
   const { toast } = useToast();
   const markAsPaidHandler = async () => {
-    console.log('sending request');
-
     const response = await sendUpdateInvoiceRequest('status', 'paid', invoice.invoiceId);
     setInvoiceStatus(response.status);
     toast({

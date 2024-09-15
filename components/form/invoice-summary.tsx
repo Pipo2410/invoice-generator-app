@@ -1,21 +1,22 @@
 import React from 'react';
-import { useWatch } from 'react-hook-form';
+import { UseFormReturn, useWatch } from 'react-hook-form';
 
-import { useCreateInvoiceFormContext } from '@/context/app-context';
-import { useCalcucatePrice } from '@/hooks/use-calculate-price';
+import { formatPrice } from '@/context/helpers';
+import { FormType } from '@/context/model';
+import { useCalculatePrice } from '@/hooks/use-calculate-price';
 
 import { Separator } from '../ui/separator';
 
-export const InvoiceSummary = () => {
-  const {
-    appConfig: { currencies },
-  } = useCreateInvoiceFormContext();
+type Props = {
+  form: UseFormReturn<FormType>;
+};
 
-  const vatExemption = useWatch({ name: 'vatExemption.label' });
-  const currency = useWatch({ name: 'currency.value' });
-  const currencySign = currencies.find((el) => el.value === currency)?.sign;
+export const InvoiceSummary: React.FC<Props> = ({ form }) => {
+  const { control } = form;
+  const vatExemption = useWatch({ control, name: 'vatExemption.label' });
+  const currency = useWatch({ control, name: 'currency.value' });
 
-  const { finalPrice } = useCalcucatePrice();
+  const { subTotal, vatTotal, discountTotal, retentionAmount, total } = useCalculatePrice();
 
   return (
     <div className="flex flex-col gap-8 text-dark-gray">
@@ -23,31 +24,26 @@ export const InvoiceSummary = () => {
       <div className="flex flex-col gap-4">
         <div className="flex justify-between">
           <p>Retention</p>
-          <p className="text-foreground">-</p>
+          <p className="text-foreground">{formatPrice(retentionAmount, currency)}</p>
         </div>
         <div className="flex justify-between">
           <p>Subtotal</p>
-          <p className="text-foreground">1.250,00{currencySign}</p>
+          <p className="text-foreground">{formatPrice(subTotal, currency)}</p>
         </div>
         <div className="flex justify-between">
-          <p>
-            VAT <span className="font-bold">(23%)</span>
-          </p>
-          <p className="text-foreground">287,50{currencySign}</p>
+          <p>VAT</p>
+          <p className="text-foreground">{formatPrice(vatTotal, currency)}</p>
         </div>
         <div className="flex justify-between">
           <p>Discount</p>
-          <p className="text-foreground">125,00{currencySign}</p>
+          <p className="text-foreground">{formatPrice(discountTotal, currency)}</p>
         </div>
         <Separator />
       </div>
 
       <div className="flex justify-between">
         <p>Total</p>
-        <p className="text-foreground">
-          {finalPrice}
-          {currencySign}
-        </p>
+        <p className="text-foreground">{formatPrice(total, currency)}</p>
       </div>
       <div className="flex justify-between">
         <p>VAT Exemption</p>

@@ -27,7 +27,7 @@ export const FormContent: React.FC<Props> = ({ form }) => (
       <AdditionalOptions form={form} />
     </div>
     <div className="summary">
-      <InvoiceSummary />
+      <InvoiceSummary form={form} />
     </div>
   </>
 );

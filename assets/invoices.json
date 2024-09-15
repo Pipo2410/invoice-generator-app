@@ -2,943 +2,260 @@
   {
     "invoiceId": 1,
     "client": {
-      "businessName": "Tech Innovators Inc.",
-      "email": "contact@techinnovators.com",
-      "nif": "123456789",
-      "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
+      "id": "2",
+      "businessName": "Google",
+      "email": "Google@gmail.com",
+      "nif": "858356421",
+      "country": "Portugal",
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
       "address": {
-        "street": "123 Innovation Way",
-        "city": "San Francisco",
-        "postalCode": "94107",
-        "additional": "Suite 400"
+        "street": "Calcada do monte 13",
+        "city": "Lisboa",
+        "postalCode": "1254-223",
+        "additional": "1dt-1e"
       }
     },
-    "date": { "issueDate": "2023-09-01T00:00:00.000Z", "dueDate": "2023-09-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M01", "label": "1 Article 16(6) of CIVA" },
+    "date": {
+      "issueDate": "2024-09-15T20:20:37.281Z",
+      "dueDate": "2024-09-30T20:20:37.281Z"
+    },
     "items": [
       {
-        "id": 1,
-        "name": "Software License",
-        "description": "Annual subscription for cloud software",
-        "category": "Software",
+        "id": "1",
+        "name": "Branding development",
+        "description": "Development of brand identity",
+        "category": "Service",
         "unit": 1,
         "price": 1000,
-        "vat": 20,
-        "discount": 5
+        "vat": 26,
+        "discount": 40,
+        "totalPrice": 756
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO12345", "referenceNote": "Monthly payment" },
-    "currency": { "value": "USD", "isDefault": true },
-    "status": "overdue"
+    "currency": {
+      "value": "EUR",
+      "isDefault": false
+    },
+    "additionalOptions": {
+      "purchaseOrder": "dsdadsa",
+      "referenceNote": "dasdasdsa"
+    },
+    "retention": {
+      "isSelected": true,
+      "value": 39
+    },
+    "globalDiscount": {
+      "isSelected": true,
+      "value": 15
+    },
+    "price": {
+      "subTotal": 756,
+      "vatTotal": 156,
+      "discountTotal": 617.4,
+      "retentionAmount": 250.614,
+      "total": 642.6
+    },
+    "vatExemption": {
+      "value": "M01",
+      "label": "1 Article 16(6) of CIVA"
+    },
+    "status": "paid"
   },
   {
     "invoiceId": 2,
     "client": {
-      "businessName": "Eco Builders Ltd.",
-      "email": "info@ecobuilders.co.uk",
-      "nif": "GB987654321",
-      "country": "UK",
+      "id": "3",
+      "businessName": "Company Abc",
+      "email": "company.abc@gmail.com",
+      "nif": "329643090",
+      "country": "Portugal",
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
       "address": {
-        "street": "45 Green Lane",
-        "city": "London",
-        "postalCode": "SW1A 1AA",
-        "additional": "Near the park"
+        "city": "Lisboa",
+        "street": "Rua de Joao jorge 234",
+        "postalCode": "1254-213",
+        "additional": "4dt-1dto"
       }
     },
-    "date": { "issueDate": "2023-08-15T00:00:00.000Z", "dueDate": "2023-08-30T00:00:00.000Z" },
-    "vatExemption": { "value": "M02", "label": "Article 6 of Decree-Law 198/90 of June 19th" },
+    "date": {
+      "issueDate": "2024-09-15T20:20:37.281Z",
+      "dueDate": "2024-10-15T20:20:37.281Z"
+    },
     "items": [
       {
-        "id": 2,
-        "name": "Solar Panels",
-        "description": "Eco-friendly solar panel installation",
-        "category": "Energy",
-        "unit": 50,
-        "price": 2680,
-        "vat": 5,
-        "discount": 10
+        "id": "2",
+        "name": "Software development",
+        "description": "Development of software products",
+        "category": "Service",
+        "unit": 1,
+        "price": 1000,
+        "vat": 23,
+        "discount": 50,
+        "totalPrice": 615
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO98765", "referenceNote": "Installation phase 1" },
-    "currency": { "value": "GBP", "isDefault": true },
-    "status": "overdue"
+    "currency": {
+      "value": "EUR",
+      "isDefault": false
+    },
+    "additionalOptions": {
+      "purchaseOrder": "Purchase order",
+      "referenceNote": "Reference note"
+    },
+    "retention": {
+      "isSelected": true,
+      "value": 30
+    },
+    "globalDiscount": {
+      "isSelected": true,
+      "value": 15
+    },
+    "price": {
+      "subTotal": 615,
+      "vatTotal": 115,
+      "discountTotal": 707.25,
+      "retentionAmount": 156.825,
+      "total": 522.75
+    },
+    "vatExemption": {
+      "value": "M04",
+      "label": "Exempt Article 13 of CIVA"
+    },
+    "status": "issued"
   },
   {
     "invoiceId": 3,
     "client": {
-      "businessName": "Gourmet Foods LLC",
-      "email": "orders@gourmetfoods.com",
-      "nif": "FR1122334455",
-      "country": "FR",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "22 Rue de la Paix", "city": "Paris", "postalCode": "75002", "additional": "" }
+      "id": "3",
+      "businessName": "Company Abc",
+      "email": "company.abc@gmail.com",
+      "nif": "329643090",
+      "country": "Portugal",
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "city": "Lisboa",
+        "street": "Rua de Joao jorge 234",
+        "postalCode": "1254-213",
+        "additional": "4dt-1dto"
+      }
     },
-    "date": { "issueDate": "2023-07-01T00:00:00.000Z", "dueDate": "2023-07-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
+    "date": {
+      "issueDate": "2024-09-15T20:29:47.409Z",
+      "dueDate": "2024-12-14T21:29:47.409Z"
+    },
     "items": [
       {
-        "id": 3,
-        "name": "Gourmet Cheese",
-        "description": "Selection of French cheeses",
-        "category": "Food",
-        "unit": 100,
-        "price": 1500,
-        "vat": 10,
-        "discount": 0
-      },
-      {
-        "id": 4,
-        "name": "Olive Oil",
-        "description": "Extra virgin olive oil",
-        "category": "Food",
-        "unit": 200,
-        "price": 120,
-        "vat": 10,
-        "discount": 5
+        "id": "1",
+        "name": "Branding development",
+        "description": "Development of brand identity",
+        "category": "Service",
+        "unit": 1,
+        "price": 2673,
+        "vat": 23,
+        "discount": 12,
+        "totalPrice": 2893.2552
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO24680", "referenceNote": "Quarterly supply" },
-    "currency": { "value": "EUR", "isDefault": true },
+    "currency": {
+      "value": "EUR",
+      "isDefault": false
+    },
+    "additionalOptions": {
+      "purchaseOrder": "Puchards",
+      "referenceNote": "sddsds"
+    },
+    "retention": {
+      "isSelected": true,
+      "value": 10
+    },
+    "globalDiscount": {
+      "isSelected": true,
+      "value": 10
+    },
+    "price": {
+      "subTotal": 2893.2552,
+      "vatTotal": 541.0152,
+      "discountTotal": 683.86032,
+      "retentionAmount": 260.39296800000005,
+      "total": 2603.92968
+    },
+    "vatExemption": {
+      "value": "M05",
+      "label": "Exempt Article 14 of CIVA"
+    },
     "status": "issued"
   },
   {
     "invoiceId": 4,
     "client": {
-      "businessName": "Tech Gear Pro",
-      "email": "support@techgearpro.com",
-      "nif": "DE5566778899",
-      "country": "DE",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "46 Tech Avenue", "city": "Berlin", "postalCode": "10115", "additional": "Building A" }
-    },
-    "date": { "issueDate": "2023-10-05T00:00:00.000Z", "dueDate": "2023-10-20T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
-    "items": [
-      {
-        "id": 5,
-        "name": "High-performance Laptop",
-        "description": "Laptop with 16GB RAM and 1TB SSD",
-        "category": "Electronics",
-        "unit": 10,
-        "price": 1500,
-        "vat": 19,
-        "discount": 3
+      "id": "2",
+      "businessName": "Google",
+      "email": "Google@gmail.com",
+      "nif": "858356421",
+      "country": "Portugal",
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
       },
-      {
-        "id": 6,
-        "name": "Monitor",
-        "description": "27-inch 4K monitor",
-        "category": "Electronics",
-        "unit": 5,
-        "price": 400,
-        "vat": 19,
-        "discount": 0
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO33456", "referenceNote": "Hardware update" },
-    "currency": { "value": "EUR", "isDefault": true },
-    "status": "paid"
-  },
-  {
-    "invoiceId": 5,
-    "client": {
-      "businessName": "Creative Studios",
-      "email": "hello@creativestudios.com",
-      "nif": "ES3344556677",
-      "country": "ES",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "8 Art Street", "city": "Madrid", "postalCode": "28013", "additional": "Near the gallery" }
-    },
-    "date": { "issueDate": "2023-11-12T00:00:00.000Z", "dueDate": "2023-11-26T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
-    "items": [
-      {
-        "id": 7,
-        "name": "Graphic Design Services",
-        "description": "Logo and brand identity design",
-        "category": "Design",
-        "unit": 1,
-        "price": 800,
-        "vat": 21,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO99887", "referenceNote": "Branding project" },
-    "currency": { "value": "EUR", "isDefault": true },
-    "status": "draft"
-  },
-  {
-    "invoiceId": 6,
-    "client": {
-      "businessName": "GreenTech Solutions",
-      "email": "support@greentech.com",
-      "nif": "IT1122334455",
-      "country": "IT",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "10 Eco Blvd", "city": "Milan", "postalCode": "20122", "additional": "" }
-    },
-    "date": { "issueDate": "2023-08-01T00:00:00.000Z", "dueDate": "2023-08-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M03", "label": "Exempt Article 7 of CIVA" },
-    "items": [
-      {
-        "id": 8,
-        "name": "Smart Energy Meters",
-        "description": "Advanced smart meters for energy efficiency",
-        "category": "Energy",
-        "unit": 100,
-        "price": 150,
-        "vat": 22,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO12367", "referenceNote": "Energy upgrade" },
-    "currency": { "value": "EUR", "isDefault": true },
-    "status": "overdue"
-  },
-  {
-    "invoiceId": 7,
-    "client": {
-      "businessName": "Luxury Interiors",
-      "email": "contact@luxuryinteriors.com",
-      "nif": "US9988776655",
-      "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
       "address": {
-        "street": "500 Rich Ave",
-        "city": "New York",
-        "postalCode": "10001",
-        "additional": "Penthouse Suite"
+        "street": "Calcada do monte 13",
+        "city": "Lisboa",
+        "postalCode": "1254-223",
+        "additional": "1dt-1e"
       }
     },
-    "date": { "issueDate": "2023-06-20T00:00:00.000Z", "dueDate": "2023-07-05T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
+    "date": {
+      "issueDate": "2024-09-15T20:31:38.709Z",
+      "dueDate": "2024-11-14T21:31:38.709Z"
+    },
     "items": [
       {
-        "id": 9,
-        "name": "Interior Design Consultation",
-        "description": "Luxury home design consulting",
-        "category": "Design",
+        "id": "2",
+        "name": "Software development",
+        "description": "Development of software products",
+        "category": "Service",
         "unit": 1,
-        "price": 2500,
-        "vat": 18,
-        "discount": 0
+        "price": 10,
+        "vat": 23,
+        "totalPrice": 12.3
       }
     ],
-    "additionalOptions": { "purchaseOrder": "PO76432", "referenceNote": "Phase 1 design" },
-    "currency": { "value": "USD", "isDefault": true },
-    "status": "paid"
-  },
-  {
-    "invoiceId": 8,
-    "client": {
-      "businessName": "Bright Future Tech",
-      "email": "info@brightfuturetech.com",
-      "nif": "CA2233445566",
-      "country": "CA",
-      "currency": { "value": "CAD", "isDefault": true },
-      "address": { "street": "789 Tech Park", "city": "Toronto", "postalCode": "M5H 2N2", "additional": "Building B" }
+    "currency": {
+      "value": "EUR",
+      "isDefault": false
     },
-    "date": { "issueDate": "2023-07-10T00:00:00.000Z", "dueDate": "2023-07-24T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
-    "items": [
-      {
-        "id": 10,
-        "name": "Cloud Hosting Services",
-        "description": "Monthly subscription for cloud hosting",
-        "category": "Software",
-        "unit": 1,
-        "price": 150,
-        "vat": 15,
-        "discount": 0
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO55678", "referenceNote": "Monthly cloud service" },
-    "currency": { "value": "CAD", "isDefault": true },
-    "status": "issued"
-  },
-  {
-    "invoiceId": 9,
-    "client": {
-      "businessName": "Global Media Group",
-      "email": "media@globalmediagroup.com",
-      "nif": "AU3344556677",
-      "country": "AU",
-      "currency": { "value": "AUD", "isDefault": true },
-      "address": { "street": "101 Media Blvd", "city": "Sydney", "postalCode": "2000", "additional": "3rd Floor" }
+    "additionalOptions": {
+      "purchaseOrder": "dsds",
+      "referenceNote": "dsds"
     },
-    "date": { "issueDate": "2023-05-25T00:00:00.000Z", "dueDate": "2023-06-08T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
-    "items": [
-      {
-        "id": 11,
-        "name": "Digital Marketing Campaign",
-        "description": "Social media and online marketing services",
-        "category": "Marketing",
-        "unit": 1,
-        "price": 3500,
-        "vat": 10,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO99822", "referenceNote": "Q3 Campaign" },
-    "currency": { "value": "AUD", "isDefault": true },
-    "status": "draft"
-  },
-  {
-    "invoiceId": 10,
-    "client": {
-      "businessName": "Medical Equipment Co.",
-      "email": "sales@medicalequipco.com",
-      "nif": "IN6677889900",
-      "country": "IN",
-      "currency": { "value": "INR", "isDefault": true },
-      "address": { "street": "42 Health Plaza", "city": "Mumbai", "postalCode": "400001", "additional": "Unit 5" }
+    "retention": {
+      "isSelected": false,
+      "value": 0
     },
-    "date": { "issueDate": "2023-09-02T00:00:00.000Z", "dueDate": "2023-09-16T00:00:00.000Z" },
-    "vatExemption": { "value": "M07", "label": "Exempt Article 18 of CIVA" },
-    "items": [
-      {
-        "id": 12,
-        "name": "Medical Devices",
-        "description": "Portable ultrasound machines",
-        "category": "Medical",
-        "unit": 20,
-        "price": 750,
-        "vat": 12,
-        "discount": 2
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO22334", "referenceNote": "Q4 Medical Devices" },
-    "currency": { "value": "INR", "isDefault": true },
-    "status": "issued"
-  },
-  {
-    "invoiceId": 11,
-    "client": {
-      "businessName": "Quantum Solutions Ltd.",
-      "email": "contact@techinnovators.com",
-      "nif": "123456789",
-      "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
-      "address": {
-        "street": "123 Innovation Way",
-        "city": "San Francisco",
-        "postalCode": "94107",
-        "additional": "Suite 400"
-      }
+    "globalDiscount": {
+      "isSelected": false,
+      "value": 0
     },
-    "date": { "issueDate": "2023-09-01T00:00:00.000Z", "dueDate": "2023-09-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M01", "label": "1 Article 16(6) of CIVA" },
-    "items": [
-      {
-        "id": 1,
-        "name": "Software License",
-        "description": "Annual subscription for cloud software",
-        "category": "Software",
-        "unit": 1,
-        "price": 1000,
-        "vat": 20,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO12345", "referenceNote": "Monthly payment" },
-    "currency": { "value": "USD", "isDefault": true },
-    "status": "paid"
-  },
-  {
-    "invoiceId": 12,
-    "client": {
-      "businessName": "Horizon Technologies",
-      "email": "info@ecobuilders.co.uk",
-      "nif": "GB987654321",
-      "country": "UK",
-      "address": {
-        "street": "45 Green Lane",
-        "city": "London",
-        "postalCode": "SW1A 1AA",
-        "additional": "Near the park"
-      }
+    "price": {
+      "subTotal": 12.3,
+      "vatTotal": 2.3000000000000003,
+      "discountTotal": 0,
+      "retentionAmount": 0,
+      "total": 12.3
     },
-    "date": { "issueDate": "2023-08-15T00:00:00.000Z", "dueDate": "2023-08-30T00:00:00.000Z" },
-    "vatExemption": { "value": "M02", "label": "Article 6 of Decree-Law 198/90 of June 19th" },
-    "items": [
-      {
-        "id": 2,
-        "name": "Solar Panels",
-        "description": "Eco-friendly solar panel installation",
-        "category": "Energy",
-        "unit": 50,
-        "price": 200,
-        "vat": 5,
-        "discount": 10
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO98765", "referenceNote": "Installation phase 1" },
-    "currency": { "value": "GBP", "isDefault": true },
-    "status": "overdue"
-  },
-  {
-    "invoiceId": 13,
-    "client": {
-      "businessName": "Stellar Ventures",
-      "email": "orders@gourmetfoods.com",
-      "nif": "FR1122334455",
-      "country": "FR",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "22 Rue de la Paix", "city": "Paris", "postalCode": "75002", "additional": "" }
+    "vatExemption": {
+      "value": "M04",
+      "label": "Exempt Article 13 of CIVA"
     },
-    "date": { "issueDate": "2023-07-01T00:00:00.000Z", "dueDate": "2023-07-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
-    "items": [
-      {
-        "id": 3,
-        "name": "Gourmet Cheese",
-        "description": "Selection of French cheeses",
-        "category": "Food",
-        "unit": 100,
-        "price": 15,
-        "vat": 10,
-        "discount": 0
-      },
-      {
-        "id": 4,
-        "name": "Olive Oil",
-        "description": "Extra virgin olive oil",
-        "category": "Food",
-        "unit": 200,
-        "price": 12,
-        "vat": 10,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO24680", "referenceNote": "Quarterly supply" },
-    "currency": { "value": "EUR", "isDefault": true },
-    "status": "issued"
-  },
-  {
-    "invoiceId": 14,
-    "client": {
-      "businessName": "Velocity Systems",
-      "email": "support@techgearpro.com",
-      "nif": "DE5566778899",
-      "country": "DE",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "46 Tech Avenue", "city": "Berlin", "postalCode": "10115", "additional": "Building A" }
-    },
-    "date": { "issueDate": "2023-10-05T00:00:00.000Z", "dueDate": "2023-10-20T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
-    "items": [
-      {
-        "id": 5,
-        "name": "High-performance Laptop",
-        "description": "Laptop with 16GB RAM and 1TB SSD",
-        "category": "Electronics",
-        "unit": 10,
-        "price": 1500,
-        "vat": 19,
-        "discount": 3
-      },
-      {
-        "id": 6,
-        "name": "Monitor",
-        "description": "27-inch 4K monitor",
-        "category": "Electronics",
-        "unit": 5,
-        "price": 400,
-        "vat": 19,
-        "discount": 0
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO33456", "referenceNote": "Hardware update" },
-    "currency": { "value": "EUR", "isDefault": true },
-    "status": "paid"
-  },
-  {
-    "invoiceId": 15,
-    "client": {
-      "businessName": "Nexus Innovations",
-      "email": "hello@creativestudios.com",
-      "nif": "ES3344556677",
-      "country": "ES",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "8 Art Street", "city": "Madrid", "postalCode": "28013", "additional": "Near the gallery" }
-    },
-    "date": { "issueDate": "2023-11-12T00:00:00.000Z", "dueDate": "2023-11-26T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
-    "items": [
-      {
-        "id": 7,
-        "name": "Graphic Design Services",
-        "description": "Logo and brand identity design",
-        "category": "Design",
-        "unit": 1,
-        "price": 800,
-        "vat": 21,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO99887", "referenceNote": "Branding project" },
-    "currency": { "value": "EUR", "isDefault": true },
-    "status": "draft"
-  },
-  {
-    "invoiceId": 16,
-    "client": {
-      "businessName": "BlueWave Industries",
-      "email": "support@greentech.com",
-      "nif": "IT1122334455",
-      "country": "IT",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "10 Eco Blvd", "city": "Milan", "postalCode": "20122", "additional": "" }
-    },
-    "date": { "issueDate": "2023-08-01T00:00:00.000Z", "dueDate": "2023-08-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M03", "label": "Exempt Article 7 of CIVA" },
-    "items": [
-      {
-        "id": 8,
-        "name": "Smart Energy Meters",
-        "description": "Advanced smart meters for energy efficiency",
-        "category": "Energy",
-        "unit": 100,
-        "price": 150,
-        "vat": 22,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO12367", "referenceNote": "Energy upgrade" },
-    "currency": { "value": "EUR", "isDefault": true },
-    "status": "overdue"
-  },
-  {
-    "invoiceId": 17,
-    "client": {
-      "businessName": "Ascend Media Group",
-      "email": "contact@luxuryinteriors.com",
-      "nif": "US9988776655",
-      "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
-      "address": {
-        "street": "500 Rich Ave",
-        "city": "New York",
-        "postalCode": "10001",
-        "additional": "Penthouse Suite"
-      }
-    },
-    "date": { "issueDate": "2023-06-20T00:00:00.000Z", "dueDate": "2023-07-05T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
-    "items": [
-      {
-        "id": 9,
-        "name": "Interior Design Consultation",
-        "description": "Luxury home design consulting",
-        "category": "Design",
-        "unit": 1,
-        "price": 2500,
-        "vat": 18,
-        "discount": 0
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO76432", "referenceNote": "Phase 1 design" },
-    "currency": { "value": "USD", "isDefault": true },
-    "status": "paid"
-  },
-  {
-    "invoiceId": 18,
-    "client": {
-      "businessName": "Infinite Loop Design",
-      "email": "info@brightfuturetech.com",
-      "nif": "CA2233445566",
-      "country": "CA",
-      "currency": { "value": "CAD", "isDefault": true },
-      "address": { "street": "789 Tech Park", "city": "Toronto", "postalCode": "M5H 2N2", "additional": "Building B" }
-    },
-    "date": { "issueDate": "2023-07-10T00:00:00.000Z", "dueDate": "2023-07-24T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
-    "items": [
-      {
-        "id": 10,
-        "name": "Cloud Hosting Services",
-        "description": "Monthly subscription for cloud hosting",
-        "category": "Software",
-        "unit": 1,
-        "price": 150,
-        "vat": 15,
-        "discount": 0
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO55678", "referenceNote": "Monthly cloud service" },
-    "currency": { "value": "CAD", "isDefault": true },
-    "status": "issued"
-  },
-  {
-    "invoiceId": 19,
-    "client": {
-      "businessName": "ForgeTech Enterprises",
-      "email": "media@globalmediagroup.com",
-      "nif": "AU3344556677",
-      "country": "AU",
-      "currency": { "value": "AUD", "isDefault": true },
-      "address": { "street": "101 Media Blvd", "city": "Sydney", "postalCode": "2000", "additional": "3rd Floor" }
-    },
-    "date": { "issueDate": "2023-05-25T00:00:00.000Z", "dueDate": "2023-06-08T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
-    "items": [
-      {
-        "id": 11,
-        "name": "Digital Marketing Campaign",
-        "description": "Social media and online marketing services",
-        "category": "Marketing",
-        "unit": 1,
-        "price": 3500,
-        "vat": 10,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO99822", "referenceNote": "Q3 Campaign" },
-    "currency": { "value": "AUD", "isDefault": true },
-    "status": "draft"
-  },
-  {
-    "invoiceId": 20,
-    "client": {
-      "businessName": "Medical Equipment Co.",
-      "email": "sales@medicalequipco.com",
-      "nif": "IN6677889900",
-      "country": "IN",
-      "currency": { "value": "INR", "isDefault": true },
-      "address": { "street": "42 Health Plaza", "city": "Mumbai", "postalCode": "400001", "additional": "Unit 5" }
-    },
-    "date": { "issueDate": "2023-09-02T00:00:00.000Z", "dueDate": "2023-09-16T00:00:00.000Z" },
-    "vatExemption": { "value": "M07", "label": "Exempt Article 18 of CIVA" },
-    "items": [
-      {
-        "id": 12,
-        "name": "Medical Devices",
-        "description": "Portable ultrasound machines",
-        "category": "Medical",
-        "unit": 20,
-        "price": 750,
-        "vat": 12,
-        "discount": 2
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO22334", "referenceNote": "Q4 Medical Devices" },
-    "currency": { "value": "INR", "isDefault": true },
-    "status": "issued"
-  },
-  {
-    "invoiceId": 21,
-    "client": {
-      "businessName": "Apex Dynamics Inc.",
-      "email": "contact@techinnovators.com",
-      "nif": "123456789",
-      "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
-      "address": {
-        "street": "123 Innovation Way",
-        "city": "San Francisco",
-        "postalCode": "94107",
-        "additional": "Suite 400"
-      }
-    },
-    "date": { "issueDate": "2023-09-01T00:00:00.000Z", "dueDate": "2023-09-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M01", "label": "1 Article 16(6) of CIVA" },
-    "items": [
-      {
-        "id": 1,
-        "name": "Software License",
-        "description": "Annual subscription for cloud software",
-        "category": "Software",
-        "unit": 1,
-        "price": 1000,
-        "vat": 20,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO12345", "referenceNote": "Monthly payment" },
-    "currency": { "value": "USD", "isDefault": true },
-    "status": "issued"
-  },
-  {
-    "invoiceId": 22,
-    "client": {
-      "businessName": "Apex Dynamics Inc.",
-      "email": "info@ecobuilders.co.uk",
-      "nif": "GB987654321",
-      "country": "UK",
-      "address": {
-        "street": "45 Green Lane",
-        "city": "London",
-        "postalCode": "SW1A 1AA",
-        "additional": "Near the park"
-      }
-    },
-    "date": { "issueDate": "2023-08-15T00:00:00.000Z", "dueDate": "2023-08-30T00:00:00.000Z" },
-    "vatExemption": { "value": "M02", "label": "Article 6 of Decree-Law 198/90 of June 19th" },
-    "items": [
-      {
-        "id": 2,
-        "name": "Solar Panels",
-        "description": "Eco-friendly solar panel installation",
-        "category": "Energy",
-        "unit": 50,
-        "price": 200,
-        "vat": 5,
-        "discount": 10
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO98765", "referenceNote": "Installation phase 1" },
-    "currency": { "value": "GBP", "isDefault": true },
-    "status": "overdue"
-  },
-  {
-    "invoiceId": 23,
-    "client": {
-      "businessName": "Gourmet Foods LLC",
-      "email": "orders@gourmetfoods.com",
-      "nif": "FR1122334455",
-      "country": "FR",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "22 Rue de la Paix", "city": "Paris", "postalCode": "75002", "additional": "" }
-    },
-    "date": { "issueDate": "2023-07-01T00:00:00.000Z", "dueDate": "2023-07-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
-    "items": [
-      {
-        "id": 3,
-        "name": "Gourmet Cheese",
-        "description": "Selection of French cheeses",
-        "category": "Food",
-        "unit": 100,
-        "price": 15,
-        "vat": 10,
-        "discount": 0
-      },
-      {
-        "id": 4,
-        "name": "Olive Oil",
-        "description": "Extra virgin olive oil",
-        "category": "Food",
-        "unit": 200,
-        "price": 12,
-        "vat": 10,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO24680", "referenceNote": "Quarterly supply" },
-    "currency": { "value": "EUR", "isDefault": true },
-    "status": "issued"
-  },
-  {
-    "invoiceId": 24,
-    "client": {
-      "businessName": "Tech Gear Pro",
-      "email": "support@techgearpro.com",
-      "nif": "DE5566778899",
-      "country": "DE",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "46 Tech Avenue", "city": "Berlin", "postalCode": "10115", "additional": "Building A" }
-    },
-    "date": { "issueDate": "2023-10-05T00:00:00.000Z", "dueDate": "2023-10-20T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
-    "items": [
-      {
-        "id": 5,
-        "name": "High-performance Laptop",
-        "description": "Laptop with 16GB RAM and 1TB SSD",
-        "category": "Electronics",
-        "unit": 10,
-        "price": 1500,
-        "vat": 19,
-        "discount": 3
-      },
-      {
-        "id": 6,
-        "name": "Monitor",
-        "description": "27-inch 4K monitor",
-        "category": "Electronics",
-        "unit": 5,
-        "price": 400,
-        "vat": 19,
-        "discount": 0
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO33456", "referenceNote": "Hardware update" },
-    "currency": { "value": "EUR", "isDefault": true },
-    "status": "paid"
-  },
-  {
-    "invoiceId": 25,
-    "client": {
-      "businessName": "Creative Studios",
-      "email": "hello@creativestudios.com",
-      "nif": "ES3344556677",
-      "country": "ES",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "8 Art Street", "city": "Madrid", "postalCode": "28013", "additional": "Near the gallery" }
-    },
-    "date": { "issueDate": "2023-11-12T00:00:00.000Z", "dueDate": "2023-11-26T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
-    "items": [
-      {
-        "id": 7,
-        "name": "Graphic Design Services",
-        "description": "Logo and brand identity design",
-        "category": "Design",
-        "unit": 1,
-        "price": 800,
-        "vat": 21,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO99887", "referenceNote": "Branding project" },
-    "currency": { "value": "EUR", "isDefault": true },
-    "status": "draft"
-  },
-  {
-    "invoiceId": 26,
-    "client": {
-      "businessName": "GreenTech Solutions",
-      "email": "support@greentech.com",
-      "nif": "IT1122334455",
-      "country": "IT",
-      "currency": { "value": "EUR", "isDefault": true },
-      "address": { "street": "10 Eco Blvd", "city": "Milan", "postalCode": "20122", "additional": "" }
-    },
-    "date": { "issueDate": "2023-08-01T00:00:00.000Z", "dueDate": "2023-08-15T00:00:00.000Z" },
-    "vatExemption": { "value": "M03", "label": "Exempt Article 7 of CIVA" },
-    "items": [
-      {
-        "id": 8,
-        "name": "Smart Energy Meters",
-        "description": "Advanced smart meters for energy efficiency",
-        "category": "Energy",
-        "unit": 100,
-        "price": 150,
-        "vat": 22,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO12367", "referenceNote": "Energy upgrade" },
-    "currency": { "value": "EUR", "isDefault": true },
-    "status": "overdue"
-  },
-  {
-    "invoiceId": 27,
-    "client": {
-      "businessName": "Luxury Interiors",
-      "email": "contact@luxuryinteriors.com",
-      "nif": "US9988776655",
-      "country": "US",
-      "currency": { "value": "USD", "isDefault": true },
-      "address": {
-        "street": "500 Rich Ave",
-        "city": "New York",
-        "postalCode": "10001",
-        "additional": "Penthouse Suite"
-      }
-    },
-    "date": { "issueDate": "2023-06-20T00:00:00.000Z", "dueDate": "2023-07-05T00:00:00.000Z" },
-    "vatExemption": { "value": "M04", "label": "Exempt Article 13 of CIVA" },
-    "items": [
-      {
-        "id": 9,
-        "name": "Interior Design Consultation",
-        "description": "Luxury home design consulting",
-        "category": "Design",
-        "unit": 1,
-        "price": 2500,
-        "vat": 18,
-        "discount": 0
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO76432", "referenceNote": "Phase 1 design" },
-    "currency": { "value": "USD", "isDefault": true },
-    "status": "paid"
-  },
-  {
-    "invoiceId": 28,
-    "client": {
-      "businessName": "Bright Future Tech",
-      "email": "info@brightfuturetech.com",
-      "nif": "CA2233445566",
-      "country": "CA",
-      "currency": { "value": "CAD", "isDefault": true },
-      "address": { "street": "789 Tech Park", "city": "Toronto", "postalCode": "M5H 2N2", "additional": "Building B" }
-    },
-    "date": { "issueDate": "2023-07-10T00:00:00.000Z", "dueDate": "2023-07-24T00:00:00.000Z" },
-    "vatExemption": { "value": "M05", "label": "Exempt Article 14 of CIVA" },
-    "items": [
-      {
-        "id": 10,
-        "name": "Cloud Hosting Services",
-        "description": "Monthly subscription for cloud hosting",
-        "category": "Software",
-        "unit": 1,
-        "price": 150,
-        "vat": 15,
-        "discount": 0
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO55678", "referenceNote": "Monthly cloud service" },
-    "currency": { "value": "CAD", "isDefault": true },
-    "status": "issued"
-  },
-  {
-    "invoiceId": 29,
-    "client": {
-      "businessName": "Global Media Group",
-      "email": "media@globalmediagroup.com",
-      "nif": "AU3344556677",
-      "country": "AU",
-      "currency": { "value": "AUD", "isDefault": true },
-      "address": { "street": "101 Media Blvd", "city": "Sydney", "postalCode": "2000", "additional": "3rd Floor" }
-    },
-    "date": { "issueDate": "2023-05-25T00:00:00.000Z", "dueDate": "2023-06-08T00:00:00.000Z" },
-    "vatExemption": { "value": "M06", "label": "Exempt Article 15 of CIVA" },
-    "items": [
-      {
-        "id": 11,
-        "name": "Digital Marketing Campaign",
-        "description": "Social media and online marketing services",
-        "category": "Marketing",
-        "unit": 1,
-        "price": 3500,
-        "vat": 10,
-        "discount": 5
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO99822", "referenceNote": "Q3 Campaign" },
-    "currency": { "value": "AUD", "isDefault": true },
-    "status": "draft"
-  },
-  {
-    "invoiceId": 30,
-    "client": {
-      "businessName": "Medical Equipment Co.",
-      "email": "sales@medicalequipco.com",
-      "nif": "IN6677889900",
-      "country": "IN",
-      "currency": { "value": "INR", "isDefault": true },
-      "address": { "street": "42 Health Plaza", "city": "Mumbai", "postalCode": "400001", "additional": "Unit 5" }
-    },
-    "date": { "issueDate": "2023-09-02T00:00:00.000Z", "dueDate": "2023-09-16T00:00:00.000Z" },
-    "vatExemption": { "value": "M07", "label": "Exempt Article 18 of CIVA" },
-    "items": [
-      {
-        "id": 12,
-        "name": "Medical Devices",
-        "description": "Portable ultrasound machines",
-        "category": "Medical",
-        "unit": 20,
-        "price": 750,
-        "vat": 12,
-        "discount": 2
-      }
-    ],
-    "additionalOptions": { "purchaseOrder": "PO22334", "referenceNote": "Q4 Medical Devices" },
-    "currency": { "value": "INR", "isDefault": true },
     "status": "issued"
   }
 ]

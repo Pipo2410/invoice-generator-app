@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
   const data = await req.json();
 
   parsedData.push(data);
-  fs.writeFileSync(filePath, JSON.stringify(parsedData));
+  fs.writeFileSync(filePath, JSON.stringify(parsedData, null, 2));
 
   console.log('POST: /api/clients/create => New user created', data);
 

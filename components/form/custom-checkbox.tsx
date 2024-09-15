@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Checkbox } from '../ui/checkbox';
 
@@ -14,6 +14,10 @@ type CustomCheckboxProps = {
 
 export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ text, id, checked, onClick, children }) => {
   const [isChecked, setIsChecked] = useState(checked ?? false);
+
+  useEffect(() => {
+    setIsChecked(checked ?? false); // sync with external changes
+  }, [checked]);
 
   const handleCheck = () => {
     if (onClick) onClick(!isChecked);

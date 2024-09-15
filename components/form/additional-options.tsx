@@ -3,7 +3,7 @@ import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { FormType } from '@/context/model';
 
@@ -26,35 +26,93 @@ export const AdditionalOptions: React.FC<Props> = ({ form }) => {
         </AccordionTrigger>
         <AccordionContent className="m-6 flex flex-col gap-6 py-0">
           <div className="flex flex-col gap-6">
-            <CustomCheckbox text="Include retention %" id="retention">
-              <div className="flex items-center gap-2">
-                <Input className="w-fit rounded-lg border-none bg-secondary px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0" />
-                <TooltipProvider delayDuration={200}>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info />
-                    </TooltipTrigger>
-                    <TooltipContent side="right" className="w-72 p-4">
-                      This is an informative toast or section added to a page lorem ipsum dolor sit amet.
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-            </CustomCheckbox>
-            <CustomCheckbox text="Apply global discount" id="discount">
-              <Select>
-                <SelectTrigger className="w-48 rounded-sm border-none bg-secondary px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0">
-                  <SelectValue placeholder="15%" />
-                </SelectTrigger>
-                <SelectContent>
-                  {[5, 10, 15].map((option) => (
-                    <SelectItem key={option} value={`${option}`}>
-                      {option}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </CustomCheckbox>
+            <FormField
+              control={control}
+              name="retention.isSelected"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <CustomCheckbox
+                    text="Include retention %"
+                    id="retention"
+                    checked={field.value}
+                    onClick={(value) => field.onChange(value)}
+                  >
+                    <FormField
+                      control={control}
+                      name="retention.value"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <div className="flex items-center gap-2">
+                            <Input
+                              className="w-fit rounded-lg border-none bg-secondary px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+                              type="number"
+                              // max={100}
+                              // min={0}
+                              placeholder="0%"
+                              {...field}
+                              onChange={(e) => field.onChange(+e.target.value)}
+                            />
+                            <TooltipProvider delayDuration={200}>
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <Info />
+                                </TooltipTrigger>
+                                <TooltipContent side="right" className="w-72 p-4">
+                                  This is an informative toast or section added to a page lorem ipsum dolor sit amet.
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </div>
+                        </FormItem>
+                      )}
+                    />
+                  </CustomCheckbox>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={control}
+              name="globalDiscount.isSelected"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <CustomCheckbox
+                    text="Apply global discount"
+                    id="discount"
+                    checked={field.value}
+                    onClick={(value) => field.onChange(value)}
+                  >
+                    <FormField
+                      control={control}
+                      name="globalDiscount.value"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <Select onValueChange={(selectedValue) => field.onChange(+selectedValue)}>
+                            <SelectTrigger className="w-48 rounded-sm border-none bg-secondary px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0">
+                              <span>
+                                {field.value ? (
+                                  <span className="mr-1">{field.value}</span>
+                                ) : (
+                                  <span className="mr-1 text-dark-gray">15</span>
+                                )}
+                                %
+                              </span>
+                            </SelectTrigger>
+                            <SelectContent>
+                              {[5, 10, 15].map((option) => (
+                                <SelectItem key={option} value={String(option)}>
+                                  {option}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </FormItem>
+                      )}
+                    />
+                  </CustomCheckbox>
+                </FormItem>
+              )}
+            />
           </div>
           <FormField
             control={control}
@@ -92,22 +150,6 @@ export const AdditionalOptions: React.FC<Props> = ({ form }) => {
               </FormItem>
             )}
           />
-          {/* <CustomInput
-            id="purchase-order"
-            type="text"
-            placeholder="Reference note"
-            value={form.getValues('additionalOptions.purchaseOrder')}
-            error={!!formState.errors.additionalOptions?.purchaseOrder}
-            onInputHandler={(value) => form.setValue('additionalOptions.purchaseOrder', value)} // Only called on blur
-          /> */}
-          {/* <CustomInput
-            id="reference-note"
-            type="text"
-            placeholder="Client business name*"
-            error={!!formState.errors.additionalOptions?.referenceNote}
-            value={form.getValues('additionalOptions.referenceNote')} // Controlled value from parent
-            onInputHandler={(value) => form.setValue('additionalOptions.referenceNote', value)} // Only called on blur
-          /> */}
         </AccordionContent>
       </AccordionItem>
     </Accordion>
