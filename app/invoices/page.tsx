@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 
-import { columns } from '@/components/invoices/columns';
-import { ListInvoices } from '@/components/invoices/list-invoices';
+import { columns } from '@/components/invoices/listing-page/columns';
+import { ListInvoicesTable } from '@/components/invoices/listing-page/list-invoices-table';
 import { IconComponent } from '@/components/navigation/icon-component';
 import {
   Menubar,
@@ -68,7 +68,7 @@ export default async function Home() {
             ))}
           </TabsList>
           <TabsContent value={tabs[1]} className="mt-10 w-[80vw]">
-            <ListInvoices columns={columns} data={invoices} />
+            <ListInvoicesTable columns={columns} data={invoices} />
           </TabsContent>
         </Tabs>
       </div>

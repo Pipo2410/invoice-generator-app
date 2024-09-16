@@ -257,5 +257,92 @@
       "label": "Exempt Article 13 of CIVA"
     },
     "status": "issued"
+  },
+  {
+    "invoiceId": 5,
+    "client": {
+      "id": "1",
+      "businessName": "Some amazing company",
+      "email": "client@gmail.com",
+      "nif": "309643090",
+      "country": "Portugal",
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "city": "Lisboa",
+        "street": "Rua de sao Bento 644",
+        "postalCode": "1254-223",
+        "additional": "1dt-1e"
+      }
+    },
+    "date": {
+      "issueDate": "2024-09-16T02:53:28.207Z",
+      "dueDate": "2024-12-15T03:53:28.207Z"
+    },
+    "items": [
+      {
+        "id": "3",
+        "name": "Company development",
+        "description": "Development of company structure",
+        "category": "Service",
+        "unit": 1,
+        "price": 1000,
+        "vat": 23,
+        "discount": 10,
+        "totalPrice": 1107
+      },
+      {
+        "id": "2",
+        "name": "Software development",
+        "description": "Development of software products",
+        "category": "Service",
+        "unit": 4,
+        "price": 10,
+        "vat": 23,
+        "discount": 30,
+        "totalPrice": 34.44
+      },
+      {
+        "id": "1",
+        "name": "Branding development",
+        "description": "Development of brand identity",
+        "category": "Service",
+        "unit": 3,
+        "price": 1000,
+        "vat": 23,
+        "discount": 60,
+        "totalPrice": 1476
+      }
+    ],
+    "currency": {
+      "value": "EUR",
+      "isDefault": false
+    },
+    "additionalOptions": {
+      "purchaseOrder": "Order",
+      "referenceNote": "Note"
+    },
+    "retention": {
+      "isSelected": true,
+      "value": 33
+    },
+    "globalDiscount": {
+      "isSelected": true,
+      "value": 10
+    },
+    "price": {
+      "subTotal": 2617.44,
+      "vatTotal": 489.44,
+      "discountTotal": 2613.5040000000004,
+      "retentionAmount": 777.37968,
+      "total": 2355.696
+    },
+    "vatExemption": {
+      "value": "M06",
+      "label": "Exempt Article 15 of CIVA"
+    },
+    "status": "issued"
   }
 ]

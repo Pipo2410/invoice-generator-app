@@ -7,6 +7,7 @@ import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { DEFAULT_CLIENT } from '@/context/helpers';
 import { FormType } from '@/context/model';
 import { Client } from '@/context/model';
+import { useToast } from '@/hooks/use-toast';
 import { sendCreateClientRequest, updateClientRequest } from '@/lib/server-utils';
 
 type UseClientSelector = {
@@ -33,6 +34,7 @@ export const useClientSelector = (): UseClientSelector => {
   const { clients, setClients } = useCreateInvoiceFormContext();
   const { setValue, formState } = useFormContext();
   const currentClient: Client = useWatch({ name: 'client' });
+  const { toast } = useToast();
 
   const handleClientSelection = useCallback(() => {
     if (isNewClient) {
@@ -68,7 +70,6 @@ export const useClientSelector = (): UseClientSelector => {
 
   const submitClientCreationHandler = async (client: Client, action: 'create' | 'update') => {
     try {
-      // handle this
       const updatedClients =
         action === 'create' ? await sendCreateClientRequest(client) : await updateClientRequest(client);
       setValue('client', client);
@@ -76,9 +77,20 @@ export const useClientSelector = (): UseClientSelector => {
       setShowCreateUserForm(false);
       setIsNewClient(false);
       setClients(updatedClients);
-      setSelectedValue(client.id); // Show the newly created client card
+      setSelectedValue(client.id);
+      toast({
+        title: 'Success',
+        description: 'New client created',
+        variant: 'success',
+        duration: 3000,
+      });
     } catch (error) {
-      console.error(error);
+      toast({
+        title: 'Error',
+        description: 'Something went wrong. Please try again later',
+        variant: 'destructive',
+        duration: 3000,
+      });
     }
   };
 

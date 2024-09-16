@@ -23,14 +23,14 @@ export const InvoiceIssuedDialogContent: React.FC<Props> = ({ form }) => {
         <div className="flex items-center justify-center rounded-full bg-[#27A251] p-4 text-white">
           <Check />
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center gap-6">
           <AlertDialogTitle>
             Invoice <span className="font-semibold">{invoiceId}</span> issued
           </AlertDialogTitle>
           <AlertDialogDescription className="center text-center">
             Send the invoice to your client and we will track it to ensure you are paid on time.
           </AlertDialogDescription>
-          <CustomCheckbox text="Default currency for this client" id="currency" />
+          <CustomCheckbox text="Send invoice in Portuguese" id="invoice-portuguese" />
         </div>
         <div className="max-h-96 overflow-scroll">
           <EmailPreview form={form} />

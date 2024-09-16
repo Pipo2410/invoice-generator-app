@@ -68,7 +68,6 @@ export const InvoiceActions: React.FC<Props> = ({ invoice }) => {
             <h6 className="text-sm text-dark-gray">History</h6>
             <p className="flex justify-between px-4">
               <span>Invoice sent</span>
-              {/* TODO: MISSING DATA, SEND TO API WHEN CLICKS SEND AFTER ISSUEING INVOICE */}
               <span className="text-dark-gray">{formatDate(invoice.date.dueDate)}</span>
             </p>
           </div>

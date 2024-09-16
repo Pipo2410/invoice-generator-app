@@ -24,6 +24,7 @@ const ItemSchema = z.object({
   price: z.number(),
   vat: z.number(),
   discount: z.number().optional(),
+  totalPrice: z.number().optional(),
 });
 
 const GlobalDiscountSchema = z
@@ -110,6 +111,7 @@ export type Currency = z.infer<typeof CurrencySchema>;
 export type Retention = z.infer<typeof RetentionSchema>;
 export type GlobalDiscount = z.infer<typeof GlobalDiscountSchema>;
 export type IssuedInvoice = z.infer<typeof IssuedInvoiceSchema>;
+export type Price = z.infer<typeof priceSchema>;
 
 export type AppConfig = {
   vatArticles: VatExemption[];

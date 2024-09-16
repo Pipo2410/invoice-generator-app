@@ -30,14 +30,12 @@ type Props = {
 export const DueDate: React.FC<Props> = ({ form }) => {
   const [days, setDays] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-  // const { dueDate, issueDate } = form.watch('date'); // Use watch for reactive form updates
   const { dueDate, issueDate } = form.getValues('date');
   const { errors } = form.formState;
 
-  // Calculate due date based on selected days and issueDate
   const calculateDueDate = (days: number) => {
     if (!issueDate) {
-      form.trigger('date.issueDate'); // Ensure issueDate is set before calculation
+      form.trigger('date.issueDate');
       return;
     }
 
@@ -49,9 +47,8 @@ export const DueDate: React.FC<Props> = ({ form }) => {
     form.clearErrors('date.dueDate');
   };
 
-  // Handle custom date selection
   const handleCustomDateSelect = (date: Date | undefined) => {
-    setDays(null); // Reset days when selecting a custom date
+    setDays(null);
 
     if (!date) {
       form.resetField('date.dueDate');

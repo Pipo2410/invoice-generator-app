@@ -20,12 +20,7 @@ export const AddInvoiceSection: React.FC<Props> = ({ form }) => {
       <AddItems form={form} appendFunction={append} />
       {!!fields.length &&
         fields.map((item, index) => (
-          <AddedItem
-            itemIndex={index}
-            key={item.id} // check again
-            item={item as Item} // fix this
-            onRemoveItem={remove}
-          />
+          <AddedItem itemIndex={index} key={item.id} item={item as Item} onRemoveItem={remove} />
         ))}
     </>
   );

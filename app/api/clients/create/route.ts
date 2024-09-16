@@ -4,15 +4,31 @@ import path from 'path';
 
 export async function POST(req: NextRequest) {
   const filePath = path.join(process.cwd(), 'assets', 'clients.json');
-  const fileData = fs.readFileSync(filePath);
-  const parsedData = JSON.parse(fileData.toString());
 
-  const data = await req.json();
+  try {
+    const fileData = fs.readFileSync(filePath, 'utf-8');
+    let parsedData;
 
-  parsedData.push(data);
-  fs.writeFileSync(filePath, JSON.stringify(parsedData, null, 2));
+    try {
+      parsedData = JSON.parse(fileData);
+    } catch (parseError) {
+      return NextResponse.json({ error: 'Error parsing clients data' }, { status: 500 });
+    }
 
-  console.log('POST: /api/clients/create => New user created', data);
+    let data;
+    try {
+      data = await req.json();
+    } catch (jsonError) {
+      return NextResponse.json({ error: 'Invalid JSON in request body' }, { status: 400 });
+    }
 
-  return NextResponse.json(parsedData);
+    parsedData.push(data);
+
+    fs.writeFileSync(filePath, JSON.stringify(parsedData, null, 2));
+
+    return NextResponse.json(parsedData, { status: 200 });
+  } catch (error) {
+    // Handle any other errors that may occur
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
 }

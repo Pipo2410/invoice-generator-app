@@ -46,8 +46,6 @@ export const AdditionalOptions: React.FC<Props> = ({ form }) => {
                             <Input
                               className="w-fit rounded-lg border-none bg-secondary px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
                               type="number"
-                              // max={100}
-                              // min={0}
                               placeholder="0%"
                               {...field}
                               onChange={(e) => field.onChange(+e.target.value)}

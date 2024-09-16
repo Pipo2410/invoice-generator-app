@@ -57,8 +57,6 @@ export const SearchNifSelector: React.FC<Props> = ({ value, error }) => {
         searchValue={searchValue}
         onSearchValueChange={onSearchValueChange}
         items={filteredItems ?? []}
-        // Optional props
-        emptyMessage="No items found."
         placeholder="Search or create an item"
         searchWrapperClasses="bg-secondary"
         inputClassNames="h-fit text-base leading-4 border-none py-4 px-0 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent"

@@ -5,7 +5,6 @@ const config = {
   singleQuote: true,
   plugins: ['@trivago/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
 
-  // @trivago/prettier-plugin-sort-imports
   importOrder: ['<THIRD_PARTY_MODULES>', '^@(assets/|/)(.*)$', '^[./]'],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,

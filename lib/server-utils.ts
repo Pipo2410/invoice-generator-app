@@ -4,47 +4,47 @@ import { revalidatePath } from 'next/cache';
 
 import { Client, FormType } from '@/context/model';
 
-export const sendCreateClientRequest = (client: Client) => {
-  console.log('server Action');
+export const sendCreateClientRequest = async (client: Client) => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(client),
   };
-  const data = fetch(`${process.env.API_PATH}/api/clients/create`, requestOptions).then((response) => response.json());
-  revalidatePath('/', 'layout');
+  const response = await fetch(`${process.env.API_PATH}/api/clients/create`, requestOptions);
 
-  return data;
+  if (!response.ok) {
+    throw new Error('Error while creating a client');
+  }
+  revalidatePath('/', 'layout');
+  return await response.json();
 };
+
 export const updateClientRequest = async (client: Client) => {
-  console.log('server Action');
   const requestOptions = {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(client),
   };
   const response = await fetch(`${process.env.API_PATH}/api/clients`, requestOptions);
-  const data = response.json();
+  if (!response.ok) {
+    throw new Error('Error while updating the client');
+  }
   revalidatePath('/', 'layout');
-
-  return data;
+  return response.json();
 };
 
 export const sendCreateInvoiceRequest = async (invoice: FormType) => {
-  console.log('server Action');
-  console.log(invoice);
-
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(invoice),
   };
-  const data = await fetch(`${process.env.API_PATH}/api/invoices`, requestOptions).then((response) => response.json());
+  const response = await fetch(`${process.env.API_PATH}/api/invoices`, requestOptions);
+  if (!response.ok) {
+    throw new Error('Error while updating the client');
+  }
   revalidatePath('/', 'layout');
-
-  console.log('response inside server action: ', data);
-
-  return data;
+  return response.json();
 };
 
 export const sendUpdateInvoiceRequest = async (property: string, value: string, id: number) => {
@@ -59,7 +59,6 @@ export const sendUpdateInvoiceRequest = async (property: string, value: string, 
   };
 
   const response = await fetch(`${process.env.API_PATH}/api/invoices/${id}`, requestOptions);
-  const data = response.json();
   revalidatePath('/', 'layout');
-  return data;
+  return response.json();
 };

@@ -141,7 +141,6 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
                 placeholder="Street address"
                 value={client.address?.street ?? ''}
                 onInputHandler={(value) => setStreetAddress(value)}
-                // error={!!errors['address']}
               />
               <CustomInput
                 id="address-city"
@@ -149,7 +148,6 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
                 placeholder="City"
                 value={client.address?.city ?? ''}
                 onInputHandler={(value) => setCity(value)}
-                // error={!!errors['city']}
               />
               <div className="flex gap-4">
                 <CustomInput
@@ -158,7 +156,6 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
                   placeholder="Postal code"
                   value={client.address?.postalCode ?? ''}
                   onInputHandler={(value) => setPostalCode(value)}
-                  // error={!!errors['postalCode']}
                   wrapperClasses="w-1/2"
                 />
                 <CustomInput
@@ -167,7 +164,6 @@ export const CreateClient: React.FC<Props> = ({ isNewClient, onSubmit, onCancel 
                   placeholder="Floor, door number"
                   value={client.address?.additional ?? ''}
                   onInputHandler={(value) => setFloorNumber(value)}
-                  // error={!!errors['additional']}
                   wrapperClasses="w-1/2"
                 />
               </div>

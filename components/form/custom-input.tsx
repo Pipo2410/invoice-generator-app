@@ -7,20 +7,20 @@ import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 
 type Props = {
-  value: string; // Controlled value from parent
+  value: string;
   placeholder: string;
   type: string;
   id: string;
   wrapperClasses?: string;
   error?: boolean;
-  onInputHandler: (value: string) => void; // Called only on blur
+  onInputHandler: (value: string) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 };
 
 export const CustomInput: React.FC<Props> = ({
   placeholder,
   wrapperClasses,
-  value, // Parent-controlled value
+  value,
   error,
   type,
   id,
@@ -52,12 +52,12 @@ export const CustomInput: React.FC<Props> = ({
         ref={inputRef}
         type={type}
         id={id}
-        value={inputValue} // controlled locally
+        value={inputValue}
         error={error}
         placeholder={placeholder}
         className="peer h-fit rounded-2xl border-transparent bg-secondary px-3 py-4 pt-[30px] text-base leading-4 placeholder:text-base placeholder:text-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
-        onChange={inputHandler} // Handle input locally
-        onBlur={handleBlur} // Notify parent on blur
+        onChange={inputHandler}
+        onBlur={handleBlur}
       />
       <Label
         onClick={() => inputRef.current?.focus()}

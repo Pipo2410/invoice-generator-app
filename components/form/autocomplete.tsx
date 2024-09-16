@@ -24,8 +24,6 @@ type Props<T extends string> = {
   searchValue: string;
   onSearchValueChange: (value: string) => void;
   items: AutocompleteItem<T>[];
-  isLoading?: boolean;
-  emptyMessage?: string;
   placeholder?: string;
   inputClassNames?: string;
   searchWrapperClasses?: string;
@@ -42,8 +40,6 @@ export const AutoComplete = <T extends string>({
   searchValue,
   onSearchValueChange,
   items,
-  // isLoading,
-  // emptyMessage = 'No items.',
   placeholder = 'Search...',
   inputClassNames,
   searchWrapperClasses,
@@ -159,7 +155,6 @@ export const AutoComplete = <T extends string>({
                   </div>
                 </CommandItem>
               )}
-              {/* {items.length > 0 && !isLoading ? ( */}
               {items.length > 0 ? (
                 <CommandGroup className="p-0">
                   {items.map((option) => (
@@ -182,9 +177,6 @@ export const AutoComplete = <T extends string>({
               ) : (
                 <CommandEmpty>No results found.</CommandEmpty>
               )}
-              {/* {!isLoading ? (
-								<CommandEmpty>{emptyMessage ?? 'No items.'}</CommandEmpty>
-							) : null} */}
             </CommandList>
           </PopoverContent>
         </Command>

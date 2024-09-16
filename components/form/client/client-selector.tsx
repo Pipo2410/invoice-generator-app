@@ -38,7 +38,6 @@ export const ClientSelector = () => {
               searchValue={searchValue}
               onSearchValueChange={setSearchValue}
               items={filteredItems ?? []}
-              emptyMessage="No items found."
               placeholder="Search or add a client..."
               searchWrapperClasses="bg-secondary"
               inputClassNames="h-fit text-base leading-4 border-none py-4 px-0 pt-[30px] rounded-2xl focus-visible:ring-0 peer focus-visible:ring-offset-0 placeholder:text-base placeholder:text-transparent"

@@ -1,9 +1,12 @@
 import { format } from 'date-fns';
 import React from 'react';
 
+import { InvoicePreviewClientInfo } from '@/components/preview/invoice-preview-client-info';
+import { InvoicePreviewItemsTable } from '@/components/preview/invoice-preview-items-table';
+import { InvoicePreviewLineSection } from '@/components/preview/invoice-preview-line-section';
+import { InvoiceSummarySection } from '@/components/preview/invoice-summary-section';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { formatDate, formatPrice, statusVariantMap } from '@/context/helpers';
 import { AppConfig, IssuedInvoice } from '@/context/model';
 
@@ -29,124 +32,60 @@ export const InvoicePreview: React.FC<Props> = ({ invoice, appConfig }) => {
           <p className="text-xs text-dark-gray">Issued on {format(invoice.date.issueDate, 'd MMM yyyy')}</p>
         </div>
         <h3 className="text-3xl font-semibold">Invoice</h3>
-        <div className="flex flex-col gap-0.5 py-2 text-xs">
-          <h5 className="text-base font-semibold">Billed to</h5>
-          <p className="flex justify-between text-dark-gray">
-            <span>Business name</span>
-            <span className="font-semibold">{client.businessName}</span>
-          </p>
-          <p className="flex justify-between text-dark-gray">
-            <span>Business address</span>
-            {client.address && <span>{client.address?.street}</span>}
-          </p>
-          <p className="flex justify-between text-dark-gray">
-            <span>City, Country - 0000-000</span>
-            {client.address && (
-              <span>{`${client.address?.city}, ${client.country} - ${client.address?.postalCode}`}</span>
-            )}
-          </p>
-          <p className="flex justify-between text-dark-gray">
-            <span>NIF</span>
-            <span>{client.nif}</span>
-          </p>
-        </div>
-        <div className="flex justify-center border-b border-t border-dashed py-4 text-sm text-dark-gray">
-          <div className="flex flex-col">
-            <p>Number</p>
-            <p className="font-semibold">#{invoice.invoiceId}</p>
-          </div>
-          <Separator orientation="vertical" className="mx-5 h-auto" />
-          <div className="flex flex-col">
-            <p>Due date</p>
-            <p className="font-semibold">{formatDate(invoice.date.dueDate)}</p>
-          </div>
-          <Separator orientation="vertical" className="mx-5 h-auto" />
-          <div className="flex flex-col">
-            <p>Note or PO</p>
-            <p className="font-semibold">{referenceNote}</p>
-          </div>
-        </div>
+        <InvoicePreviewClientInfo client={client} />
+        <InvoicePreviewLineSection
+          sections={[
+            {
+              label: 'Number',
+              value: `#${invoice.invoiceId}`,
+            },
+            {
+              label: 'Due date',
+              value: formatDate(invoice.date.dueDate),
+            },
+            {
+              label: 'Note or PO',
+              value: referenceNote,
+            },
+          ]}
+          classes="-mx-1"
+        />
       </div>
-      {/* ITEM SECTION */}
-      <div className="flex flex-col gap-8 border-b border-dashed py-4">
-        <p className="text-sm font-semibold text-light-gray">Item</p>
-        <div className="flex flex-col gap-2">
-          {/* Table Header */}
-          <table className="w-full table-auto border-separate border-spacing-2 text-xs">
-            <thead className="font-semibold text-light-gray">
-              <tr>
-                <th className="w-[40%]"></th>
-                <th>Unit price</th>
-                <th>Units</th>
-                <th>VAT</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item) => {
-                const formattedPrice = formatPrice(item.price, invoice.currency.value);
-                return (
-                  <tr key={item.id} className="rounded-sm p-1 text-center text-foreground">
-                    <td className="rounded-none text-start">{item.name}</td>
-                    <td className="bg-background">{formattedPrice}</td>
-                    <td className="bg-background">{item.unit}</td>
-                    <td className="bg-background">{item.vat} %</td>
-                    <td className="bg-background">{formattedPrice}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {/* END ITEM SECTION */}
+
+      <InvoicePreviewItemsTable items={items} currency={invoice.currency} wrapperClasses="border-b border-dashed" />
+
       <p className="text-sm">
         <span className="font-semibold">Description:</span>
         <span>It includes brand guide lines and UI kit</span>
       </p>
 
-      {/* FOOTER / SUMMARY */}
-      <div className="flex flex-col gap-4 text-sm text-dark-gray">
-        <div>
-          <h3 className="mb-2 mt-8 text-sm font-semibold text-dark-gray">Summary</h3>
-        </div>
-        <div className="flex flex-col gap-4 border-b border-dashed">
-          <div className="flex justify-between">
-            <p>Retention</p>
-            <p className="font-semibold text-foreground">
-              {invoice.price.retentionAmount ? formatPrice(invoice.price.retentionAmount, invoice.currency.value) : '-'}
-            </p>
-          </div>
-          <div className="flex justify-between">
-            <p>Subtotal</p>
-            <p className="font-semibold text-foreground">
-              {formatPrice(invoice.price.subTotal, invoice.currency.value)}
-              {currencySign}
-            </p>
-          </div>
-          <div className="flex justify-between">
-            <p>VAT</p>
-            <p className="font-semibold text-foreground">
-              {formatPrice(invoice.price.vatTotal, invoice.currency.value)}
-            </p>
-          </div>
-          <div className="mb-4 flex justify-between">
-            <p>Discount</p>
-            <p className="font-semibold text-foreground">
-              {formatPrice(invoice.price.discountTotal, invoice.currency.value)}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex justify-between text-base font-semibold text-foreground">
-          <p>Total</p>
-          <p>{formatPrice(invoice.price.total, invoice.currency.value)}</p>
-        </div>
-        <div className="flex justify-between text-xs text-foreground">
-          <p>VAT Exemption</p>
-          <p className="text-foreground">{invoice.vatExemption.label}</p>
-        </div>
-      </div>
+      <InvoiceSummarySection
+        title="Summary"
+        items={[
+          {
+            label: 'Retention',
+            value: invoice.price.retentionAmount
+              ? formatPrice(invoice.price.retentionAmount, invoice.currency.value)
+              : '-',
+          },
+          {
+            label: 'Subtotal',
+            value: formatPrice(invoice.price.subTotal, invoice.currency.value) + currencySign,
+          },
+          {
+            label: 'VAT',
+            value: formatPrice(invoice.price.vatTotal, invoice.currency.value),
+          },
+          {
+            label: 'Discount',
+            value: formatPrice(invoice.price.discountTotal, invoice.currency.value),
+          },
+        ]}
+        totalLabel="Total"
+        totalValue={formatPrice(invoice.price.total, invoice.currency.value)}
+        vatExemptionLabel="VAT Exemption"
+        vatExemptionValue={invoice.vatExemption.label}
+      />
     </Card>
   );
 };

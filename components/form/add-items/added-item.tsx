@@ -119,7 +119,6 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex, onRemoveItem }) =>
                 <FormItem className="w-full">
                   <Input
                     type="number"
-                    // placeholder={`${item.price} ${currencySign}`}
                     className="rounded-sm border-transparent bg-white px-2 py-1 text-[#101010] ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
                     {...field}
                     onChange={(e) => field.onChange(+e.target.value)}
@@ -139,7 +138,7 @@ export const AddedItem: React.FC<Props> = ({ item, itemIndex, onRemoveItem }) =>
                     <SelectTrigger
                       className={cn(
                         'rounded-sm border-transparent bg-white px-2 py-1 text-[#101010] focus:right-0 focus:ring-transparent focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0',
-                        !!formState.errors.items?.[itemIndex]?.vat && '!border-dark-orange', // might not need
+                        !!formState.errors.items?.[itemIndex]?.vat && '!border-dark-orange',
                       )}
                     >
                       {field.value}%

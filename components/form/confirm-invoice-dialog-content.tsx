@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form';
 import { AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { FormType } from '@/context/model';
 import { useCalculatePrice } from '@/hooks/use-calculate-price';
+import { useToast } from '@/hooks/use-toast';
 import { sendCreateInvoiceRequest } from '@/lib/server-utils';
 
 import { IconComponent } from '../navigation/icon-component';
@@ -17,6 +18,7 @@ type Props = {
 export const ConfirmInvoiceDialogContent: React.FC<Props> = ({ setOpenDialog, setSubmitted }) => {
   const { getValues } = useFormContext<FormType>();
   const formValues = getValues();
+  const { toast } = useToast();
 
   const { updatedItems } = useCalculatePrice();
 
@@ -26,8 +28,17 @@ export const ConfirmInvoiceDialogContent: React.FC<Props> = ({ setOpenDialog, se
   };
 
   const handleIssueInvoice = async () => {
-    const response = await sendCreateInvoiceRequest(dataToBeSubmitted);
-    console.log(`Invoices after submission: ${response}`);
+    try {
+      await sendCreateInvoiceRequest(dataToBeSubmitted);
+    } catch (error) {
+      toast({
+        title: 'Erorr',
+        variant: 'destructive',
+        description: 'Invoice updated',
+        duration: 3000,
+      });
+      return;
+    }
     setSubmitted(true);
   };
   return (

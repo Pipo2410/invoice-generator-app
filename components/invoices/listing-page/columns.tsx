@@ -4,11 +4,11 @@ import { ColumnDef } from '@tanstack/react-table';
 import { ChevronsUpDown } from 'lucide-react';
 import React from 'react';
 
-import { formatDate, statusVariantMap } from '@/context/helpers';
-import { IssuedInvoice } from '@/context/model';
-
-import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { formatDate, formatPrice, statusVariantMap } from '@/context/helpers';
+import { Client, IssuedInvoice, Price } from '@/context/model';
 
 export const columns: ColumnDef<IssuedInvoice>[] = [
   {
@@ -27,7 +27,7 @@ export const columns: ColumnDef<IssuedInvoice>[] = [
     ),
   },
   {
-    accessorKey: 'clientName', // Accessing nested field
+    accessorKey: 'clientName',
     accessorFn: ({ client }) => client.businessName,
     header: ({ column }) => (
       <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
@@ -35,10 +35,21 @@ export const columns: ColumnDef<IssuedInvoice>[] = [
         <ChevronsUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-    cell: ({ row }) => <div className="text-base font-semibold capitalize">{row.getValue('clientName')}</div>,
+    cell: ({ row }) => {
+      const companyName: Client['businessName'] = row.getValue('clientName');
+      const avaratName = companyName.split(' ').reduce((acc, word) => acc + word[0], '');
+      return (
+        <div className="flex items-center gap-1 text-base font-semibold capitalize">
+          <Avatar>
+            <AvatarFallback>{avaratName}</AvatarFallback>
+          </Avatar>
+          {companyName}
+        </div>
+      );
+    },
   },
   {
-    accessorKey: 'issueDate', // Accessing nested field
+    accessorKey: 'issueDate',
     accessorFn: ({ date }) => date.issueDate,
     header: ({ column }) => (
       <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
@@ -53,7 +64,7 @@ export const columns: ColumnDef<IssuedInvoice>[] = [
     },
   },
   {
-    accessorKey: 'dueDate', // Accessing nested field
+    accessorKey: 'dueDate',
     header: ({ column }) => (
       <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Due date
@@ -68,7 +79,7 @@ export const columns: ColumnDef<IssuedInvoice>[] = [
     },
   },
   {
-    accessorKey: 'status', // Accessing nested field
+    accessorKey: 'status',
     header: ({ column }) => (
       <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Status
@@ -88,7 +99,17 @@ export const columns: ColumnDef<IssuedInvoice>[] = [
     },
   },
   {
-    accessorKey: 'amount', // Accessing nested field
-    header: 'Amount',
+    accessorKey: 'price',
+    accessorFn: ({ price }) => price.total,
+    header: ({ column }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Amount
+        <ChevronsUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => {
+      const price: Price['total'] = row.getValue('price');
+      return <div className="text-base font-semibold capitalize text-dark-gray">{formatPrice(price, 'EUR')}</div>;
+    },
   },
 ];

@@ -1,6 +1,5 @@
 'use client';
 
-// import { DevTool } from '@hookform/devtools';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -80,7 +79,6 @@ export const Content = () => {
         {showPreview && <PreviewFormArea form={form} />}
         {confirmSubmitDialogComponent}
       </Form>
-      {/* <DevTool control={form.control} /> */}
       <Toaster />
     </div>
   );

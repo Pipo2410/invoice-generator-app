@@ -3,7 +3,7 @@ import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { formatPrice } from '@/context/helpers';
+import { formatDate, formatPrice } from '@/context/helpers';
 import { FormType } from '@/context/model';
 
 import { Button } from '../ui/button';
@@ -16,6 +16,7 @@ type Props = {
 export const EmailPreview: React.FC<Props> = ({ form }) => {
   const client = form.watch('client');
   const price = form.watch('price.total');
+  const dueDate = form.getValues('date.dueDate');
   const invoiceId = form.getValues('invoiceId');
 
   return (
@@ -24,7 +25,7 @@ export const EmailPreview: React.FC<Props> = ({ form }) => {
         <div className="flex h-10 items-center justify-between border-b">
           <p className="font-semibold">
             Sending to:
-            <span className="ml-4 text-[13px] font-normal">company.abc@email.com</span>
+            <span className="ml-4 text-[13px] font-normal">{client.email || 'Client Email'}</span>
           </p>
           <Button
             type="button"
@@ -38,7 +39,9 @@ export const EmailPreview: React.FC<Props> = ({ form }) => {
         <div className="flex h-10 items-center border-b">
           <p className="font-semibold">
             Subject:
-            <span className="ml-4 text-[13px] font-normal">Jon Doe - Invoice #000, Due date on dd/mm/yyyy</span>
+            <span className="ml-4 text-[13px] font-normal">
+              Jon Doe - Invoice #{invoiceId}, Due date on {dueDate ? formatDate(dueDate) : '[Date]'}
+            </span>
           </p>
         </div>
       </CardHeader>
@@ -50,7 +53,7 @@ export const EmailPreview: React.FC<Props> = ({ form }) => {
           <br />
           <p>
             Here is your invoice <span className="font-semibold">#{invoiceId}</span> in the amount of&nbsp;
-            {formatPrice(price, client.currency.value)}.
+            <span className="font-semibold">{formatPrice(price, client.currency.value)}.</span>
           </p>
           <br />
           <p>
