@@ -2,7 +2,7 @@ import fs from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 
-import { FormType, IssuedInvoice } from '@/context/model';
+import { FormType, IssuedInvoice } from '@/utils/model';
 
 export async function GET(req: NextRequest, { params }: { params: { id: number } }) {
   const filePath = path.join(process.cwd(), 'assets', 'invoices.json');

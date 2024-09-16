@@ -8,10 +8,10 @@ import { PreviewFormArea } from '@/components/preview/preview-form-area';
 import { Form } from '@/components/ui/form';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { useDefaultContext } from '@/context/default-context';
-import { formDefaultValues } from '@/context/helpers';
-import { FormType, formSchema } from '@/context/model';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
+import { formDefaultValues } from '@/utils/helpers';
+import { FormType, formSchema } from '@/utils/model';
 
 import { ConfirmInvoiceDialogContent } from '../form/confirm-invoice-dialog-content';
 import { CustomDialog } from '../form/custom-dialog';

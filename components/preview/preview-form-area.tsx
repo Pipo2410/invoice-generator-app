@@ -3,7 +3,7 @@ import { UseFormReturn } from 'react-hook-form';
 
 import { EmailPreview } from '@/components/preview/email-preview';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { FormType } from '@/context/model';
+import { FormType } from '@/utils/model';
 
 import { PreviewInvoice } from './preview-invoice';
 

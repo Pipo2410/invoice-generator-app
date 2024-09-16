@@ -6,8 +6,8 @@ import { FieldErrors, FieldValues, UseFieldArrayAppend, UseFormReturn } from 're
 import { AutoComplete } from '@/components/form/autocomplete';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
-import { FormType, Item } from '@/context/model';
 import { toast } from '@/hooks/use-toast';
+import { FormType, Item } from '@/utils/model';
 
 type Props = {
   form: UseFormReturn<FormType>;

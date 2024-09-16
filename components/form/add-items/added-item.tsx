@@ -8,8 +8,8 @@ import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
-import { FormType, Item } from '@/context/model';
 import { cn } from '@/lib/utils';
+import { FormType, Item } from '@/utils/model';
 
 type Props = {
   item: Item;

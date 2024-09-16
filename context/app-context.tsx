@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { createContext, useContext } from 'react';
 
-import { AppConfig, Client, InitialCreateInvoiceState, Item } from './model';
+import { AppConfig, Client, InitialCreateInvoiceState, Item } from '../utils/model';
 
 type CreateInvoiceFormContextValues = {
   clients: Client[];

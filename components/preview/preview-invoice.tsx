@@ -3,9 +3,9 @@ import { UseFormReturn, useWatch } from 'react-hook-form';
 
 import { InvoiceSummary } from '@/components/form/invoice-summary';
 import { Card } from '@/components/ui/card';
-import { formatDate } from '@/context/helpers';
-import { Date, FormType } from '@/context/model';
 import { useCalculatePrice } from '@/hooks/use-calculate-price';
+import { formatDate } from '@/utils/helpers';
+import { Date, FormType } from '@/utils/model';
 
 import { InvoicePreviewClientInfo } from './invoice-preview-client-info';
 import { InvoicePreviewItemsTable } from './invoice-preview-items-table';

@@ -2,10 +2,10 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
-import { FormType } from '@/context/model';
 import { useCalculatePrice } from '@/hooks/use-calculate-price';
 import { useToast } from '@/hooks/use-toast';
 import { sendCreateInvoiceRequest } from '@/lib/server-utils';
+import { FormType } from '@/utils/model';
 
 import { IconComponent } from '../navigation/icon-component';
 import { CustomDialogFooter } from './custom-dialog';

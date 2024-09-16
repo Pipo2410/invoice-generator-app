@@ -1,7 +1,7 @@
 import React from 'react';
 import { UseFormReturn, useFieldArray } from 'react-hook-form';
 
-import { FormType, Item } from '@/context/model';
+import { FormType, Item } from '@/utils/model';
 
 import { AddItems } from './add-items';
 import { AddedItem } from './added-item';

@@ -4,7 +4,7 @@ import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
 import { AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
-import { FormType } from '@/context/model';
+import { FormType } from '@/utils/model';
 
 import { EmailPreview } from '../preview/email-preview';
 import { CustomCheckbox } from './custom-checkbox';

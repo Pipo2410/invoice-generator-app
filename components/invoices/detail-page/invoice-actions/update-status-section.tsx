@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { IssuedInvoice } from '@/context/model';
 import { useToast } from '@/hooks/use-toast';
 import { sendUpdateInvoiceRequest } from '@/lib/server-utils';
+import { IssuedInvoice } from '@/utils/model';
 
 export const UpdateStatusSection = ({ invoice }: { invoice: IssuedInvoice }) => {
   const [invoiceStatus, setInvoiceStatus] = useState(invoice.status);

@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { Client, FormType } from '@/context/model';
+import { Client, FormType } from '@/utils/model';
 
 export const sendCreateClientRequest = async (client: Client) => {
   const requestOptions = {

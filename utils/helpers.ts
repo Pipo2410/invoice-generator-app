@@ -64,7 +64,7 @@ export const mapErrorsToFields = (errors: Array<ZodIssue>) =>
   errors.reduce(
     (acc, error) => {
       const fieldName = error.path[0];
-      acc[fieldName] = error.message; // Store the error message for each field
+      acc[fieldName] = error.message;
       return acc;
     },
     {} as Record<string, string | null>,

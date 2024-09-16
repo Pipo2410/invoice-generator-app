@@ -3,7 +3,7 @@
 import React from 'react';
 import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 
-import { Client } from './model';
+import { Client } from '../utils/model';
 
 type CreateClientContextValues = {
   id: string;

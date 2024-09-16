@@ -4,7 +4,7 @@ import { useWatch } from 'react-hook-form';
 import { IconComponent } from '@/components/navigation/icon-component';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Client } from '@/context/model';
+import { Client } from '@/utils/model';
 
 type Props = {
   onClose: () => void;

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { formatPrice } from '@/context/helpers';
-import { Item } from '@/context/model';
 import { cn } from '@/lib/utils';
+import { formatPrice } from '@/utils/helpers';
+import { Item } from '@/utils/model';
 
 type Props = {
   items: Item[];

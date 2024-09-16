@@ -18,8 +18,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
-import { FormType } from '@/context/model';
 import { cn } from '@/lib/utils';
+import { FormType } from '@/utils/model';
 
 const daysOptions = [15, 30, 45, 60, 90];
 

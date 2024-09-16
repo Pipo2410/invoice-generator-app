@@ -5,7 +5,7 @@ import React from 'react';
 import { Content } from '@/components/layout/content';
 import { Header } from '@/components/layout/create-invoice-header';
 import { CreateInvoiceFormContextProvider } from '@/context/app-context';
-import { InitialCreateInvoiceState } from '@/context/model';
+import { InitialCreateInvoiceState } from '@/utils/model';
 
 type Props = {
   initialState: InitialCreateInvoiceState;

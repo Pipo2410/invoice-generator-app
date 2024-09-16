@@ -14,8 +14,8 @@ import {
   MenubarTrigger,
 } from '@/components/ui/menubar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { IssuedInvoice } from '@/context/model';
 import { fetchData } from '@/lib/utils';
+import { IssuedInvoice } from '@/utils/model';
 
 const tabs = ['Overview', 'Invoices', 'Invoice templates', 'Clients', 'Items', 'Settings'];
 

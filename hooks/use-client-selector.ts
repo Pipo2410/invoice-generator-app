@@ -4,11 +4,11 @@ import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'reac
 import { FieldErrors, useFormContext, useWatch } from 'react-hook-form';
 
 import { useCreateInvoiceFormContext } from '@/context/app-context';
-import { DEFAULT_CLIENT } from '@/context/helpers';
-import { FormType } from '@/context/model';
-import { Client } from '@/context/model';
 import { useToast } from '@/hooks/use-toast';
 import { sendCreateClientRequest, updateClientRequest } from '@/lib/server-utils';
+import { DEFAULT_CLIENT } from '@/utils/helpers';
+import { FormType } from '@/utils/model';
+import { Client } from '@/utils/model';
 
 type UseClientSelector = {
   selectedValue: string;

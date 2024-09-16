@@ -7,8 +7,8 @@ import React from 'react';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { formatDate, formatPrice, statusVariantMap } from '@/context/helpers';
-import { Client, IssuedInvoice, Price } from '@/context/model';
+import { formatDate, formatPrice, statusVariantMap } from '@/utils/helpers';
+import { Client, IssuedInvoice, Price } from '@/utils/model';
 
 export const columns: ColumnDef<IssuedInvoice>[] = [
   {

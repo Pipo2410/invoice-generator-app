@@ -7,8 +7,8 @@ import { InvoicePreviewLineSection } from '@/components/preview/invoice-preview-
 import { InvoiceSummarySection } from '@/components/preview/invoice-summary-section';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
-import { formatDate, formatPrice, statusVariantMap } from '@/context/helpers';
-import { AppConfig, IssuedInvoice } from '@/context/model';
+import { formatDate, formatPrice, statusVariantMap } from '@/utils/helpers';
+import { AppConfig, IssuedInvoice } from '@/utils/model';
 
 type Props = {
   invoice: IssuedInvoice;

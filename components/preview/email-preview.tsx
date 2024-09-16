@@ -3,8 +3,8 @@ import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { formatDate, formatPrice } from '@/context/helpers';
-import { FormType } from '@/context/model';
+import { formatDate, formatPrice } from '@/utils/helpers';
+import { FormType } from '@/utils/model';
 
 import { Button } from '../ui/button';
 import { Textarea } from '../ui/textarea';

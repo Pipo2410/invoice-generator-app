@@ -5,7 +5,7 @@ import { UseFormReturn } from 'react-hook-form';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { FormType } from '@/context/model';
+import { FormType } from '@/utils/model';
 
 import { FormControl, FormField, FormItem } from '../ui/form';
 import { Input } from '../ui/input';

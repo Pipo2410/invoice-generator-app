@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Client } from '@/context/model';
+import { Client } from '@/utils/model';
 
 type Props = {
   client: Client;

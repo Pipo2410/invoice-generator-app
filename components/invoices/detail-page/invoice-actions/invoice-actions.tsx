@@ -3,8 +3,8 @@ import React from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
-import { formatDate, formatPrice, statusVariantMap } from '@/context/helpers';
-import { IssuedInvoice } from '@/context/model';
+import { formatDate, formatPrice, statusVariantMap } from '@/utils/helpers';
+import { IssuedInvoice } from '@/utils/model';
 
 import { IconButton } from './icon-button';
 import { UpdateStatusSection } from './update-status-section';

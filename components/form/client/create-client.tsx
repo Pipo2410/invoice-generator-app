@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
 import { useCreateClientContext } from '@/context/create-client-context';
-import { mapErrorsToFields, shouldcreateAddressField } from '@/context/helpers';
-import { Client, ClientSchema } from '@/context/model';
 import { toast } from '@/hooks/use-toast';
+import { mapErrorsToFields, shouldcreateAddressField } from '@/utils/helpers';
+import { Client, ClientSchema } from '@/utils/model';
 
 import { CustomCheckbox } from '../custom-checkbox';
 import { CustomInput } from '../custom-input';

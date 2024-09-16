@@ -1,9 +1,9 @@
 import React from 'react';
 import { UseFormReturn, useWatch } from 'react-hook-form';
 
-import { formatPrice } from '@/context/helpers';
-import { FormType } from '@/context/model';
 import { useCalculatePrice } from '@/hooks/use-calculate-price';
+import { formatPrice } from '@/utils/helpers';
+import { FormType } from '@/utils/model';
 
 import { InvoiceSummarySection } from '../preview/invoice-summary-section';
 

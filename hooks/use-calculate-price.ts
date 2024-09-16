@@ -3,7 +3,7 @@
 import { useEffect, useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import { FormType } from '@/context/model';
+import { FormType } from '@/utils/model';
 
 export const useCalculatePrice = () => {
   const { control, setValue } = useFormContext<FormType>();

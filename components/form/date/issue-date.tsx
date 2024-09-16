@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { FormType } from '@/context/model';
 import { cn } from '@/lib/utils';
+import { FormType } from '@/utils/model';
 
 type Props = {
   form: UseFormReturn<FormType>;

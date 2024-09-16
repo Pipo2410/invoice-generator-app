@@ -10,8 +10,8 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
-import { FormType, VatExemption } from '@/context/model';
 import { cn } from '@/lib/utils';
+import { FormType, VatExemption } from '@/utils/model';
 
 type Props = {
   form: UseFormReturn<FormType>;

@@ -2,7 +2,7 @@ import fs from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 
-import { Client } from '@/context/model';
+import { Client } from '@/utils/model';
 
 export async function GET() {
   const filePath = path.join(process.cwd(), 'assets', 'clients.json');

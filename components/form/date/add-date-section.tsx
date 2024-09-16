@@ -1,7 +1,7 @@
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
-import { FormType } from '@/context/model';
+import { FormType } from '@/utils/model';
 
 import { DueDate } from './due-date-calendar';
 import { IssueDate } from './issue-date';

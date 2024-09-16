@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { ClientSchema } from './context/model';
+import { ClientSchema } from './utils/model';
 
 export async function middleware(request: NextRequest) {
   const {

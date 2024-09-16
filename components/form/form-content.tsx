@@ -8,7 +8,7 @@ import { AddDateSection } from '@/components/form/date/add-date-section';
 import { InvoiceSummary } from '@/components/form/invoice-summary';
 import { VatArticleSelector } from '@/components/form/vat-article-selector';
 import { Separator } from '@/components/ui/separator';
-import { FormType } from '@/context/model';
+import { FormType } from '@/utils/model';
 
 type Props = {
   form: UseFormReturn<FormType>;
