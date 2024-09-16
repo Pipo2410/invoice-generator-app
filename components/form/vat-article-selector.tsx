@@ -10,7 +10,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useCreateInvoiceFormContext } from '@/context/app-context';
-import { FormType } from '@/context/model';
+import { FormType, VatExemption } from '@/context/model';
 import { cn } from '@/lib/utils';
 
 type Props = {
@@ -27,6 +27,12 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
   const buttonValue = vatArticles.find((framework) => framework.label === selectedValue)?.label;
 
   const { errors } = form.formState;
+
+  const onSelectHandler = (currentValue: string, article: VatExemption) => {
+    setSelectedValue(currentValue === selectedValue ? '' : currentValue);
+    setOpen(false);
+    form.setValue('vatExemption', article);
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -66,15 +72,11 @@ export const VatArticleSelector: React.FC<Props> = ({ form }) => {
                       <FormControl>
                         <CommandItem
                           className={cn(
-                            'gap-3 rounded-none py-4 pl-4 data-[selected=true]:bg-[#F8F8F8]',
-                            selectedValue === article.label && 'bg-[#F8F8F8]',
+                            'gap-3 rounded-none py-4 pl-4 data-[selected=true]:bg-background',
+                            selectedValue === article.label && 'bg-background',
                           )}
                           value={article.label}
-                          onSelect={(currentValue) => {
-                            setSelectedValue(currentValue === selectedValue ? '' : currentValue);
-                            setOpen(false);
-                            form.setValue('vatExemption', article);
-                          }}
+                          onSelect={(currentValue) => onSelectHandler(currentValue, article)}
                         >
                           <div className="flex flex-col">
                             <span className="text-base">{article.label}</span>

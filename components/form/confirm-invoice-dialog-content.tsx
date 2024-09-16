@@ -34,7 +34,7 @@ export const ConfirmInvoiceDialogContent: React.FC<Props> = ({ setOpenDialog, se
       toast({
         title: 'Erorr',
         variant: 'destructive',
-        description: 'Invoice updated',
+        description: 'Request to create invoice failed. Please try again later.',
         duration: 3000,
       });
       return;

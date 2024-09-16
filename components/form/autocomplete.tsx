@@ -139,7 +139,7 @@ export const AutoComplete = <T extends string>({
                   value="create-new"
                   onMouseDown={(e) => e.preventDefault()}
                   onSelect={handleSelectItem}
-                  className="group flex-col items-start gap-3 rounded-none py-3 pl-4 data-[selected=true]:bg-[#F8F8F8]"
+                  className="group flex-col items-start gap-3 rounded-none py-3 pl-4 data-[selected=true]:bg-background"
                 >
                   <div className="flex items-center gap-2 p-0">
                     <p className="text-sm font-semibold text-dark-gray">{searchValue}</p>
@@ -163,7 +163,7 @@ export const AutoComplete = <T extends string>({
                       value={option.id}
                       onMouseDown={(e) => e.preventDefault()}
                       onSelect={() => handleSelectItem(option.id)}
-                      className="group flex-col items-start gap-3 rounded-none py-2 pl-4 data-[selected=true]:bg-[#F8F8F8]"
+                      className="group flex-col items-start gap-3 rounded-none py-2 pl-4 data-[selected=true]:bg-background"
                     >
                       <span className="text-md font-semibold group-hover:text-[#101010]">
                         {chooseValueBy === 'value' ? option.label : option.value}
