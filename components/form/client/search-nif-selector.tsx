@@ -32,7 +32,7 @@ export const SearchNifSelector: React.FC<Props> = ({ value, error }) => {
         }
         return acc;
       }, []),
-    [searchValue],
+    [searchValue, companies],
   );
 
   const onSelect = (value: string) => {

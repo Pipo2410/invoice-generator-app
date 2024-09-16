@@ -1463,5 +1463,143 @@
       "label": "Exempt Article 14 of CIVA"
     },
     "status": "issued"
+  },
+  {
+    "invoiceId": 23,
+    "client": {
+      "id": "3",
+      "businessName": "Company Abc",
+      "email": "company.abc@gmail.com",
+      "nif": "329643090",
+      "country": "Portugal",
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "city": "Lisboa",
+        "street": "Rua de Joao jorge 234",
+        "postalCode": "1254-213",
+        "additional": "4dt-1dto"
+      }
+    },
+    "date": {
+      "issueDate": "2024-09-16T09:51:14.982Z",
+      "dueDate": "2024-10-16T09:51:14.982Z"
+    },
+    "items": [
+      {
+        "id": "2",
+        "name": "Software development",
+        "description": "Development of software products",
+        "category": "Service",
+        "unit": 1,
+        "price": 100,
+        "vat": 23,
+        "totalPrice": 123
+      }
+    ],
+    "currency": {
+      "value": "EUR",
+      "isDefault": false
+    },
+    "additionalOptions": {
+      "purchaseOrder": "dsdsds",
+      "referenceNote": "dsds"
+    },
+    "retention": {
+      "isSelected": false,
+      "value": 0
+    },
+    "globalDiscount": {
+      "isSelected": false,
+      "value": 0
+    },
+    "price": {
+      "subTotal": 123,
+      "vatTotal": 23,
+      "discountTotal": 0,
+      "retentionAmount": 0,
+      "total": 123
+    },
+    "vatExemption": {
+      "value": "M01",
+      "label": "1 Article 16(6) of CIVA"
+    },
+    "status": "issued"
+  },
+  {
+    "invoiceId": 24,
+    "client": {
+      "id": "3",
+      "businessName": "Company Abc",
+      "email": "company.abc@gmail.com",
+      "nif": "329643090",
+      "country": "Portugal",
+      "currency": {
+        "value": "EUR",
+        "isDefault": true
+      },
+      "address": {
+        "city": "Lisboa",
+        "street": "Rua de Joao jorge 234",
+        "postalCode": "1254-213",
+        "additional": "4dt-1dto"
+      }
+    },
+    "date": {
+      "issueDate": "2024-09-16T09:51:14.982Z",
+      "dueDate": "2024-10-16T09:51:14.982Z"
+    },
+    "items": [
+      {
+        "id": "3",
+        "name": "Company development",
+        "description": "Development of company structure",
+        "category": "Service",
+        "unit": 1,
+        "price": 100,
+        "vat": 23,
+        "totalPrice": 123
+      },
+      {
+        "id": "2",
+        "name": "Software development",
+        "description": "Development of software products",
+        "category": "Service",
+        "unit": 1,
+        "price": 10,
+        "vat": 23,
+        "totalPrice": 12.3
+      }
+    ],
+    "currency": {
+      "value": "EUR",
+      "isDefault": false
+    },
+    "additionalOptions": {
+      "purchaseOrder": "dsds",
+      "referenceNote": "dsds"
+    },
+    "retention": {
+      "isSelected": false,
+      "value": 0
+    },
+    "globalDiscount": {
+      "isSelected": false,
+      "value": 0
+    },
+    "price": {
+      "subTotal": 135.3,
+      "vatTotal": 25.3,
+      "discountTotal": 0,
+      "retentionAmount": 0,
+      "total": 135.3
+    },
+    "vatExemption": {
+      "value": "M06",
+      "label": "Exempt Article 15 of CIVA"
+    },
+    "status": "issued"
   }
 ]

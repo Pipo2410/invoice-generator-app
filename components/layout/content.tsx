@@ -61,7 +61,7 @@ export const Content = () => {
         )}
       </CustomDialog>
     ),
-    [submitted, openConfirmationDialog],
+    [submitted, openConfirmationDialog, form],
   );
 
   return (
